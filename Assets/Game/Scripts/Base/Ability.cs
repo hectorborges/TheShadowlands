@@ -41,6 +41,7 @@ public class Ability : MonoBehaviour
 
     public virtual void ActivateAbility()
     {
+        print(abilityName + " Activated!");
         if (!isCharging)
         {
             charge = StartCoroutine(Charge());

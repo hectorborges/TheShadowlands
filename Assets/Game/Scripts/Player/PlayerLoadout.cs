@@ -32,7 +32,7 @@ public class PlayerLoadout : MonoBehaviour
 
         UpdateAbilities(-1);
 
-        for (int i = 0; i < 5; i++)
+        for (int i = 0; i < 6; i++)
             cooldownQueues.Add(new Queue<float>());
     }
 
@@ -65,6 +65,7 @@ public class PlayerLoadout : MonoBehaviour
 
     private void Update()
     {
+        RecieveInput();
         AbilityInput();
         CheckCooldowns();
     }
