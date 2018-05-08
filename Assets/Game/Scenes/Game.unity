@@ -13776,11 +13776,13 @@ MonoBehaviour:
   abilityCharges: 1
   chargeTime: 0
   abilityCooldown: 0.3
+  attackDistance: 5
   playerAnimator: {fileID: 906064011}
   numberOfAnimations: 2
   charges: 0
   isCharging: 0
   isFiring: 0
+  requiresTarget: 0
   damageColliders:
   - {fileID: 356324910}
   - {fileID: 1594866893}
@@ -24958,11 +24960,13 @@ MonoBehaviour:
   abilityCharges: 1
   chargeTime: 0
   abilityCooldown: 3
+  attackDistance: 5
   playerAnimator: {fileID: 906064011}
   numberOfAnimations: 1
   charges: 0
   isCharging: 0
   isFiring: 0
+  requiresTarget: 0
   damageCollider: {fileID: 462546614}
   minimumDamage: 14
   maximumDamage: 20

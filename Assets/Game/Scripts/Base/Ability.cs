@@ -37,6 +37,7 @@ public class Ability : MonoBehaviour
     public int abilityCharges = 1;
     public float chargeTime;
     public float abilityCooldown;
+    public float attackDistance;
 
     [Space, Header("Extra Options")]
     public PlayerAnimator playerAnimator;
@@ -47,6 +48,8 @@ public class Ability : MonoBehaviour
     bool onCooldown;
     [HideInInspector] public bool isCharging;
     [HideInInspector] public bool isFiring;
+
+    public bool requiresTarget;
 
     Coroutine charge;
 

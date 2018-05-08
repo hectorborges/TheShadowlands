@@ -25,6 +25,7 @@ public class PlayerLoadout : MonoBehaviour
     bool[] abilityDeactive = new bool[6];
 
     float remainingTime;
+    Interactable focus;
 
     private void Awake()
     {
@@ -131,37 +132,12 @@ public class PlayerLoadout : MonoBehaviour
 
     private void RecieveInput()
     {
-        if (abilities[0].abilityInput == Ability.AbilityInput.GetButton)
-            abilityActive[0] = Input.GetKey(primaryAbilityKey);
-        else
-            abilityActive[0] = Input.GetKeyDown(primaryAbilityKey);
-
-        if (abilities[1].abilityInput == Ability.AbilityInput.GetButton)
-            abilityActive[1] = Input.GetKey(secondaryAbilityKey);
-        else
-            abilityActive[1] = Input.GetKeyDown(secondaryAbilityKey);
-
-        if (abilities[2].abilityInput == Ability.AbilityInput.GetButton)
-            abilityActive[2] = Input.GetKey(abilityOneKey);
-        else
-            abilityActive[2] = Input.GetKeyDown(abilityOneKey);
-
-
-        if (abilities[3].abilityInput == Ability.AbilityInput.GetButton)
-            abilityActive[3] = Input.GetKey(abilityTwoKey);
-        else
-            abilityActive[3] = Input.GetKeyDown(abilityTwoKey);
-
-
-        if (abilities[4].abilityInput == Ability.AbilityInput.GetButton)
-            abilityActive[4] = Input.GetKey(abilityThreeKey);
-        else
-            abilityActive[4] = Input.GetKeyDown(abilityThreeKey);
-
-        if (abilities[5].abilityInput == Ability.AbilityInput.GetButton)
-            abilityActive[5] = Input.GetKey(abilityFourKey);
-        else
-            abilityActive[5] = Input.GetKeyDown(abilityFourKey);
+        Attack(abilities[0], primaryAbilityKey);
+        Attack(abilities[1], secondaryAbilityKey);
+        Attack(abilities[2], abilityOneKey);
+        Attack(abilities[3], abilityTwoKey);
+        Attack(abilities[4], abilityThreeKey);
+        Attack(abilities[5], abilityFourKey);
 
         abilityDeactive[0] = Input.GetKeyUp(primaryAbilityKey);
         abilityDeactive[1] = Input.GetKeyUp(secondaryAbilityKey);
@@ -169,5 +145,34 @@ public class PlayerLoadout : MonoBehaviour
         abilityDeactive[3] = Input.GetKeyUp(abilityTwoKey);
         abilityDeactive[4] = Input.GetKeyUp(abilityThreeKey);
         abilityDeactive[5] = Input.GetKeyUp(abilityFourKey);
+    }
+
+    public void Attack(Ability ability, KeyCode abilityKey)
+    {
+        if(ability.requiresTarget)
+        {
+            if(focus != null)
+            {
+                if(Utility.CheckDistance(transform.position, focus.transform.position) < ability.attackDistance)
+                {
+                    if (ability.abilityInput == Ability.AbilityInput.GetButton)
+                        abilityActive[abilities.IndexOf(ability)] = Input.GetKey(abilityKey);
+                    else
+                        abilityActive[abilities.IndexOf(ability)] = Input.GetKeyDown(abilityKey);
+                }
+            }
+        }
+        else
+        {
+            if (ability.abilityInput == Ability.AbilityInput.GetButton)
+                abilityActive[abilities.IndexOf(ability)] = Input.GetKey(abilityKey);
+            else
+                abilityActive[abilities.IndexOf(ability)] = Input.GetKeyDown(abilityKey);
+        }
+    }
+
+    public void SetFocus(Interactable newFocus)
+    {
+        focus = newFocus;
     }
 }
