@@ -19,16 +19,23 @@ public class AI : MonoBehaviour
     Transform target;
     NavMeshAgent agent;
     AnimatorBase animatorBase;
-
+    EnemyHealth enemyHealth;
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
         animatorBase = GetComponent<AnimatorBase>();
         target = GameObject.Find("Player").transform;
+        enemyHealth = GetComponent<EnemyHealth>();
     }
 
     void Update()
     {
+        if(enemyHealth.isDead)
+        {
+            agent.isStopped = true;
+            return;
+        }
+
         float distance = Utility.CheckDistance(target.position, transform.position);
 
         if (distance <= lookRadius)

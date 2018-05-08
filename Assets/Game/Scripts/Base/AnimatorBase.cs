@@ -33,6 +33,12 @@ public class AnimatorBase : MonoBehaviour
         animator.SetInteger("Hit", randomHit);
     }
 
+    public void Death(int numberOfDeathAnimations)
+    {
+        int randomDeath = Random.Range(1, numberOfDeathAnimations + 1);
+        animator.SetInteger("Death", randomDeath);
+    }
+
     public virtual void ResetAttack(ResetAttack.AbilitySlot abilitySlot)
     {
 

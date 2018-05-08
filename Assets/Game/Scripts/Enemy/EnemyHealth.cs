@@ -13,12 +13,12 @@ public class EnemyHealth : Health
 
     SkinnedMeshRenderer rend;
 
-    Animator anim;
+    AnimatorBase animatorBase;
     float deathTime;
 
     void OnEnable()
     {
-        anim = GetComponentInChildren<Animator>();
+        animatorBase = GetComponent<AnimatorBase>();
         rend = GetComponentInChildren<SkinnedMeshRenderer>();
         health = baseHealth;
     }
@@ -41,11 +41,7 @@ public class EnemyHealth : Health
         if (hitEffect)
             hitEffect.SetActive(true);
 
-
-        int randomHit = Random.Range(1, numberOfHits + 1);
-        anim.SetInteger("Hit", randomHit);
-
-        anim.SetTrigger("Hit");
+        animatorBase.Hit(numberOfHits);
 
         AudioClip hitSound = hitSounds[Random.Range(0, hitSounds.Length)];
         source.PlayOneShot(hitSound);
@@ -59,13 +55,12 @@ public class EnemyHealth : Health
 
     public override IEnumerator Died()
     {
-        anim.SetBool("Died", true);
+        animatorBase.Death(numberOfDeaths);
 
         AudioClip deathSound = deathSounds[Random.Range(0, deathSounds.Length)];
         source.PlayOneShot(deathSound);
 
-        if (gameObject.layer == LayerMask.NameToLayer("Targetable"))
-            gameObject.layer = LayerMask.NameToLayer("Default");
+        gameObject.layer = LayerMask.NameToLayer("Default");
 
         if (rend && dissolveMaterial)
         {
@@ -75,6 +70,6 @@ public class EnemyHealth : Health
 
         }
         yield return new WaitForSeconds(despawnTime);
-        Destroy(gameObject);
+        //Destroy(gameObject);
     }
 }
