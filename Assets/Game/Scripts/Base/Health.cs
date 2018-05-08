@@ -9,15 +9,19 @@ public class Health : MonoBehaviour
     public int numberOfHits;
     public int numberOfDeaths;
 
+    public AudioSource source;
+    public AudioClip[] hitSounds;
+    public AudioClip[] deathSounds;
+
     [HideInInspector]
     public bool dead;
 
     protected int health;
-    protected Animator anim;
+    protected PlayerAnimator playerAnimator;
 
     public virtual void Start()
     {
-        anim = GetComponentInChildren<Animator>();
+        playerAnimator = GetComponent<PlayerAnimator>();
         ResetCharacter();
     }
 
@@ -25,8 +29,10 @@ public class Health : MonoBehaviour
     {
         health -= damage;
 
-        int randomHit = Random.Range(1, numberOfHits + 1);
-        anim.SetInteger("Hit", randomHit);
+        playerAnimator.Hit(numberOfHits);
+
+        AudioClip hitSound = hitSounds[Random.Range(0, hitSounds.Length)];
+        source.PlayOneShot(hitSound);
 
         if (health <= 0 && !dead)
         {
@@ -37,20 +43,23 @@ public class Health : MonoBehaviour
 
     public virtual IEnumerator Died()
     {
-        int randomDeath = Random.Range(1, numberOfDeaths + 1);
-        anim.SetInteger("Dead", randomDeath);
+        PlayerMovement.canMove = false;
+        AudioClip deathSound = deathSounds[Random.Range(0, deathSounds.Length)];
+        source.PlayOneShot(deathSound);
+
+        playerAnimator.Dead(true);
         yield return new WaitForSeconds(despawnTime);
-        Destroy(gameObject);
+        //Destroy(gameObject);
     }
 
     public virtual void ResetCharacter()
     {
         health = baseHealth;
-        anim.SetInteger("Dead", 0);
+        playerAnimator.Dead(false);
     }
 
-    public void ResetHit()
+    public void Ressurected()
     {
-        anim.SetInteger("Hit", 0);
+        PlayerMovement.canMove = true;
     }
 }

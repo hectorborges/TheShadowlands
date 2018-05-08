@@ -7,15 +7,13 @@ public class EnemyHealth : Health
     public int maxHealth;
     public GameObject hitEffect;
     public Material dissolveMaterial;
-    public AudioSource source;
-    public AudioClip[] hitSounds;
-    public AudioClip[] deathSounds;
 
     [HideInInspector]
     public bool isDead;
 
     SkinnedMeshRenderer rend;
 
+    Animator anim;
     float deathTime;
 
     void OnEnable()

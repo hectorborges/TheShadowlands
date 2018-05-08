@@ -20,7 +20,7 @@ public class PlayerMovement : MonoBehaviour
     private void Start()
     {
         canMove = true;
-        playerAnimator = GetComponentInChildren<PlayerAnimator>();
+        playerAnimator = GetComponent<PlayerAnimator>();
         agent = GetComponent<NavMeshAgent>();
         baseSpeed = agent.speed;
     }
