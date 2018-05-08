@@ -67,7 +67,6 @@ public class PlayerLoadout : MonoBehaviour
     private void Update()
     {
         RecieveInput();
-        AbilityInput();
         CheckCooldowns();
     }
 
@@ -132,12 +131,12 @@ public class PlayerLoadout : MonoBehaviour
 
     private void RecieveInput()
     {
-        Attack(abilities[0], primaryAbilityKey);
-        Attack(abilities[1], secondaryAbilityKey);
-        Attack(abilities[2], abilityOneKey);
-        Attack(abilities[3], abilityTwoKey);
-        Attack(abilities[4], abilityThreeKey);
-        Attack(abilities[5], abilityFourKey);
+        abilityActive[0] = Attack(abilities[0], primaryAbilityKey);
+        abilityActive[1] = Attack(abilities[1], secondaryAbilityKey);
+        abilityActive[2] = Attack(abilities[2], abilityOneKey);
+        abilityActive[3] = Attack(abilities[3], abilityTwoKey);
+        abilityActive[4] = Attack(abilities[4], abilityThreeKey);
+        abilityActive[5] = Attack(abilities[5], abilityFourKey);
 
         abilityDeactive[0] = Input.GetKeyUp(primaryAbilityKey);
         abilityDeactive[1] = Input.GetKeyUp(secondaryAbilityKey);
@@ -145,9 +144,11 @@ public class PlayerLoadout : MonoBehaviour
         abilityDeactive[3] = Input.GetKeyUp(abilityTwoKey);
         abilityDeactive[4] = Input.GetKeyUp(abilityThreeKey);
         abilityDeactive[5] = Input.GetKeyUp(abilityFourKey);
+
+        AbilityInput();
     }
 
-    public void Attack(Ability ability, KeyCode abilityKey)
+    public bool Attack(Ability ability, KeyCode abilityKey)
     {
         if(ability.requiresTarget)
         {
@@ -156,19 +157,22 @@ public class PlayerLoadout : MonoBehaviour
                 if(Utility.CheckDistance(transform.position, focus.transform.position) < ability.attackDistance)
                 {
                     if (ability.abilityInput == Ability.AbilityInput.GetButton)
-                        abilityActive[abilities.IndexOf(ability)] = Input.GetKey(abilityKey);
+                        return Input.GetKey(abilityKey);
                     else
-                        abilityActive[abilities.IndexOf(ability)] = Input.GetKeyDown(abilityKey);
+                        return Input.GetKeyDown(abilityKey);
                 }
             }
         }
         else
         {
             if (ability.abilityInput == Ability.AbilityInput.GetButton)
-                abilityActive[abilities.IndexOf(ability)] = Input.GetKey(abilityKey);
+                return Input.GetKey(abilityKey);
             else
-                abilityActive[abilities.IndexOf(ability)] = Input.GetKeyDown(abilityKey);
+            {
+                return Input.GetKeyDown(abilityKey);
+            }
         }
+        return false;
     }
 
     public void SetFocus(Interactable newFocus)
