@@ -12,6 +12,18 @@ public class Ability : MonoBehaviour
     [TextArea]
     public string abilityDescription;
 
+    public enum AbilitySlot
+    {
+        PrimaryAbility,
+        SecondaryAbility,
+        AbilityOne,
+        AbilityTwo,
+        AbilityThree,
+        AbilityFour
+    };
+
+    public AbilitySlot abilitySlot;
+
     public enum AbilityInput
     {
         GetButtonDown,
@@ -25,6 +37,10 @@ public class Ability : MonoBehaviour
     public int abilityCharges = 1;
     public float chargeTime;
     public float abilityCooldown;
+
+    [Space, Header("Extra Options")]
+    public PlayerAnimator playerAnimator;
+    public int numberOfAnimations;
 
     [HideInInspector]
     public int charges;
@@ -47,6 +63,12 @@ public class Ability : MonoBehaviour
             charge = StartCoroutine(Charge());
             charges--;
         }
+
+        if(playerAnimator)
+        {
+            playerAnimator.Attack(abilitySlot, numberOfAnimations);
+        }
+
     }
 
     public virtual void DeactivateAbility()

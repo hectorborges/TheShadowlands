@@ -16,6 +16,12 @@ public class PlayerAnimator : MonoBehaviour
         animator.SetBool("IsDead", state);
     }
 
+    public void Attack(Ability.AbilitySlot abilitySlot, int numerOfAttackAnimations)
+    {
+        int randomAttack = Random.Range(1, numerOfAttackAnimations + 1);
+        animator.SetInteger(abilitySlot.ToString(), randomAttack);
+    }
+
     public void Hit(int numberOfHitAnimations)
     {
         int randomHit = Random.Range(1, numberOfHitAnimations + 1);

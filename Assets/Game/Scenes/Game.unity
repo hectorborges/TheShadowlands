@@ -308,10 +308,13 @@ MonoBehaviour:
   abilityName: Slash
   abilityIcon: {fileID: 21300000, guid: 551e989bef45ccb44a9c368693b1d947, type: 3}
   abilityDescription: Deals Damage in an arc infront of the player.
+  abilitySlot: 0
   abilityInput: 0
   abilityCharges: 1
   chargeTime: 0
   abilityCooldown: 0.5
+  playerAnimator: {fileID: 906064011}
+  numberOfAnimations: 2
   charges: 0
   isCharging: 0
   isFiring: 0
@@ -1911,10 +1914,13 @@ MonoBehaviour:
   abilityName: Cleave
   abilityIcon: {fileID: 21300000, guid: c112259a0dbfdd94b8d415dee60ebf7a, type: 3}
   abilityDescription: Deals damage in an area around the character.
+  abilitySlot: 0
   abilityInput: 0
   abilityCharges: 1
   chargeTime: 0
   abilityCooldown: 3
+  playerAnimator: {fileID: 906064011}
+  numberOfAnimations: 1
   charges: 0
   isCharging: 0
   isFiring: 0
