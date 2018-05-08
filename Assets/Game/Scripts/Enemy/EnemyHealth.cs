@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyHealth : Health
 {
-    public int maxHealth;
+    [Space, Header("Extra Variables")]
     public GameObject hitEffect;
     public Material dissolveMaterial;
 
@@ -18,9 +18,9 @@ public class EnemyHealth : Health
 
     void OnEnable()
     {
-        anim = GetComponent<Animator>();
+        anim = GetComponentInChildren<Animator>();
         rend = GetComponentInChildren<SkinnedMeshRenderer>();
-        health = maxHealth;
+        health = baseHealth;
     }
 
     private void Update()
@@ -44,7 +44,6 @@ public class EnemyHealth : Health
 
         int randomHit = Random.Range(1, numberOfHits + 1);
         anim.SetInteger("Hit", randomHit);
-
 
         anim.SetTrigger("Hit");
 

@@ -18,12 +18,12 @@ public class AI : MonoBehaviour
 
     Transform target;
     NavMeshAgent agent;
-    Animator anim;
+    AnimatorBase animatorBase;
 
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
-        anim = GetComponentInChildren<Animator>();
+        animatorBase = GetComponent<AnimatorBase>();
         target = GameObject.Find("Player").transform;
     }
 
@@ -49,9 +49,9 @@ public class AI : MonoBehaviour
         }
 
         if (agent.velocity == Vector3.zero)
-            anim.SetBool("Chase", false);
+            animatorBase.Move(false);
         else
-            anim.SetBool("Chase", true);
+            animatorBase.Move(true);
     }
 
     void FaceTarget()
@@ -63,8 +63,7 @@ public class AI : MonoBehaviour
 
     IEnumerator Attack()
     {
-        int randomAttack = Random.Range(1, (numberOfAttacks + 1));
-        anim.SetInteger("Attack", randomAttack);
+        animatorBase.Attack(numberOfAttacks);
 
         yield return new WaitForSeconds(attackSpeed);
         attacking = false;
@@ -74,11 +73,6 @@ public class AI : MonoBehaviour
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, lookRadius);
-    }
-
-    public void ResetAttack()
-    {
-        anim.SetInteger("Attack", 0);
     }
 }
 

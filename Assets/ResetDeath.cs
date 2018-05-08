@@ -2,19 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ResetAttack : StateMachineBehaviour
-{
-    public enum AbilitySlot
-    {
-        PrimaryAbility,
-        SecondaryAbility,
-        AbilityOne,
-        AbilityTwo,
-        AbilityThree,
-        AbilityFour
-    };
-
-    public AbilitySlot abilitySlot;
+public class ResetDeath : StateMachineBehaviour {
 
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     //override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
@@ -26,11 +14,10 @@ public class ResetAttack : StateMachineBehaviour
     //
     //}
 
-    //OnStateExit is called when a transition ends and the state machine finishes evaluating this state
-
+    // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        animator.GetComponentInParent<AnimatorBase>().ResetAttack(abilitySlot);
+        animator.GetComponentInParent<AnimatorBase>().ResetDeath();
     }
 
     // OnStateMove is called right after Animator.OnAnimatorMove(). Code that processes and affects root motion should be implemented here
