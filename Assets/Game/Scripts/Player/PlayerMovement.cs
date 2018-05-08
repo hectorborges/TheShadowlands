@@ -7,6 +7,7 @@ public class PlayerMovement : MonoBehaviour
 {
     Transform target;
     public static bool canMove;
+    public float rotationSpeed;
 
     [HideInInspector]
     public NavMeshAgent agent;
@@ -29,8 +30,8 @@ public class PlayerMovement : MonoBehaviour
     {
         if (target != null && canMove)
         {
-            agent.SetDestination(target.position);
             FaceTarget();
+            agent.SetDestination(target.position);
         }
         else if (!canMove)
         {
@@ -76,7 +77,7 @@ public class PlayerMovement : MonoBehaviour
     {
         Vector3 direction = (target.position - transform.position).normalized;
         Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0f, direction.z));
-        transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 5f);
+        transform.rotation = lookRotation; // Quaternion.Slerp(transform.rotation, lookRotation, rotationSpeed);
     }
 
     Transform GetClosestEnemy(List<Transform> enemies)

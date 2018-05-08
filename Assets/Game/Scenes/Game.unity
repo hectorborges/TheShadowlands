@@ -1287,6 +1287,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0648bea39057dab4db157eeb8a66f574, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rotationSpeed: 10
   agent: {fileID: 0}
   footstepSource: {fileID: 1563207852}
   footsteps:
