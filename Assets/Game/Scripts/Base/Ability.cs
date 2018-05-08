@@ -63,12 +63,16 @@ public class Ability : MonoBehaviour
             charge = StartCoroutine(Charge());
             charges--;
         }
+        Animate();
 
-        if(playerAnimator)
+    }
+
+    public virtual void Animate()
+    {
+        if (playerAnimator)
         {
             playerAnimator.Attack(abilitySlot, numberOfAnimations);
         }
-
     }
 
     public virtual void DeactivateAbility()

@@ -16,8 +16,9 @@ public class MeleeAbility : Ability
 
     public override void ActivateAbility()
     {
+        if (!CanShoot()) return;
         base.ActivateAbility();
-
+        
         damageCollider.enabled = true;
         StartCoroutine(DisableDamageCollider());
         TriggerCooldown();

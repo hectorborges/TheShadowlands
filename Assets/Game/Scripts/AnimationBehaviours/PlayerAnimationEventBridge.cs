@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerAnimationEventBridge : MonoBehaviour
 {
+    public AbilityEffectAnimationEvent[] abilityEffectAnimationEvents;
     PlayerMovement playerMovement;
 
 	void Start ()
@@ -15,4 +16,45 @@ public class PlayerAnimationEventBridge : MonoBehaviour
     {
         playerMovement.Step();
     }
+
+    public void AbilityEffect(string _abilityName)
+    {
+        foreach(AbilityEffectAnimationEvent abilityEffect in abilityEffectAnimationEvents)
+        {
+            if(abilityEffect.abilityName == _abilityName)
+            {
+                abilityEffect.abilityEffect.SetActive(true);
+
+                AudioClip randomEffectSound = abilityEffect.effectSounds[Random.Range(0, abilityEffect.effectSounds.Length)];
+                abilityEffect.audioSource.PlayOneShot(randomEffectSound);
+
+                if(abilityEffect.secondaryEffectSounds.Length > 0)
+                {
+                    AudioClip randomSecondaryEffectSound = abilityEffect.secondaryEffectSounds[Random.Range(0, abilityEffect.secondaryEffectSounds.Length)];
+                    abilityEffect.audioSource.PlayOneShot(randomSecondaryEffectSound);
+                }
+
+                StartCoroutine(DisableEffectAfter(abilityEffect.abilityEffect, abilityEffect.disableAfter));
+                break;
+            }
+        }
+    }
+
+    IEnumerator DisableEffectAfter(GameObject effectToDisable, float disableAfter)
+    {
+        yield return new WaitForSeconds(disableAfter);
+        effectToDisable.SetActive(false);
+    }
+}
+
+[System.Serializable]
+public class AbilityEffectAnimationEvent
+{
+    public string abilityName;
+    public GameObject abilityEffect;
+    public float disableAfter;
+
+    public AudioSource audioSource;
+    public AudioClip[] effectSounds;
+    public AudioClip[] secondaryEffectSounds;
 }

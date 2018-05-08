@@ -22,6 +22,11 @@ public class PlayerAnimator : MonoBehaviour
         animator.SetInteger(abilitySlot.ToString(), randomAttack);
     }
 
+    public void SpecificAttack(Ability.AbilitySlot abilitySlot, int attackToTrigger)
+    {
+        animator.SetInteger(abilitySlot.ToString(), attackToTrigger);
+    }
+
     public void Hit(int numberOfHitAnimations)
     {
         int randomHit = Random.Range(1, numberOfHitAnimations + 1);
