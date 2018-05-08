@@ -10,6 +10,7 @@ GameObject:
   - component: {fileID: 438094}
   - component: {fileID: 19918234}
   - component: {fileID: 19890414}
+  - component: {fileID: 114712329199001708}
   m_Layer: 0
   m_Name: ClickMoveEffect
   m_TagString: Untagged
@@ -9324,3 +9325,15 @@ Prefab:
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 130172}
   m_IsPrefabParent: 1
+--- !u!114 &114712329199001708
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 130172}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42f5fb9f60d5273409ca19d5ab9d3d93, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  disableAfter: 0.25
