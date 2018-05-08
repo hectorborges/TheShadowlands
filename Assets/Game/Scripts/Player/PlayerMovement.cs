@@ -59,7 +59,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (canMove)
         {
-            agent.stoppingDistance = newTarget.radius * .8f;
+            agent.stoppingDistance = newTarget.radius + 2;
             agent.updateRotation = false;
 
             target = newTarget.interactionTransform;

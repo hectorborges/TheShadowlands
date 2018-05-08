@@ -24,6 +24,7 @@ public class PlayerController : MonoBehaviour
 
     Camera cam;
     PlayerMovement movement;
+    PlayerLoadout playerLoadout;
     GameObject player;
     Interactable focus;
 
@@ -35,6 +36,7 @@ public class PlayerController : MonoBehaviour
         cam = Camera.main;
         player = GameObject.Find("Player");
         movement = GetComponent<PlayerMovement>();
+        playerLoadout = GetComponent<PlayerLoadout>();
 
         if(mainCursor)
             Cursor.SetCursor(mainCursor, new Vector2(mainCursor.width / 2, mainCursor.height / 2), CursorMode.Auto);
@@ -171,6 +173,7 @@ public class PlayerController : MonoBehaviour
             movement.FollowTarget(newFocus);
         }
 
+        playerLoadout.SetFocus(focus);
         newFocus.OnFocused(transform);
     }
 
@@ -180,6 +183,7 @@ public class PlayerController : MonoBehaviour
             focus.OnDefocused();
 
         focus = null;
+        playerLoadout.SetFocus(null);
         movement.StopFollowingTarget();
     }
 }
