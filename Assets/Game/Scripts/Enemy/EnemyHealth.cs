@@ -4,17 +4,80 @@ using UnityEngine;
 
 public class EnemyHealth : Health
 {
+    public int maxHealth;
+    public GameObject hitEffect;
+    public Material dissolveMaterial;
+    public AudioSource source;
+    public AudioClip[] hitSounds;
+    public AudioClip[] deathSounds;
+
+    [HideInInspector]
+    public bool isDead;
+
+    SkinnedMeshRenderer rend;
+
+    float deathTime;
+
+    void OnEnable()
+    {
+        anim = GetComponent<Animator>();
+        rend = GetComponentInChildren<SkinnedMeshRenderer>();
+        health = maxHealth;
+    }
+
+    private void Update()
+    {
+        if (isDead)
+        {
+            rend.material.SetFloat("_Progress", Mathf.Lerp(1, 0, deathTime));
+            deathTime += .2f * Time.deltaTime;
+        }
+    }
+
     public override void TookDamage(int damage)
     {
+        if (isDead) return;
+
         health -= damage;
+
+        if (hitEffect)
+            hitEffect.SetActive(true);
+
 
         int randomHit = Random.Range(1, numberOfHits + 1);
         anim.SetInteger("Hit", randomHit);
 
-        if(health <= 0 && !dead)
+
+        anim.SetTrigger("Hit");
+
+        AudioClip hitSound = hitSounds[Random.Range(0, hitSounds.Length)];
+        source.PlayOneShot(hitSound);
+
+        if (health <= 0 && !isDead)
         {
-            dead = true;
+            isDead = true;
             StartCoroutine(Died());
         }
+    }
+
+    public override IEnumerator Died()
+    {
+        anim.SetBool("Died", true);
+
+        AudioClip deathSound = deathSounds[Random.Range(0, deathSounds.Length)];
+        source.PlayOneShot(deathSound);
+
+        if (gameObject.layer == LayerMask.NameToLayer("Targetable"))
+            gameObject.layer = LayerMask.NameToLayer("Default");
+
+        if (rend && dissolveMaterial)
+        {
+            Material[] mats = rend.materials;
+            mats[0] = dissolveMaterial;
+            rend.materials = mats;
+
+        }
+        yield return new WaitForSeconds(despawnTime);
+        Destroy(gameObject);
     }
 }

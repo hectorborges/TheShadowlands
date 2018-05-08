@@ -11,13 +11,16 @@ public class PlayerMovement : MonoBehaviour
     [HideInInspector]
     public NavMeshAgent agent;
 
+    public AudioSource footstepSource;
+    public AudioClip[] footsteps;
+
     float baseSpeed;
-    Animator anim;
+    PlayerAnimator playerAnimator;
 
     private void Start()
     {
         canMove = true;
-        anim = GetComponentInChildren<Animator>();
+        playerAnimator = GetComponentInChildren<PlayerAnimator>();
         agent = GetComponent<NavMeshAgent>();
         baseSpeed = agent.speed;
     }
@@ -37,9 +40,9 @@ public class PlayerMovement : MonoBehaviour
         }
 
         if (agent.velocity == Vector3.zero)
-            anim.SetBool("Move", false);
+            playerAnimator.Move(false);
         else
-            anim.SetBool("Move", true);
+            playerAnimator.Move(true);
     }
 
     public void MoveToPoint(Vector3 point)
@@ -74,5 +77,30 @@ public class PlayerMovement : MonoBehaviour
         Vector3 direction = (target.position - transform.position).normalized;
         Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0f, direction.z));
         transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 5f);
+    }
+
+    Transform GetClosestEnemy(List<Transform> enemies)
+    {
+        Transform bestTarget = null;
+        float closestDistanceSqr = Mathf.Infinity;
+        Vector3 currentPosition = transform.position;
+        foreach (Transform potentialTarget in enemies)
+        {
+            Vector3 directionToTarget = potentialTarget.position - currentPosition;
+            float dSqrToTarget = directionToTarget.sqrMagnitude;
+            if (dSqrToTarget < closestDistanceSqr)
+            {
+                closestDistanceSqr = dSqrToTarget;
+                bestTarget = potentialTarget;
+            }
+        }
+
+        return bestTarget;
+    }
+
+    public void Step()
+    {
+        AudioClip footstep = footsteps[Random.Range(0, footsteps.Length)];
+        footstepSource.PlayOneShot(footstep);
     }
 }
