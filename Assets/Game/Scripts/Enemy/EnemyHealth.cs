@@ -15,7 +15,6 @@ public class EnemyHealth : Health
     public NavMeshAgent agent;
 
     [Space]
-    public GameObject hitEffect;
     public SkinnedMeshRenderer rend;
     public Material dissolveMaterial;
 
@@ -102,9 +101,6 @@ public class EnemyHealth : Health
         obj.transform.position = combatTextSpawn.transform.position;
         obj.transform.rotation = combatTextSpawn.transform.rotation;
         obj.SetActive(true);
-       
-        if (hitEffect)
-            hitEffect.SetActive(true);
 
         animatorBase.Hit(numberOfHits);
 
