@@ -68,7 +68,7 @@ public class PlayerController : MonoBehaviour
                     if (!obstruction.Contains(wallCollision[i].transform.gameObject))
                     {
                         obstruction.Add(wallCollision[i].transform.gameObject);
-                        wallCollision[i].transform.gameObject.GetComponent<MeshRenderer>().enabled = false;
+                        wallCollision[i].transform.gameObject.GetComponent<VisibilityHandler>().IsVisible(false);
                     }
                 }
             }
@@ -77,7 +77,7 @@ public class PlayerController : MonoBehaviour
             {
                 if (!walls.Contains(obstruction[j].gameObject))
                 {
-                    obstruction[j].GetComponent<MeshRenderer>().enabled = true;
+                    obstruction[j].GetComponent<VisibilityHandler>().IsVisible(true);
                     obstruction.Remove(obstruction[j]);
                 }
             }
