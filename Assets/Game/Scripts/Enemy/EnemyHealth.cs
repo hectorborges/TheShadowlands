@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.AI;
 
 public class EnemyHealth : Health
 {
@@ -10,6 +11,8 @@ public class EnemyHealth : Health
     public float healthLostSpeed;
     public Transform combatTextSpawn;
     public ObjectPooling combatText;
+    public Collider collision;
+    public NavMeshAgent agent;
 
     [Space]
     public GameObject hitEffect;
@@ -28,14 +31,35 @@ public class EnemyHealth : Health
     float[] extraDeathTimes;
     Interactable interactable;
 
-    void OnEnable()
-    {
+    private void Start()
+    { 
         interactable = GetComponent<Interactable>();
         animatorBase = GetComponent<AnimatorBase>();
-        rend = GetComponentInChildren<SkinnedMeshRenderer>();
-        health = baseHealth;
+    }
 
+    void OnEnable()
+    {
+        health = baseHealth;
+        agent.enabled = true;
         extraDeathTimes = new float[extraRenderers.Length];
+
+        isDead = false;
+        collision.enabled = true;
+        healthBar.transform.parent.gameObject.SetActive(true);
+        animatorBase.ResetDeath();
+
+        gameObject.layer = LayerMask.NameToLayer("Interactable");
+
+        rend.material.SetFloat("_Progress", 1);
+
+        if (extraRenderers.Length > 0)
+        {
+            for (int i = 0; i < extraRenderers.Length; i++)
+            {
+                extraRenderers[i].material.SetFloat("_Progress", 1);
+                extraDeathTimes[i] += .2f * Time.deltaTime;
+            }
+        }
     }
 
     private void Update()
@@ -96,23 +120,25 @@ public class EnemyHealth : Health
 
     public override IEnumerator Died()
     {
-        if (rend && dissolveMaterial)
-        {
-            Material[] mats = rend.materials;
-            mats[0] = dissolveMaterial;
-            rend.materials = mats;
-        }
+        //if (rend && dissolveMaterial)
+        //{
+        //    Material[] mats = rend.materials;
+        //    mats[0] = dissolveMaterial;
+        //    rend.materials = mats;
+        //}
 
-        if (extraRenderers.Length > 0)
-        {
-            for (int i = 0; i < extraRenderers.Length; i++)
-            {
-                Material[] mats = extraRenderers[i].materials;
-                mats[i] = extraDissolveMaterials[i];
-                extraRenderers[i].materials = mats;
-            }
-        }
+        //if (extraRenderers.Length > 0)
+        //{
+        //    for (int i = 0; i < extraRenderers.Length; i++)
+        //    {
+        //        Material[] mats = extraRenderers[i].materials;
+        //        mats[i] = extraDissolveMaterials[i];
+        //        extraRenderers[i].materials = mats;
+        //    }
+        //}
 
+        agent.enabled = false;
+        collision.enabled = false;
         interactable.OnDefocused();
         healthBar.transform.parent.gameObject.SetActive(false);
         animatorBase.Death(numberOfDeaths);

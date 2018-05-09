@@ -2030,6 +2030,8 @@ MonoBehaviour:
   healthLostSpeed: 5
   combatTextSpawn: {fileID: 224900657375174948}
   combatText: {fileID: 0}
+  collision: {fileID: 136270499071014280}
+  agent: {fileID: 195851206607985208}
   hitEffect: {fileID: 0}
   rend: {fileID: 137933956107071664}
   dissolveMaterial: {fileID: 2100000, guid: df4b5fdfd36a35a49b214cffe90cad9e, type: 2}

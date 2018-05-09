@@ -28,13 +28,15 @@ public class AI : MonoBehaviour
         enemyHealth = GetComponent<EnemyHealth>();
     }
 
+    private void OnEnable()
+    {
+        agent.isStopped = false;
+    }
+
     void Update()
     {
-        if(enemyHealth.isDead)
-        {
-            agent.isStopped = true;
+        if (agent == null ||enemyHealth.isDead)
             return;
-        }
 
         float distance = Utility.CheckDistance(target.position, transform.position);
 
