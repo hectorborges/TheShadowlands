@@ -14115,6 +14115,52 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1 &408550953
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 408550954}
+  - component: {fileID: 408550955}
+  m_Layer: 0
+  m_Name: Floating Combat Text Object Pool
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &408550954
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 408550953}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1237293804}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &408550955
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 408550953}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e81d062c881263740a629b7dd486c82e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pooledObject:
+  - {fileID: 1862252093785054, guid: 1585a77ff73551d4fa3e2177ab87d9a6, type: 2}
+  pooledAmount: 20
+  waitTime: 0.001
+  willGrow: 1
+  pooledObjects: []
 --- !u!1 &443107573
 GameObject:
   m_ObjectHideFlags: 0
@@ -14391,21 +14437,25 @@ Prefab:
       propertyPath: m_Name
       value: Skeleton Enemy (2)
       objectReference: {fileID: 0}
-    - target: {fileID: 114553709256149718, guid: f9ea89bab582f5946a4c6dc364c04172,
-        type: 2}
+    - target: {fileID: 0}
       propertyPath: mainCamera
       value: 
       objectReference: {fileID: 663269819}
     - target: {fileID: 114913238276121244, guid: f9ea89bab582f5946a4c6dc364c04172,
         type: 2}
       propertyPath: baseHealth
-      value: 100
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 114913238276121244, guid: f9ea89bab582f5946a4c6dc364c04172,
         type: 2}
       propertyPath: healthLostSpeed
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 114913238276121244, guid: f9ea89bab582f5946a4c6dc364c04172,
+        type: 2}
+      propertyPath: combatText
+      value: 
+      objectReference: {fileID: 408550955}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f9ea89bab582f5946a4c6dc364c04172, type: 2}
   m_IsPrefabParent: 0
@@ -19482,6 +19532,16 @@ Prefab:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 663269819}
+    - target: {fileID: 114913238276121244, guid: f9ea89bab582f5946a4c6dc364c04172,
+        type: 2}
+      propertyPath: combatText
+      value: 
+      objectReference: {fileID: 408550955}
+    - target: {fileID: 114913238276121244, guid: f9ea89bab582f5946a4c6dc364c04172,
+        type: 2}
+      propertyPath: baseHealth
+      value: 25
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f9ea89bab582f5946a4c6dc364c04172, type: 2}
   m_IsPrefabParent: 0
@@ -34831,6 +34891,35 @@ MonoBehaviour:
   waitTime: 0.001
   willGrow: 1
   pooledObjects: []
+--- !u!1 &1237293803
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1237293804}
+  m_Layer: 0
+  m_Name: Enemy Object Pools
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1237293804
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1237293803}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 408550954}
+  m_Father: {fileID: 0}
+  m_RootOrder: 12
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1284903027
 GameObject:
   m_ObjectHideFlags: 0
@@ -39653,21 +39742,25 @@ Prefab:
       propertyPath: m_Name
       value: Skeleton Enemy (1)
       objectReference: {fileID: 0}
-    - target: {fileID: 114553709256149718, guid: f9ea89bab582f5946a4c6dc364c04172,
-        type: 2}
+    - target: {fileID: 0}
       propertyPath: mainCamera
       value: 
       objectReference: {fileID: 663269819}
     - target: {fileID: 114913238276121244, guid: f9ea89bab582f5946a4c6dc364c04172,
         type: 2}
       propertyPath: baseHealth
-      value: 100
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 114913238276121244, guid: f9ea89bab582f5946a4c6dc364c04172,
         type: 2}
       propertyPath: healthLostSpeed
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 114913238276121244, guid: f9ea89bab582f5946a4c6dc364c04172,
+        type: 2}
+      propertyPath: combatText
+      value: 
+      objectReference: {fileID: 408550955}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f9ea89bab582f5946a4c6dc364c04172, type: 2}
   m_IsPrefabParent: 0
@@ -44090,21 +44183,25 @@ Prefab:
       propertyPath: m_Name
       value: Skeleton Enemy (3)
       objectReference: {fileID: 0}
-    - target: {fileID: 114553709256149718, guid: f9ea89bab582f5946a4c6dc364c04172,
-        type: 2}
+    - target: {fileID: 0}
       propertyPath: mainCamera
       value: 
       objectReference: {fileID: 663269819}
     - target: {fileID: 114913238276121244, guid: f9ea89bab582f5946a4c6dc364c04172,
         type: 2}
       propertyPath: baseHealth
-      value: 100
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 114913238276121244, guid: f9ea89bab582f5946a4c6dc364c04172,
         type: 2}
       propertyPath: healthLostSpeed
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 114913238276121244, guid: f9ea89bab582f5946a4c6dc364c04172,
+        type: 2}
+      propertyPath: combatText
+      value: 
+      objectReference: {fileID: 408550955}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f9ea89bab582f5946a4c6dc364c04172, type: 2}
   m_IsPrefabParent: 0
@@ -49349,21 +49446,25 @@ Prefab:
       propertyPath: m_Name
       value: Skeleton Enemy (4)
       objectReference: {fileID: 0}
-    - target: {fileID: 114553709256149718, guid: f9ea89bab582f5946a4c6dc364c04172,
-        type: 2}
+    - target: {fileID: 0}
       propertyPath: mainCamera
       value: 
       objectReference: {fileID: 663269819}
     - target: {fileID: 114913238276121244, guid: f9ea89bab582f5946a4c6dc364c04172,
         type: 2}
       propertyPath: baseHealth
-      value: 100
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 114913238276121244, guid: f9ea89bab582f5946a4c6dc364c04172,
         type: 2}
       propertyPath: healthLostSpeed
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 114913238276121244, guid: f9ea89bab582f5946a4c6dc364c04172,
+        type: 2}
+      propertyPath: combatText
+      value: 
+      objectReference: {fileID: 408550955}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f9ea89bab582f5946a4c6dc364c04172, type: 2}
   m_IsPrefabParent: 0

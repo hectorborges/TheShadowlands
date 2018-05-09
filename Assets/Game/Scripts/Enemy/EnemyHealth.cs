@@ -8,6 +8,8 @@ public class EnemyHealth : Health
     [Space, Header("Extra Variables")]
     public Image healthBar;
     public float healthLostSpeed;
+    public Transform combatTextSpawn;
+    public ObjectPooling combatText;
 
     [Space]
     public GameObject hitEffect;
@@ -26,7 +28,6 @@ public class EnemyHealth : Health
         animatorBase = GetComponent<AnimatorBase>();
         rend = GetComponentInChildren<SkinnedMeshRenderer>();
         health = baseHealth;
-      //  UpdateHealthBar();
     }
 
     private void Update()
@@ -45,8 +46,22 @@ public class EnemyHealth : Health
         if (isDead) return;
 
         health -= damage;
-       // UpdateHealthBar();
 
+        GameObject obj = combatText.GetPooledObject();
+
+        Text cbtText = obj.GetComponent<Text>();
+        cbtText.text = damage.ToString();
+
+        if (obj == null)
+        {
+            return;
+        }
+
+        obj.transform.parent = combatTextSpawn.transform;
+        obj.transform.position = combatTextSpawn.transform.position;
+        obj.transform.rotation = combatTextSpawn.transform.rotation;
+        obj.SetActive(true);
+       
         if (hitEffect)
             hitEffect.SetActive(true);
 

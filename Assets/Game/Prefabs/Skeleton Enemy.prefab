@@ -405,6 +405,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1557992046845834
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 224900657375174948}
+  m_Layer: 12
+  m_Name: Floating Combat Text Spawn
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1573885903125984
 GameObject:
   m_ObjectHideFlags: 1
@@ -494,6 +509,7 @@ GameObject:
   - component: {fileID: 223208804752253296}
   - component: {fileID: 114422240454401190}
   - component: {fileID: 114774868717372018}
+  - component: {fileID: 114300490704954904}
   m_Layer: 12
   m_Name: Enemy Canvas
   m_TagString: Untagged
@@ -631,7 +647,6 @@ GameObject:
   - component: {fileID: 224815944619749668}
   - component: {fileID: 222964245943459378}
   - component: {fileID: 114506723479039672}
-  - component: {fileID: 114553709256149718}
   m_Layer: 12
   m_Name: HealthBar Boarder
   m_TagString: Untagged
@@ -1765,6 +1780,18 @@ MonoBehaviour:
   radius: 0.5
   interactionTransform: {fileID: 4489825583171832}
   focusGraphic: {fileID: 0}
+--- !u!114 &114300490704954904
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1681582949827280}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f8970e3b9b6db14ca19e6b9b81360d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyCanvas: {fileID: 223208804752253296}
 --- !u!114 &114422240454401190
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1829,18 +1856,6 @@ MonoBehaviour:
   damage: 0
   attackSpeed: 1.5
   numberOfAttacks: 3
---- !u!114 &114553709256149718
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1824519819894062}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3f8970e3b9b6db14ca19e6b9b81360d4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemyCanvas: {fileID: 223208804752253296}
 --- !u!114 &114774868717372018
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1887,6 +1902,8 @@ MonoBehaviour:
   dead: 0
   healthBar: {fileID: 114010241837767412}
   healthLostSpeed: 5
+  combatTextSpawn: {fileID: 224900657375174948}
+  combatText: {fileID: 0}
   hitEffect: {fileID: 0}
   dissolveMaterial: {fileID: 0}
   isDead: 0
@@ -2088,6 +2105,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 224815944619749668}
+  - {fileID: 224900657375174948}
   m_Father: {fileID: 4489825583171832}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2095,4 +2113,22 @@ RectTransform:
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 1}
   m_SizeDelta: {x: 1, y: 1}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!224 &224900657375174948
+RectTransform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1557992046845834}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 224870649097773208}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0.5}
+  m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
