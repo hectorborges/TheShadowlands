@@ -1292,7 +1292,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1974855742425032}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: 1, z: 4.55}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -1302,7 +1302,7 @@ Transform:
   - {fileID: 4886692138456142}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!4 &4502288451728548
 Transform:
   m_ObjectHideFlags: 1
@@ -1712,7 +1712,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: b4a832eac190e404c8b9b2ca3775f755, type: 2}
+  - {fileID: 2100000, guid: 70fc633408be2d4419bbb65f688cad0f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2010,7 +2010,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseHealth: 25
-  despawnTime: 5
+  despawnTime: 3
   numberOfHits: 3
   numberOfDeaths: 3
   source: {fileID: 82452002103916102}
@@ -2031,7 +2031,12 @@ MonoBehaviour:
   combatTextSpawn: {fileID: 224900657375174948}
   combatText: {fileID: 0}
   hitEffect: {fileID: 0}
-  dissolveMaterial: {fileID: 0}
+  rend: {fileID: 137933956107071664}
+  dissolveMaterial: {fileID: 2100000, guid: df4b5fdfd36a35a49b214cffe90cad9e, type: 2}
+  extraRenderers:
+  - {fileID: 23471250057585338}
+  extraDissolveMaterials:
+  - {fileID: 2100000, guid: 70fc633408be2d4419bbb65f688cad0f, type: 2}
   isDead: 0
 --- !u!114 &114958519958448520
 MonoBehaviour:
@@ -2087,7 +2092,7 @@ SkinnedMeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: a63e65b18f4ae46439633640779a594d, type: 2}
+  - {fileID: 2100000, guid: df4b5fdfd36a35a49b214cffe90cad9e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

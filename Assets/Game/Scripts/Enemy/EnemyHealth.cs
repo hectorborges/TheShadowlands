@@ -13,21 +13,29 @@ public class EnemyHealth : Health
 
     [Space]
     public GameObject hitEffect;
+    public SkinnedMeshRenderer rend;
     public Material dissolveMaterial;
+
+    [Space]
+    public MeshRenderer[] extraRenderers;
+    public Material[] extraDissolveMaterials;
 
     [HideInInspector]
     public bool isDead;
 
-    SkinnedMeshRenderer rend;
-
     AnimatorBase animatorBase;
     float deathTime;
+    float[] extraDeathTimes;
+    Interactable interactable;
 
     void OnEnable()
     {
+        interactable = GetComponent<Interactable>();
         animatorBase = GetComponent<AnimatorBase>();
         rend = GetComponentInChildren<SkinnedMeshRenderer>();
         health = baseHealth;
+
+        extraDeathTimes = new float[extraRenderers.Length];
     }
 
     private void Update()
@@ -36,6 +44,15 @@ public class EnemyHealth : Health
         {
             rend.material.SetFloat("_Progress", Mathf.Lerp(1, 0, deathTime));
             deathTime += .2f * Time.deltaTime;
+
+            if(extraRenderers.Length > 0)
+            {
+                for(int i = 0; i < extraRenderers.Length; i++)
+                {
+                    extraRenderers[i].material.SetFloat("_Progress", Mathf.Lerp(1, 0, deathTime));
+                    extraDeathTimes[i] += .2f * Time.deltaTime;
+                }
+            }
         }
         else
             UpdateHealthBar();
@@ -79,6 +96,24 @@ public class EnemyHealth : Health
 
     public override IEnumerator Died()
     {
+        if (rend && dissolveMaterial)
+        {
+            Material[] mats = rend.materials;
+            mats[0] = dissolveMaterial;
+            rend.materials = mats;
+        }
+
+        if (extraRenderers.Length > 0)
+        {
+            for (int i = 0; i < extraRenderers.Length; i++)
+            {
+                Material[] mats = extraRenderers[i].materials;
+                mats[i] = extraDissolveMaterials[i];
+                extraRenderers[i].materials = mats;
+            }
+        }
+
+        interactable.OnDefocused();
         healthBar.transform.parent.gameObject.SetActive(false);
         animatorBase.Death(numberOfDeaths);
 
@@ -87,15 +122,8 @@ public class EnemyHealth : Health
 
         gameObject.layer = LayerMask.NameToLayer("Default");
 
-        if (rend && dissolveMaterial)
-        {
-            Material[] mats = rend.materials;
-            mats[0] = dissolveMaterial;
-            rend.materials = mats;
-
-        }
         yield return new WaitForSeconds(despawnTime);
-        //Destroy(gameObject);
+        gameObject.SetActive(false);
     }
 
     void UpdateHealthBar()
