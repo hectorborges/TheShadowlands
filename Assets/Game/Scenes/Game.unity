@@ -19586,58 +19586,6 @@ MonoBehaviour:
   target: {fileID: 906064006}
   offset: {x: -5, y: 7.5, z: -5}
   followSpeed: 0.5
---- !u!1001 &704503567
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4489825583171832, guid: f9ea89bab582f5946a4c6dc364c04172, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4489825583171832, guid: f9ea89bab582f5946a4c6dc364c04172, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4489825583171832, guid: f9ea89bab582f5946a4c6dc364c04172, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 4.55
-      objectReference: {fileID: 0}
-    - target: {fileID: 4489825583171832, guid: f9ea89bab582f5946a4c6dc364c04172, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4489825583171832, guid: f9ea89bab582f5946a4c6dc364c04172, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4489825583171832, guid: f9ea89bab582f5946a4c6dc364c04172, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4489825583171832, guid: f9ea89bab582f5946a4c6dc364c04172, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4489825583171832, guid: f9ea89bab582f5946a4c6dc364c04172, type: 2}
-      propertyPath: m_RootOrder
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 223208804752253296, guid: f9ea89bab582f5946a4c6dc364c04172,
-        type: 2}
-      propertyPath: m_Camera
-      value: 
-      objectReference: {fileID: 663269819}
-    - target: {fileID: 114913238276121244, guid: f9ea89bab582f5946a4c6dc364c04172,
-        type: 2}
-      propertyPath: combatText
-      value: 
-      objectReference: {fileID: 408550955}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: f9ea89bab582f5946a4c6dc364c04172, type: 2}
-  m_IsPrefabParent: 0
 --- !u!1 &723125584
 GameObject:
   m_ObjectHideFlags: 0
@@ -44847,6 +44795,58 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1001 &1565588946
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4489825583171832, guid: f9ea89bab582f5946a4c6dc364c04172, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4489825583171832, guid: f9ea89bab582f5946a4c6dc364c04172, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4489825583171832, guid: f9ea89bab582f5946a4c6dc364c04172, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 4.55
+      objectReference: {fileID: 0}
+    - target: {fileID: 4489825583171832, guid: f9ea89bab582f5946a4c6dc364c04172, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4489825583171832, guid: f9ea89bab582f5946a4c6dc364c04172, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4489825583171832, guid: f9ea89bab582f5946a4c6dc364c04172, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4489825583171832, guid: f9ea89bab582f5946a4c6dc364c04172, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4489825583171832, guid: f9ea89bab582f5946a4c6dc364c04172, type: 2}
+      propertyPath: m_RootOrder
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 223208804752253296, guid: f9ea89bab582f5946a4c6dc364c04172,
+        type: 2}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 663269819}
+    - target: {fileID: 114913238276121244, guid: f9ea89bab582f5946a4c6dc364c04172,
+        type: 2}
+      propertyPath: combatText
+      value: 
+      objectReference: {fileID: 408550955}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: f9ea89bab582f5946a4c6dc364c04172, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &1594866890
 GameObject:
   m_ObjectHideFlags: 0
