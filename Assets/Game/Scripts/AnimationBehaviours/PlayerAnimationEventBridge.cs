@@ -28,6 +28,11 @@ public class PlayerAnimationEventBridge : MonoBehaviour
                 AudioClip randomEffectSound = abilityEffect.effectSounds[Random.Range(0, abilityEffect.effectSounds.Length)];
                 abilityEffect.audioSource.PlayOneShot(randomEffectSound);
 
+                if(abilityEffect.damageCollider)
+                {
+                    abilityEffect.damageCollider.EnableCollider();
+                }
+
                 if(abilityEffect.secondaryEffectSounds.Length > 0)
                 {
                     AudioClip randomSecondaryEffectSound = abilityEffect.secondaryEffectSounds[Random.Range(0, abilityEffect.secondaryEffectSounds.Length)];
@@ -54,6 +59,7 @@ public class AbilityEffectAnimationEvent
     public GameObject abilityEffect;
     public float disableAfter;
 
+    public DisableColliderAfter damageCollider;
     public AudioSource audioSource;
     public AudioClip[] effectSounds;
     public AudioClip[] secondaryEffectSounds;

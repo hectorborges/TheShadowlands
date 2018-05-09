@@ -1,10 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EnemyHealth : Health
 {
     [Space, Header("Extra Variables")]
+    public Image healthBar;
+    public float healthLostSpeed;
+
+    [Space]
     public GameObject hitEffect;
     public Material dissolveMaterial;
 
@@ -21,6 +26,7 @@ public class EnemyHealth : Health
         animatorBase = GetComponent<AnimatorBase>();
         rend = GetComponentInChildren<SkinnedMeshRenderer>();
         health = baseHealth;
+      //  UpdateHealthBar();
     }
 
     private void Update()
@@ -30,6 +36,8 @@ public class EnemyHealth : Health
             rend.material.SetFloat("_Progress", Mathf.Lerp(1, 0, deathTime));
             deathTime += .2f * Time.deltaTime;
         }
+        else
+            UpdateHealthBar();
     }
 
     public override void TookDamage(int damage)
@@ -37,6 +45,7 @@ public class EnemyHealth : Health
         if (isDead) return;
 
         health -= damage;
+       // UpdateHealthBar();
 
         if (hitEffect)
             hitEffect.SetActive(true);
@@ -55,6 +64,7 @@ public class EnemyHealth : Health
 
     public override IEnumerator Died()
     {
+        healthBar.transform.parent.gameObject.SetActive(false);
         animatorBase.Death(numberOfDeaths);
 
         AudioClip deathSound = deathSounds[Random.Range(0, deathSounds.Length)];
@@ -71,5 +81,10 @@ public class EnemyHealth : Health
         }
         yield return new WaitForSeconds(despawnTime);
         //Destroy(gameObject);
+    }
+
+    void UpdateHealthBar()
+    {
+        healthBar.fillAmount = Mathf.Lerp(healthBar.fillAmount, (float)health / (float)baseHealth, Time.deltaTime * healthLostSpeed);
     }
 }

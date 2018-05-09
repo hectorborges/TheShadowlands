@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class AlternatingMeleeAbility : Ability
 {
-    public Collider[] damageColliders;
+    public DamageTrigger[] damageTriggers;
 
     public int minimumDamage;
     public int maximumDamage;
@@ -15,24 +15,20 @@ public class AlternatingMeleeAbility : Ability
     protected override void Start()
     {
         base.Start();
-        foreach(Collider damageCollider in damageColliders)
-        damageCollider.GetComponent<DamageTrigger>().SetDamage(minimumDamage, maximumDamage);
+        foreach(DamageTrigger damageTrigger in damageTriggers)
+            damageTrigger.SetDamage(minimumDamage, maximumDamage);
     }
 
     public override void ActivateAbility()
     {
         base.ActivateAbility();
 
-        print("Current Collider is " + currentAttack);
-        damageColliders[currentAttack].enabled = true;
-
         lastAttack = currentAttack;
         if (currentAttack + 1 < numberOfAnimations)
             currentAttack++;
         else
             currentAttack = 0;
-
-        StartCoroutine(DisableDamageCollider());
+        
         TriggerCooldown();
     }
 
@@ -42,11 +38,5 @@ public class AlternatingMeleeAbility : Ability
         {
             playerAnimator.SpecificAttack(abilitySlot, currentAttack + 1);
         }
-    }
-
-    IEnumerator DisableDamageCollider()
-    {
-        yield return new WaitForSeconds(.1f);
-        damageColliders[lastAttack].enabled = false;
     }
 }

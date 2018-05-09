@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class MeleeAbility : Ability
 {
-    public Collider damageCollider;
+    public DamageTrigger damageTrigger;
     public int minimumDamage;
     public int maximumDamage;
 
     protected override void Start()
     {
         base.Start();
-        damageCollider.GetComponent<DamageTrigger>().SetDamage(minimumDamage, maximumDamage);
+        damageTrigger.SetDamage(minimumDamage, maximumDamage);
     }
 
     public override void ActivateAbility()
@@ -19,14 +19,6 @@ public class MeleeAbility : Ability
         if (!CanShoot()) return;
         base.ActivateAbility();
         
-        damageCollider.enabled = true;
-        StartCoroutine(DisableDamageCollider());
         TriggerCooldown();
-    }
-
-    IEnumerator DisableDamageCollider()
-    {
-        yield return new WaitForSeconds(.2f);
-        damageCollider.enabled = false;
     }
 }
