@@ -1663,7 +1663,9 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 400196}
-  m_Layer: 10
+  - component: {fileID: 65316793102841740}
+  - component: {fileID: 114090129879648832}
+  m_Layer: 13
   m_Name: Enter
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -37358,7 +37360,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1679472820153192
 GameObject:
   m_ObjectHideFlags: 1
@@ -37634,6 +37636,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 5.1565056, y: 0.31570166, z: 5.1835604}
   m_Center: {x: 0.009975314, y: -0.07419499, z: -0.010832429}
+--- !u!65 &65316793102841740
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100196}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 4, y: 3, z: 5}
+  m_Center: {x: 0, y: 4, z: 2}
 --- !u!65 &65545429404308520
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -37746,6 +37760,18 @@ MonoBehaviour:
   m_VoxelSize: 0.083333336
   m_BuildHeightMesh: 0
   m_NavMeshData: {fileID: 23800000, guid: cd14adfdbee1a1a4ba007b8b736f9e90, type: 2}
+--- !u!114 &114090129879648832
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100196}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eedca557f1dc2fa41bd5d5e2e235f53b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  doorEffect: {fileID: 1659193000630384}
 --- !u!114 &114197058497618956
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -949,6 +949,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1299428015585096
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4835156604694850}
+  - component: {fileID: 82499611824565992}
+  m_Layer: 0
+  m_Name: Ability Source
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1300202972351146
 GameObject:
   m_ObjectHideFlags: 1
@@ -2116,7 +2132,7 @@ GameObject:
   - component: {fileID: 4516349035012700}
   - component: {fileID: 82335058642118252}
   m_Layer: 0
-  m_Name: Ability Source
+  m_Name: BattleWon Source
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3777,12 +3793,12 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1755910684365080}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4781866250951652}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4525921025173130
 Transform:
@@ -4359,6 +4375,7 @@ Transform:
   m_Children:
   - {fileID: 4622972789904632}
   - {fileID: 4558089190226400}
+  - {fileID: 4835156604694850}
   - {fileID: 4516349035012700}
   m_Father: {fileID: 4478960239147548}
   m_RootOrder: 1
@@ -4471,6 +4488,19 @@ Transform:
   m_Father: {fileID: 4725448606965680}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+--- !u!4 &4835156604694850
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1299428015585096}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4781866250951652}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4838997122174158
 Transform:
   m_ObjectHideFlags: 1
@@ -6072,6 +6102,101 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!82 &82499611824565992
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1299428015585096}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 0.3
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!95 &95163933334127592
 Animator:
   serializedVersion: 3
@@ -6771,7 +6896,7 @@ MonoBehaviour:
     abilityEffect: {fileID: 1514499905142792}
     disableAfter: 0.25
     damageCollider: {fileID: 114988024626465674}
-    audioSource: {fileID: 82335058642118252}
+    audioSource: {fileID: 82499611824565992}
     effectSounds:
     - {fileID: 8300000, guid: 32f7f73d98c670e46967c717bc06750b, type: 3}
     - {fileID: 8300000, guid: 1756383461237fd45914a3aa4eca2cd7, type: 3}
@@ -6784,7 +6909,7 @@ MonoBehaviour:
     abilityEffect: {fileID: 1577370228558476}
     disableAfter: 0.25
     damageCollider: {fileID: 114429284745926478}
-    audioSource: {fileID: 82335058642118252}
+    audioSource: {fileID: 82499611824565992}
     effectSounds:
     - {fileID: 8300000, guid: 32f7f73d98c670e46967c717bc06750b, type: 3}
     - {fileID: 8300000, guid: 1756383461237fd45914a3aa4eca2cd7, type: 3}
@@ -6797,7 +6922,7 @@ MonoBehaviour:
     abilityEffect: {fileID: 1134722332961772}
     disableAfter: 0.25
     damageCollider: {fileID: 114490623765281290}
-    audioSource: {fileID: 82335058642118252}
+    audioSource: {fileID: 82499611824565992}
     effectSounds:
     - {fileID: 8300000, guid: 46032ebef7206b142a65823b5e66eeea, type: 3}
     - {fileID: 8300000, guid: d14cf1eb796a14c4bac2a97aa9126f51, type: 3}
@@ -7213,13 +7338,22 @@ MonoBehaviour:
   environmentMask:
     serializedVersion: 2
     m_Bits: 2048
+  exitMask:
+    serializedVersion: 2
+    m_Bits: 8192
   rayCastPosition: {fileID: 0}
   castRadius: 0.25
   wallDetection: 1
   mainCursor: {fileID: 2800000, guid: 19efbc9708bbda9458dbb0b7a0f57b71, type: 3}
   attackCursor: {fileID: 2800000, guid: 239570ac5d6613a45a30a673464f7c9c, type: 3}
   lootCursor: {fileID: 2800000, guid: 7fed5d4c253fb5f468eb8fd0e4ec541e, type: 3}
+  portalCursor: {fileID: 2800000, guid: 28c7bc43e1f79294ba79664689556b90, type: 3}
   clickToMoveEffect: {fileID: 114942608340615456}
+  battleWonSource: {fileID: 82335058642118252}
+  battleWonSounds:
+  - {fileID: 8300000, guid: 693ef2b836a8a744b903d659ba676f7d, type: 3}
+  - {fileID: 8300000, guid: fab2f5501ed0aea4093ed06590920123, type: 3}
+  - {fileID: 8300000, guid: 6d73c3b147b61cb4da6976d0c38abebf, type: 3}
 --- !u!114 &114420843726072616
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -9267,7 +9401,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.25
-  m_Speed: 3.5
+  m_Speed: 4.5
   m_Acceleration: 11
   avoidancePriority: 50
   m_AngularSpeed: 999

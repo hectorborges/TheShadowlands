@@ -70,14 +70,14 @@ public class EnemyHealth : Health
         if (isDead)
         {
             rend.material.SetFloat("_Progress", Mathf.Lerp(1, 0, deathTime));
-            deathTime += .2f * Time.deltaTime;
+            deathTime += .1f * Time.deltaTime;
 
             if(extraRenderers.Length > 0)
             {
                 for(int i = 0; i < extraRenderers.Length; i++)
                 {
                     extraRenderers[i].material.SetFloat("_Progress", Mathf.Lerp(1, 0, deathTime));
-                    extraDeathTimes[i] += .2f * Time.deltaTime;
+                    extraDeathTimes[i] += .1f * Time.deltaTime;
                 }
             }
         }
@@ -137,6 +137,7 @@ public class EnemyHealth : Health
         //    }
         //}
 
+        PlayerController.EnemyDefeated(gameObject);
         agent.enabled = false;
         collision.enabled = false;
         interactable.OnDefocused();

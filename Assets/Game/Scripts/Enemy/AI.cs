@@ -14,19 +14,32 @@ public class AI : MonoBehaviour
     public float attackSpeed;
     public int numberOfAttacks;
 
-    bool attacking;
+    [Space, Header("Sounds")]
+    public AudioSource aggroSource;
+    public AudioSource idleSource;
+    public AudioSource attackSource;
 
-    Transform target;
+    [Space]
+    public AudioClip[] aggroSounds;
+    public AudioClip[] idleSounds;
+    public AudioClip[] attackSounds;
+
+    bool attacking;
+    bool aggroed;
+    bool idling;
+
+    Transform player;
     NavMeshAgent agent;
     AnimatorBase animatorBase;
     EnemyHealth enemyHealth;
+
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
         animatorBase = GetComponent<AnimatorBase>();
 
         if(ReferenceManager.player)
-            target = ReferenceManager.player.transform;
+            player = ReferenceManager.player.transform;
         enemyHealth = GetComponent<EnemyHealth>();
     }
 
@@ -38,21 +51,35 @@ public class AI : MonoBehaviour
 
     void Update()
     {
-        if(target == null)
+        if(!idling)
+        {
+            idling = true;
+            StartCoroutine(Idling());
+        }
+
+        if(player == null)
         {
             if(ReferenceManager.player)
-                target = ReferenceManager.player.transform;
+                player = ReferenceManager.player.transform;
         }
 
         if (agent == null ||enemyHealth.isDead)
             return;
 
-        float distance = Utility.CheckDistance(target.position, transform.position);
+        float distance = Utility.CheckDistance(player.position, transform.position);
 
         if (distance <= lookRadius)
         {
+            if(!aggroed)
+            {
+                aggroed = true;
+                PlayerController.EnemyAggroed(gameObject);
+                AudioClip aggroClip = aggroSounds[Random.Range(0, aggroSounds.Length)];
+                aggroSource.PlayOneShot(aggroClip);
+            }
+
             if (agent.isActiveAndEnabled)
-                agent.SetDestination(target.position);
+                agent.SetDestination(player.position);
 
             if (distance <= agent.stoppingDistance)
             {
@@ -61,6 +88,10 @@ public class AI : MonoBehaviour
                 if(!attacking)
                 {
                     attacking = true;
+
+                    AudioClip attackClip = attackSounds[Random.Range(0, attackSounds.Length)];
+                    attackSource.PlayOneShot(attackClip);
+
                     StartCoroutine(Attack());
                 }
             }
@@ -74,7 +105,7 @@ public class AI : MonoBehaviour
 
     void FaceTarget()
     {
-        Vector3 direction = (target.position - transform.position).normalized;
+        Vector3 direction = (player.position - transform.position).normalized;
         Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
         transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 5);
     }
@@ -85,6 +116,16 @@ public class AI : MonoBehaviour
 
         yield return new WaitForSeconds(attackSpeed);
         attacking = false;
+    }
+
+    IEnumerator Idling()
+    {
+        AudioClip idleClip = idleSounds[Random.Range(0, idleSounds.Length)];
+        idleSource.PlayOneShot(idleClip);
+
+        float randomWaitTime = Random.Range(2.5f, 5);
+        yield return new WaitForSeconds(randomWaitTime);
+        idling = false;
     }
 
     private void OnDrawGizmosSelected()

@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
     public LayerMask movementMask;
     public LayerMask interactable;
     public LayerMask environmentMask;
+    public LayerMask exitMask;
     public GameObject rayCastPosition;
     public float castRadius;
     public bool wallDetection;
@@ -16,20 +17,30 @@ public class PlayerController : MonoBehaviour
     public Texture2D mainCursor;
     public Texture2D attackCursor;
     public Texture2D lootCursor;
+    public Texture2D portalCursor;
 
     public ObjectPooling clickToMoveEffect;
 
+    [Space, Header("Sounds")]
+    public AudioSource battleWonSource;
+    public AudioClip[] battleWonSounds;
+
     public static bool basicAttack;
     public static bool secondaryAttack;
+
+    public static bool battleWon;
 
     Camera cam;
     PlayerMovement movement;
     PlayerLoadout playerLoadout;
     GameObject player;
     Interactable focus;
+    LoadLevel exit;
 
     List<GameObject> obstruction = new List<GameObject>();
     List<GameObject> walls = new List<GameObject>();
+
+    public static List<GameObject> aggroedEnemies = new List<GameObject>();
 
     private void Start()
     {
@@ -42,10 +53,32 @@ public class PlayerController : MonoBehaviour
             Cursor.SetCursor(mainCursor, new Vector2(mainCursor.width / 2, mainCursor.height / 2), CursorMode.Auto);
     }
 
+    public static void EnemyAggroed(GameObject enemy)
+    {
+        aggroedEnemies.Add(enemy);
+    }
+
+    public static void EnemyDefeated(GameObject enemy)
+    {
+        aggroedEnemies.Remove(enemy);
+
+        if (aggroedEnemies.Count <= 0)
+            battleWon = true;
+    }
+
     private void Update()
     {
+        if (battleWon)
+        {
+            battleWon = false;
+
+            AudioClip battleWonSound = battleWonSounds[Random.Range(0, battleWonSounds.Length)];
+            if (!battleWonSource.isPlaying)
+                battleWonSource.PlayOneShot(battleWonSound);
+        }
+
         if (EventSystem.current.IsPointerOverGameObject()) //If you are currently hovering over UI
-            return;
+        return;
 
         if(!player)
         {
@@ -160,6 +193,25 @@ public class PlayerController : MonoBehaviour
             }
             if(mainCursor)
                 Cursor.SetCursor(mainCursor, new Vector2(mainCursor.width / 2, mainCursor.height / 2), CursorMode.Auto);
+        }
+        else if (Physics.Raycast(ray, out hit, 100, exitMask))
+        {
+            if (portalCursor)
+                Cursor.SetCursor(portalCursor, new Vector2(portalCursor.width / 2, portalCursor.height / 2), CursorMode.Auto);
+
+            if (exit == null)
+            exit = hit.transform.GetComponent<LoadLevel>();
+
+            exit.SetActiveEffect(true);
+
+            if (Input.GetKeyDown(KeyCode.Mouse0))
+                exit.LoadNextLevel();
+        }
+
+        if(exit != null)
+        {
+            exit.SetActiveEffect(false);
+            exit = null;
         }
 
         if (stopWalking)
