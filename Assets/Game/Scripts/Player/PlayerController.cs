@@ -47,13 +47,19 @@ public class PlayerController : MonoBehaviour
         if (EventSystem.current.IsPointerOverGameObject()) //If you are currently hovering over UI
             return;
 
+        if(!player)
+        {
+            if (ReferenceManager.player)
+                player = ReferenceManager.player;
+        }
+
         if(wallDetection)
         {
             Vector3 screenPos = cam.WorldToScreenPoint(player.transform.position);
             Ray camToPlayer = cam.ScreenPointToRay(screenPos);
-            Debug.DrawRay(rayCastPosition.transform.position, rayCastPosition.transform.forward * 50, Color.yellow);
+            Debug.DrawRay(cam.transform.position, cam.transform.forward * 50, Color.yellow);
 
-            RaycastHit[] wallCollision = Physics.SphereCastAll(rayCastPosition.transform.position, castRadius, rayCastPosition.transform.forward, 10f, environmentMask);
+            RaycastHit[] wallCollision = Physics.SphereCastAll(cam.transform.position, castRadius, cam.transform.forward, 10f, environmentMask);
 
             for (int i = 0; i < wallCollision.Length; i++)
             {

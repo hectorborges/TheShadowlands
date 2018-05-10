@@ -12,6 +12,12 @@ public class TopDownCamera : MonoBehaviour
 
 	void LateUpdate ()
     {
-        transform.position = Vector3.SmoothDamp(transform.position, target.transform.position + offset, ref velocity, followSpeed);
+        if (target)
+            transform.position = Vector3.SmoothDamp(transform.position, target.transform.position + offset, ref velocity, followSpeed);
+        else
+        {
+            if(ReferenceManager.player)
+                target = ReferenceManager.player.transform;
+        }
 	}
 }

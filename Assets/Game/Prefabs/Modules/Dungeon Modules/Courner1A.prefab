@@ -2723,6 +2723,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4786403194010404}
   - component: {fileID: 114900967160207952}
+  - component: {fileID: 114762670966953764}
   m_Layer: 0
   m_Name: Door (1)
   m_TagString: Untagged
@@ -2739,6 +2740,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4495765650996178}
   - component: {fileID: 114178066793296658}
+  - component: {fileID: 114177555889134936}
   m_Layer: 0
   m_Name: Door (2)
   m_TagString: Untagged
@@ -2755,6 +2757,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4725437707475202}
   - component: {fileID: 114399553597545266}
+  - component: {fileID: 114313751144980728}
   m_Layer: 0
   m_Name: Door
   m_TagString: Untagged
@@ -2771,6 +2774,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4248834572446788}
   - component: {fileID: 114405412371226220}
+  - component: {fileID: 114815972282108556}
   m_Layer: 0
   m_Name: Door
   m_TagString: Untagged
@@ -2848,7 +2852,7 @@ MonoBehaviour:
   m_LayerMask:
     serializedVersion: 2
     m_Bits: 1024
-  m_UseGeometry: 0
+  m_UseGeometry: 1
   m_DefaultArea: 0
   m_IgnoreNavMeshAgent: 1
   m_IgnoreNavMeshObstacle: 1
@@ -2857,7 +2861,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.083333336
   m_BuildHeightMesh: 0
-  m_NavMeshData: {fileID: 23800000, guid: 2e7676cf87f4733419ae817720e4f7f8, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: 075c3798b595c13418d3729b0870b8b8, type: 2}
 --- !u!114 &114102762050535706
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2876,7 +2880,7 @@ MonoBehaviour:
   m_LayerMask:
     serializedVersion: 2
     m_Bits: 1024
-  m_UseGeometry: 0
+  m_UseGeometry: 1
   m_DefaultArea: 0
   m_IgnoreNavMeshAgent: 1
   m_IgnoreNavMeshObstacle: 1
@@ -2885,7 +2889,26 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.083333336
   m_BuildHeightMesh: 0
-  m_NavMeshData: {fileID: 23800000, guid: 5a4cdba89c3c0854a87bd96ce9d9970f, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: b520449d009ebd54da59bbc6ce055888, type: 2}
+--- !u!114 &114177555889134936
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1825393833681620}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6eeb5dc026fdf4b488bc7ae0138ab719, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AgentTypeID: 0
+  m_StartPoint: {x: 0, y: 0, z: -0.5}
+  m_EndPoint: {x: 0, y: 0, z: 0.5}
+  m_Width: 5
+  m_CostModifier: -1
+  m_Bidirectional: 1
+  m_AutoUpdatePosition: 1
+  m_Area: 0
 --- !u!114 &114178066793296658
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2907,6 +2930,25 @@ MonoBehaviour:
   tile: {fileID: 0}
   connectedDoorway: {fileID: 0}
   hideConditionalObjects: 0
+--- !u!114 &114313751144980728
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1904605376361140}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6eeb5dc026fdf4b488bc7ae0138ab719, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AgentTypeID: 0
+  m_StartPoint: {x: 0, y: 0, z: -0.5}
+  m_EndPoint: {x: 0, y: 0, z: 0.5}
+  m_Width: 5
+  m_CostModifier: -1
+  m_Bidirectional: 1
+  m_AutoUpdatePosition: 1
+  m_Area: 0
 --- !u!114 &114399553597545266
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2967,7 +3009,7 @@ MonoBehaviour:
   m_LayerMask:
     serializedVersion: 2
     m_Bits: 1024
-  m_UseGeometry: 0
+  m_UseGeometry: 1
   m_DefaultArea: 0
   m_IgnoreNavMeshAgent: 1
   m_IgnoreNavMeshObstacle: 1
@@ -2976,7 +3018,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.083333336
   m_BuildHeightMesh: 0
-  m_NavMeshData: {fileID: 23800000, guid: 0fa5ce8a819c4554bb2ef60b7a9f9150, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: 75a60e300d94a924ab74475c58757f83, type: 2}
 --- !u!114 &114657266993365010
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2995,7 +3037,7 @@ MonoBehaviour:
   m_LayerMask:
     serializedVersion: 2
     m_Bits: 1024
-  m_UseGeometry: 0
+  m_UseGeometry: 1
   m_DefaultArea: 0
   m_IgnoreNavMeshAgent: 1
   m_IgnoreNavMeshObstacle: 1
@@ -3004,7 +3046,45 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.083333336
   m_BuildHeightMesh: 0
-  m_NavMeshData: {fileID: 23800000, guid: 963da5f9120cf8043b813ce554fba7d7, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: 4cbfd7752a02bf2409e248afae741047, type: 2}
+--- !u!114 &114762670966953764
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1707593552521600}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6eeb5dc026fdf4b488bc7ae0138ab719, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AgentTypeID: 0
+  m_StartPoint: {x: 0, y: 0, z: -0.5}
+  m_EndPoint: {x: 0, y: 0, z: 0.5}
+  m_Width: 5
+  m_CostModifier: -1
+  m_Bidirectional: 1
+  m_AutoUpdatePosition: 1
+  m_Area: 0
+--- !u!114 &114815972282108556
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1987571192435896}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6eeb5dc026fdf4b488bc7ae0138ab719, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AgentTypeID: 0
+  m_StartPoint: {x: 0, y: 0, z: -0.5}
+  m_EndPoint: {x: 0, y: 0, z: 0.5}
+  m_Width: 5
+  m_CostModifier: -1
+  m_Bidirectional: 1
+  m_AutoUpdatePosition: 1
+  m_Area: 0
 --- !u!114 &114900967160207952
 MonoBehaviour:
   m_ObjectHideFlags: 1

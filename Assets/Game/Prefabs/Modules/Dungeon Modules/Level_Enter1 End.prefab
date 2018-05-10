@@ -325,6 +325,7 @@ GameObject:
   - component: {fileID: 3300020}
   - component: {fileID: 2300020}
   - component: {fileID: 114474620700683058}
+  - component: {fileID: 65294176451658776}
   m_Layer: 10
   m_Name: Ground2A
   m_TagString: Ground
@@ -377,6 +378,7 @@ GameObject:
   - component: {fileID: 3300026}
   - component: {fileID: 2300026}
   - component: {fileID: 114417394178722760}
+  - component: {fileID: 65087563273396950}
   m_Layer: 10
   m_Name: Ground2A
   m_TagString: Ground
@@ -429,6 +431,7 @@ GameObject:
   - component: {fileID: 3300032}
   - component: {fileID: 2300032}
   - component: {fileID: 114747655827503166}
+  - component: {fileID: 65621037272986860}
   m_Layer: 10
   m_Name: Ground2A
   m_TagString: Ground
@@ -704,6 +707,7 @@ GameObject:
   - component: {fileID: 3300060}
   - component: {fileID: 2300060}
   - component: {fileID: 114975496937974418}
+  - component: {fileID: 65545429404308520}
   m_Layer: 10
   m_Name: Ground2A
   m_TagString: Ground
@@ -790,10 +794,9 @@ GameObject:
   - component: {fileID: 400094}
   - component: {fileID: 3300070}
   - component: {fileID: 2300070}
-  - component: {fileID: 114512684111706622}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Ground2A
-  m_TagString: Ground
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -913,6 +916,7 @@ GameObject:
   - component: {fileID: 3300084}
   - component: {fileID: 2300084}
   - component: {fileID: 114794662569998924}
+  - component: {fileID: 65316015983955058}
   m_Layer: 10
   m_Name: Ground2A
   m_TagString: Ground
@@ -1065,6 +1069,7 @@ GameObject:
   - component: {fileID: 3300100}
   - component: {fileID: 2300100}
   - component: {fileID: 114197058497618956}
+  - component: {fileID: 65218856287176424}
   m_Layer: 10
   m_Name: Ground2A
   m_TagString: Ground
@@ -1541,6 +1546,7 @@ GameObject:
   - component: {fileID: 3300146}
   - component: {fileID: 2300146}
   - component: {fileID: 114002040684955924}
+  - component: {fileID: 65608015529750666}
   m_Layer: 10
   m_Name: Ground2A
   m_TagString: Ground
@@ -1558,9 +1564,10 @@ GameObject:
   - component: {fileID: 400184}
   - component: {fileID: 3300148}
   - component: {fileID: 2300148}
-  m_Layer: 10
+  - component: {fileID: 64913129475863078}
+  m_Layer: 0
   m_Name: Enter
-  m_TagString: Ground
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -1811,7 +1818,6 @@ GameObject:
   - component: {fileID: 400214}
   - component: {fileID: 3300176}
   - component: {fileID: 2300176}
-  - component: {fileID: 6500004}
   m_Layer: 0
   m_Name: Box1
   m_TagString: Untagged
@@ -9680,18 +9686,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!65 &6500004
-BoxCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100214}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.7338212, y: 0.7231068, z: 0.7338212}
-  m_Center: {x: 0, y: 0.3356299, z: -0.00000011920929}
 --- !u!65 &6500006
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -37410,13 +37404,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1727488065841298}
-  m_LocalRotation: {x: 0.30070576, y: 0, z: 0, w: 0.953717}
-  m_LocalPosition: {x: 0, y: 0.836, z: 5.774}
+  m_LocalRotation: {x: 0.27563733, y: 0, z: 0, w: 0.96126175}
+  m_LocalPosition: {x: -0, y: 1.53, z: 5.72}
   m_LocalScale: {x: 4, y: 0.1, z: 5}
   m_Children: []
   m_Father: {fileID: 400196}
   m_RootOrder: 9
-  m_LocalEulerAnglesHint: {x: 35, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 32, y: 0, z: 0}
 --- !u!4 &4354854292344476
 Transform:
   m_ObjectHideFlags: 1
@@ -37437,7 +37431,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1679472820153192}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.26, z: 1.286}
+  m_LocalPosition: {x: 0, y: 2.39, z: 1.34}
   m_LocalScale: {x: 4.000003, y: 0.10000001, z: 5.000002}
   m_Children: []
   m_Father: {fileID: 400196}
@@ -37581,6 +37575,56 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1727488065841298}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!64 &64913129475863078
+MeshCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100184}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: 14
+  m_SkinWidth: 0.01
+  m_Mesh: {fileID: 4300000, guid: a59a67b1e26f8944c9ab6e39d5b5f19b, type: 3}
+--- !u!65 &65087563273396950
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100044}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 5.1565056, y: 0.31570166, z: 5.1835604}
+  m_Center: {x: 0.009975314, y: -0.07419499, z: -0.010832429}
+--- !u!65 &65218856287176424
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100126}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 5.1565056, y: 0.31570166, z: 5.1835604}
+  m_Center: {x: 0.009975314, y: -0.07419499, z: -0.010832429}
+--- !u!65 &65294176451658776
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100038}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 5.1565056, y: 0.31570166, z: 5.1835604}
+  m_Center: {x: 0.009975314, y: -0.07419499, z: -0.010832429}
 --- !u!65 &65313613924846724
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -37593,6 +37637,30 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!65 &65316015983955058
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100108}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 5.1565056, y: 0.31570166, z: 5.1835604}
+  m_Center: {x: 0.009975314, y: -0.07419499, z: -0.010832429}
+--- !u!65 &65545429404308520
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100084}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 5.1565056, y: 0.31570166, z: 5.1835604}
+  m_Center: {x: 0.009975314, y: -0.07419499, z: -0.010832429}
 --- !u!65 &65594267499760916
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -37605,6 +37673,30 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!65 &65608015529750666
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100182}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 5.1565056, y: 0.31570166, z: 5.1835604}
+  m_Center: {x: 0.009975314, y: -0.07419499, z: -0.010832429}
+--- !u!65 &65621037272986860
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100050}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 5.1565056, y: 0.31570166, z: 5.1835604}
+  m_Center: {x: 0.009975314, y: -0.07419499, z: -0.010832429}
 --- !u!108 &108542350049284278
 Light:
   m_ObjectHideFlags: 1
@@ -37659,7 +37751,7 @@ MonoBehaviour:
   m_LayerMask:
     serializedVersion: 2
     m_Bits: 1024
-  m_UseGeometry: 0
+  m_UseGeometry: 1
   m_DefaultArea: 0
   m_IgnoreNavMeshAgent: 1
   m_IgnoreNavMeshObstacle: 1
@@ -37668,7 +37760,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.083333336
   m_BuildHeightMesh: 0
-  m_NavMeshData: {fileID: 23800000, guid: 9af39eefe8a67e1488773918305a2ec7, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: 3a518663259d5884fbfd47a294123019, type: 2}
 --- !u!114 &114197058497618956
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -37687,7 +37779,7 @@ MonoBehaviour:
   m_LayerMask:
     serializedVersion: 2
     m_Bits: 1024
-  m_UseGeometry: 0
+  m_UseGeometry: 1
   m_DefaultArea: 0
   m_IgnoreNavMeshAgent: 1
   m_IgnoreNavMeshObstacle: 1
@@ -37696,7 +37788,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.083333336
   m_BuildHeightMesh: 0
-  m_NavMeshData: {fileID: 23800000, guid: 2b327f70a8f9f614e95a410fcdef8db4, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: f6158ca51a6898d45ab98a9412534b7b, type: 2}
 --- !u!114 &114411169290761234
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -37736,7 +37828,7 @@ MonoBehaviour:
   m_LayerMask:
     serializedVersion: 2
     m_Bits: 1024
-  m_UseGeometry: 0
+  m_UseGeometry: 1
   m_DefaultArea: 0
   m_IgnoreNavMeshAgent: 1
   m_IgnoreNavMeshObstacle: 1
@@ -37745,7 +37837,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.083333336
   m_BuildHeightMesh: 0
-  m_NavMeshData: {fileID: 23800000, guid: 7ba78a4acb21f1d488f1bfe709ab8b2f, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: f3ac4e0af0274a3469063a57fce66f2e, type: 2}
 --- !u!114 &114417394178722760
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -37764,7 +37856,7 @@ MonoBehaviour:
   m_LayerMask:
     serializedVersion: 2
     m_Bits: 1024
-  m_UseGeometry: 0
+  m_UseGeometry: 1
   m_DefaultArea: 0
   m_IgnoreNavMeshAgent: 1
   m_IgnoreNavMeshObstacle: 1
@@ -37773,7 +37865,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.083333336
   m_BuildHeightMesh: 0
-  m_NavMeshData: {fileID: 23800000, guid: de4dd0462126fc345b7a903f2eb39e95, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: f54e84bca57e5734bbbefe3c0c901e47, type: 2}
 --- !u!114 &114474620700683058
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -37792,7 +37884,7 @@ MonoBehaviour:
   m_LayerMask:
     serializedVersion: 2
     m_Bits: 1024
-  m_UseGeometry: 0
+  m_UseGeometry: 1
   m_DefaultArea: 0
   m_IgnoreNavMeshAgent: 1
   m_IgnoreNavMeshObstacle: 1
@@ -37801,35 +37893,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.083333336
   m_BuildHeightMesh: 0
-  m_NavMeshData: {fileID: 23800000, guid: dcd34854645ff04418eef33c69a148fc, type: 2}
---- !u!114 &114512684111706622
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100094}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a5ac11cc976e418e8d13136b07e1f52, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_AgentTypeID: 0
-  m_CollectObjects: 0
-  m_Size: {x: 10, y: 10, z: 10}
-  m_Center: {x: 0, y: 2, z: 0}
-  m_LayerMask:
-    serializedVersion: 2
-    m_Bits: 1024
-  m_UseGeometry: 0
-  m_DefaultArea: 0
-  m_IgnoreNavMeshAgent: 1
-  m_IgnoreNavMeshObstacle: 1
-  m_OverrideTileSize: 0
-  m_TileSize: 256
-  m_OverrideVoxelSize: 0
-  m_VoxelSize: 0.083333336
-  m_BuildHeightMesh: 0
-  m_NavMeshData: {fileID: 23800000, guid: 76f4643ea6631674e9fb58d398e2d14f, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: 8de9bc3a6be9733449f17093d5d11b93, type: 2}
 --- !u!114 &114659351199126210
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -37848,7 +37912,7 @@ MonoBehaviour:
   m_LayerMask:
     serializedVersion: 2
     m_Bits: 1024
-  m_UseGeometry: 0
+  m_UseGeometry: 1
   m_DefaultArea: 0
   m_IgnoreNavMeshAgent: 1
   m_IgnoreNavMeshObstacle: 1
@@ -37857,7 +37921,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.083333336
   m_BuildHeightMesh: 0
-  m_NavMeshData: {fileID: 23800000, guid: 391e257110e1218489f7512eac59f673, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: 22b09e4565eea1a42a1d930f39df544f, type: 2}
 --- !u!114 &114747655827503166
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -37876,7 +37940,7 @@ MonoBehaviour:
   m_LayerMask:
     serializedVersion: 2
     m_Bits: 1024
-  m_UseGeometry: 0
+  m_UseGeometry: 1
   m_DefaultArea: 0
   m_IgnoreNavMeshAgent: 1
   m_IgnoreNavMeshObstacle: 1
@@ -37885,7 +37949,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.083333336
   m_BuildHeightMesh: 0
-  m_NavMeshData: {fileID: 23800000, guid: a0edba3a5e866be439330bd5451f3c1d, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: d80828b84036ab747b4c4090fe7ac963, type: 2}
 --- !u!114 &114794662569998924
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -37904,7 +37968,7 @@ MonoBehaviour:
   m_LayerMask:
     serializedVersion: 2
     m_Bits: 1024
-  m_UseGeometry: 0
+  m_UseGeometry: 1
   m_DefaultArea: 0
   m_IgnoreNavMeshAgent: 1
   m_IgnoreNavMeshObstacle: 1
@@ -37913,7 +37977,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.083333336
   m_BuildHeightMesh: 0
-  m_NavMeshData: {fileID: 23800000, guid: b685abb5d9a197c4fa1630b4e72cd2f9, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: de5ada91ad78480449d34a5dc0bf7447, type: 2}
 --- !u!114 &114975496937974418
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -37932,7 +37996,7 @@ MonoBehaviour:
   m_LayerMask:
     serializedVersion: 2
     m_Bits: 1024
-  m_UseGeometry: 0
+  m_UseGeometry: 1
   m_DefaultArea: 0
   m_IgnoreNavMeshAgent: 1
   m_IgnoreNavMeshObstacle: 1
@@ -37941,7 +38005,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.083333336
   m_BuildHeightMesh: 0
-  m_NavMeshData: {fileID: 23800000, guid: f146c3e4f160f3c438a757c9795ca75c, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: 86015c514356afd4d85f8fc41c5a08b9, type: 2}
 --- !u!198 &198509880428453516
 ParticleSystem:
   m_ObjectHideFlags: 1

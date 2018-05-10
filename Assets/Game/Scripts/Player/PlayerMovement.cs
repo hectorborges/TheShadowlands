@@ -44,6 +44,9 @@ public class PlayerMovement : MonoBehaviour
             playerAnimator.Move(false);
         else
             playerAnimator.Move(true);
+
+        if (agent.isOnOffMeshLink)
+            playerAnimator.Move(true);
     }
 
     public void MoveToPoint(Vector3 point)
