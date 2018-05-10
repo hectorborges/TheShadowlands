@@ -2465,7 +2465,7 @@ Transform:
   m_GameObject: {fileID: 100000}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_Children:
   - {fileID: 400158}
   - {fileID: 400134}
@@ -37845,7 +37845,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.083333336
   m_BuildHeightMesh: 0
-  m_NavMeshData: {fileID: 23800000, guid: 0443e36200de71345a3e9334aa571a5b, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: 5f405316db8b9a4428f6c3ecbb84b9e5, type: 2}
 --- !u!114 &114106609991014178
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -37873,7 +37873,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.083333336
   m_BuildHeightMesh: 0
-  m_NavMeshData: {fileID: 23800000, guid: a739e70c30b6f0b41893edbe3a83ec21, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: 34a9f8fb1bc44fd4e85a7f83793bfefa, type: 2}
 --- !u!114 &114117531440509592
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -37901,7 +37901,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.083333336
   m_BuildHeightMesh: 0
-  m_NavMeshData: {fileID: 23800000, guid: b4a69cc87da171a43bbab89386f3948b, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: d5ee7d264375c3c4fa6be977c5c1bfe9, type: 2}
 --- !u!114 &114191510487757452
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -37929,7 +37929,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.083333336
   m_BuildHeightMesh: 0
-  m_NavMeshData: {fileID: 23800000, guid: 056f8377c3eb2bb4ea097a2c10cfa026, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: 2b28f12dccfac6e40971286544cf8a78, type: 2}
 --- !u!114 &114395481806333052
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -37957,7 +37957,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.083333336
   m_BuildHeightMesh: 0
-  m_NavMeshData: {fileID: 23800000, guid: 998b833a2f396b24c82531ca1f1817b2, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: 2828fa03c2b80274dad2417cd9018042, type: 2}
 --- !u!114 &114411169290761234
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -37971,7 +37971,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SocketGroup: 0
   DoorPrefabs: []
-  BlockerPrefabs: []
+  BlockerPrefabs:
+  - {fileID: 100008, guid: faafa89b39d1a7e4e97907dce55719c7, type: 2}
   AddWhenInUse: []
   AddWhenNotInUse: []
   Size: {x: 8, y: 4}
@@ -38006,7 +38007,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.083333336
   m_BuildHeightMesh: 0
-  m_NavMeshData: {fileID: 23800000, guid: 852529be4c9851d48a8de0e22fd432f1, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: 34a8f6cfc9868d84387add42abe184eb, type: 2}
 --- !u!114 &114676353936272278
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -38034,7 +38035,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.083333336
   m_BuildHeightMesh: 0
-  m_NavMeshData: {fileID: 23800000, guid: 6f154da8d14736e4bbb123c78bc7b0bb, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: 6f083cb438da87e4e953d3ca056e3973, type: 2}
 --- !u!114 &114836861241698824
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -38062,7 +38063,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.083333336
   m_BuildHeightMesh: 0
-  m_NavMeshData: {fileID: 23800000, guid: 7806a6fb5db1a874bb757c2b8230ad45, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: ca128372a25a19f4c84a8e0e99e68f40, type: 2}
 --- !u!114 &114845727798602920
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -38090,7 +38091,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.083333336
   m_BuildHeightMesh: 0
-  m_NavMeshData: {fileID: 23800000, guid: 14351d23398936548a7d86cc6dc0ab11, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: 9e409042daab9794690812a666e00f19, type: 2}
 --- !u!114 &114858613804848932
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -38118,7 +38119,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.083333336
   m_BuildHeightMesh: 0
-  m_NavMeshData: {fileID: 23800000, guid: 78230b6b644aa9d43b1e42b581c29064, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: eebfeae300aff68499ac3bef706cdf77, type: 2}
 --- !u!198 &198071884351177524
 ParticleSystem:
   m_ObjectHideFlags: 1

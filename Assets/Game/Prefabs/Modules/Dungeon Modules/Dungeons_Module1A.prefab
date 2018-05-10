@@ -270,7 +270,7 @@ Transform:
   m_GameObject: {fileID: 100008}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_Children:
   - {fileID: 400014}
   - {fileID: 400016}
@@ -1000,8 +1000,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_AgentTypeID: 0
-  m_StartPoint: {x: 0, y: 0, z: -0.5}
-  m_EndPoint: {x: 0, y: 0, z: 0.5}
+  m_StartPoint: {x: 0, y: 0, z: -1}
+  m_EndPoint: {x: 0, y: 0, z: 1}
   m_Width: 5
   m_CostModifier: -1
   m_Bidirectional: 1
@@ -1034,7 +1034,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.083333336
   m_BuildHeightMesh: 0
-  m_NavMeshData: {fileID: 23800000, guid: a6921127937d7d74f96c1bbe24851eb1, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: 9e5ada1db68399043bb6b012c6225937, type: 2}
 --- !u!114 &114495004478804964
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1048,7 +1048,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SocketGroup: 0
   DoorPrefabs: []
-  BlockerPrefabs: []
+  BlockerPrefabs:
+  - {fileID: 100008, guid: faafa89b39d1a7e4e97907dce55719c7, type: 2}
   AddWhenInUse: []
   AddWhenNotInUse: []
   Size: {x: 8, y: 4}
@@ -1069,7 +1070,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SocketGroup: 0
   DoorPrefabs: []
-  BlockerPrefabs: []
+  BlockerPrefabs:
+  - {fileID: 100008, guid: faafa89b39d1a7e4e97907dce55719c7, type: 2}
   AddWhenInUse: []
   AddWhenNotInUse: []
   Size: {x: 8, y: 4}
@@ -1104,7 +1106,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.083333336
   m_BuildHeightMesh: 0
-  m_NavMeshData: {fileID: 23800000, guid: ad5eca7cb9b4fb540b49d8a6bf783bc0, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: e7d0b25aff0c25d48a1300ad82f2cdd9, type: 2}
 --- !u!114 &114976187311725298
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1117,8 +1119,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_AgentTypeID: 0
-  m_StartPoint: {x: 0, y: 0, z: -0.5}
-  m_EndPoint: {x: 0, y: 0, z: 0.5}
+  m_StartPoint: {x: 0, y: 0, z: -1}
+  m_EndPoint: {x: 0, y: 0, z: 1}
   m_Width: 5
   m_CostModifier: -1
   m_Bidirectional: 1

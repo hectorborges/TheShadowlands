@@ -5,22 +5,22 @@ using UnityEngine;
 public class DisableColliderAfter : MonoBehaviour
 {
     public float disableAfter = .1f;
-    Collider collider;
+    Collider collision;
 
     void Start()
     {
-        collider = GetComponent<Collider>();
+        collision = GetComponent<Collider>();
     }
 
     public void EnableCollider()
     {
-        collider.enabled = true;
+        collision.enabled = true;
         StartCoroutine(DisableAfterTime());
     }
 
     IEnumerator DisableAfterTime()
     {
         yield return new WaitForSeconds(disableAfter);
-        collider.enabled = false;
+        collision.enabled = false;
     }
 }

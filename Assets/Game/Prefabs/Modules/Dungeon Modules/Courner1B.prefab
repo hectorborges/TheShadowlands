@@ -835,7 +835,7 @@ Transform:
   m_GameObject: {fileID: 100050}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_Children:
   - {fileID: 400036}
   - {fileID: 400034}
@@ -2295,7 +2295,7 @@ MonoBehaviour:
   m_LayerMask:
     serializedVersion: 2
     m_Bits: 1024
-  m_UseGeometry: 0
+  m_UseGeometry: 1
   m_DefaultArea: 0
   m_IgnoreNavMeshAgent: 1
   m_IgnoreNavMeshObstacle: 1
@@ -2304,7 +2304,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.083333336
   m_BuildHeightMesh: 0
-  m_NavMeshData: {fileID: 0}
+  m_NavMeshData: {fileID: 23800000, guid: 47475dc2689ce5e4ab50ab6499c0340f, type: 2}
 --- !u!114 &114089344177431116
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2317,8 +2317,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_AgentTypeID: 0
-  m_StartPoint: {x: 0, y: 0, z: -0.5}
-  m_EndPoint: {x: 0, y: 0, z: 0.5}
+  m_StartPoint: {x: 0, y: 0, z: -1}
+  m_EndPoint: {x: 0, y: 0, z: 1}
   m_Width: 5
   m_CostModifier: -1
   m_Bidirectional: 1
@@ -2337,7 +2337,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SocketGroup: 0
   DoorPrefabs: []
-  BlockerPrefabs: []
+  BlockerPrefabs:
+  - {fileID: 100008, guid: faafa89b39d1a7e4e97907dce55719c7, type: 2}
   AddWhenInUse: []
   AddWhenNotInUse: []
   Size: {x: 8, y: 4}
@@ -2358,7 +2359,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SocketGroup: 0
   DoorPrefabs: []
-  BlockerPrefabs: []
+  BlockerPrefabs:
+  - {fileID: 100008, guid: faafa89b39d1a7e4e97907dce55719c7, type: 2}
   AddWhenInUse: []
   AddWhenNotInUse: []
   Size: {x: 8, y: 4}
@@ -2384,7 +2386,7 @@ MonoBehaviour:
   m_LayerMask:
     serializedVersion: 2
     m_Bits: 1024
-  m_UseGeometry: 0
+  m_UseGeometry: 1
   m_DefaultArea: 0
   m_IgnoreNavMeshAgent: 1
   m_IgnoreNavMeshObstacle: 1
@@ -2393,7 +2395,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.083333336
   m_BuildHeightMesh: 0
-  m_NavMeshData: {fileID: 0}
+  m_NavMeshData: {fileID: 23800000, guid: 10340e1caa8f78248bfa12eba9972071, type: 2}
 --- !u!114 &114393804031705932
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2412,7 +2414,7 @@ MonoBehaviour:
   m_LayerMask:
     serializedVersion: 2
     m_Bits: 1024
-  m_UseGeometry: 0
+  m_UseGeometry: 1
   m_DefaultArea: 0
   m_IgnoreNavMeshAgent: 1
   m_IgnoreNavMeshObstacle: 1
@@ -2421,7 +2423,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.083333336
   m_BuildHeightMesh: 0
-  m_NavMeshData: {fileID: 0}
+  m_NavMeshData: {fileID: 23800000, guid: 207f45f78f58c354f96cd43d77694195, type: 2}
 --- !u!114 &114494121378138120
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2434,8 +2436,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_AgentTypeID: 0
-  m_StartPoint: {x: 0, y: 0, z: -0.5}
-  m_EndPoint: {x: 0, y: 0, z: 0.5}
+  m_StartPoint: {x: 0, y: 0, z: -1}
+  m_EndPoint: {x: 0, y: 0, z: 1}
   m_Width: 5
   m_CostModifier: -1
   m_Bidirectional: 1
@@ -2453,8 +2455,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_AgentTypeID: 0
-  m_StartPoint: {x: 0, y: 0, z: -0.5}
-  m_EndPoint: {x: 0, y: 0, z: 0.5}
+  m_StartPoint: {x: 0, y: 0, z: -1}
+  m_EndPoint: {x: 0, y: 0, z: 1}
   m_Width: 5
   m_CostModifier: -1
   m_Bidirectional: 1
@@ -2473,7 +2475,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SocketGroup: 0
   DoorPrefabs: []
-  BlockerPrefabs: []
+  BlockerPrefabs:
+  - {fileID: 100008, guid: faafa89b39d1a7e4e97907dce55719c7, type: 2}
   AddWhenInUse: []
   AddWhenNotInUse: []
   Size: {x: 8, y: 4}
@@ -2499,7 +2502,7 @@ MonoBehaviour:
   m_LayerMask:
     serializedVersion: 2
     m_Bits: 1024
-  m_UseGeometry: 0
+  m_UseGeometry: 1
   m_DefaultArea: 0
   m_IgnoreNavMeshAgent: 1
   m_IgnoreNavMeshObstacle: 1
@@ -2508,4 +2511,4 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.083333336
   m_BuildHeightMesh: 0
-  m_NavMeshData: {fileID: 0}
+  m_NavMeshData: {fileID: 23800000, guid: eb79b3942d418cd4e92b6d2822e6dbd2, type: 2}

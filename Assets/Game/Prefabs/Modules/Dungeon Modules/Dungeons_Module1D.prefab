@@ -1799,7 +1799,7 @@ Transform:
   m_GameObject: {fileID: 100008}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_Children:
   - {fileID: 400164}
   - {fileID: 400132}
@@ -20750,7 +20750,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SocketGroup: 0
   DoorPrefabs: []
-  BlockerPrefabs: []
+  BlockerPrefabs:
+  - {fileID: 100008, guid: faafa89b39d1a7e4e97907dce55719c7, type: 2}
   AddWhenInUse: []
   AddWhenNotInUse: []
   Size: {x: 8, y: 4}
@@ -20770,8 +20771,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_AgentTypeID: 0
-  m_StartPoint: {x: 0, y: 0, z: -0.5}
-  m_EndPoint: {x: 0, y: 0, z: 0.5}
+  m_StartPoint: {x: 0, y: 0, z: -1}
+  m_EndPoint: {x: 0, y: 0, z: 1}
   m_Width: 5
   m_CostModifier: -1
   m_Bidirectional: 1
@@ -20804,7 +20805,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.083333336
   m_BuildHeightMesh: 0
-  m_NavMeshData: {fileID: 23800000, guid: 60bf5f08a0078e44f840fc4c8563f3a3, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: 07fcabe77c5085141927cf17d60e9ffe, type: 2}
 --- !u!114 &114495739021145148
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -20818,7 +20819,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SocketGroup: 0
   DoorPrefabs: []
-  BlockerPrefabs: []
+  BlockerPrefabs:
+  - {fileID: 100008, guid: faafa89b39d1a7e4e97907dce55719c7, type: 2}
   AddWhenInUse: []
   AddWhenNotInUse: []
   Size: {x: 8, y: 4}
@@ -20838,8 +20840,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_AgentTypeID: 0
-  m_StartPoint: {x: 0, y: 0, z: -0.5}
-  m_EndPoint: {x: 0, y: 0, z: 0.5}
+  m_StartPoint: {x: 0, y: 0, z: -1}
+  m_EndPoint: {x: 0, y: 0, z: 1}
   m_Width: 5
   m_CostModifier: -1
   m_Bidirectional: 1
@@ -20872,4 +20874,4 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.083333336
   m_BuildHeightMesh: 0
-  m_NavMeshData: {fileID: 23800000, guid: 9c8d88972d9bc7b41b4894c1f2f877cf, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: cb404b38187f94b42898b9617653c58e, type: 2}

@@ -630,7 +630,7 @@ Transform:
   m_GameObject: {fileID: 100000}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_Children:
   - {fileID: 400022}
   - {fileID: 400018}
@@ -2861,7 +2861,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.083333336
   m_BuildHeightMesh: 0
-  m_NavMeshData: {fileID: 23800000, guid: 075c3798b595c13418d3729b0870b8b8, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: 690734de98d305445b94342ba1e69d3a, type: 2}
 --- !u!114 &114102762050535706
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2889,7 +2889,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.083333336
   m_BuildHeightMesh: 0
-  m_NavMeshData: {fileID: 23800000, guid: b520449d009ebd54da59bbc6ce055888, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: 5b3fbbf97ddf5e04ca5e75b6f7107ee0, type: 2}
 --- !u!114 &114177555889134936
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2902,8 +2902,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_AgentTypeID: 0
-  m_StartPoint: {x: 0, y: 0, z: -0.5}
-  m_EndPoint: {x: 0, y: 0, z: 0.5}
+  m_StartPoint: {x: 0, y: 0, z: -1}
+  m_EndPoint: {x: 0, y: 0, z: 1}
   m_Width: 5
   m_CostModifier: -1
   m_Bidirectional: 1
@@ -2922,10 +2922,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SocketGroup: 0
   DoorPrefabs: []
-  BlockerPrefabs: []
+  BlockerPrefabs:
+  - {fileID: 100008, guid: faafa89b39d1a7e4e97907dce55719c7, type: 2}
   AddWhenInUse: []
   AddWhenNotInUse: []
-  Size: {x: 7, y: 4}
+  Size: {x: 8, y: 4}
   doorPrefab: {fileID: 0}
   tile: {fileID: 0}
   connectedDoorway: {fileID: 0}
@@ -2942,8 +2943,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_AgentTypeID: 0
-  m_StartPoint: {x: 0, y: 0, z: -0.5}
-  m_EndPoint: {x: 0, y: 0, z: 0.5}
+  m_StartPoint: {x: 0, y: 0, z: -1}
+  m_EndPoint: {x: 0, y: 0, z: 1}
   m_Width: 5
   m_CostModifier: -1
   m_Bidirectional: 1
@@ -2962,10 +2963,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SocketGroup: 0
   DoorPrefabs: []
-  BlockerPrefabs: []
+  BlockerPrefabs:
+  - {fileID: 100008, guid: faafa89b39d1a7e4e97907dce55719c7, type: 2}
   AddWhenInUse: []
   AddWhenNotInUse: []
-  Size: {x: 7, y: 4}
+  Size: {x: 8, y: 4}
   doorPrefab: {fileID: 0}
   tile: {fileID: 0}
   connectedDoorway: {fileID: 0}
@@ -2983,10 +2985,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SocketGroup: 0
   DoorPrefabs: []
-  BlockerPrefabs: []
+  BlockerPrefabs:
+  - {fileID: 100008, guid: faafa89b39d1a7e4e97907dce55719c7, type: 2}
   AddWhenInUse: []
   AddWhenNotInUse: []
-  Size: {x: 7, y: 4}
+  Size: {x: 8, y: 4}
   doorPrefab: {fileID: 0}
   tile: {fileID: 0}
   connectedDoorway: {fileID: 0}
@@ -3018,7 +3021,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.083333336
   m_BuildHeightMesh: 0
-  m_NavMeshData: {fileID: 23800000, guid: 75a60e300d94a924ab74475c58757f83, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: b3ecfd0368de6b84b8421e4b0fac9656, type: 2}
 --- !u!114 &114657266993365010
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3046,7 +3049,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.083333336
   m_BuildHeightMesh: 0
-  m_NavMeshData: {fileID: 23800000, guid: 4cbfd7752a02bf2409e248afae741047, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: 1207b6e4b4da56f4db5e5aa3887209f1, type: 2}
 --- !u!114 &114762670966953764
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3059,8 +3062,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_AgentTypeID: 0
-  m_StartPoint: {x: 0, y: 0, z: -0.5}
-  m_EndPoint: {x: 0, y: 0, z: 0.5}
+  m_StartPoint: {x: 0, y: 0, z: -1}
+  m_EndPoint: {x: 0, y: 0, z: 1}
   m_Width: 5
   m_CostModifier: -1
   m_Bidirectional: 1
@@ -3078,8 +3081,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_AgentTypeID: 0
-  m_StartPoint: {x: 0, y: 0, z: -0.5}
-  m_EndPoint: {x: 0, y: 0, z: 0.5}
+  m_StartPoint: {x: 0, y: 0, z: -1}
+  m_EndPoint: {x: 0, y: 0, z: 1}
   m_Width: 5
   m_CostModifier: -1
   m_Bidirectional: 1
@@ -3098,10 +3101,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SocketGroup: 0
   DoorPrefabs: []
-  BlockerPrefabs: []
+  BlockerPrefabs:
+  - {fileID: 100008, guid: faafa89b39d1a7e4e97907dce55719c7, type: 2}
   AddWhenInUse: []
   AddWhenNotInUse: []
-  Size: {x: 7, y: 4}
+  Size: {x: 8, y: 4}
   doorPrefab: {fileID: 0}
   tile: {fileID: 0}
   connectedDoorway: {fileID: 0}

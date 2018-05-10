@@ -20,7 +20,6 @@ private float numBck = 0F;
 private Vector3 initPos;
 
 private float lightPower = 0;
-private float lightPowerBck = 0;
 
 private bool  haveProFlg = false;
 private GameObject nonProFX;

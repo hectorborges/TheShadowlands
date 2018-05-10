@@ -365,7 +365,7 @@ Transform:
   m_GameObject: {fileID: 100000}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_Children:
   - {fileID: 400002}
   - {fileID: 400004}
@@ -2203,7 +2203,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.083333336
   m_BuildHeightMesh: 0
-  m_NavMeshData: {fileID: 23800000, guid: ef6ccd3663f95cf4ba82092f8fda2ad1, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: 94d434174f03adf4da3d8c10598d9bf1, type: 2}
 --- !u!114 &114221197601406232
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2231,7 +2231,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.083333336
   m_BuildHeightMesh: 0
-  m_NavMeshData: {fileID: 23800000, guid: b2de9eef86e96ad45a2239271e35aad5, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: 1341926ca2461d04c978c81889340d5c, type: 2}
 --- !u!114 &114230548882978806
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2259,7 +2259,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.083333336
   m_BuildHeightMesh: 0
-  m_NavMeshData: {fileID: 23800000, guid: 0bf3ce77a4e76494287b8db295280f64, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: bde81ba6b6bbcdf44b34ef24d82f9d39, type: 2}
 --- !u!114 &114656485528312912
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2273,7 +2273,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SocketGroup: 0
   DoorPrefabs: []
-  BlockerPrefabs: []
+  BlockerPrefabs:
+  - {fileID: 100008, guid: faafa89b39d1a7e4e97907dce55719c7, type: 2}
   AddWhenInUse: []
   AddWhenNotInUse: []
   Size: {x: 8, y: 4}
@@ -2308,7 +2309,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.083333336
   m_BuildHeightMesh: 0
-  m_NavMeshData: {fileID: 23800000, guid: ae6f849cbb8500c46bd46211eb838ac1, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: cb040faec0bdf7445b22d34ee279d6f3, type: 2}
 --- !u!114 &114904043277875460
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2336,7 +2337,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.083333336
   m_BuildHeightMesh: 0
-  m_NavMeshData: {fileID: 23800000, guid: 7b8916e26741b864bb48689871aa651c, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: 5806d3c7aa019f349a455dfb02047f55, type: 2}
 --- !u!198 &198061327486840418
 ParticleSystem:
   m_ObjectHideFlags: 1

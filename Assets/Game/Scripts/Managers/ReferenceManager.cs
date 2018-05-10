@@ -25,7 +25,8 @@ public class ReferenceManager : MonoBehaviour
             {
                 spawnedCharacter = true;
                 Transform spawnPosition = GameObject.FindGameObjectWithTag("PlayerSpawnPoint").transform;
-                player = Instantiate(_player, spawnPosition.position, spawnPosition.rotation);
+                if(_player && spawnPosition)
+                    player = Instantiate(_player, spawnPosition.position, spawnPosition.rotation);
             }
         }
     }

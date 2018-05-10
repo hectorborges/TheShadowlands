@@ -17,7 +17,7 @@ MonoBehaviour:
   GlobalPropGroupIDs: 
   GlobalPropRanges: []
   KeyManager: {fileID: 0}
-  DoorwayConnectionChance: 1
+  DoorwayConnectionChance: 0
   TileInjectionRules: []
   Nodes:
   - Graph: {fileID: 11400000}
