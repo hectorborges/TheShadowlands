@@ -12,12 +12,16 @@ MonoBehaviour:
   m_Name: Dungeon Flow
   m_EditorClassIdentifier: 
   Length:
-    Min: 10
-    Max: 20
-  GlobalPropGroupIDs: 
-  GlobalPropRanges: []
+    Min: 5
+    Max: 10
+  GlobalPropGroupIDs: 0100000000000000
+  GlobalPropRanges:
+  - Min: 1
+    Max: 1
+  - Min: 8
+    Max: 15
   KeyManager: {fileID: 0}
-  DoorwayConnectionChance: 0
+  DoorwayConnectionChance: 1
   TileInjectionRules: []
   Nodes:
   - Graph: {fileID: 11400000}

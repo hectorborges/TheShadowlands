@@ -24,17 +24,26 @@ public class AI : MonoBehaviour
     {
         agent = GetComponent<NavMeshAgent>();
         animatorBase = GetComponent<AnimatorBase>();
-        target = GameObject.Find("Player").transform;
+
+        if(ReferenceManager.player)
+            target = ReferenceManager.player.transform;
         enemyHealth = GetComponent<EnemyHealth>();
     }
 
     private void OnEnable()
     {
+        if(agent)
         agent.isStopped = false;
     }
 
     void Update()
     {
+        if(target == null)
+        {
+            if(ReferenceManager.player)
+                target = ReferenceManager.player.transform;
+        }
+
         if (agent == null ||enemyHealth.isDead)
             return;
 

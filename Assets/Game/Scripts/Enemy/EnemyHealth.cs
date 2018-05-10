@@ -34,6 +34,8 @@ public class EnemyHealth : Health
     { 
         interactable = GetComponent<Interactable>();
         animatorBase = GetComponent<AnimatorBase>();
+
+        combatText = ReferenceManager.floatingCombatTextPool;
     }
 
     void OnEnable()
@@ -45,7 +47,9 @@ public class EnemyHealth : Health
         isDead = false;
         collision.enabled = true;
         healthBar.transform.parent.gameObject.SetActive(true);
-        animatorBase.ResetDeath();
+
+        if(animatorBase)
+            animatorBase.ResetDeath();
 
         gameObject.layer = LayerMask.NameToLayer("Interactable");
 
