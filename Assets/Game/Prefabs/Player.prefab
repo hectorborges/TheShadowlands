@@ -6842,7 +6842,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 95163933334127592}
-  twoHandedSwordAOC: {fileID: 22100000, guid: d76536d6449be374fa1b7de3f1bd7141, type: 2}
 --- !u!114 &114010459144596562
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -8111,6 +8110,7 @@ MonoBehaviour:
   abilityTwoKey: 50
   abilityThreeKey: 51
   abilityFourKey: 52
+  weapons: []
   abilities:
   - {fileID: 114126893387748914}
   - {fileID: 114187205743865782}
