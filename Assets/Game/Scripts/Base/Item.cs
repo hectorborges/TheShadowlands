@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Item/New Item")]
-public class Item : ScriptableObject
+public class Item : MonoBehaviour
 {
     public GameObject itemModel;
 
@@ -28,25 +27,9 @@ public class Item : ScriptableObject
     };
 
     public ItemType itemType;
-    public GameObject itemEffect;
-    public GameObject damageCollider;
-    public Ability itemAbility;
+    public GameObject[] itemEffects;
+    public GameObject[] damageColliders;
+    public Ability primaryAbility;
+    public Ability secondaryAbility;
     public AnimatorOverrideController animatorOverrideController;
-    public Stat[] itemStats;
-}
-
-[System.Serializable]
-public class Stat
-{
-    public enum StatType
-    {
-        minimumDamage,
-        maximumDamage,
-        attackSpeed,
-        maxHealth
-    };
-
-    public StatType statType;
-
-    public float statAmount;
 }

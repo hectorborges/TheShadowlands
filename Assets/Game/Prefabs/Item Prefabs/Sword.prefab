@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4536340147207530}
   - component: {fileID: 33760773919045640}
   - component: {fileID: 23626944535508902}
-  - component: {fileID: 114535976795572608}
+  - component: {fileID: 114231664898182948}
   m_Layer: 0
   m_Name: Sword
   m_TagString: Untagged
@@ -84,7 +84,7 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1908575112721746}
   m_Mesh: {fileID: 4300002, guid: b2e8d9c26fba8f54ea10421a969e1992, type: 3}
---- !u!114 &114535976795572608
+--- !u!114 &114231664898182948
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -92,25 +92,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 1908575112721746}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 23b310b8731c5164daf562607b7e0572, type: 3}
+  m_Script: {fileID: 11500000, guid: 18293d44c5fa4844b8c7ba7b9187265a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  findOnStart: 1
-  findNow: 0
-  parentName: R Hand
-  excludeWords: []
-  exludeOwnHierarchy: 1
-  closest: 1
-  parentToRootObject: 0
-  use_SearchWord_RootObjet: 0
-  searchWord_RootObjet: 
-  hierarchyType: 0
-  setLocalPos: 0
-  setLocalRot: 0
-  localPos: {x: 0, y: 0, z: 0}
-  localRot: {x: 0, y: 0, z: 0}
-  storeCurrent: 0
-  storeCurrent_Parent: 0
-  destroyScriptAfterParenting: 1
-  foundParent: 0
-  parentedTo: 
+  itemModel: {fileID: 1908575112721746}
+  equipType: 3
+  itemType: 12
+  itemEffects:
+  - {fileID: 0}
+  - {fileID: 0}
+  damageColliders:
+  - {fileID: 0}
+  - {fileID: 0}
+  primaryAbility: {fileID: 0}
+  secondaryAbility: {fileID: 0}
+  animatorOverrideController: {fileID: 22100000, guid: 8eecea7767fe72c4e93d40a8e266a8a8,
+    type: 2}
