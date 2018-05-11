@@ -13,6 +13,9 @@ public class PlayerLoadout : MonoBehaviour
     public KeyCode abilityThreeKey;
     public KeyCode abilityFourKey;
 
+    [Space, Header("Weapons")]
+    public List<Item> weapons;
+
     [Space, Header("Ability Loadout")]
     public List<Ability> abilities = new List<Ability>();
     public List<Image> abilitySlots;
@@ -35,6 +38,11 @@ public class PlayerLoadout : MonoBehaviour
 
         for (int i = 0; i < 6; i++)
             cooldownQueues.Add(new Queue<float>());
+    }
+
+    void UpdateWeapons()
+    {
+        //Change the weapons here
     }
 
     //pass in -1 if not changing abilities
