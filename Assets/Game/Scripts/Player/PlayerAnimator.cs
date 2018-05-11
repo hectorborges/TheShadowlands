@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerAnimator : AnimatorBase
 {
+    public AnimatorOverrideController twoHandedSwordAOC;
+
     public void Attack(Ability.AbilitySlot abilitySlot, int numerOfAttackAnimations)
     {
         int randomAttack = Random.Range(1, numerOfAttackAnimations + 1);
@@ -18,5 +20,16 @@ public class PlayerAnimator : AnimatorBase
     public override void ResetAttack(ResetAttack.AbilitySlot abilitySlot)
     {
         animator.SetInteger(abilitySlot.ToString(), 0);
+    }
+
+    public void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.E))
+            OverrideAnimations();
+    }
+
+    public void OverrideAnimations()
+    {
+        animator.runtimeAnimatorController = twoHandedSwordAOC;
     }
 }

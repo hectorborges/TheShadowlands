@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18293d44c5fa4844b8c7ba7b9187265a, type: 3}
+  m_Name: TwoHanded Sword
+  m_EditorClassIdentifier: 
+  itemModel: {fileID: 146054, guid: 3bf188fd79e8efb44a2254a7d6532025, type: 2}
+  equipType: 2
+  itemType: 5
+  itemEffect: {fileID: 0}
+  damageCollider: {fileID: 0}
+  itemAbility: {fileID: 0}
+  animatorOverrideController: {fileID: 22100000, guid: d76536d6449be374fa1b7de3f1bd7141,
+    type: 2}
+  itemStats:
+  - statType: 0
+    statAmount: 15
+  - statType: 1
+    statAmount: 30
+  - statType: 2
+    statAmount: 2
