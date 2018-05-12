@@ -4,32 +4,30 @@ using UnityEngine;
 
 public class Item : MonoBehaviour
 {
+    public string itemName;
+    public Sprite itemIcon;
+    public ItemType itemType;
+    [Space]
     public GameObject itemModel;
-
-    public enum ItemEquipType { mainHand, offHand, twoHanded, eitherHand };
-    public ItemEquipType equipType;
+    public GameObject secondaryModel;
+    public GameObject equipLocation;
+    public GameObject secondaryEquipLocation;
+    [Space]
+    public Ability primaryAbility;
+    public Ability secondaryAbility;
 
     public enum ItemType
     {
-        twoHandAxe,
-        bow,
-        twoHandClub,
-        crossbow,
-        twoHandSpear,
-        twoHandSword,
-        dagger,
-        mace,
-        rifle,
-        shield,
-        spear,
-        spell,
-        sword
+        Axe,
+        Crossbow,
+        DualSwords,
+        Pistols,
+        Rifle,
+        Shield,
+        Spear,
+        Spell,
+        Sword
     };
-
-    public ItemType itemType;
-    public GameObject[] itemEffects;
-    public GameObject[] damageColliders;
-    public Ability primaryAbility;
-    public Ability secondaryAbility;
+    [Space]
     public AnimatorOverrideController animatorOverrideController;
 }

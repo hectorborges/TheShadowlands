@@ -17,6 +17,7 @@ public class PlayerMovement : MonoBehaviour
 
     float baseSpeed;
     PlayerAnimator playerAnimator;
+    float currentSpeed;
 
     private void Start()
     {
@@ -40,13 +41,13 @@ public class PlayerMovement : MonoBehaviour
             agent.SetDestination(transform.position);
         }
 
-        if (agent.velocity == Vector3.zero)
-            playerAnimator.Move(false);
-        else
-            playerAnimator.Move(true);
+        print(agent.velocity.magnitude);
+        playerAnimator.Move(currentSpeed, baseSpeed);
 
         if (agent.isOnOffMeshLink)
             playerAnimator.Move(true);
+        else
+            currentSpeed = agent.velocity.magnitude;
     }
 
     public void MoveToPoint(Vector3 point)

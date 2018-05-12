@@ -14,7 +14,8 @@ public class PlayerLoadout : MonoBehaviour
     public KeyCode abilityFourKey;
 
     [Space, Header("Weapons")]
-    public List<Item> weapons;
+    public Item currentWeapon;
+    public GameObject weaponHolder;
 
     [Space, Header("Ability Loadout")]
     public List<Ability> abilities = new List<Ability>();
@@ -36,16 +37,46 @@ public class PlayerLoadout : MonoBehaviour
         Application.targetFrameRate = 60;
         playerAnimator = GetComponent<PlayerAnimator>();
         UpdateAbilities(-1);
-        UpdateWeapons();
+        UpdateWeapons(currentWeapon);
 
         for (int i = 0; i < 6; i++)
             cooldownQueues.Add(new Queue<float>());
     }
 
-    void UpdateWeapons()
+    public void UpdateWeapons(Item newWeapon)
     {
-        //Change the weapons here
-        playerAnimator.OverrideAnimations(weapons[0].animatorOverrideController);
+        ChangeWeapon(currentWeapon.itemModel.transform, weaponHolder.transform);
+        currentWeapon.itemModel.SetActive(false);
+
+        if(currentWeapon.secondaryModel)
+        {
+            ChangeWeapon(currentWeapon.secondaryModel.transform, weaponHolder.transform);
+            currentWeapon.secondaryModel.SetActive(false);
+        }
+
+        currentWeapon = newWeapon;
+        abilities[0] = currentWeapon.primaryAbility;
+        abilities[1] = currentWeapon.secondaryAbility;
+
+        ChangeWeapon(currentWeapon.itemModel.transform, currentWeapon.equipLocation.transform);
+        currentWeapon.itemModel.SetActive(true);
+
+        if (currentWeapon.secondaryModel)
+        {
+            ChangeWeapon(currentWeapon.secondaryModel.transform, currentWeapon.secondaryEquipLocation.transform);
+            currentWeapon.secondaryModel.SetActive(true);
+        }
+
+        playerAnimator.OverrideAnimations(currentWeapon.animatorOverrideController);
+        UpdateAbilities(0);
+        UpdateAbilities(1);
+    }
+
+    void ChangeWeapon(Transform model, Transform location)
+    {
+        model.SetParent(location);
+        model.localPosition = Vector3.zero;
+        model.localRotation = Quaternion.identity;
     }
 
     //pass in -1 if not changing abilities

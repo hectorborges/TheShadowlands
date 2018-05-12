@@ -11,6 +11,11 @@ public class AnimatorBase : MonoBehaviour
         animator.SetBool("IsMoving", state);
     }
 
+    public void Move(float speed, float baseSpeed)
+    {
+        animator.SetFloat("Speed", speed / baseSpeed);
+    }
+
     public virtual void Dead(bool state)
     {
         animator.SetBool("IsDead", state);
