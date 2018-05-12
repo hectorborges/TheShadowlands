@@ -29,12 +29,14 @@ public class PlayerLoadout : MonoBehaviour
 
     float remainingTime;
     Interactable focus;
+    PlayerAnimator playerAnimator;
 
     private void Awake()
     {
         Application.targetFrameRate = 60;
-
+        playerAnimator = GetComponent<PlayerAnimator>();
         UpdateAbilities(-1);
+        UpdateWeapons();
 
         for (int i = 0; i < 6; i++)
             cooldownQueues.Add(new Queue<float>());
@@ -43,6 +45,7 @@ public class PlayerLoadout : MonoBehaviour
     void UpdateWeapons()
     {
         //Change the weapons here
+        playerAnimator.OverrideAnimations(weapons[0].animatorOverrideController);
     }
 
     //pass in -1 if not changing abilities
