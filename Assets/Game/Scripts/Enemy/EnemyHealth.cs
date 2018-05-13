@@ -11,7 +11,7 @@ public class EnemyHealth : Health
     public float healthLostSpeed;
     public Transform combatTextSpawn;
     public ObjectPooling combatText;
-    public Collider collision;
+    public Collider[] collisions;
     public NavMeshAgent agent;
 
     [Space]
@@ -45,6 +45,7 @@ public class EnemyHealth : Health
         extraDeathTimes = new float[extraRenderers.Length];
 
         isDead = false;
+        foreach(Collider collision in collisions)
         collision.enabled = true;
         healthBar.transform.parent.gameObject.SetActive(true);
 
@@ -139,7 +140,8 @@ public class EnemyHealth : Health
 
         PlayerController.EnemyDefeated(gameObject);
         agent.enabled = false;
-        collision.enabled = false;
+        foreach (Collider collision in collisions)
+            collision.enabled = false;
         interactable.OnDefocused();
         healthBar.transform.parent.gameObject.SetActive(false);
         animatorBase.Death(numberOfDeaths);

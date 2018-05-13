@@ -9,10 +9,15 @@ public class ReferenceManager : MonoBehaviour
     public List<ObjectPooling> _enemyPools;
     public ObjectPooling _floatingCombatTextPool;
 
+    [Space, Header("Ability Pools")]
+    public  ObjectPooling _rifleHitEffectPool;
+
     public static Camera mainCamera;
     public static GameObject player;
     public static List<ObjectPooling> enemyPools = new List<ObjectPooling>();
     public static ObjectPooling floatingCombatTextPool;
+    public static ObjectPooling rifleHitEffectPool;
+
 
     bool spawnedCharacter;
 
@@ -20,6 +25,7 @@ public class ReferenceManager : MonoBehaviour
     {
         mainCamera = _mainCamera;
         floatingCombatTextPool = _floatingCombatTextPool;
+        rifleHitEffectPool = _rifleHitEffectPool;
 
         for(int i = 0; i < _enemyPools.Count; i++)
         {

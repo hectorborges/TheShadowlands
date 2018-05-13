@@ -66,33 +66,36 @@ public class AI : MonoBehaviour
         if (agent == null ||enemyHealth.isDead)
             return;
 
-        float distance = Utility.CheckDistance(player.position, transform.position);
-
-        if (distance <= lookRadius)
+        if (player)
         {
-            if(!aggroed)
+            float distance = Utility.CheckDistance(player.position, transform.position);
+
+            if (distance <= lookRadius)
             {
-                aggroed = true;
-                PlayerController.EnemyAggroed(gameObject);
-                AudioClip aggroClip = aggroSounds[Random.Range(0, aggroSounds.Length)];
-                aggroSource.PlayOneShot(aggroClip);
-            }
-
-            if (agent.isActiveAndEnabled)
-                agent.SetDestination(player.position);
-
-            if (distance <= agent.stoppingDistance)
-            {
-                FaceTarget();
-
-                if(!attacking)
+                if (!aggroed)
                 {
-                    attacking = true;
+                    aggroed = true;
+                    PlayerController.EnemyAggroed(gameObject);
+                    AudioClip aggroClip = aggroSounds[Random.Range(0, aggroSounds.Length)];
+                    aggroSource.PlayOneShot(aggroClip);
+                }
 
-                    AudioClip attackClip = attackSounds[Random.Range(0, attackSounds.Length)];
-                    attackSource.PlayOneShot(attackClip);
+                if (agent.isActiveAndEnabled)
+                    agent.SetDestination(player.position);
 
-                    StartCoroutine(Attack());
+                if (distance <= agent.stoppingDistance)
+                {
+                    FaceTarget();
+
+                    if (!attacking)
+                    {
+                        attacking = true;
+
+                        AudioClip attackClip = attackSounds[Random.Range(0, attackSounds.Length)];
+                        attackSource.PlayOneShot(attackClip);
+
+                        StartCoroutine(Attack());
+                    }
                 }
             }
         }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.AI;
 
 public class PlayerLoadout : MonoBehaviour
 {
@@ -29,13 +30,15 @@ public class PlayerLoadout : MonoBehaviour
     bool[] abilityDeactive = new bool[6];
 
     float remainingTime;
-    Interactable focus;
+    public static Interactable focus;
     PlayerAnimator playerAnimator;
+    NavMeshAgent agent;
 
     private void Awake()
     {
         Application.targetFrameRate = 60;
         playerAnimator = GetComponent<PlayerAnimator>();
+        agent = GetComponent<NavMeshAgent>();
         UpdateAbilities(-1);
         UpdateWeapons(currentWeapon);
 
@@ -70,6 +73,8 @@ public class PlayerLoadout : MonoBehaviour
         playerAnimator.OverrideAnimations(currentWeapon.animatorOverrideController);
         UpdateAbilities(0);
         UpdateAbilities(1);
+
+        agent.stoppingDistance = abilities[0].attackDistance;
     }
 
     void ChangeWeapon(Transform model, Transform location)

@@ -241,43 +241,43 @@ MonoBehaviour:
   m_GameObject: {fileID: 74479964}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bffb5c01f09dc47e5a32598d00de7821, type: 3}
+  m_Script: {fileID: 11500000, guid: 079d6eee64cf4437b878a46ee393f829, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   mainCamera: {fileID: 74479965}
   cameraTrs: {fileID: 2035967813}
   rotSpeed: 20
   effectObj:
+  - {fileID: 1000011452133030, guid: b26ae8955a4dd432aa7cfb149a2cc76f, type: 2}
+  - {fileID: 1000011193449780, guid: 332fdc9b528284cde98d60cba61d5670, type: 2}
+  - {fileID: 1000010953193664, guid: b78c51b9ee2c94e51a429b08b8d7911c, type: 2}
+  - {fileID: 1000014272128602, guid: a4804066265cc441b98ed88b65ef2aa6, type: 2}
+  - {fileID: 1000012304368010, guid: 80b07c4937a85409eb9f3f88e3b83c34, type: 2}
+  - {fileID: 1000013124942254, guid: b456d3d971ce24a758a3f05edd26c59e, type: 2}
   - {fileID: 1000012620936682, guid: e3e86ad9f2ab4409b8b1b0d470139887, type: 2}
   - {fileID: 1000012685710088, guid: 181378c3575af4b0b8b9a4254592d0e1, type: 2}
+  - {fileID: 1000012320547202, guid: 21fdcb9bc9e92481da7e771547326375, type: 2}
+  - {fileID: 1000010368025718, guid: c72055ac2938c4016afbf807eaa39c0d, type: 2}
   - {fileID: 1000010136364218, guid: 1f50492db0f5b4b658f7c577e8c4061c, type: 2}
-  - {fileID: 1000013179909838, guid: 76c20937a3d1f4ac9a1d9ecdca21370c, type: 2}
-  - {fileID: 1000011611443798, guid: 5e2e896b0e0b64add95ed56f4a684c8d, type: 2}
   - {fileID: 1000011895332678, guid: 9ee41f5963e2c4be492c69128e0faa86, type: 2}
   - {fileID: 1000013154000066, guid: 9ab47e53f8ba64053abe83db4e15d90f, type: 2}
   - {fileID: 1000014204363300, guid: 4083a02bc1c5245ec91ec41691aad698, type: 2}
-  - {fileID: 1000012195892404, guid: 51a19c1ba3a0647dd8c75820506cb55f, type: 2}
-  - {fileID: 1000013635822302, guid: 863431e2f7e47442380bf4ab67394ccf, type: 2}
-  - {fileID: 1000014219604724, guid: 0637d26ad86f543be821c8c1ddeffc98, type: 2}
+  - {fileID: 1000014111126070, guid: d3a8e97680e45437fa6312905a8964e2, type: 2}
+  - {fileID: 1000011611443798, guid: 5e2e896b0e0b64add95ed56f4a684c8d, type: 2}
   - {fileID: 1000010147623976, guid: 4fa5ab5353a004e30b5b7ed59e0a8095, type: 2}
   - {fileID: 1000010773896580, guid: 0d2ea63da545541f782dff672ec1b073, type: 2}
   - {fileID: 1000012697628472, guid: 635390551374a40a0a47e19df88e20bd, type: 2}
   - {fileID: 1000011792069808, guid: d77f8bbf3a5c64699bf5f0f20a79b181, type: 2}
   - {fileID: 1000013593862182, guid: aad4760b8c0504e15ad5beec3e7e0ea8, type: 2}
+  - {fileID: 1000013723130712, guid: 74f6811a4c8fd49e485d9ebb2f58bd33, type: 2}
+  - {fileID: 1000010948609470, guid: e160a1aed3e2f4df7af54999d1299644, type: 2}
   - {fileID: 1000013639258408, guid: baa15b9a097834abdaa88de94a77cfbd, type: 2}
   - {fileID: 1000011295984666, guid: d71f6ad30f0ff48fe9d15d9a745310d5, type: 2}
-  - {fileID: 1000014111126070, guid: d3a8e97680e45437fa6312905a8964e2, type: 2}
-  - {fileID: 1000013723130712, guid: 74f6811a4c8fd49e485d9ebb2f58bd33, type: 2}
-  - {fileID: 1000012304368010, guid: 80b07c4937a85409eb9f3f88e3b83c34, type: 2}
-  - {fileID: 1000013124942254, guid: b456d3d971ce24a758a3f05edd26c59e, type: 2}
-  - {fileID: 1000011452133030, guid: b26ae8955a4dd432aa7cfb149a2cc76f, type: 2}
-  - {fileID: 1000011193449780, guid: 332fdc9b528284cde98d60cba61d5670, type: 2}
-  - {fileID: 1000012320547202, guid: 21fdcb9bc9e92481da7e771547326375, type: 2}
-  - {fileID: 1000010368025718, guid: c72055ac2938c4016afbf807eaa39c0d, type: 2}
-  - {fileID: 1000010953193664, guid: b78c51b9ee2c94e51a429b08b8d7911c, type: 2}
-  - {fileID: 1000014272128602, guid: a4804066265cc441b98ed88b65ef2aa6, type: 2}
+  - {fileID: 1000012195892404, guid: 51a19c1ba3a0647dd8c75820506cb55f, type: 2}
+  - {fileID: 1000013635822302, guid: 863431e2f7e47442380bf4ab67394ccf, type: 2}
+  - {fileID: 1000014219604724, guid: 0637d26ad86f543be821c8c1ddeffc98, type: 2}
+  - {fileID: 1000013179909838, guid: 76c20937a3d1f4ac9a1d9ecdca21370c, type: 2}
   - {fileID: 1000014241644976, guid: 3b9b25d9d36de4f2ab6cb2b5709eb699, type: 2}
-  - {fileID: 1000010948609470, guid: e160a1aed3e2f4df7af54999d1299644, type: 2}
   effectObProj: []
   lightObj: {fileID: 1497432226}
 --- !u!81 &74479970

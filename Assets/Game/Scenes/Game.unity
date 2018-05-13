@@ -166,6 +166,16 @@ Prefab:
       propertyPath: m_Name
       value: Skeleton Enemy (11)
       objectReference: {fileID: 0}
+    - target: {fileID: 114913238276121244, guid: f9ea89bab582f5946a4c6dc364c04172,
+        type: 2}
+      propertyPath: baseHealth
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 195851206607985208, guid: f9ea89bab582f5946a4c6dc364c04172,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f9ea89bab582f5946a4c6dc364c04172, type: 2}
   m_IsPrefabParent: 0
@@ -226,6 +236,16 @@ Prefab:
     - target: {fileID: 1974855742425032, guid: f9ea89bab582f5946a4c6dc364c04172, type: 2}
       propertyPath: m_Name
       value: Skeleton Enemy (14)
+      objectReference: {fileID: 0}
+    - target: {fileID: 114913238276121244, guid: f9ea89bab582f5946a4c6dc364c04172,
+        type: 2}
+      propertyPath: baseHealth
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 195851206607985208, guid: f9ea89bab582f5946a4c6dc364c04172,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f9ea89bab582f5946a4c6dc364c04172, type: 2}
@@ -288,6 +308,11 @@ Prefab:
       propertyPath: m_Name
       value: Skeleton Enemy (23)
       objectReference: {fileID: 0}
+    - target: {fileID: 114913238276121244, guid: f9ea89bab582f5946a4c6dc364c04172,
+        type: 2}
+      propertyPath: baseHealth
+      value: 300
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f9ea89bab582f5946a4c6dc364c04172, type: 2}
   m_IsPrefabParent: 0
@@ -348,6 +373,16 @@ Prefab:
     - target: {fileID: 1974855742425032, guid: f9ea89bab582f5946a4c6dc364c04172, type: 2}
       propertyPath: m_Name
       value: Skeleton Enemy (18)
+      objectReference: {fileID: 0}
+    - target: {fileID: 114913238276121244, guid: f9ea89bab582f5946a4c6dc364c04172,
+        type: 2}
+      propertyPath: baseHealth
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 195851206607985208, guid: f9ea89bab582f5946a4c6dc364c04172,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f9ea89bab582f5946a4c6dc364c04172, type: 2}
@@ -410,6 +445,16 @@ Prefab:
       propertyPath: m_Name
       value: Skeleton Enemy (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 114913238276121244, guid: f9ea89bab582f5946a4c6dc364c04172,
+        type: 2}
+      propertyPath: baseHealth
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 195851206607985208, guid: f9ea89bab582f5946a4c6dc364c04172,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f9ea89bab582f5946a4c6dc364c04172, type: 2}
   m_IsPrefabParent: 0
@@ -471,6 +516,16 @@ Prefab:
       propertyPath: m_Name
       value: Skeleton Enemy (19)
       objectReference: {fileID: 0}
+    - target: {fileID: 114913238276121244, guid: f9ea89bab582f5946a4c6dc364c04172,
+        type: 2}
+      propertyPath: baseHealth
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 195851206607985208, guid: f9ea89bab582f5946a4c6dc364c04172,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f9ea89bab582f5946a4c6dc364c04172, type: 2}
   m_IsPrefabParent: 0
@@ -531,6 +586,16 @@ Prefab:
     - target: {fileID: 1974855742425032, guid: f9ea89bab582f5946a4c6dc364c04172, type: 2}
       propertyPath: m_Name
       value: Skeleton Enemy (10)
+      objectReference: {fileID: 0}
+    - target: {fileID: 114913238276121244, guid: f9ea89bab582f5946a4c6dc364c04172,
+        type: 2}
+      propertyPath: baseHealth
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 195851206607985208, guid: f9ea89bab582f5946a4c6dc364c04172,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f9ea89bab582f5946a4c6dc364c04172, type: 2}
@@ -701,6 +766,16 @@ Prefab:
       propertyPath: m_Name
       value: Skeleton Enemy (8)
       objectReference: {fileID: 0}
+    - target: {fileID: 114913238276121244, guid: f9ea89bab582f5946a4c6dc364c04172,
+        type: 2}
+      propertyPath: baseHealth
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 195851206607985208, guid: f9ea89bab582f5946a4c6dc364c04172,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f9ea89bab582f5946a4c6dc364c04172, type: 2}
   m_IsPrefabParent: 0
@@ -761,6 +836,16 @@ Prefab:
     - target: {fileID: 1974855742425032, guid: f9ea89bab582f5946a4c6dc364c04172, type: 2}
       propertyPath: m_Name
       value: Skeleton Enemy (20)
+      objectReference: {fileID: 0}
+    - target: {fileID: 114913238276121244, guid: f9ea89bab582f5946a4c6dc364c04172,
+        type: 2}
+      propertyPath: baseHealth
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 195851206607985208, guid: f9ea89bab582f5946a4c6dc364c04172,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f9ea89bab582f5946a4c6dc364c04172, type: 2}
@@ -865,8 +950,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  offset: {x: -5, y: 7.5, z: -5}
-  followSpeed: 0.5
+  offset: {x: -7.5, y: 10, z: -7.5}
+  followSpeed: 0.35
 --- !u!1 &723125584
 GameObject:
   m_ObjectHideFlags: 0
@@ -1000,6 +1085,16 @@ Prefab:
       propertyPath: m_Name
       value: Skeleton Enemy (21)
       objectReference: {fileID: 0}
+    - target: {fileID: 114913238276121244, guid: f9ea89bab582f5946a4c6dc364c04172,
+        type: 2}
+      propertyPath: baseHealth
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 195851206607985208, guid: f9ea89bab582f5946a4c6dc364c04172,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f9ea89bab582f5946a4c6dc364c04172, type: 2}
   m_IsPrefabParent: 0
@@ -1087,6 +1182,7 @@ MonoBehaviour:
   _enemyPools:
   - {fileID: 930779913}
   _floatingCombatTextPool: {fileID: 408550955}
+  _rifleHitEffectPool: {fileID: 1791334367}
 --- !u!4 &942810336
 Transform:
   m_ObjectHideFlags: 0
@@ -1096,7 +1192,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 1791334368}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1187,6 +1284,16 @@ Prefab:
       propertyPath: m_Name
       value: Skeleton Enemy (17)
       objectReference: {fileID: 0}
+    - target: {fileID: 114913238276121244, guid: f9ea89bab582f5946a4c6dc364c04172,
+        type: 2}
+      propertyPath: baseHealth
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 195851206607985208, guid: f9ea89bab582f5946a4c6dc364c04172,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f9ea89bab582f5946a4c6dc364c04172, type: 2}
   m_IsPrefabParent: 0
@@ -1247,6 +1354,16 @@ Prefab:
     - target: {fileID: 1974855742425032, guid: f9ea89bab582f5946a4c6dc364c04172, type: 2}
       propertyPath: m_Name
       value: Skeleton Enemy (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 114913238276121244, guid: f9ea89bab582f5946a4c6dc364c04172,
+        type: 2}
+      propertyPath: baseHealth
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 195851206607985208, guid: f9ea89bab582f5946a4c6dc364c04172,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f9ea89bab582f5946a4c6dc364c04172, type: 2}
@@ -1339,6 +1456,16 @@ Prefab:
       propertyPath: m_Name
       value: Skeleton Enemy (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 114913238276121244, guid: f9ea89bab582f5946a4c6dc364c04172,
+        type: 2}
+      propertyPath: baseHealth
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 195851206607985208, guid: f9ea89bab582f5946a4c6dc364c04172,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f9ea89bab582f5946a4c6dc364c04172, type: 2}
   m_IsPrefabParent: 0
@@ -1399,6 +1526,16 @@ Prefab:
     - target: {fileID: 1974855742425032, guid: f9ea89bab582f5946a4c6dc364c04172, type: 2}
       propertyPath: m_Name
       value: Skeleton Enemy (15)
+      objectReference: {fileID: 0}
+    - target: {fileID: 114913238276121244, guid: f9ea89bab582f5946a4c6dc364c04172,
+        type: 2}
+      propertyPath: baseHealth
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 195851206607985208, guid: f9ea89bab582f5946a4c6dc364c04172,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f9ea89bab582f5946a4c6dc364c04172, type: 2}
@@ -1461,6 +1598,16 @@ Prefab:
       propertyPath: m_Name
       value: Skeleton Enemy (16)
       objectReference: {fileID: 0}
+    - target: {fileID: 114913238276121244, guid: f9ea89bab582f5946a4c6dc364c04172,
+        type: 2}
+      propertyPath: baseHealth
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 195851206607985208, guid: f9ea89bab582f5946a4c6dc364c04172,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f9ea89bab582f5946a4c6dc364c04172, type: 2}
   m_IsPrefabParent: 0
@@ -1522,6 +1669,16 @@ Prefab:
       propertyPath: m_Name
       value: Skeleton Enemy (12)
       objectReference: {fileID: 0}
+    - target: {fileID: 114913238276121244, guid: f9ea89bab582f5946a4c6dc364c04172,
+        type: 2}
+      propertyPath: baseHealth
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 195851206607985208, guid: f9ea89bab582f5946a4c6dc364c04172,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f9ea89bab582f5946a4c6dc364c04172, type: 2}
   m_IsPrefabParent: 0
@@ -1569,16 +1726,16 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 114913238276121244, guid: f9ea89bab582f5946a4c6dc364c04172,
-        type: 2}
-      propertyPath: combatText
-      value: 
-      objectReference: {fileID: 408550955}
     - target: {fileID: 223208804752253296, guid: f9ea89bab582f5946a4c6dc364c04172,
         type: 2}
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 663269819}
+    - target: {fileID: 114913238276121244, guid: f9ea89bab582f5946a4c6dc364c04172,
+        type: 2}
+      propertyPath: combatText
+      value: 
+      objectReference: {fileID: 408550955}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f9ea89bab582f5946a4c6dc364c04172, type: 2}
   m_IsPrefabParent: 0
@@ -1705,6 +1862,16 @@ Prefab:
       propertyPath: m_Name
       value: Skeleton Enemy (9)
       objectReference: {fileID: 0}
+    - target: {fileID: 114913238276121244, guid: f9ea89bab582f5946a4c6dc364c04172,
+        type: 2}
+      propertyPath: baseHealth
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 195851206607985208, guid: f9ea89bab582f5946a4c6dc364c04172,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f9ea89bab582f5946a4c6dc364c04172, type: 2}
   m_IsPrefabParent: 0
@@ -1766,6 +1933,16 @@ Prefab:
       propertyPath: m_Name
       value: Skeleton Enemy (22)
       objectReference: {fileID: 0}
+    - target: {fileID: 114913238276121244, guid: f9ea89bab582f5946a4c6dc364c04172,
+        type: 2}
+      propertyPath: baseHealth
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 195851206607985208, guid: f9ea89bab582f5946a4c6dc364c04172,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f9ea89bab582f5946a4c6dc364c04172, type: 2}
   m_IsPrefabParent: 0
@@ -1774,6 +1951,52 @@ Transform:
   m_PrefabParentObject: {fileID: 4489825583171832, guid: f9ea89bab582f5946a4c6dc364c04172,
     type: 2}
   m_PrefabInternal: {fileID: 1672321354}
+--- !u!1 &1791334366
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1791334368}
+  - component: {fileID: 1791334367}
+  m_Layer: 0
+  m_Name: Rifle Hit Effect Pool
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1791334367
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1791334366}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e81d062c881263740a629b7dd486c82e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pooledObject:
+  - {fileID: 1237245681284662, guid: 362161767effcab4f8c85c0a0e36676f, type: 2}
+  pooledAmount: 20
+  waitTime: 0.001
+  willGrow: 1
+  pooledObjects: []
+--- !u!4 &1791334368
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1791334366}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 942810336}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1832851659
 GameObject:
   m_ObjectHideFlags: 0
@@ -1790,7 +2013,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 0
 --- !u!65 &1832851660
 BoxCollider:
@@ -1912,6 +2135,16 @@ Prefab:
       propertyPath: m_Name
       value: Skeleton Enemy (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 114913238276121244, guid: f9ea89bab582f5946a4c6dc364c04172,
+        type: 2}
+      propertyPath: baseHealth
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 195851206607985208, guid: f9ea89bab582f5946a4c6dc364c04172,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f9ea89bab582f5946a4c6dc364c04172, type: 2}
   m_IsPrefabParent: 0
@@ -1972,6 +2205,16 @@ Prefab:
     - target: {fileID: 1974855742425032, guid: f9ea89bab582f5946a4c6dc364c04172, type: 2}
       propertyPath: m_Name
       value: Skeleton Enemy (13)
+      objectReference: {fileID: 0}
+    - target: {fileID: 114913238276121244, guid: f9ea89bab582f5946a4c6dc364c04172,
+        type: 2}
+      propertyPath: baseHealth
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 195851206607985208, guid: f9ea89bab582f5946a4c6dc364c04172,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f9ea89bab582f5946a4c6dc364c04172, type: 2}
@@ -2034,6 +2277,16 @@ Prefab:
       propertyPath: m_Name
       value: Skeleton Enemy (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 114913238276121244, guid: f9ea89bab582f5946a4c6dc364c04172,
+        type: 2}
+      propertyPath: baseHealth
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 195851206607985208, guid: f9ea89bab582f5946a4c6dc364c04172,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f9ea89bab582f5946a4c6dc364c04172, type: 2}
   m_IsPrefabParent: 0
@@ -2095,6 +2348,16 @@ Prefab:
       propertyPath: m_Name
       value: Skeleton Enemy (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 114913238276121244, guid: f9ea89bab582f5946a4c6dc364c04172,
+        type: 2}
+      propertyPath: baseHealth
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 195851206607985208, guid: f9ea89bab582f5946a4c6dc364c04172,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f9ea89bab582f5946a4c6dc364c04172, type: 2}
   m_IsPrefabParent: 0
@@ -2155,6 +2418,16 @@ Prefab:
     - target: {fileID: 1974855742425032, guid: f9ea89bab582f5946a4c6dc364c04172, type: 2}
       propertyPath: m_Name
       value: Skeleton Enemy (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 114913238276121244, guid: f9ea89bab582f5946a4c6dc364c04172,
+        type: 2}
+      propertyPath: baseHealth
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 195851206607985208, guid: f9ea89bab582f5946a4c6dc364c04172,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f9ea89bab582f5946a4c6dc364c04172, type: 2}

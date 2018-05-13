@@ -23,6 +23,7 @@ public class PlayerAnimationEventBridge : MonoBehaviour
         {
             if(abilityEffect.abilityName == _abilityName)
             {
+                print(abilityEffect.abilityName);
                 abilityEffect.abilityEffect.SetActive(true);
 
                 AudioClip randomEffectSound = abilityEffect.effectSounds[Random.Range(0, abilityEffect.effectSounds.Length)];
@@ -31,6 +32,11 @@ public class PlayerAnimationEventBridge : MonoBehaviour
                 if(abilityEffect.damageCollider)
                 {
                     abilityEffect.damageCollider.EnableCollider();
+                }
+
+                if(abilityEffect.projectileAbility)
+                {
+                    abilityEffect.projectileAbility.Fire();
                 }
 
                 if(abilityEffect.secondaryEffectSounds.Length > 0)
@@ -59,6 +65,7 @@ public class AbilityEffectAnimationEvent
     public GameObject abilityEffect;
     public float disableAfter;
 
+    public ProjectileAbility projectileAbility;
     public DisableColliderAfter damageCollider;
     public AudioSource audioSource;
     public AudioClip[] effectSounds;

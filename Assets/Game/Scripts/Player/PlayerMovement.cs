@@ -41,7 +41,6 @@ public class PlayerMovement : MonoBehaviour
             agent.SetDestination(transform.position);
         }
 
-        print(agent.velocity.magnitude);
         playerAnimator.Move(currentSpeed, baseSpeed);
 
         if (agent.isOnOffMeshLink)
