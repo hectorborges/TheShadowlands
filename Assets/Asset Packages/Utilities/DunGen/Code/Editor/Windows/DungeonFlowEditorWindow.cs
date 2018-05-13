@@ -17,9 +17,12 @@ namespace DunGen.Editor
         private const float VerticalMargin = 10;
         private const float NodeWidth = 60;
         private const float MinorNodeSizeCoefficient = 0.5f;
-        private static readonly Color StartNodeColour = new Color(1.0f, 0.4f, 0.4f);
-        private static readonly Color GoalNodeColour = new Color(0.4f, 1.0f, 0.4f);
-        private static readonly Color NodeColour = new Color(1.0f, 1.0f, 1.0f);
+		private const int BorderThickness = 2;
+        private static readonly Color StartNodeColour = new Color(0.78f, 0.38f, 0.38f);
+        private static readonly Color GoalNodeColour = new Color(0.39f, 0.69f, 0.39f);
+		private static readonly Color NodeColour = Color.white;
+		private static readonly Color LineColour = Color.white;
+		private static readonly Color BorderColour = Color.black;
 
         #endregion
 
@@ -32,9 +35,16 @@ namespace DunGen.Editor
             SplitLine,
         }
 
-        #endregion
+		#endregion
 
-        public DungeonFlow Flow { get; private set; }
+		#region Statics
+
+		private static GUIStyle boxStyle;
+		private static Texture2D whitePixel;
+
+		#endregion
+
+		public DungeonFlow Flow { get; private set; }
 
         private bool isMouseDown;
         private bool isDragging;
@@ -45,21 +55,36 @@ namespace DunGen.Editor
         private Vector2 contextMenuPosition;
 
 
-        private void OnEnable()
-        {
-            minSize = new Vector2(470, 150);
+		private bool IsInitialised()
+		{
+			return boxStyle != null && whitePixel != null;
+		}
 
-            if (Flow != null)
-            {
-                foreach (var node in Flow.Nodes)
-                    node.Graph = Flow;
-                foreach (var line in Flow.Lines)
-                    line.Graph = Flow;
-            }
-        }
+		private void Init()
+		{
+			minSize = new Vector2(470, 150);
+
+			whitePixel = new Texture2D(1, 1, TextureFormat.RGB24, false);
+			whitePixel.SetPixel(0, 0, Color.white);
+			whitePixel.Apply();
+
+			boxStyle = new GUIStyle(GUI.skin.box);
+			boxStyle.normal.background = whitePixel;
+
+			if (Flow != null)
+			{
+				foreach (var node in Flow.Nodes)
+					node.Graph = Flow;
+				foreach (var line in Flow.Lines)
+					line.Graph = Flow;
+			}
+		}
 
         public void OnGUI()
         {
+			if (!IsInitialised())
+				Init();
+
             if (Flow == null)
             {
                 Flow = (DungeonFlow)EditorGUILayout.ObjectField(Flow, typeof(DungeonFlow), false);
@@ -147,14 +172,18 @@ namespace DunGen.Editor
             {
                 bool hasOpenedContextMenu = false;
 
-                foreach(var node in Flow.Nodes)
-                    if (GetNodeBounds(node).Contains(evt.mousePosition))
-                    {
-                        HandleNodeContextMenu(node);
-                        hasOpenedContextMenu = true;
-                        contextMenuPosition = evt.mousePosition;
-                        break;
-                    }
+				for (int i = Flow.Nodes.Count - 1; i >= 0; i--)
+				{
+					var node = Flow.Nodes[i];
+
+					if (GetNodeBounds(node).Contains(evt.mousePosition))
+					{
+						HandleNodeContextMenu(node);
+						hasOpenedContextMenu = true;
+						contextMenuPosition = evt.mousePosition;
+						break;
+					}
+				}
 
                 if (!hasOpenedContextMenu)
                 {
@@ -340,9 +369,14 @@ namespace DunGen.Editor
 
         private GraphNode GetNodeAtPoint(Vector2 screenPosition)
         {
-            foreach (var node in Flow.Nodes)
-                if (GetNodeBounds(node).Contains(screenPosition))
-                    return node;
+			// Loop through nodes backwards to prioritise nodes other than the Start & Goal nodes
+			for (int i = Flow.Nodes.Count - 1; i >= 0; i--)
+			{
+				var node = Flow.Nodes[i];
+
+				if (GetNodeBounds(node).Contains(screenPosition))
+					return node;
+			}
 
             return null;
         }
@@ -361,24 +395,34 @@ namespace DunGen.Editor
             for (int i = 0; i < Flow.Lines.Count; i++)
             {
                 var line = Flow.Lines[i];
+				var rect = GetLineBounds(line);
 
-                GUI.color = Color.white;
-                GUI.Box(GetLineBounds(line), "");
+				GUI.color = BorderColour;
+				GUI.Box(ExpandRectCentered(rect, BorderThickness), "", boxStyle);
+				GUI.color = LineColour;
+                GUI.Box(rect, "", boxStyle);
             }
         }
 
         private void DrawNodes()
         {
-            for (int i = 0; i < Flow.Nodes.Count; i++)
-            {
-                var node = Flow.Nodes[i];
+			foreach(var node in Flow.Nodes.OrderBy(x => x.NodeType == NodeType.Normal))
+			{
+				var rect = GetNodeBounds(node);
 
-                GUI.color = (node.NodeType == NodeType.Start) ? StartNodeColour : (node.NodeType == NodeType.Goal) ? GoalNodeColour : NodeColour;
-                GUI.Box(GetNodeBounds(node), node.Label);
-            }
-        }
+				GUI.color = BorderColour;
+				GUI.Box(ExpandRectCentered(rect, BorderThickness), "", boxStyle);
+				GUI.color = (node.NodeType == NodeType.Start) ? StartNodeColour : (node.NodeType == NodeType.Goal) ? GoalNodeColour : NodeColour;
+				GUI.Box(rect, node.Label, boxStyle);
+			}
+		}
 
-        private Rect GetLineBounds(GraphLine line)
+		private Rect ExpandRectCentered(Rect rect, int margin)
+		{
+			return new Rect(rect.x - margin, rect.y - margin, rect.width + margin * 2, rect.height + margin * 2);
+		}
+
+		private Rect GetLineBounds(GraphLine line)
         {
             float center = position.center.y - position.y;
             float top = center - (LineThickness / 2);

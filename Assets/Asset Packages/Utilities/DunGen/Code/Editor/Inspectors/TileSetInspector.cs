@@ -7,20 +7,20 @@ using UnityEditor;
 
 namespace DunGen.Editor
 {
-    [CustomEditor(typeof(TileSet))]
+	[CustomEditor(typeof(TileSet))]
 	public sealed class TileSetInspector : UnityEditor.Editor
 	{
-        private readonly List<bool> tileShowWeights = new List<bool>();
+		private readonly List<bool> tileShowWeights = new List<bool>();
 		private readonly List<List<bool>> lockPrefabShowWeights = new List<List<bool>>();
 		private bool showLockPrefabs = false;
 
 
-        private void OnEnable()
-        {
+		private void OnEnable()
+		{
 			TileSet tileSet = target as TileSet;
 
-            for (int i = 0; i < tileSet.TileWeights.Weights.Count; i++)
-                tileShowWeights.Add(false);
+			for (int i = 0; i < tileSet.TileWeights.Weights.Count; i++)
+				tileShowWeights.Add(false);
 
 			for (int i = 0; i < tileSet.LockPrefabs.Count; i++)
 			{
@@ -29,22 +29,22 @@ namespace DunGen.Editor
 				for (int j = 0; j < tileSet.LockPrefabs[i].LockPrefabs.Weights.Count; j++)
 					lockPrefabShowWeights[i].Add(false);
 			}
-        }
+		}
 
-        public override void OnInspectorGUI()
-        {
-            TileSet tileSet = target as TileSet;
+		public override void OnInspectorGUI()
+		{
+			TileSet tileSet = target as TileSet;
 
-            if (tileSet == null)
-                return;
+			if (tileSet == null)
+				return;
 
-            EditorUtil.DrawGameObjectChanceTableGUI("Tile", tileSet.TileWeights, tileShowWeights);
+			EditorUtil.DrawGameObjectChanceTableGUI("Tile", tileSet.TileWeights, tileShowWeights, false, true);
 
 
 			EditorGUILayout.BeginVertical("box");
 			showLockPrefabs = EditorGUILayout.Foldout(showLockPrefabs, "Locked Door Prefabs");
 
-			if(showLockPrefabs)
+			if (showLockPrefabs)
 			{
 				int toDeleteIndex = -1;
 
@@ -58,17 +58,17 @@ namespace DunGen.Editor
 
 					l.SocketGroup = (DoorwaySocketType)EditorGUILayout.EnumPopup(l.SocketGroup);
 
-					if (GUILayout.Button("x", EditorStyles.miniButton, EditorConstants.SmallButtonWidth))
+					if (GUILayout.Button("x", EditorStyles.miniButton, InspectorConstants.SmallButtonWidth))
 						toDeleteIndex = i;
 
 					EditorGUILayout.EndHorizontal();
 
-					EditorUtil.DrawGameObjectChanceTableGUI("Prefab", l.LockPrefabs, lockPrefabShowWeights[i]);
+					EditorUtil.DrawGameObjectChanceTableGUI("Prefab", l.LockPrefabs, lockPrefabShowWeights[i], false, true);
 
 					EditorGUILayout.EndVertical();
 				}
 
-				if(toDeleteIndex > -1)
+				if (toDeleteIndex > -1)
 				{
 					tileSet.LockPrefabs.RemoveAt(toDeleteIndex);
 					lockPrefabShowWeights.RemoveAt(toDeleteIndex);
@@ -78,7 +78,7 @@ namespace DunGen.Editor
 				EditorGUILayout.Space();
 				EditorGUILayout.Space();
 
-				if(GUILayout.Button("Add"))
+				if (GUILayout.Button("Add"))
 				{
 					tileSet.LockPrefabs.Add(new LockedDoorwayAssociation());
 					lockPrefabShowWeights.Add(new List<bool>());
@@ -87,8 +87,8 @@ namespace DunGen.Editor
 
 			EditorGUILayout.EndVertical();
 
-            if (GUI.changed)
-                EditorUtility.SetDirty(tileSet);
-        }
+			if (GUI.changed)
+				EditorUtility.SetDirty(tileSet);
+		}
 	}
 }

@@ -25,8 +25,8 @@ namespace DunGen
 
             foreach (var conn in dungeon.Connections)
             {
-                DungeonGraphConnection nodeConn = new DungeonGraphConnection(nodeMap[conn.A.Tile], nodeMap[conn.B.Tile], conn.A, conn.B);
-                Connections.Add(nodeConn);
+				DungeonGraphConnection nodeConn = new DungeonGraphConnection(nodeMap[conn.A.Tile], nodeMap[conn.B.Tile], conn.A, conn.B);
+				Connections.Add(nodeConn);
             }
         }
 	}

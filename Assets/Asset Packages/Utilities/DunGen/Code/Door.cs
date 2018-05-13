@@ -9,6 +9,8 @@ namespace DunGen
 	[Serializable]
 	public class Door : MonoBehaviour
 	{
+		public delegate void DoorStateChangedDelegate(Door door, bool isOpen);
+
 		[HideInInspector]
 		public Dungeon Dungeon;
 		[HideInInspector]
@@ -25,15 +27,34 @@ namespace DunGen
 			get { return isOpen; }
 			set
 			{
-				isOpen = value;
+				if (isOpen == value)
+					return;
 
-				if (Dungeon != null && Dungeon.Culling != null)
-					Dungeon.Culling.ChangeDoorState(this, isOpen);
+				SetDoorState(value);
 			}
 		}
+
+		public event DoorStateChangedDelegate OnDoorStateChanged;
 
 
 		[SerializeField]
 		private bool isOpen;
+
+
+		private void OnDestroy()
+		{
+			OnDoorStateChanged = null;
+		}
+
+		public void SetDoorState(bool isOpen)
+		{
+			if (this.isOpen == isOpen)
+				return;
+
+			this.isOpen = isOpen;
+
+			if (OnDoorStateChanged != null)
+				OnDoorStateChanged(this, isOpen);
+		}
 	}
 }

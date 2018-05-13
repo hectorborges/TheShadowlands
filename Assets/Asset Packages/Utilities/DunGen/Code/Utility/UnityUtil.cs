@@ -9,10 +9,72 @@ namespace DunGen
 {
 	public static class UnityUtil
 	{
+		public static void Restart(this System.Diagnostics.Stopwatch stopwatch)
+		{
+			if (stopwatch == null)
+				stopwatch = System.Diagnostics.Stopwatch.StartNew();
+			else
+			{
+				stopwatch.Reset();
+				stopwatch.Start();
+			}
+		}
+
+		public static bool Contains(this Bounds bounds, Bounds other)
+		{
+			if (other.min.x < bounds.min.x || other.min.y < bounds.min.y || other.min.z < bounds.min.z ||
+				other.max.x > bounds.max.x || other.max.y > bounds.max.y || other.max.z > bounds.max.z)
+				return false;
+
+			return true;
+		}
+
+		public static Bounds TransformBounds(this Transform transform, Bounds localBounds)
+		{
+			Vector3 transformedCenter = transform.TransformPoint(localBounds.center);
+			Vector3 transformedSize = transform.rotation * localBounds.size;
+
+			transformedSize.x = Mathf.Abs(transformedSize.x);
+			transformedSize.y = Mathf.Abs(transformedSize.y);
+			transformedSize.z = Mathf.Abs(transformedSize.z);
+
+			return new Bounds(transformedCenter, transformedSize);
+		}
+
+		public static Bounds InverseTransformBounds(this Transform transform, Bounds worldBounds)
+		{
+			Vector3 transformedCenter = transform.InverseTransformPoint(worldBounds.center);
+			Vector3 transformedSize = Quaternion.Inverse(transform.rotation) * worldBounds.size;
+
+			transformedSize.x = Mathf.Abs(transformedSize.x);
+			transformedSize.y = Mathf.Abs(transformedSize.y);
+			transformedSize.z = Mathf.Abs(transformedSize.z);
+
+			return new Bounds(transformedCenter, transformedSize);
+		}
+
+		public static void SetLayerRecursive(UnityEngine.GameObject gameObject, int layer)
+		{
+			gameObject.layer = layer;
+
+			for (int i = 0; i < gameObject.transform.childCount; i++)
+				SetLayerRecursive(gameObject.transform.GetChild(i).gameObject, layer);
+		}
+
 		public static void Destroy(UnityEngine.Object obj)
 		{
 			if (Application.isPlaying)
+			{
+				// Work-Around
+				// If we're destroying a GameObject, disable it first to avoid tile colliders from contributing to the NavMesh when generating synchronously
+				// since Destroy() only destroys the GameObject at the end of the frame. Are there any down-sides to using DestroyImmediate() here instead?
+				GameObject go = obj as GameObject;
+
+				if (go != null)
+					go.SetActive(false);
+
 				UnityEngine.Object.Destroy(obj);
+			}
 			else
 				UnityEngine.Object.DestroyImmediate(obj);
 		}
@@ -49,17 +111,31 @@ namespace DunGen
 			return name;
 		}
 
-        public static Bounds CalculateObjectBounds(GameObject obj, bool includeInactive, bool ignoreSpriteRenderers)
+		public static Bounds CombineBounds(params Bounds[] bounds)
+		{
+			if (bounds.Length == 0)
+				return new Bounds();
+			else if (bounds.Length == 1)
+				return bounds[0];
+
+			Bounds combinedBounds = bounds[0];
+
+			for (int i = 1; i < bounds.Length; i++)
+				combinedBounds.Encapsulate(bounds[i]);
+
+			return combinedBounds;
+		}
+
+        public static Bounds CalculateObjectBounds(GameObject obj, bool includeInactive, bool ignoreSpriteRenderers, bool ignoreTriggerColliders = true)
         {
             Bounds bounds = new Bounds();
             bool hasBounds = false;
 
+			// Renderers
             foreach (var renderer in obj.GetComponentsInChildren<Renderer>(includeInactive))
             {
-                bool considerRenderer = (renderer is MeshRenderer) || ((renderer is SpriteRenderer) && !ignoreSpriteRenderers);
-
-                if (!considerRenderer)
-                    continue;
+				if (ignoreSpriteRenderers && renderer is SpriteRenderer)
+					continue;
 
                 if (hasBounds)
                     bounds.Encapsulate(renderer.bounds);
@@ -69,8 +145,12 @@ namespace DunGen
                 hasBounds = true;
             }
 
+			// Colliders
             foreach (var collider in obj.GetComponentsInChildren<Collider>(includeInactive))
             {
+				if (ignoreTriggerColliders && collider.isTrigger)
+					continue;
+
                 if (hasBounds)
                     bounds.Encapsulate(collider.bounds);
                 else

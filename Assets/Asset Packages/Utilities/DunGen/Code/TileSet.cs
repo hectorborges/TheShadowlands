@@ -14,5 +14,17 @@ namespace DunGen
 	{
         public GameObjectChanceTable TileWeights = new GameObjectChanceTable();
 		public List<LockedDoorwayAssociation> LockPrefabs = new List<LockedDoorwayAssociation>();
-    }
+
+
+		public void AddTile(GameObject tilePrefab, float mainPathWeight, float branchPathWeight)
+		{
+			TileWeights.Weights.Add(new GameObjectChance(tilePrefab, mainPathWeight, branchPathWeight, this));
+		}
+
+		public void AddTiles(IEnumerable<GameObject> tilePrefab, float mainPathWeight, float branchPathWeight)
+		{
+			foreach (var tile in tilePrefab)
+				AddTile(tile, mainPathWeight, branchPathWeight);
+		}
+	}
 }

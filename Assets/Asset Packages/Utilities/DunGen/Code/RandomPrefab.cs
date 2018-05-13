@@ -10,6 +10,8 @@ namespace DunGen
     public class RandomPrefab : RandomProp
     {
         public GameObjectChanceTable Props = new GameObjectChanceTable();
+		public bool ZeroPosition = true;
+		public bool ZeroRotation = true;
 
 
         public override void Process(System.Random randomStream, Tile tile)
@@ -22,8 +24,16 @@ namespace DunGen
 
             GameObject newProp = (GameObject)GameObject.Instantiate(prefab);
             newProp.transform.parent = transform;
-            newProp.transform.localPosition = Vector3.zero;
-            newProp.transform.localRotation = Quaternion.identity;
+
+			if (ZeroPosition)
+				newProp.transform.localPosition = Vector3.zero;
+			else
+				newProp.transform.localPosition = prefab.transform.localPosition;
+
+			if (ZeroRotation)
+				newProp.transform.localRotation = Quaternion.identity;
+			else
+				newProp.transform.localRotation = prefab.transform.localRotation;
 
             foreach (var childProp in newProp.GetComponentsInChildren<RandomPrefab>())
                 childProp.Process(randomStream, tile);

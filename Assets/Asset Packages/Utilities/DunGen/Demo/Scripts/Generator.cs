@@ -65,7 +65,7 @@ public class Generator : MonoBehaviour
 
     public void GenerateRandom()
     {
-        DungeonGenerator.Generator.Generate();
+        DungeonGenerator.Generate();
     }
 
     private void Update()

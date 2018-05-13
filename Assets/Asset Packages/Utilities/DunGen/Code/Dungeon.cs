@@ -10,9 +10,9 @@ namespace DunGen
 {
 	public class Dungeon : MonoBehaviour
 	{
+		public Bounds Bounds { get; protected set; }
 		public DungeonFlow DungeonFlow { get; protected set; }
         public bool DebugRender = false;
-		public PortalCullingAdapter Culling;
 
         public ReadOnlyCollection<Tile> AllTiles { get; private set; }
         public ReadOnlyCollection<Tile> MainPathTiles { get; private set; }
@@ -37,6 +37,12 @@ namespace DunGen
             Connections = new ReadOnlyCollection<DoorwayConnection>(connections);
         }
 
+		internal void AddAdditionalDoor(Door door)
+		{
+			if(door != null)
+				doors.Add(door.gameObject);
+		}
+
 		internal void PreGenerateDungeon(DungeonGenerator dungeonGenerator)
 		{
 			DungeonFlow = dungeonGenerator.DungeonFlow;
@@ -45,13 +51,23 @@ namespace DunGen
         internal void PostGenerateDungeon(DungeonGenerator dungeonGenerator)
         {
             ConnectionGraph = new DungeonGraph(this);
+			Bounds = UnityUtil.CombineBounds(allTiles.Select(x => x.Placement.Bounds).ToArray());
         }
 
 		public void Clear()
 		{
 			// Destroy all tiles
-			foreach(var tile in allTiles)
-		        UnityUtil.Destroy(tile.gameObject);
+			foreach (var tile in allTiles)
+			{
+				// Clean up any door prefabs first
+				foreach (var doorway in tile.Placement.UsedDoorways)
+				{
+					if (doorway.UsedDoorPrefab != null)
+						UnityUtil.Destroy(doorway.UsedDoorPrefab);
+				}
+
+				UnityUtil.Destroy(tile.gameObject);
+			}
 
 			// Destroy anything else attached to this dungeon
 			for (int i = 0; i < transform.childCount; i++)
@@ -78,51 +94,70 @@ namespace DunGen
             return null;
         }
 
-        internal void MakeConnection(Doorway a, Doorway b, System.Random randomStream)
-        {
-            bool areDoorwaysFromDifferentDungeons = (a.Dungeon != b.Dungeon);
+		internal void MakeConnection(Doorway a, Doorway b, System.Random randomStream)
+		{
+			bool areDoorwaysFromDifferentDungeons = (a.Dungeon != b.Dungeon);
 
-            a.Tile.Placement.UnusedDoorways.Remove(a);
-            a.Tile.Placement.UsedDoorways.Add(a);
+			a.Tile.Placement.UnusedDoorways.Remove(a);
+			a.Tile.Placement.UsedDoorways.Add(a);
 
-            b.Tile.Placement.UnusedDoorways.Remove(b);
-            b.Tile.Placement.UsedDoorways.Add(b);
+			b.Tile.Placement.UnusedDoorways.Remove(b);
+			b.Tile.Placement.UsedDoorways.Add(b);
 
-            a.ConnectedDoorway = b;
-            b.ConnectedDoorway = a;
+			a.ConnectedDoorway = b;
+			b.ConnectedDoorway = a;
 
-            if (!areDoorwaysFromDifferentDungeons)
-            {
-                var conn = new DoorwayConnection(a, b);
-                connections.Add(conn);
-            }
+			if (!areDoorwaysFromDifferentDungeons)
+			{
+				var conn = new DoorwayConnection(a, b);
+				connections.Add(conn);
+			}
 
-            // Add door prefab
-            List<GameObject> doorPrefabs = (a.DoorPrefabs.Count > 0) ? a.DoorPrefabs : b.DoorPrefabs;
-            
-            if (doorPrefabs.Count > 0 && !(a.HasDoorPrefab || b.HasDoorPrefab))
-            {
-                GameObject doorPrefab = doorPrefabs[randomStream.Next(0, doorPrefabs.Count)];
+			// Add door prefab
+			Doorway chosenDoor;
 
-                if (doorPrefab != null)
-                {
-                    GameObject door = (GameObject)GameObject.Instantiate(doorPrefab);
+			// If both doorways have door prefabs..
+			if (a.DoorPrefabs.Count > 0 && b.DoorPrefabs.Count > 0)
+			{
+				// ..A is selected if its priority is greater than or equal to B..
+				if (a.DoorPrefabPriority >= b.DoorPrefabPriority)
+					chosenDoor = a;
+				// .. otherwise, B is chosen..
+				else
+					chosenDoor = b;
+			}
+			// ..if only one doorway has a prefab, use that one
+			else
+				chosenDoor = (a.DoorPrefabs.Count > 0) ? a : b;
+
+
+			List<GameObject> doorPrefabs = chosenDoor.DoorPrefabs;
+
+			if (doorPrefabs.Count > 0 && !(a.HasDoorPrefab || b.HasDoorPrefab))
+			{
+				GameObject doorPrefab = doorPrefabs[randomStream.Next(0, doorPrefabs.Count)];
+
+				if (doorPrefab != null)
+				{
+					GameObject door = Instantiate(doorPrefab);
 					door.transform.parent = gameObject.transform;
-                    door.transform.position = a.transform.position;
-                    door.transform.rotation = a.transform.rotation;
-                    door.transform.localScale = a.transform.localScale;
+					door.transform.position = chosenDoor.transform.position;
+					door.transform.localScale = chosenDoor.transform.localScale;
 
-                    doors.Add(door);
+					if (!chosenDoor.AvoidRotatingDoorPrefab)
+						door.transform.rotation = chosenDoor.transform.rotation;
 
-                    a.SetUsedPrefab(door);
-                    b.SetUsedPrefab(door);
+					doors.Add(door);
 
-					DungeonUtil.AddAndSetupDoorComponent(this, door, a);
-                }
-            }
-        }
+					a.SetUsedPrefab(door);
+					b.SetUsedPrefab(door);
 
-        internal void AddTile(Tile tile)
+					DungeonUtil.AddAndSetupDoorComponent(this, door, chosenDoor);
+				}
+			}
+		}
+
+		internal void AddTile(Tile tile)
         {
             allTiles.Add(tile);
 

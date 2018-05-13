@@ -46,26 +46,15 @@ namespace DunGen.Graph
         /// </summary>
         public void Reset()
         {
-            Nodes.Clear();
-            Lines.Clear();
+			var emptyTileSet = new TileSet[0];
+			var emptyArchetype = new DungeonArchetype[0];
 
-            var start = new GraphNode(this);
-            var line = new GraphLine(this);
-            var goal = new GraphNode(this);
+			var builder = new DungeonFlowBuilder(this)
+				.AddNode(emptyTileSet, "Start")
+				.AddLine(emptyArchetype, 1.0f)
+				.AddNode(emptyTileSet, "Goal");
 
-            start.NodeType = NodeType.Start;
-            start.Label = "Start";
-
-            line.Length = 1.0f;
-
-            goal.NodeType = NodeType.Goal;
-            goal.Label = "Goal";
-            goal.Position = 1.0f;
-
-
-            Nodes.Add(start);
-            Nodes.Add(goal);
-            Lines.Add(line);
+			builder.Complete();
         }
 
         public GraphLine GetLineAtDepth(float normalizedDepth)

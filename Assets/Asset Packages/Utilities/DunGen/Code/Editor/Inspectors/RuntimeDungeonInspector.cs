@@ -18,6 +18,7 @@ namespace DunGen.Editor
                 return;
 
             dungeon.GenerateOnStart = EditorGUILayout.Toggle("Generate on Start", dungeon.GenerateOnStart);
+			dungeon.Root = EditorGUILayout.ObjectField(new GUIContent("Root", "An optional root object for the dungeon to be parented to. If blank, a new root GameObject will be created named \"" + Constants.DefaultDungeonRootName + "\""), dungeon.Root, typeof(GameObject), true) as GameObject;
 
             EditorGUILayout.BeginVertical("box");
             EditorUtil.DrawDungeonGenerator(dungeon.Generator, true);
