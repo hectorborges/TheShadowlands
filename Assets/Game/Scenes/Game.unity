@@ -1187,6 +1187,7 @@ GameObject:
   - component: {fileID: 942810336}
   - component: {fileID: 942810335}
   - component: {fileID: 942810337}
+  - component: {fileID: 942810338}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -1240,6 +1241,8 @@ MonoBehaviour:
     Seed: 0
     ShouldRandomizeSeed: 1
     MaxAttemptCount: 20
+    UseMaximumPairingAttempts: 0
+    MaxPairingAttempts: 5
     IgnoreSpriteBounds: 1
     UpVector: {x: 0, y: 1, z: 0}
     OverrideAllowImmediateRepeats: 0
@@ -1247,18 +1250,39 @@ MonoBehaviour:
     OverrideAllowTileRotation: 1
     AllowTileRotation: 1
     DebugRender: 0
-    AllowBacktracking: 1
     LengthMultiplier: 1
-    UseLegacyWeightCombineMethod: 0
+    PlaceTileTriggers: 1
+    TileTriggerLayer: 2
+    GenerateAsynchronously: 0
+    MaxAsyncFrameMilliseconds: 50
+    PauseBetweenRooms: 0
+    RestrictDungeonToBounds: 0
+    TilePlacementBounds:
+      m_Center: {x: 0, y: 0, z: 0}
+      m_Extent: {x: 0, y: 0, z: 0}
     Root: {fileID: 0}
     DungeonFlow: {fileID: 11400000, guid: 674a1de53449260458202b0cf9224bec, type: 2}
-    PortalCullingAdapterClass:
-      typeName: 
-    IsPortalCullingEnabled: 1
-    DirShadowCaster: {fileID: 0}
-    ExtraBounds: 0.01
-    CullEachChild: 0
   GenerateOnStart: 1
+  Root: {fileID: 1070759425}
+--- !u!114 &942810338
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 942810334}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f76f356143a516846a54607aa83a9ae8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Priority: 0
+  BakeMode: 1
+  AddNavMeshLinksBetweenRooms: 1
+  NavMeshAgentTypes:
+  - AgentTypeID: 0
+    AreaTypeID: 0
+    DisableLinkWhenDoorIsClosed: 1
+  NavMeshLinkDistanceFromDoorway: 2.5
 --- !u!1001 &1040887321
 Prefab:
   m_ObjectHideFlags: 0
@@ -1330,6 +1354,34 @@ Transform:
   m_PrefabParentObject: {fileID: 4489825583171832, guid: f9ea89bab582f5946a4c6dc364c04172,
     type: 2}
   m_PrefabInternal: {fileID: 1040887321}
+--- !u!1 &1070759425
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1070759426}
+  m_Layer: 0
+  m_Name: Dungeon
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1070759426
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1070759425}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1130495211
 Prefab:
   m_ObjectHideFlags: 0

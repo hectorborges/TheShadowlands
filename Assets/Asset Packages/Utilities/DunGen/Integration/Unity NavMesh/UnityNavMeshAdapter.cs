@@ -1,5 +1,5 @@
 ﻿// Only available in Unity 5.6 or higher
-#if !(UNITY_4_3 || UNITY_4_4 || UNITY_4_5 || UNITY_4_6 || UNITY_5_0 || UNITY_5_1 || UNITY_5_2 || UNITY_5_3 || UNITY_5_4 || UNITY_5_5)
+//#if !(UNITY_4_3 || UNITY_4_4 || UNITY_4_5 || UNITY_4_6 || UNITY_5_0 || UNITY_5_1 || UNITY_5_2 || UNITY_5_3 || UNITY_5_4 || UNITY_5_5)
 using System;
 using System.Linq;
 using System.Collections;
@@ -140,9 +140,11 @@ namespace DunGen.Adapters
 
 					if (door != null)
 						door.OnDoorStateChanged += (d, o) => link.enabled = o;
+
+                    link.enabled = true;
 				}
 			}
 		}
 	}
 }
-#endif
+//#endif
