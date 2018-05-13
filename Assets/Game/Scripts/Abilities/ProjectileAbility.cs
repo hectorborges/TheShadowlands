@@ -17,16 +17,7 @@ public class ProjectileAbility : Ability
     public override void ActivateAbility()
     {
         base.ActivateAbility();
-
-        PlayerMovement.canMove = false;
         TriggerCooldown();
-    }
-
-    public override void DeactivateAbility()
-    {
-        base.DeactivateAbility();
-
-        PlayerMovement.canMove = true;
     }
     public void Fire()
     {

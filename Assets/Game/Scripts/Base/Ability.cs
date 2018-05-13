@@ -61,6 +61,7 @@ public class Ability : MonoBehaviour
     public virtual void ActivateAbility()
     {
         print(abilityName + " Activated!");
+        PlayerMovement.canMove = false;
         if (!isCharging)
         {
             charge = StartCoroutine(Charge());
@@ -80,6 +81,7 @@ public class Ability : MonoBehaviour
 
     public virtual void DeactivateAbility()
     {
+        PlayerMovement.canMove = true;
         if (charge != null)
         {
             StopCoroutine(charge);
