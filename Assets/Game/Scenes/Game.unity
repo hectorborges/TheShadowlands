@@ -38,13 +38,13 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 11
-  m_GIWorkflowMode: 0
+  m_GIWorkflowMode: 1
   m_GISettings:
     serializedVersion: 2
     m_BounceScale: 1
@@ -1032,6 +1032,34 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &797966024
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 797966025}
+  m_Layer: 0
+  m_Name: PlayerSpawnPoint
+  m_TagString: PlayerSpawnPoint
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &797966025
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 797966024}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &866215258
 Prefab:
   m_ObjectHideFlags: 0
@@ -1216,14 +1244,14 @@ MonoBehaviour:
     UpVector: {x: 0, y: 1, z: 0}
     OverrideAllowImmediateRepeats: 0
     AllowImmediateRepeats: 0
-    OverrideAllowTileRotation: 0
-    AllowTileRotation: 0
+    OverrideAllowTileRotation: 1
+    AllowTileRotation: 1
     DebugRender: 0
     AllowBacktracking: 1
     LengthMultiplier: 1
     UseLegacyWeightCombineMethod: 0
     Root: {fileID: 0}
-    DungeonFlow: {fileID: 11400000, guid: b2111f63232c9c148ab75bcb2369741d, type: 2}
+    DungeonFlow: {fileID: 11400000, guid: 674a1de53449260458202b0cf9224bec, type: 2}
     PortalCullingAdapterClass:
       typeName: 
     IsPortalCullingEnabled: 1
