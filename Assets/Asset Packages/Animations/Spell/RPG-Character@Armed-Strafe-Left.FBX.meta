@@ -1,7 +1,5 @@
 fileFormatVersion: 2
 guid: d4863f27bac620d46b1cc9f34f32bc0b
-timeCreated: 1461766140
-licenseType: Store
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
@@ -265,23 +263,12 @@ ModelImporter:
     rigImportErrors: 
     rigImportWarnings: 
     animationImportErrors: 
-    animationImportWarnings: "\nClip 'Take 001' has import animation warnings that
-      might lower retargeting quality:\nNote: Activate translation DOF on avatar to
-      improve retargeting quality.\n\t'B_Spine2' is inbetween humanoid transforms
-      and has rotation animation that will be discarded.\n"
-    animationRetargetingWarnings: "\nRetargeting quality report for clip 'Take 001':\n\tLeftUpperArm
-      average position error 10.8 mm and maximum position error 11.8 mm at time 0:
-      0 (0.0%) Frame 0\n\tLeftLowerArm average position error 6.5 mm and maximum position
-      error 7.0 mm at time 0:12 (50.0%) Frame 12\n\tLeftHand average position error
-      5.9 mm and maximum position error 6.6 mm at time 0:15 (62.5%) Frame 15\n\tRightUpperArm
-      average position error 7.6 mm and maximum position error 8.6 mm at time 0:12
-      (50.0%) Frame 12\n\tRightLowerArm average position error 5.5 mm and maximum
-      position error 6.0 mm at time 0:12 (50.0%) Frame 12\n\tRightHand average position
-      error 4.3 mm and maximum position error 4.6 mm at time 0:24 (100.0%) Frame 24\n\tHead
-      average position error 24.8 mm and maximum position error 27.5 mm at time 0:
-      0 (0.0%) Frame 0\n"
+    animationImportWarnings: 
+    animationRetargetingWarnings: "\nRetargeting quality report for clip 'Take 001':\n\tRetargeting
+      quality is good. No significant differences with original animation were found.\n"
     animationDoRetargetingWarnings: 1
     importAnimatedCustomProperties: 0
+    importConstraints: 0
     animationCompression: 3
     animationRotationError: 0.5
     animationPositionError: 0.5
@@ -458,6 +445,8 @@ ModelImporter:
     optimizeMeshForGPU: 1
     keepQuads: 0
     weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88

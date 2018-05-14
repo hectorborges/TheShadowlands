@@ -1,7 +1,5 @@
 fileFormatVersion: 2
 guid: e70af08b3ed6c5c49a182e554e2fbd6a
-timeCreated: 1461676754
-licenseType: Store
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
@@ -240,6 +238,7 @@ ModelImporter:
     11100000: //RootNode
     13700000: Soldier_Mesh
     13700002: RPG-Character-Mesh
+    2186277476908879412: ImportLogs
   externalObjects: {}
   materials:
     importMaterials: 0
@@ -258,21 +257,21 @@ ModelImporter:
     animationImportWarnings: "\nClip 'Take 001' has import animation warnings that
       might lower retargeting quality:\nNote: Activate translation DOF on avatar to
       improve retargeting quality.\n\t'B_Spine' has translation animation that will
-      be discarded.\n\t'B_Spine2' is inbetween humanoid transforms and has rotation
-      animation that will be discarded.\n"
+      be discarded.\n"
     animationRetargetingWarnings: "\nRetargeting quality report for clip 'Take 001':\n\tLeftUpperArm
-      average position error 7.7 mm and maximum position error 11.1 mm at time 0:12
-      (50.0%) Frame 12\n\tLeftLowerArm average position error 5.0 mm and maximum position
-      error 8.1 mm at time 0:12 (50.0%) Frame 12\n\tLeftHand average position error
-      3.6 mm and maximum position error 5.5 mm at time 0:24 (100.0%) Frame 24\n\tRightUpperArm
-      average position error 7.3 mm and maximum position error 9.7 mm at time 0: 1
-      (4.2%) Frame 1\n\tRightLowerArm average position error 4.9 mm and maximum position
-      error 7.0 mm at time 0: 0 (0.0%) Frame 0\n\tRightHand average position error
-      4.1 mm and maximum position error 7.3 mm at time 0:24 (100.0%) Frame 24\n\tHead
-      average position error 4.5 mm and maximum position error 10.2 mm at time 0:12
+      average position error 5.3 mm and maximum position error 11.3 mm at time 0:12
+      (50.0%) Frame 12\n\tLeftLowerArm average position error 5.2 mm and maximum position
+      error 11.2 mm at time 0:12 (50.0%) Frame 12\n\tLeftHand average position error
+      5.3 mm and maximum position error 11.3 mm at time 0:12 (50.0%) Frame 12\n\tRightUpperArm
+      average position error 5.3 mm and maximum position error 11.3 mm at time 0:12
+      (50.0%) Frame 12\n\tRightLowerArm average position error 5.4 mm and maximum
+      position error 11.4 mm at time 0:12 (50.0%) Frame 12\n\tRightHand average position
+      error 5.3 mm and maximum position error 11.3 mm at time 0:12 (50.0%) Frame 12\n\tHead
+      average position error 5.3 mm and maximum position error 11.3 mm at time 0:12
       (50.0%) Frame 12\n"
     animationDoRetargetingWarnings: 1
     importAnimatedCustomProperties: 0
+    importConstraints: 0
     animationCompression: 3
     animationRotationError: 0.5
     animationPositionError: 0.5
@@ -449,6 +448,8 @@ ModelImporter:
     optimizeMeshForGPU: 1
     keepQuads: 0
     weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88

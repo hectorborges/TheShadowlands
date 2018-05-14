@@ -1245,8 +1245,8 @@ MonoBehaviour:
     MaxPairingAttempts: 5
     IgnoreSpriteBounds: 1
     UpVector: {x: 0, y: 1, z: 0}
-    OverrideAllowImmediateRepeats: 0
-    AllowImmediateRepeats: 0
+    OverrideAllowImmediateRepeats: 1
+    AllowImmediateRepeats: 1
     OverrideAllowTileRotation: 1
     AllowTileRotation: 1
     DebugRender: 0
@@ -1282,7 +1282,7 @@ MonoBehaviour:
   - AgentTypeID: 0
     AreaTypeID: 0
     DisableLinkWhenDoorIsClosed: 1
-  NavMeshLinkDistanceFromDoorway: 2.5
+  NavMeshLinkDistanceFromDoorway: 1
 --- !u!1001 &1040887321
 Prefab:
   m_ObjectHideFlags: 0
