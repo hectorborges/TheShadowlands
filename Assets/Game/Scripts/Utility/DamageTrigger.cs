@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class DamageTrigger : MonoBehaviour
 {
-    int minimumDamage;
-    int maximumDamage;
+    public int minimumDamage;
+    public int maximumDamage;
 
     public void SetDamage(int _minimumDamage, int _maximumDamage)
     {
@@ -17,6 +17,7 @@ public class DamageTrigger : MonoBehaviour
     {
         if(other.tag.Equals("Enemy"))
         {
+            print("Hit");
             int randomDamage = Random.Range(minimumDamage, maximumDamage);
             other.GetComponent<EnemyHealth>().TookDamage(randomDamage);
         }

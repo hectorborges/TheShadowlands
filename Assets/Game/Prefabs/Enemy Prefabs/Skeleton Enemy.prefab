@@ -2588,7 +2588,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb091f569fd02764ca0636796c959765, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lookRadius: 5
+  lookRadius: 15
   isRanged: 0
   damage: 0
   attackSpeed: 1.5
@@ -2693,7 +2693,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f944711226baf54d9f9139440f7ff1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseHealth: 25
+  baseHealth: 100
   despawnTime: 3
   numberOfHits: 3
   numberOfDeaths: 3

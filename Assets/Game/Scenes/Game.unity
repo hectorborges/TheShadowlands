@@ -1806,16 +1806,16 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 223208804752253296, guid: f9ea89bab582f5946a4c6dc364c04172,
-        type: 2}
-      propertyPath: m_Camera
-      value: 
-      objectReference: {fileID: 663269819}
     - target: {fileID: 114913238276121244, guid: f9ea89bab582f5946a4c6dc364c04172,
         type: 2}
       propertyPath: combatText
       value: 
       objectReference: {fileID: 408550955}
+    - target: {fileID: 223208804752253296, guid: f9ea89bab582f5946a4c6dc364c04172,
+        type: 2}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 663269819}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f9ea89bab582f5946a4c6dc364c04172, type: 2}
   m_IsPrefabParent: 0
