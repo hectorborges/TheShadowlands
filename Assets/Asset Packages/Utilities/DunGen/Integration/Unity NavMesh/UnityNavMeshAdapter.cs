@@ -118,7 +118,8 @@ namespace DunGen.Adapters
 		private void AddNavMeshLink(DoorwayConnection connection, NavMeshAgentLinkInfo agentLinkInfo)
 		{
 			var doorway = connection.A.gameObject;
-			
+
+            if (doorway.GetComponent<NavMeshLink>() != null) return;
 			// Add NavMeshLink to one of the doorways
 			var link = doorway.AddComponent<NavMeshLink>();
 			link.agentTypeID = agentLinkInfo.AgentTypeID;
