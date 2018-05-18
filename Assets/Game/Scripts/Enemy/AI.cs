@@ -27,15 +27,20 @@ public class AI : MonoBehaviour
     bool attacking;
     bool aggroed;
     bool idling;
+    bool stunned;
+    bool slowed;
 
     Transform player;
-    NavMeshAgent agent;
+    [HideInInspector] public NavMeshAgent agent;
     AnimatorBase animatorBase;
     EnemyHealth enemyHealth;
+
+    float baseSpeed;
 
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
+        baseSpeed = agent.speed;
         animatorBase = GetComponent<AnimatorBase>();
 
         if(ReferenceManager.player)
@@ -63,7 +68,7 @@ public class AI : MonoBehaviour
                 player = ReferenceManager.player.transform;
         }
 
-        if (agent == null ||enemyHealth.isDead)
+        if (agent == null ||enemyHealth.isDead || stunned)
             return;
 
         if (player)
@@ -104,6 +109,31 @@ public class AI : MonoBehaviour
             animatorBase.Move(false);
         else
             animatorBase.Move(true);
+    }
+
+    public void SetStunned(bool status)
+    {
+        stunned = status;
+
+        if (stunned)
+            agent.speed = 0;
+        else if(!slowed)
+            ResetSpeed();
+    }
+
+    public void SetSlowed(bool status)
+    {
+        slowed = status;
+    }
+
+    public void SetSpeed(float newSpeed)
+    {
+        agent.speed = newSpeed;
+    }
+
+    public void ResetSpeed()
+    {
+        agent.speed = baseSpeed;
     }
 
     void FaceTarget()

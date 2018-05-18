@@ -52,6 +52,7 @@ public class Ability : MonoBehaviour
     public bool requiresTarget;
 
     Coroutine charge;
+    Coroutine cooldown;
 
     protected virtual void Start()
     {
@@ -68,7 +69,6 @@ public class Ability : MonoBehaviour
             charges--;
         }
         Animate();
-
     }
 
     public virtual void Animate()
@@ -97,7 +97,7 @@ public class Ability : MonoBehaviour
     public void TriggerCooldown()
     {
         onCooldown = true;
-        StartCoroutine(Cooldown());
+       cooldown = StartCoroutine(Cooldown());
     }
 
     public bool CanShoot()
@@ -118,6 +118,22 @@ public class Ability : MonoBehaviour
             OnCooldownFinished(this);
 
         onCooldown = false;
+    }
+
+    public void ResetCooldown()
+    {
+        if(cooldown != null)
+        {
+            StopCoroutine(cooldown);
+
+            if (charges < abilityCharges)
+                charges++;
+
+            if (OnCooldownFinished != null)
+                OnCooldownFinished(this);
+
+            onCooldown = false;
+        }
     }
 
     protected virtual IEnumerator Charge()

@@ -24,6 +24,7 @@ public class Weapon : MonoBehaviour
     public float maxWeaponLevel;
 
     public WeaponsVault weaponsVault;
+    public Perk[] weaponPerks;
 
     public enum ItemType
     {
