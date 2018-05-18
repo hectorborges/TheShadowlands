@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BocColliderIncreasePerk : Perk
+public class BoxColliderIncreasePerk : Perk
 {
     [Space, Header("Required Variables")]
     public BoxCollider boxCollider;
     public Vector3 colliderSize;
 
-    public override void Procced(StatusEffects affected)
+    public override void Procced()
     {
         boxCollider.size = colliderSize;
     }

@@ -39,6 +39,10 @@ public class Ability : MonoBehaviour
     public float abilityCooldown;
     public float attackDistance;
 
+    [Space, Header("Perks")]
+    public Perk[] procOnAttackPerks;
+    public Perk[] procOnKillsPerks;
+
     [Space, Header("Extra Options")]
     public PlayerAnimator playerAnimator;
     public int numberOfAnimations;
@@ -141,5 +145,34 @@ public class Ability : MonoBehaviour
         isCharging = true;
         yield return new WaitForSeconds(chargeTime);
         isCharging = false;
+    }
+
+    public void DealDamage(int minimumDamage, int maximumDamage, GameObject other)
+    {
+        EnemyHealth enemyHealth = other.GetComponent<EnemyHealth>();
+        int randomDamage = Random.Range(minimumDamage, maximumDamage);
+        enemyHealth.TookDamage(randomDamage);
+
+        for (int i = 0; i < procOnAttackPerks.Length; i++)
+        {
+            if (procOnAttackPerks[i].activated)
+            {
+                if (procOnAttackPerks[i].requiresStatusEffects)
+                    procOnAttackPerks[i].ActivatePerk(other.GetComponent<StatusEffects>());
+                else
+                    procOnAttackPerks[i].ActivatePerk();
+            }
+        }
+
+        if(enemyHealth.isDead)
+        {
+            for (int i = 0; i < procOnKillsPerks.Length; i++)
+            {
+                if (procOnKillsPerks[i].activated)
+                {
+                    procOnKillsPerks[i].ActivatePerk();
+                }
+            }
+        }
     }
 }

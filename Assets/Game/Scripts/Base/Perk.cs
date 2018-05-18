@@ -4,9 +4,26 @@ using UnityEngine;
 
 public class Perk : MonoBehaviour
 {
+    public string perkName;
+    public Sprite perkIcon;
+    [TextArea]
+    public string perkDescription;
     public Ability affectedAbility;
     [Range(0, 100)]
     public int procChance;
+    public bool requiresStatusEffects;
+
+    public enum PerkType
+    {
+        ProcOnAttack,
+        ProcOnDamaged,
+        ProcOnKill,
+        Buff,
+        PerkUpgrade
+    };
+
+    public PerkType perkType;
+    [HideInInspector] public bool activated;
 
 	public virtual void ActivatePerk(StatusEffects affected)
     {
@@ -18,5 +35,21 @@ public class Perk : MonoBehaviour
         }
     }
 
+    public virtual void ActivatePerk()
+    {
+        float roll = Random.Range(0, 100);
+
+        if (roll <= procChance)
+        {
+            Procced();
+        }
+    }
+
     public virtual void Procced(StatusEffects affected) { }
+    public virtual void Procced() { }
+
+    public void SetPerkActive(bool status)
+    {
+        activated = status;
+    }
 }

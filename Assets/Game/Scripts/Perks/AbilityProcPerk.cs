@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class AbilityProcPerk : Perk
 {
-    public override void Procced(StatusEffects affected)
+    public override void Procced()
     {
         affectedAbility.ResetCooldown();
     }

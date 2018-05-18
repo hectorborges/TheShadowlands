@@ -16,7 +16,7 @@ public class AlternatingMeleeAbility : Ability
     {
         base.Start();
         foreach(DamageTrigger damageTrigger in damageTriggers)
-            damageTrigger.SetDamage(minimumDamage, maximumDamage);
+            damageTrigger.SetDamage(minimumDamage, maximumDamage, this);
     }
 
     public override void ActivateAbility()

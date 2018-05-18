@@ -7,7 +7,7 @@ public class AbilityChargePerk : Perk
     [Space, Header("Required Variables")]
     public int chargeCount;
 
-    public override void Procced(StatusEffects affected)
+    public override void Procced()
     {
         affectedAbility.charges = chargeCount;
     }

@@ -8,7 +8,7 @@ public class SphereColliderIncreasePerk : Perk
     public SphereCollider sphereCollider;
     public float colliderRadius;
 
-    public override void Procced(StatusEffects affected)
+    public override void Procced()
     {
         sphereCollider.radius = colliderRadius;
     }

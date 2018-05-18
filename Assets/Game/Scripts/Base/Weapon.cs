@@ -38,10 +38,18 @@ public class Weapon : MonoBehaviour
     [Space]
     public AnimatorOverrideController animatorOverrideController;
 
+    bool weaponActivated;
+
     private void Start()
     {
         if (currentWeaponLevel <= 0)
             currentWeaponLevel = 1;
+    }
+
+    void InitializeWeaponPerks()
+    {
+        //In here I need to make sure to reactivate all of the perks that are unlocked
+        //for each weapon once I begin to add the saving system.
     }
 
     public void GainExperience(float experience)
@@ -68,6 +76,22 @@ public class Weapon : MonoBehaviour
             requiredExperience *= requiredExperienceMultiplier;
             weaponsVault.SetExperience(itemType.ToString(), weaponExperience, requiredExperience);
 
+            weaponPerks[(int)currentWeaponLevel].SetPerkActive(true);
+
+            if(weaponPerks[(int)currentWeaponLevel].perkType == Perk.PerkType.Buff)
+            {
+                weaponPerks[(int)currentWeaponLevel].ActivatePerk();
+            }
+        }
+    }
+
+    public void SetWeaponActive(bool status)
+    {
+        weaponActivated = status;
+
+        for (int i = 1; i < (int)currentWeaponLevel; i++)
+        {
+            weaponPerks[i].activated = weaponActivated;
         }
     }
 }

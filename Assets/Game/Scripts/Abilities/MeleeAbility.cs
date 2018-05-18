@@ -11,7 +11,7 @@ public class MeleeAbility : Ability
     protected override void Start()
     {
         base.Start();
-        damageTrigger.SetDamage(minimumDamage, maximumDamage);
+        damageTrigger.SetDamage(minimumDamage, maximumDamage, this);
     }
 
     public override void ActivateAbility()
