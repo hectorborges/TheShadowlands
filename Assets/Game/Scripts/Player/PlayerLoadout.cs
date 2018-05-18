@@ -6,6 +6,7 @@ using UnityEngine.AI;
 
 public class PlayerLoadout : MonoBehaviour
 {
+    public static PlayerLoadout instance;
     [Space, Header("Ability Keys")]
     public KeyCode primaryAbilityKey;
     public KeyCode secondaryAbilityKey;
@@ -15,7 +16,7 @@ public class PlayerLoadout : MonoBehaviour
     public KeyCode abilityFourKey;
 
     [Space, Header("Weapons")]
-    public Item currentWeapon;
+    public Weapon currentWeapon;
     public GameObject weaponHolder;
 
     [Space, Header("Ability Loadout")]
@@ -36,6 +37,7 @@ public class PlayerLoadout : MonoBehaviour
 
     private void Awake()
     {
+        instance = this;
         Application.targetFrameRate = 60;
         playerAnimator = GetComponent<PlayerAnimator>();
         agent = GetComponent<NavMeshAgent>();
@@ -46,7 +48,7 @@ public class PlayerLoadout : MonoBehaviour
             cooldownQueues.Add(new Queue<float>());
     }
 
-    public void UpdateWeapons(Item newWeapon)
+    public void UpdateWeapons(Weapon newWeapon)
     {
         ChangeWeapon(currentWeapon.itemModel.transform, weaponHolder.transform);
         currentWeapon.itemModel.SetActive(false);

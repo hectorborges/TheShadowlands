@@ -13,6 +13,7 @@ public class EnemyHealth : Health
     public ObjectPooling combatText;
     public Collider[] collisions;
     public NavMeshAgent agent;
+    public int experienceWorth;
 
     [Space]
     public SkinnedMeshRenderer rend;
@@ -121,23 +122,7 @@ public class EnemyHealth : Health
 
     public override IEnumerator Died()
     {
-        //if (rend && dissolveMaterial)
-        //{
-        //    Material[] mats = rend.materials;
-        //    mats[0] = dissolveMaterial;
-        //    rend.materials = mats;
-        //}
-
-        //if (extraRenderers.Length > 0)
-        //{
-        //    for (int i = 0; i < extraRenderers.Length; i++)
-        //    {
-        //        Material[] mats = extraRenderers[i].materials;
-        //        mats[i] = extraDissolveMaterials[i];
-        //        extraRenderers[i].materials = mats;
-        //    }
-        //}
-
+        PlayerLoadout.instance.currentWeapon.GainExperience(experienceWorth);
         PlayerController.EnemyDefeated(gameObject);
         agent.enabled = false;
         foreach (Collider collision in collisions)

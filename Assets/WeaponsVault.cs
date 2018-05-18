@@ -11,16 +11,63 @@ public class WeaponsVault : MonoBehaviour
     public Color unselectedColor;
     public Color selectedColor;
 
+    public Image experienceBar;
+    public Image skillBarExperienceBar;
+
+    int currentPerksPageSelectedIndex;
     PerksPage currentPerksPageSelected;
     Image currentPageSelected;
+
+    public List<string> weapons = new List<string>();
+    List<float> weaponsExperience = new List<float>();
+    List<float> weaponsMaxExperience = new List<float>();
 
     private void Start()
     {
         currentPerksPageSelected = perksPages[0];
         currentPageSelected = pageSelections[0];
+        currentPerksPageSelectedIndex = 0;
 
         currentPerksPageSelected.gameObject.SetActive(true);
         currentPageSelected.color = selectedColor;
+
+        weapons.Add("Axe");
+        weapons.Add("Swords");
+        weapons.Add("Shield");
+        weapons.Add("Rifle");
+        weapons.Add("Magic");
+
+        for(int i = 0; i < weapons.Count; i++)
+        {
+            weaponsExperience.Add(0);
+            weaponsMaxExperience.Add(0);
+        }
+    }
+
+    public void SetExperience(string weapon, float experience, float maxExperience)
+    {
+        experienceBar.fillAmount = weaponsExperience[currentPerksPageSelectedIndex] / weaponsMaxExperience[currentPerksPageSelectedIndex];
+        skillBarExperienceBar.fillAmount = experience / maxExperience;
+
+        for (int i = 0; i < weapons.Count; i++)
+        {
+            if (weapon == weapons[i])
+            {
+                weaponsExperience[i] = experience;
+                weaponsMaxExperience[i] = maxExperience;
+            }
+        }
+    }
+
+    public void SetExperience(string weapon)
+    {
+        for (int i = 0; i < weapons.Count; i++)
+        {
+            if(weapon == weapons[i])
+            {
+                experienceBar.fillAmount = weaponsExperience[i] / weaponsMaxExperience[i];
+            }
+        }
     }
 
     public void SelectPage(string pageSelected)
@@ -32,6 +79,7 @@ public class WeaponsVault : MonoBehaviour
                 currentPerksPageSelected.gameObject.SetActive(false);
                 currentPageSelected.color = unselectedColor;
 
+                currentPerksPageSelectedIndex = i;
                 currentPerksPageSelected = perksPages[i];
                 currentPageSelected = pageSelections[i];
 
@@ -39,5 +87,6 @@ public class WeaponsVault : MonoBehaviour
                 currentPageSelected.color = selectedColor;
             }
         }
+        SetExperience(pageSelected);
     }
 }

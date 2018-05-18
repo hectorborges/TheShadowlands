@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Weapons : MonoBehaviour
 {
-    public Item[] weapons;
+    public Weapon[] weapons;
     public static Weapons instance;
 
     private void Start()
