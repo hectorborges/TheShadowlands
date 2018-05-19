@@ -98,12 +98,22 @@ public class Weapon : MonoBehaviour
 
         weaponActivated = status;
 
-        for (int i = 2; i < currentWeaponLevel; i++)
+        for (int i = 0; i <= currentWeaponLevel; i++)
         {
-            for (int j = 1; j < weaponPerks[i].perks.Length; j++)
+            if (i >= 2)
             {
-                weaponPerks[i].perks[j].activated = weaponActivated;
-                print("Switching Weapon");
+                print("Perk name: " + weaponPerks[i].perks[0].name + "Amount of Perks per level: " + weaponPerks[i].perks.Length);
+                for (int j = 0; j < weaponPerks[i].perks.Length; j++)
+                {
+                    print("Switching Weapon");
+                    weaponPerks[i].perks[j].activated = weaponActivated;
+
+                    if (weaponPerks[i].perks[j].activated && weaponPerks[i].perks[j].refreshOnEquip)
+                    {
+                        print("Activate Perk");
+                        weaponPerks[i].perks[j].ActivatePerk();
+                    }
+                }
             }
         }
     }

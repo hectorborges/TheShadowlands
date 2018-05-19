@@ -67,6 +67,7 @@ public class WeaponsVault : MonoBehaviour
             if(weapon == weapons[i])
             {
                 experienceBar.fillAmount = weaponsExperience[i] / weaponsMaxExperience[i];
+                skillBarExperienceBar.fillAmount = weaponsExperience[i] / weaponsMaxExperience[i];
             }
         }
     }
