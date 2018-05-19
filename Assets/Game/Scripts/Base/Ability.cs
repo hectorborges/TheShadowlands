@@ -163,7 +163,9 @@ public class Ability : MonoBehaviour
             if (procOnAttackPerks[i].activated)
             {
                 if (procOnAttackPerks[i].requiresStatusEffects)
+                {
                     procOnAttackPerks[i].ActivatePerk(other.GetComponent<StatusEffects>());
+                }
                 else
                     procOnAttackPerks[i].ActivatePerk();
             }

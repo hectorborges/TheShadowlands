@@ -80,8 +80,6 @@ public class Weapon : MonoBehaviour
             for(int i = 0; i < weaponPerks[(int)currentWeaponLevel].perks.Length; i++)
             {
                 weaponPerks[(int)currentWeaponLevel].perks[i].SetPerkActive(true);
-                Debug.Log("Current Level: " + currentWeaponLevel + "  --  Perk: " + weaponPerks[(int)currentWeaponLevel].perks[i].perkName);
-                Debug.Log(" Perk Type : " + weaponPerks[(int)currentWeaponLevel].perks[i].perkType);
                 if (weaponPerks[(int)currentWeaponLevel].perks[i].perkType == Perk.PerkType.Buff)
                 {
                     weaponPerks[(int)currentWeaponLevel].perks[i].ActivatePerk();
@@ -102,15 +100,12 @@ public class Weapon : MonoBehaviour
         {
             if (i >= 2)
             {
-                print("Perk name: " + weaponPerks[i].perks[0].name + "Amount of Perks per level: " + weaponPerks[i].perks.Length);
                 for (int j = 0; j < weaponPerks[i].perks.Length; j++)
                 {
-                    print("Switching Weapon");
                     weaponPerks[i].perks[j].activated = weaponActivated;
 
                     if (weaponPerks[i].perks[j].activated && weaponPerks[i].perks[j].refreshOnEquip)
                     {
-                        print("Activate Perk");
                         weaponPerks[i].perks[j].ActivatePerk();
                     }
                 }

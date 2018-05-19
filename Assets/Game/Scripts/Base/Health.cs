@@ -16,7 +16,7 @@ public class Health : MonoBehaviour
     [HideInInspector]
     public bool dead;
 
-    protected int health;
+    [HideInInspector] public int health;
 
     float immuneChance;
 

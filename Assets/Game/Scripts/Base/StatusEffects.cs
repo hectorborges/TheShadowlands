@@ -13,6 +13,7 @@ public class StatusEffects : MonoBehaviour
     public GameObject burnEffect;
     public GameObject stunEffect;
     public GameObject slowEffect;
+    public GameObject executeEffect;
 
     Coroutine bleed;
     Coroutine burn;
@@ -99,7 +100,6 @@ public class StatusEffects : MonoBehaviour
 
     IEnumerator Stunned(float length)
     {
-        print("Stunned");
         ai.SetStunned(true);
         stunEffect.SetActive(true);
         yield return new WaitForSeconds(length);
@@ -119,5 +119,16 @@ public class StatusEffects : MonoBehaviour
         ai.ResetSpeed();
         ai.SetSlowed(false);
         slowed = false;
+    }
+
+    public void Execute(float healthPercentage)
+    {
+        float currentHealth = healthPercentage * health.baseHealth;
+        if (health.health <= currentHealth)
+        {
+            print("EXECUTED");
+            executeEffect.SetActive(true);
+            health.TookDamage(health.baseHealth);
+        }
     }
 }
