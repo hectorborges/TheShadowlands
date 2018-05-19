@@ -24,7 +24,7 @@ public class Weapon : MonoBehaviour
     public float maxWeaponLevel;
 
     public WeaponsVault weaponsVault;
-    public Perk[] weaponPerks;
+    public WeaponLevelPerks[] weaponPerks;
 
     public enum ItemType
     {
@@ -77,11 +77,15 @@ public class Weapon : MonoBehaviour
             requiredExperience *= requiredExperienceMultiplier;
             weaponsVault.SetExperience(itemType.ToString(), weaponExperience, requiredExperience);
 
-            weaponPerks[(int)currentWeaponLevel].SetPerkActive(true);
-
-            if(weaponPerks[(int)currentWeaponLevel].perkType == Perk.PerkType.Buff)
+            for(int i = 0; i < weaponPerks[(int)currentWeaponLevel].perks.Length; i++)
             {
-                weaponPerks[(int)currentWeaponLevel].ActivatePerk();
+                weaponPerks[(int)currentWeaponLevel].perks[i].SetPerkActive(true);
+                Debug.Log("Current Level: " + currentWeaponLevel + "  --  Perk: " + weaponPerks[(int)currentWeaponLevel].perks[i].perkName);
+                Debug.Log(" Perk Type : " + weaponPerks[(int)currentWeaponLevel].perks[i].perkType);
+                if (weaponPerks[(int)currentWeaponLevel].perks[i].perkType == Perk.PerkType.Buff)
+                {
+                    weaponPerks[(int)currentWeaponLevel].perks[i].ActivatePerk();
+                }
             }
         }
     }
@@ -92,7 +96,16 @@ public class Weapon : MonoBehaviour
 
         for (int i = 1; i < (int)currentWeaponLevel; i++)
         {
-            weaponPerks[i].activated = weaponActivated;
+            for (int j = 1; j < (int)currentWeaponLevel; j++)
+            {
+                weaponPerks[i].perks[j].activated = weaponActivated;
+            }
         }
     }
+}
+
+[System.Serializable]
+public class WeaponLevelPerks
+{
+    public Perk[] perks;
 }

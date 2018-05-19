@@ -5,7 +5,7 @@ using UnityEngine;
 public class ProjectileAbility : Ability
 {
     public ObjectPooling bullet;
-    public GameObject[] spawnpoints;
+    public List<GameObject> spawnpoints;
 
     [Space]
     public int minimumDamage;
@@ -27,9 +27,8 @@ public class ProjectileAbility : Ability
         }
         else
         {
-            for(int i = 0; i < spawnpoints.Length; i++)
+            for(int i = 0; i < spawnpoints.Count; i++)
             {
-                print("FIRE");
                 LauncherProjectile(spawnpoints[i].transform);
             }
         }
@@ -44,7 +43,7 @@ public class ProjectileAbility : Ability
         if(PlayerLoadout.focus != null)
             projectile.SetTarget(PlayerLoadout.focus.transform);
 
-        projectile.SetDamage(minimumDamage, maximumDamage);
+        projectile.SetDamage(minimumDamage, maximumDamage, this);
 
         if (obj == null)
         {

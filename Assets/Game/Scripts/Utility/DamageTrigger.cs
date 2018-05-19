@@ -9,10 +9,20 @@ public class DamageTrigger : MonoBehaviour
 
     Ability ability;
 
+    private void Start()
+    {
+        
+    }
+
     public void SetDamage(int _minimumDamage, int _maximumDamage, Ability _ability)
     {
         minimumDamage = _minimumDamage;
         maximumDamage = _maximumDamage;
+        ability = _ability;
+    }
+
+    public void SetAbility(Ability _ability)
+    {
         ability = _ability;
     }
 

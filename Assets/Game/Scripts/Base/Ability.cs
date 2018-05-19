@@ -65,7 +65,6 @@ public class Ability : MonoBehaviour
 
     public virtual void ActivateAbility()
     {
-        print(abilityName + " Activated!");
         PlayerMovement.canMove = false;
         if (!isCharging)
         {

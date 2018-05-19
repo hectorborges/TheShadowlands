@@ -23,7 +23,6 @@ public class PlayerAnimationEventBridge : MonoBehaviour
         {
             if(abilityEffect.abilityName == _abilityName)
             {
-                print(abilityEffect.abilityName);
                 abilityEffect.abilityEffect.SetActive(true);
 
                 AudioClip randomEffectSound = abilityEffect.effectSounds[Random.Range(0, abilityEffect.effectSounds.Length)];

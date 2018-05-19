@@ -22,7 +22,6 @@ public class PlayerAnimator : AnimatorBase
 
     public void OverrideAnimations(AnimatorOverrideController overrideController)
     {
-        print("Happened");
         animator.runtimeAnimatorController = overrideController;
     }
 }

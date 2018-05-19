@@ -10,6 +10,9 @@ public class ObjectPooling : MonoBehaviour
     public bool willGrow = true;
 
     public List<GameObject> pooledObjects;
+    public bool collectColliders;
+
+    [HideInInspector] public List<Collider> pooledObjectsColliders;
 
     void Start()
     {
@@ -51,6 +54,13 @@ public class ObjectPooling : MonoBehaviour
         {
             GameObject obj = (GameObject)Instantiate(pooledObject[i]);
             obj.transform.SetParent(transform);
+
+            if (collectColliders)
+            {
+                Collider col = obj.GetComponent<Collider>();
+                pooledObjectsColliders.Add(col);
+                col.enabled = false;
+            }
 
             obj.SetActive(false);
             pooledObjects.Add(obj);

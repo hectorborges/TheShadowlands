@@ -698,6 +698,8 @@ MonoBehaviour:
   waitTime: 0.001
   willGrow: 1
   pooledObjects: []
+  collectColliders: 0
+  pooledObjectsColliders: []
 --- !u!1001 &528816335
 Prefab:
   m_ObjectHideFlags: 0
@@ -1160,6 +1162,8 @@ MonoBehaviour:
   waitTime: 0.001
   willGrow: 1
   pooledObjects: []
+  collectColliders: 0
+  pooledObjectsColliders: []
 --- !u!1 &942810334
 GameObject:
   m_ObjectHideFlags: 0
@@ -2779,6 +2783,8 @@ MonoBehaviour:
   waitTime: 0.001
   willGrow: 1
   pooledObjects: []
+  collectColliders: 1
+  pooledObjectsColliders: []
 --- !u!4 &1791334368
 Transform:
   m_ObjectHideFlags: 0

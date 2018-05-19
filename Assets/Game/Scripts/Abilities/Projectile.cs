@@ -11,6 +11,7 @@ public class Projectile : MonoBehaviour
     int maximumDamage;
     Transform target;
     ObjectPooling hitEffects;
+    Ability ability;
     
 
     public void SetTarget(Transform newTarget)
@@ -19,10 +20,11 @@ public class Projectile : MonoBehaviour
         hitEffects = ReferenceManager.rifleHitEffectPool;
     }
 
-    public void SetDamage(int _minimumDamage, int _maximumDamage)
+    public void SetDamage(int _minimumDamage, int _maximumDamage, Ability _ability)
     {
         minimumDamage = _minimumDamage;
         maximumDamage = _maximumDamage;
+        ability = _ability;
     }
 
     private void Update()
@@ -41,10 +43,8 @@ public class Projectile : MonoBehaviour
     {
         if (other.tag.Equals("Enemy"))
         {
-            print(other.name);
             SpawnHitEffect();
-            int randomDamage = Random.Range(minimumDamage, maximumDamage);
-            other.GetComponent<EnemyHealth>().TookDamage(randomDamage);
+            ability.DealDamage(minimumDamage, maximumDamage, other.gameObject);
 
             gameObject.SetActive(false);
         }
@@ -64,8 +64,11 @@ public class Projectile : MonoBehaviour
             return;
         }
 
+
         obj.transform.position = transform.position;
         obj.transform.rotation = Quaternion.identity;
         obj.SetActive(true);
+
+        obj.GetComponent<DamageTrigger>().SetAbility(ability);
     }
 }
