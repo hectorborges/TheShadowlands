@@ -32,7 +32,7 @@ public class Weapon : MonoBehaviour
         Swords,
         Shield,
         Rifle,
-        Magic
+        Pistols
     };
 
     [Space]
@@ -76,7 +76,7 @@ public class Weapon : MonoBehaviour
             weaponExperience = excessExperience;
             requiredExperience *= requiredExperienceMultiplier;
             weaponsVault.SetExperience(itemType.ToString(), weaponExperience, requiredExperience);
-
+            if (weaponPerks.Length <= 0) return;
             for(int i = 0; i < weaponPerks[(int)currentWeaponLevel].perks.Length; i++)
             {
                 weaponPerks[(int)currentWeaponLevel].perks[i].SetPerkActive(true);

@@ -31,6 +31,18 @@ public class Ability : MonoBehaviour
         GetButtonUp
     };
 
+    public enum AbilityType
+    {
+        Axe,
+        Shield,
+        Swords,
+        Rifle,
+        Pistols,
+        Magic
+    };
+
+    public AbilityType abilityType;
+
     public AbilityInput abilityInput;
 
     [Range(1, 5)]

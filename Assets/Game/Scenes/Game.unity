@@ -1143,6 +1143,7 @@ MonoBehaviour:
   - {fileID: 930779913}
   _floatingCombatTextPool: {fileID: 408550955}
   _rifleHitEffectPool: {fileID: 1791334367}
+  _pistolHitEffectPool: {fileID: 1250515856}
 --- !u!4 &942810336
 Transform:
   m_ObjectHideFlags: 0
@@ -1154,6 +1155,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1791334368}
+  - {fileID: 1250515855}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2203,6 +2205,54 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1250515854
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1250515855}
+  - component: {fileID: 1250515856}
+  m_Layer: 0
+  m_Name: Pistol Hit Effect Pool
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1250515855
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1250515854}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 942810336}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1250515856
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1250515854}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e81d062c881263740a629b7dd486c82e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pooledObject:
+  - {fileID: 1852110019049310, guid: 8dc81174377e8214ea96e9d718990e5b, type: 2}
+  pooledAmount: 20
+  waitTime: 0.001
+  willGrow: 1
+  pooledObjects: []
+  collectColliders: 0
+  pooledObjectsColliders: []
 --- !u!1001 &1250555379
 Prefab:
   m_ObjectHideFlags: 0

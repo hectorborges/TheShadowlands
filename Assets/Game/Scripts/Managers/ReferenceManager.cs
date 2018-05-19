@@ -11,12 +11,14 @@ public class ReferenceManager : MonoBehaviour
 
     [Space, Header("Ability Pools")]
     public  ObjectPooling _rifleHitEffectPool;
+    public ObjectPooling _pistolHitEffectPool;
 
     public static Camera mainCamera;
     public static GameObject player;
     public static List<ObjectPooling> enemyPools = new List<ObjectPooling>();
     public static ObjectPooling floatingCombatTextPool;
     public static ObjectPooling rifleHitEffectPool;
+    public static ObjectPooling pistolHitEffectPool;
 
 
     bool spawnedCharacter;
@@ -26,8 +28,9 @@ public class ReferenceManager : MonoBehaviour
         mainCamera = _mainCamera;
         floatingCombatTextPool = _floatingCombatTextPool;
         rifleHitEffectPool = _rifleHitEffectPool;
+        pistolHitEffectPool = _pistolHitEffectPool;
 
-        for(int i = 0; i < _enemyPools.Count; i++)
+        for (int i = 0; i < _enemyPools.Count; i++)
         {
             enemyPools.Add(_enemyPools[i]);
         }

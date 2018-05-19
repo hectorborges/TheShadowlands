@@ -11,7 +11,7 @@ public class PerksPage : MonoBehaviour
         Swords,
         Shield,
         Rifle,
-        Magic
+        Pistols
     };
 
     public WeaponType weaponType;

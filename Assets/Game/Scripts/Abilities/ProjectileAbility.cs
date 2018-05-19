@@ -11,19 +11,43 @@ public class ProjectileAbility : Ability
     public int minimumDamage;
     public int maximumDamage;
     public bool multifire;
+    public bool alternateFire;
 
     PlayerMovement playerMovement;
+
+    bool alternated;
+    int currentAttack;
+    int lastAttack;
 
     public override void ActivateAbility()
     {
         base.ActivateAbility();
         TriggerCooldown();
     }
+
     public void Fire()
     {
         if(!multifire)
         {
-            LauncherProjectile(spawnpoints[0].transform);
+            if(alternateFire)
+            {
+                lastAttack = currentAttack;
+                if (currentAttack + 1 < numberOfAnimations)
+                    currentAttack++;
+                else
+                    currentAttack = 0;
+
+                if (!alternated)
+                {
+                    alternated = true;
+                    LauncherProjectile(spawnpoints[0].transform);
+                }
+                else
+                {
+                    alternated = false;
+                    LauncherProjectile(spawnpoints[1].transform);
+                }
+            }
         }
         else
         {
@@ -53,5 +77,13 @@ public class ProjectileAbility : Ability
         obj.transform.position = spawnPosition.position;
         obj.transform.rotation = spawnPosition.rotation;
         obj.SetActive(true);
+    }
+
+    public override void Animate()
+    {
+        if (playerAnimator)
+        {
+            playerAnimator.SpecificAttack(abilitySlot, currentAttack + 1);
+        }
     }
 }

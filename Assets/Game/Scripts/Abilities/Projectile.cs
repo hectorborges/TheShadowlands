@@ -6,18 +6,17 @@ public class Projectile : MonoBehaviour
 {
     public float speed;
     public bool targeted;
+    public bool piercing;
 
     int minimumDamage;
     int maximumDamage;
     Transform target;
     ObjectPooling hitEffects;
     Ability ability;
-    
 
     public void SetTarget(Transform newTarget)
     {
         target = newTarget;
-        hitEffects = ReferenceManager.rifleHitEffectPool;
     }
 
     public void SetDamage(int _minimumDamage, int _maximumDamage, Ability _ability)
@@ -25,6 +24,11 @@ public class Projectile : MonoBehaviour
         minimumDamage = _minimumDamage;
         maximumDamage = _maximumDamage;
         ability = _ability;
+
+        if (ability.abilityType == Ability.AbilityType.Rifle)
+            hitEffects = ReferenceManager.rifleHitEffectPool;
+        else if (ability.abilityType == Ability.AbilityType.Pistols) ;
+            hitEffects = ReferenceManager.pistolHitEffectPool;
     }
 
     private void Update()
@@ -46,7 +50,8 @@ public class Projectile : MonoBehaviour
             SpawnHitEffect();
             ability.DealDamage(minimumDamage, maximumDamage, other.gameObject);
 
-            gameObject.SetActive(false);
+            if(!piercing)
+                gameObject.SetActive(false);
         }
         else if (other.tag.Equals("Environment"))
         {
@@ -64,11 +69,11 @@ public class Projectile : MonoBehaviour
             return;
         }
 
-
         obj.transform.position = transform.position;
         obj.transform.rotation = Quaternion.identity;
         obj.SetActive(true);
 
+        if (obj.GetComponent<DamageTrigger>())
         obj.GetComponent<DamageTrigger>().SetAbility(ability);
     }
 }
