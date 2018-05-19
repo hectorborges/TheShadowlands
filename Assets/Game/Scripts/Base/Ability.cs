@@ -124,6 +124,11 @@ public class Ability : MonoBehaviour
         onCooldown = false;
     }
 
+    public bool CheckCooldown()
+    {
+        return onCooldown;
+    }
+
     public void ResetCooldown()
     {
         if(cooldown != null)
@@ -137,6 +142,7 @@ public class Ability : MonoBehaviour
                 OnCooldownFinished(this);
 
             onCooldown = false;
+            PlayerLoadout.instance.ResetCooldown(this);
         }
     }
 

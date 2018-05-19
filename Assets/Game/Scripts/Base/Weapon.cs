@@ -54,6 +54,7 @@ public class Weapon : MonoBehaviour
 
     public void GainExperience(float experience)
     {
+        if (currentWeaponLevel >= maxWeaponLevel) return;
         if(weaponExperience + experience < requiredExperience)
         {
             weaponExperience += experience;

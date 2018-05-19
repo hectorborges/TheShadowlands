@@ -6,6 +6,7 @@ public class AbilityProcPerk : Perk
 {
     public override void Procced()
     {
+        print("Reset Cooldown");
         affectedAbility.ResetCooldown();
     }
 }

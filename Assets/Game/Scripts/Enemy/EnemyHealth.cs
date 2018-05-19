@@ -14,6 +14,7 @@ public class EnemyHealth : Health
     public Collider[] collisions;
     public NavMeshAgent agent;
     public int experienceWorth;
+    public GameObject statusEffects;
 
     [Space]
     public SkinnedMeshRenderer rend;
@@ -44,6 +45,9 @@ public class EnemyHealth : Health
         health = baseHealth;
         agent.enabled = true;
         extraDeathTimes = new float[extraRenderers.Length];
+        deathTime = 0;
+
+        statusEffects.SetActive(true);
 
         isDead = false;
         foreach(Collider collision in collisions)
@@ -72,7 +76,7 @@ public class EnemyHealth : Health
         if (isDead)
         {
             rend.material.SetFloat("_Progress", Mathf.Lerp(1, 0, deathTime));
-            deathTime += .1f * Time.deltaTime;
+            deathTime += .2f * Time.deltaTime;
 
             if(extraRenderers.Length > 0)
             {
@@ -124,6 +128,8 @@ public class EnemyHealth : Health
     {
         PlayerLoadout.instance.currentWeapon.GainExperience(experienceWorth);
         PlayerController.EnemyDefeated(gameObject);
+
+        statusEffects.SetActive(false);
         agent.enabled = false;
         foreach (Collider collision in collisions)
             collision.enabled = false;

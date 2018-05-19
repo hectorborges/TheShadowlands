@@ -10,6 +10,6 @@ public class BleedPerk : Perk
 
     public override void Procced(StatusEffects affected)
     {
-        affected.Burn(bleedLength, damagePerTick);
+        affected.Bleed(bleedLength, damagePerTick);
     }
 }

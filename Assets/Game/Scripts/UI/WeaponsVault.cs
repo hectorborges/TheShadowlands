@@ -47,11 +47,6 @@ public class WeaponsVault : MonoBehaviour
 
     public void SetExperience(string weapon, float experience, float maxExperience)
     {
-        print("Current Index :: " + currentPerksPageSelectedIndex);
-        print("Weapons :: " + weapons.Count);
-        print("Weapons Exp:: " + weaponsExperience.Count);
-        print("Weapons EXP MAX:: " + weaponsMaxExperience.Count);
-
         experienceBar.fillAmount = weaponsExperience[currentPerksPageSelectedIndex] / weaponsMaxExperience[currentPerksPageSelectedIndex];
         skillBarExperienceBar.fillAmount = experience / maxExperience;
 

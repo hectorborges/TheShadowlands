@@ -24,6 +24,21 @@ public class StatusEffects : MonoBehaviour
     bool stunned;
     bool slowed;
 
+    private void OnEnable()
+    {
+        StopAllCoroutines();
+
+        bleeding = false;
+        burning = false;
+        stunned = false;
+        slowed = false;
+
+        bleedEffect.SetActive(false);
+        burnEffect.SetActive(false);
+        stunEffect.SetActive(false);
+        slowEffect.SetActive(false);
+    }
+
     public void Bleed(float length, int damage)
     {
         if (bleed != null)
@@ -84,6 +99,7 @@ public class StatusEffects : MonoBehaviour
 
     IEnumerator Stunned(float length)
     {
+        print("Stunned");
         ai.SetStunned(true);
         stunEffect.SetActive(true);
         yield return new WaitForSeconds(length);

@@ -158,7 +158,7 @@ public class PlayerLoadout : MonoBehaviour
 
         for (int i = 0; i < cooldownQueues.Count; i++)
         {
-            if (cooldownQueues[i].Count > 0)
+            if (cooldownQueues[i].Count > 0 && cooldownQueues[i].ToArray().Length > 0)
                 remainingTime = ((cooldownQueues[i].Peek() + abilities[i].abilityCooldown) - Time.time) / abilities[i].abilityCooldown;
 
             if (remainingTime < .01f && cooldownQueues[i].Count > 0)
@@ -171,11 +171,25 @@ public class PlayerLoadout : MonoBehaviour
         if (cooldownQueues[abilityIndex].Count > 0)
         {
             float _remainingTime = ((cooldownQueues[abilityIndex].Peek() + abilities[abilityIndex].abilityCooldown) - Time.time) / abilities[abilityIndex].abilityCooldown;
-            abilityCooldownProgress[abilityIndex].fillAmount = _remainingTime;
+
+            if (!abilities[abilityIndex].CheckCooldown())
+                _remainingTime = 0;
+
+                abilityCooldownProgress[abilityIndex].fillAmount = _remainingTime;
 
             if (_remainingTime < .01f)
                 abilityCooldownProgress[abilityIndex].fillAmount = 0f;
         }
+    }
+
+    public void ResetCooldown(Ability _ability)
+    {
+        int index = abilities.IndexOf(_ability);
+
+        if(cooldownQueues[index].Count > 0 && cooldownQueues[index].ToArray().Length > 0)
+            cooldownQueues[index].Dequeue();
+
+        abilityCooldownProgress[index].fillAmount = 0f;
     }
 
     private void RecieveInput()
