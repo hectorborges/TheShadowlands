@@ -14,6 +14,10 @@ public class Projectile : MonoBehaviour
     ObjectPooling hitEffects;
     Ability ability;
 
+    private void Start()
+    {
+    }
+
     public void SetTarget(Transform newTarget)
     {
         target = newTarget;
@@ -35,7 +39,14 @@ public class Projectile : MonoBehaviour
     {
         if (targeted && target)
         {
-            transform.LookAt(target.transform.position);
+            if(piercing)
+            {
+
+            }
+            else
+            {
+                transform.LookAt(target.transform.position);
+            }
             transform.position += transform.forward * speed * Time.deltaTime;
         }
         else if(!targeted)
