@@ -5,6 +5,16 @@ using UnityEngine;
 public class PlayerHealth : Health
 {
     protected PlayerAnimator playerAnimator;
+    public static PlayerHealth instance;
+    public Perk[] onDamagedPerks;
+
+    [HideInInspector]public float thornsDamagePercentage;
+    bool thorns;
+
+    private void Awake()
+    {
+        instance = this;
+    }
 
     public void Start()
     {
@@ -12,10 +22,21 @@ public class PlayerHealth : Health
         ResetCharacter();
     }
 
-    public override void TookDamage(int damage)
+    public override void TookDamage(int damage, GameObject attackingTarget)
     {
         playerAnimator.Hit(numberOfHits);
-        base.TookDamage(damage);
+        base.TookDamage(damage, attackingTarget);
+
+        if(thorns)
+        {
+            float thornsDamage = baseHealth / thornsDamagePercentage;
+            attackingTarget.GetComponent<Health>().TookDamage((int)thornsDamage, gameObject);
+        }
+    }
+
+    public void SetThornsActive(bool status)
+    {
+        thorns = status;
     }
 
     public override IEnumerator Died()

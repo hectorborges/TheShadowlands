@@ -34,6 +34,7 @@ public class AI : MonoBehaviour
     [HideInInspector] public NavMeshAgent agent;
     AnimatorBase animatorBase;
     EnemyHealth enemyHealth;
+    PlayerHealth playerHealth;
 
     float baseSpeed;
 
@@ -43,8 +44,11 @@ public class AI : MonoBehaviour
         baseSpeed = agent.speed;
         animatorBase = GetComponent<AnimatorBase>();
 
-        if(ReferenceManager.player)
+        if (ReferenceManager.player)
+        {
             player = ReferenceManager.player.transform;
+            playerHealth = player.GetComponent<PlayerHealth>();
+        }
         enemyHealth = GetComponent<EnemyHealth>();
     }
 
@@ -146,6 +150,7 @@ public class AI : MonoBehaviour
     IEnumerator Attack()
     {
         animatorBase.Attack(numberOfAttacks);
+        playerHealth.TookDamage(damage, gameObject);
 
         yield return new WaitForSeconds(attackSpeed);
         attacking = false;

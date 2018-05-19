@@ -18,6 +18,23 @@ public class Health : MonoBehaviour
 
     protected int health;
 
+    float immuneChance;
+
+    public virtual void TookDamage(int damage, GameObject attackingTarget)
+    {
+        if (Immunity(immuneChance)) return;
+        health -= damage;
+
+        AudioClip hitSound = hitSounds[Random.Range(0, hitSounds.Length)];
+        source.PlayOneShot(hitSound);
+
+        if (health <= 0 && !dead)
+        {
+            dead = true;
+            StartCoroutine(Died());
+        }
+    }
+
     public virtual void TookDamage(int damage)
     {
         health -= damage;
@@ -30,6 +47,20 @@ public class Health : MonoBehaviour
             dead = true;
             StartCoroutine(Died());
         }
+    }
+
+    public void SetImmunity(float _immuneChance)
+    {
+        immuneChance = _immuneChance;
+    }
+
+    bool Immunity(float immuneChance)
+    {
+        float random = Random.Range(0, 100);
+
+        if (immuneChance <= random)
+            return true;
+        else return false;
     }
 
     public virtual IEnumerator Died()

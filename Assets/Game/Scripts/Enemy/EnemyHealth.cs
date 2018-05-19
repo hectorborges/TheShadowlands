@@ -91,7 +91,7 @@ public class EnemyHealth : Health
             UpdateHealthBar();
     }
 
-    public override void TookDamage(int damage)
+    public override void TookDamage(int damage, GameObject attackingTarget)
     {
         if (isDead) return;
 

@@ -42,15 +42,20 @@ public class PlayerLoadout : MonoBehaviour
         playerAnimator = GetComponent<PlayerAnimator>();
         agent = GetComponent<NavMeshAgent>();
         UpdateAbilities(-1);
-        UpdateWeapons(currentWeapon);
 
         for (int i = 0; i < 6; i++)
             cooldownQueues.Add(new Queue<float>());
     }
 
+    private void Start()
+    {
+        UpdateWeapons(currentWeapon);
+    }
+
     public void UpdateWeapons(Weapon newWeapon)
     {
         ChangeWeapon(currentWeapon.itemModel.transform, weaponHolder.transform);
+        currentWeapon.SetWeaponActive(false);
         currentWeapon.itemModel.SetActive(false);
 
         if(currentWeapon.secondaryModel)
@@ -65,6 +70,7 @@ public class PlayerLoadout : MonoBehaviour
 
         ChangeWeapon(currentWeapon.itemModel.transform, currentWeapon.equipLocation.transform);
         currentWeapon.itemModel.SetActive(true);
+        currentWeapon.SetWeaponActive(true);
 
         if (currentWeapon.secondaryModel)
         {

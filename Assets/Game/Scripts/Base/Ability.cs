@@ -156,7 +156,7 @@ public class Ability : MonoBehaviour
     {
         EnemyHealth enemyHealth = other.GetComponent<EnemyHealth>();
         int randomDamage = Random.Range(minimumDamage, maximumDamage);
-        enemyHealth.TookDamage(randomDamage);
+        enemyHealth.TookDamage(randomDamage, gameObject);
 
         for (int i = 0; i < procOnAttackPerks.Length; i++)
         {

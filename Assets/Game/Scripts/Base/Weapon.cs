@@ -92,13 +92,18 @@ public class Weapon : MonoBehaviour
 
     public void SetWeaponActive(bool status)
     {
+        //The thorn effect is not getting reactivated.
+        PlayerHealth.instance.SetImmunity(0);
+        PlayerHealth.instance.SetThornsActive(false);
+
         weaponActivated = status;
 
-        for (int i = 1; i < (int)currentWeaponLevel; i++)
+        for (int i = 2; i < currentWeaponLevel; i++)
         {
-            for (int j = 1; j < (int)currentWeaponLevel; j++)
+            for (int j = 1; j < weaponPerks[i].perks.Length; j++)
             {
                 weaponPerks[i].perks[j].activated = weaponActivated;
+                print("Switching Weapon");
             }
         }
     }
