@@ -5,19 +5,25 @@ using UnityEngine;
 public class ExplosiveProjectilePerk : Perk
 {
     [Space, Header("Required Variables")]
-    public ObjectPooling projectile;
+    public ObjectPooling[] projectile;
 
     private void Start()
     {
-        projectile = ReferenceManager.rifleHitEffectPool;
+        if(affectedAbility.abilityType == Ability.AbilityType.Rifle)
+            projectile[0] = ReferenceManager.rifleHitEffectPool;
+        else if(affectedAbility.abilityType == Ability.AbilityType.Pistols)
+            projectile[0] = ReferenceManager.pistolHitEffectPool;
     }
 
     public override void Procced()
     {
         print("Enable Explosive Projectiles");
-        foreach(Collider col in projectile.pooledObjectsColliders)
+        for(int i = 0; i < projectile.Length; i++)
         {
-            col.enabled = true;
+            foreach (Collider col in projectile[i].pooledObjectsColliders)
+            {
+                col.enabled = true;
+            }
         }
     }
 }

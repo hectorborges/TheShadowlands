@@ -48,6 +48,10 @@ public class ProjectileAbility : Ability
                     LauncherProjectile(spawnpoints[1].transform);
                 }
             }
+            else
+            {
+                LauncherProjectile(spawnpoints[0].transform);
+            }
         }
         else
         {

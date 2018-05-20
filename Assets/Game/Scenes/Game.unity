@@ -2251,7 +2251,7 @@ MonoBehaviour:
   waitTime: 0.001
   willGrow: 1
   pooledObjects: []
-  collectColliders: 0
+  collectColliders: 1
   pooledObjectsColliders: []
 --- !u!1001 &1250555379
 Prefab:

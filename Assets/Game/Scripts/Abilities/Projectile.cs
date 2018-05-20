@@ -31,7 +31,7 @@ public class Projectile : MonoBehaviour
 
         if (ability.abilityType == Ability.AbilityType.Rifle)
             hitEffects = ReferenceManager.rifleHitEffectPool;
-        else if (ability.abilityType == Ability.AbilityType.Pistols) ;
+        else if (ability.abilityType == Ability.AbilityType.Pistols)
             hitEffects = ReferenceManager.pistolHitEffectPool;
     }
 
