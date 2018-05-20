@@ -5,7 +5,7 @@ using UnityEngine;
 public class StatusEffects : MonoBehaviour
 {
     [Header("References"), Space]
-    public Health health;
+    public EnemyHealth health;
     public AI ai;
 
     [Header("Status Effects"), Space]

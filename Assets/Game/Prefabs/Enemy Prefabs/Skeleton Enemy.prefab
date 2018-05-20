@@ -66,7 +66,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4788474399983394}
   - component: {fileID: 108134579006364806}
-  - component: {fileID: 114518156612885540}
   m_Layer: 0
   m_Name: Point light
   m_TagString: Untagged
@@ -1196,7 +1195,6 @@ GameObject:
   - component: {fileID: 4987146270139310}
   - component: {fileID: 198722361161095738}
   - component: {fileID: 199733721743486398}
-  - component: {fileID: 114252929518378936}
   m_Layer: 0
   m_Name: Slow Effect
   m_TagString: Untagged
@@ -1816,7 +1814,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1974855742425032}
   m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
-  m_LocalPosition: {x: 0, y: 1, z: 5.3799973}
+  m_LocalPosition: {x: -1.9, y: 1, z: 6.73}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4758808104711622}
@@ -3039,17 +3037,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mprSpeed: 3
---- !u!114 &114252929518378936
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1926993372108374}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114287200704206368
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3185,17 +3172,6 @@ MonoBehaviour:
   - {fileID: 8300000, guid: ad3197e8941541c4fb696f48fa190464, type: 3}
   - {fileID: 8300000, guid: ab4f991ef20906b428efcfaceb5389c9, type: 3}
   agent: {fileID: 0}
---- !u!114 &114518156612885540
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1135786559937858}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114538182288491472
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3301,7 +3277,7 @@ MonoBehaviour:
   - {fileID: 136270499071014280}
   - {fileID: 136141402057678298}
   agent: {fileID: 195851206607985208}
-  experienceWorth: 50
+  experienceWorth: 10
   statusEffects: {fileID: 1646676578022092}
   rend: {fileID: 137933956107071664}
   dissolveMaterial: {fileID: 2100000, guid: df4b5fdfd36a35a49b214cffe90cad9e, type: 2}

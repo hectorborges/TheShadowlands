@@ -25,6 +25,7 @@ public class Weapon : MonoBehaviour
 
     public WeaponsVault weaponsVault;
     public WeaponLevelPerks[] weaponPerks;
+    public GameObject levelUpEffect;
 
     public enum ItemType
     {
@@ -72,6 +73,7 @@ public class Weapon : MonoBehaviour
             weaponsVault.SetExperience(itemType.ToString(), weaponExperience, requiredExperience);
 
             currentWeaponLevel++;
+            levelUpEffect.SetActive(true);
 
             weaponExperience = excessExperience;
             requiredExperience *= requiredExperienceMultiplier;
