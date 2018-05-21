@@ -58,8 +58,11 @@ public class Health : MonoBehaviour
     {
         float random = Random.Range(0, 100);
 
-        if (immuneChance <= random)
+        if (immuneChance <= random && immuneChance != 0)
+        {
+            print("Immune");
             return true;
+        }
         else return false;
     }
 

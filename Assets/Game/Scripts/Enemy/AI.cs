@@ -151,7 +151,7 @@ public class AI : MonoBehaviour
     {
         animatorBase.Attack(numberOfAttacks);
         playerHealth.TookDamage(damage, gameObject);
-
+        print("DEAL DAMAGE: " + damage);
         yield return new WaitForSeconds(attackSpeed);
         attacking = false;
     }

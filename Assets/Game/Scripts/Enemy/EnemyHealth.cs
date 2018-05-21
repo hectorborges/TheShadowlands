@@ -51,7 +51,7 @@ public class EnemyHealth : Health
 
         isDead = false;
         foreach(Collider collision in collisions)
-        collision.enabled = true;
+            collision.enabled = true;
         healthBar.transform.parent.gameObject.SetActive(true);
 
         if(animatorBase)
