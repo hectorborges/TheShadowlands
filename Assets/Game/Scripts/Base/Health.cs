@@ -38,8 +38,11 @@ public class Health : MonoBehaviour
     {
         health -= damage;
 
-        AudioClip hitSound = hitSounds[Random.Range(0, hitSounds.Length)];
-        source.PlayOneShot(hitSound);
+        if(hitSounds.Length > 0)
+        {
+            AudioClip hitSound = hitSounds[Random.Range(0, hitSounds.Length)];
+            source.PlayOneShot(hitSound);
+        }
 
         if (health <= 0 && !isDead)
         {
