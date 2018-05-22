@@ -56,13 +56,13 @@ public class EnemyHealth : Health
 
         gameObject.layer = LayerMask.NameToLayer("Interactable");
 
-        rend.material.SetFloat("_Progress", 1);
+        rend.material.SetFloat("_SliceAmount", 0);
 
         if (extraRenderers.Length > 0)
         {
             for (int i = 0; i < extraRenderers.Length; i++)
             {
-                extraRenderers[i].material.SetFloat("_Progress", 1);
+                extraRenderers[i].material.SetFloat("_SliceAmount", 0);
                 extraDeathTimes[i] += .2f * Time.deltaTime;
             }
         }
@@ -72,15 +72,15 @@ public class EnemyHealth : Health
     {
         if (isDead)
         {
-            rend.material.SetFloat("_Progress", Mathf.Lerp(1, 0, deathTime));
-            deathTime += .2f * Time.deltaTime;
+            rend.material.SetFloat("_SliceAmount", Mathf.Lerp(0, 1, deathTime));
+            deathTime += .3f * Time.deltaTime;
 
             if(extraRenderers.Length > 0)
             {
                 for(int i = 0; i < extraRenderers.Length; i++)
                 {
-                    extraRenderers[i].material.SetFloat("_Progress", Mathf.Lerp(1, 0, deathTime));
-                    extraDeathTimes[i] += .1f * Time.deltaTime;
+                    extraRenderers[i].material.SetFloat("_SliceAmount", Mathf.Lerp(0, 1, deathTime));
+                    extraDeathTimes[i] += .3f * Time.deltaTime;
                 }
             }
         }

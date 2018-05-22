@@ -7,7 +7,7 @@ Material:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: Skeleton Dissolve Effect
-  m_Shader: {fileID: 4800000, guid: 3e7899f24eae03e43910c579b8481df4, type: 3}
+  m_Shader: {fileID: 4800000, guid: 008fcb8e5e9cb534a84c7b283d3ece3c, type: 3}
   m_ShaderKeywords: EDGE_COLOR
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -19,7 +19,11 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _BumpMap:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 878461ce27429ef43be6f79d3e321d09, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _BurnRamp:
+        m_Texture: {fileID: 2800000, guid: 6e6ee1f34b0234741b0b85bb5a5fd843, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _DetailAlbedoMap:
@@ -62,8 +66,13 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _SliceGuide:
+        m_Texture: {fileID: 2800000, guid: 61f398b81eec9584c9bcd16e3dff5867, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     m_Floats:
     - _BumpScale: 1
+    - _BurnSize: 0.15
     - _CullMode: 2
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
@@ -73,6 +82,7 @@ Material:
     - _EdgeAroundHDR: 1.8
     - _EdgeAroundPower: 3.26
     - _EdgeDistortion: 0.393
+    - _EmissionAmount: 2
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
@@ -83,6 +93,7 @@ Material:
     - _Progress: 1
     - _RangeIn: 0.034
     - _RangeOut: 0.001
+    - _SliceAmount: 0
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
