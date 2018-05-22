@@ -6507,6 +6507,7 @@ GameObject:
   - component: {fileID: 942810335}
   - component: {fileID: 942810337}
   - component: {fileID: 942810338}
+  - component: {fileID: 942810339}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -6605,6 +6606,18 @@ MonoBehaviour:
     AreaTypeID: 0
     DisableLinkWhenDoorIsClosed: 1
   NavMeshLinkDistanceFromDoorway: 1
+--- !u!114 &942810339
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 942810334}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c313585aaf081446bd6cb358ae1244c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
 --- !u!1 &946172057 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1366136270099222, guid: 75c12bdd6b8cbd94aba58d0e78cf2b8e,

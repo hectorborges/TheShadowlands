@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 public class Utility : MonoBehaviour
 {
     public static float CheckDistance(Vector3 point1, Vector3 point2)
@@ -22,5 +22,15 @@ public class Utility : MonoBehaviour
         direction.y = heading.y / distance;
         direction.z = heading.z / distance;
         return distance;
+    }
+
+    public static void SetTransparency(Image p_image, float p_transparency)
+    {
+        if (p_image != null)
+        {
+            Color __alpha = p_image.color;
+            __alpha.a = p_transparency;
+            p_image.color = __alpha;
+        }
     }
 }

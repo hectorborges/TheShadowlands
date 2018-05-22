@@ -7,12 +7,17 @@ public class PlayerHealth : Health
 {
     public Image healthBar;
     public float healthLostSpeed;
-    protected PlayerAnimator playerAnimator;
+    public PlayerAnimator playerAnimator;
     public static PlayerHealth instance;
     public Perk[] onDamagedPerks;
 
+    public Image deathBoarder;
+    public float deathBoarderSpeed = .5f;
+    public GameObject deathScreen;
+
     [HideInInspector]public float thornsDamagePercentage;
     bool thorns;
+    float transparency;
 
     private void Awake()
     {
@@ -45,6 +50,12 @@ public class PlayerHealth : Health
     void UpdateHealthBar()
     {
         healthBar.fillAmount = Mathf.Lerp(healthBar.fillAmount, (float)health / (float)baseHealth, Time.deltaTime * healthLostSpeed);
+
+        float healthPercentage = (float)health / (float)baseHealth;
+
+        transparency =  Mathf.Lerp(transparency, Mathf.Abs(healthPercentage - 1), deathBoarderSpeed);
+        Utility.SetTransparency(deathBoarder, (transparency * .5f));
+        
     }
 
     public void SetThornsActive(bool status)
@@ -60,16 +71,20 @@ public class PlayerHealth : Health
 
         playerAnimator.Dead(true);
         yield return new WaitForSeconds(despawnTime);
+        deathScreen.SetActive(true);
     }
 
-    public virtual void ResetCharacter()
+    public void ResetCharacter()
     {
-        health = (int)stats.GetStatBaseValue(Stat.StatType.Health);
+        print("Reseting Character");
+        deathScreen.SetActive(false);
         playerAnimator.Dead(false);
+        health = (int)stats.GetStatBaseValue(Stat.StatType.Health);
     }
 
     public void Ressurected()
     {
         PlayerMovement.canMove = true;
+        isDead = false;
     }
 }

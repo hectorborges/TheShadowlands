@@ -81,6 +81,7 @@ public class Ability : MonoBehaviour
 
     public virtual void ActivateAbility()
     {
+        if (entityHealth.isDead) return;
         shouldHeal = true;
         PlayerMovement.canMove = false;
         if (!isCharging)
@@ -116,8 +117,9 @@ public class Ability : MonoBehaviour
     //This should be called in the custom ability script
     public void TriggerCooldown()
     {
+        if (entityHealth.isDead) return;
         onCooldown = true;
-       cooldown = StartCoroutine(Cooldown());
+        cooldown = StartCoroutine(Cooldown());
     }
 
     public bool CanShoot()

@@ -39,6 +39,7 @@ public class AI : MonoBehaviour
     PlayerHealth playerHealth;
 
     float baseSpeed;
+    Vector3 spawnPoint;
 
     void Start()
     {
@@ -52,6 +53,7 @@ public class AI : MonoBehaviour
             playerHealth = player.GetComponent<PlayerHealth>();
         }
         enemyHealth = GetComponent<EnemyHealth>();
+        spawnPoint = transform.position;
     }
 
     private void OnEnable()
@@ -76,6 +78,17 @@ public class AI : MonoBehaviour
 
         if (agent == null ||enemyHealth.isDead || stunned)
             return;
+
+        if (agent.velocity == Vector3.zero)
+            animatorBase.Move(false);
+        else
+            animatorBase.Move(true);
+
+        if (playerHealth.isDead)
+        {
+            agent.SetDestination(spawnPoint);
+            return;
+        }
 
         if (player)
         {
@@ -110,11 +123,6 @@ public class AI : MonoBehaviour
                 }
             }
         }
-
-        if (agent.velocity == Vector3.zero)
-            animatorBase.Move(false);
-        else
-            animatorBase.Move(true);
     }
 
     public void SetStunned(bool status)

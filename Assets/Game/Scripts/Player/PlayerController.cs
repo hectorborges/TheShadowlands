@@ -36,6 +36,7 @@ public class PlayerController : MonoBehaviour
     GameObject player;
     Interactable focus;
     LoadLevel exit;
+    Health health;
 
     List<GameObject> obstruction = new List<GameObject>();
     List<GameObject> walls = new List<GameObject>();
@@ -45,9 +46,10 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         cam = Camera.main;
-        player = GameObject.Find("Player");
+        player = ReferenceManager.instance._player;
         movement = GetComponent<PlayerMovement>();
         playerLoadout = GetComponent<PlayerLoadout>();
+        health = GetComponent<Health>();
 
         if(mainCursor)
             Cursor.SetCursor(mainCursor, new Vector2(mainCursor.width / 2, mainCursor.height / 2), CursorMode.Auto);
@@ -68,6 +70,7 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        if (health.isDead) return;
         if (battleWon)
         {
             battleWon = false;

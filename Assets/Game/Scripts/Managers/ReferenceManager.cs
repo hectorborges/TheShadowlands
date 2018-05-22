@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ReferenceManager : MonoBehaviour
 {
+    public static ReferenceManager instance;
     public Camera _mainCamera;
     public GameObject _player;
     public List<ObjectPooling> _enemyPools;
@@ -25,6 +26,7 @@ public class ReferenceManager : MonoBehaviour
 
     void Awake()
     {
+        instance = this;
         mainCamera = _mainCamera;
         floatingCombatTextPool = _floatingCombatTextPool;
         rifleHitEffectPool = _rifleHitEffectPool;
@@ -46,6 +48,8 @@ public class ReferenceManager : MonoBehaviour
                 Transform spawnPosition = GameObject.FindGameObjectWithTag("PlayerSpawnPoint").transform;
                 if(_player && spawnPosition)
                     player = Instantiate(_player, spawnPosition.position, spawnPosition.rotation);
+
+                GameManager.instance.SetPlayer(player);
             }
         }
     }
