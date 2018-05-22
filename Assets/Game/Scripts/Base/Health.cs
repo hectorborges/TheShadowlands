@@ -15,7 +15,7 @@ public class Health : MonoBehaviour
     public AudioClip[] deathSounds;
 
     [HideInInspector] public bool isDead;
-    [HideInInspector] public int health;
+    public int health;
 
     float immuneChance;
 
@@ -24,8 +24,11 @@ public class Health : MonoBehaviour
         if (Immunity(immuneChance)) return;
         health -= damage;
 
-        AudioClip hitSound = hitSounds[Random.Range(0, hitSounds.Length)];
-        source.PlayOneShot(hitSound);
+        if(hitSounds.Length > 0)
+        {
+            AudioClip hitSound = hitSounds[Random.Range(0, hitSounds.Length)];
+            source.PlayOneShot(hitSound);
+        }
 
         if (health <= 0 && !isDead)
         {

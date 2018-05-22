@@ -183,7 +183,6 @@ public class AI : MonoBehaviour
             crit = false;
 
         playerHealth.TookDamage(randomDamage, gameObject, crit);
-        print("DEAL DAMAGE: " + randomDamage);
         yield return new WaitForSeconds(attackSpeed);
         attacking = false;
     }
