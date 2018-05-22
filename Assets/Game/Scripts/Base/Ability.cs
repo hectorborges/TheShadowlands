@@ -204,11 +204,11 @@ public class Ability : MonoBehaviour
 
         health.TookDamage(randomDamage, gameObject, crit);
 
-        CameraShaker.Instance.ShakeOnce(magnitude, roughness, fadeIn, fadeOut);
 
         if(shouldHeal)
         {
             shouldHeal = false;
+            CameraShaker.Instance.ShakeOnce(magnitude, roughness, fadeIn, fadeOut);
             entityHealth.GainHealth((int)stats.GetStatCurrentValue(Stat.StatType.HealthPerHit));
         }
 
