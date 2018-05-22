@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using EZCameraShake;
 
 public class Ability : MonoBehaviour
 {
@@ -69,6 +70,14 @@ public class Ability : MonoBehaviour
     [HideInInspector] public bool isFiring;
 
     public bool requiresTarget;
+
+    [Space, Header("Camera Shake")]
+    public float magnitude = 4f;
+    public float roughness = 4f;
+    public float fadeIn = .1f;
+    public float fadeOut = 1f;
+
+
     bool shouldHeal;
 
     Coroutine charge;
@@ -194,6 +203,9 @@ public class Ability : MonoBehaviour
             crit = false;
 
         health.TookDamage(randomDamage, gameObject, crit);
+
+        CameraShaker.Instance.ShakeOnce(magnitude, roughness, fadeIn, fadeOut);
+
         if(shouldHeal)
         {
             shouldHeal = false;
