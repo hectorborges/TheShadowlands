@@ -121,6 +121,39 @@ public class EnemyHealth : Health
         }
     }
 
+    public override void TookDamage(int damage)
+    {
+        if (isDead) return;
+
+        health -= damage;
+
+        GameObject obj = combatText.GetPooledObject();
+
+        Text cbtText = obj.GetComponent<Text>();
+        cbtText.text = damage.ToString();
+
+        if (obj == null)
+        {
+            return;
+        }
+
+        obj.transform.parent = combatTextSpawn.transform;
+        obj.transform.position = combatTextSpawn.transform.position;
+        obj.transform.rotation = combatTextSpawn.transform.rotation;
+        obj.SetActive(true);
+
+        animatorBase.Hit(numberOfHits);
+
+        AudioClip hitSound = hitSounds[Random.Range(0, hitSounds.Length)];
+        source.PlayOneShot(hitSound);
+
+        if (health <= 0 && !isDead)
+        {
+            isDead = true;
+            StartCoroutine(Died());
+        }
+    }
+
     public override IEnumerator Died()
     {
         PlayerLoadout.instance.currentWeapon.GainExperience(experienceWorth);
