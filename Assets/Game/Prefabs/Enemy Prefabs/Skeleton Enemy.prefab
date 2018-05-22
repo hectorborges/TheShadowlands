@@ -1296,6 +1296,7 @@ GameObject:
   - component: {fileID: 114507622324479892}
   - component: {fileID: 114287200704206368}
   - component: {fileID: 114136994826773928}
+  - component: {fileID: 114630527827029178}
   m_Layer: 12
   m_Name: Skeleton Enemy
   m_TagString: Enemy
@@ -3132,9 +3133,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb091f569fd02764ca0636796c959765, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stats: {fileID: 114630527827029178}
   lookRadius: 15
   isRanged: 0
-  damage: 5
+  minimumDamage: 2
+  maximumDamage: 10
   attackSpeed: 1.5
   numberOfAttacks: 3
   aggroSource: {fileID: 82281976939946384}
@@ -3208,6 +3211,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   disableAfter: 0.25
+--- !u!114 &114630527827029178
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1974855742425032}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 315c2345cbbd3b84c8204e1d4f77f423, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stats:
+  - {fileID: 11400000, guid: 8c3ea33658d92ab4984ba9222b459f4f, type: 2}
+  - {fileID: 11400000, guid: 5a4169fa3c2a73e42bc8ca119b9a2765, type: 2}
+  - {fileID: 11400000, guid: 0bb4f9d2532ec8d4fa85988497f97d31, type: 2}
+  - {fileID: 11400000, guid: 0fe5c8b0975a49347b0d80cc886eabfb, type: 2}
+  - {fileID: 11400000, guid: 9583e7ae6e573d64d90e24df00b6210b, type: 2}
 --- !u!114 &114774868717372018
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3250,6 +3270,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f944711226baf54d9f9139440f7ff1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stats: {fileID: 114630527827029178}
   baseHealth: 300
   despawnTime: 3
   numberOfHits: 3
@@ -3267,7 +3288,7 @@ MonoBehaviour:
   deathSounds:
   - {fileID: 8300000, guid: df996aa06d525594a8f66ffc3780b8d2, type: 3}
   - {fileID: 8300000, guid: 20116d3d8a00dba4c83c556899a9d552, type: 3}
-  dead: 0
+  isDead: 0
   health: 0
   healthBar: {fileID: 114010241837767412}
   healthLostSpeed: 5
@@ -3285,7 +3306,6 @@ MonoBehaviour:
   - {fileID: 23471250057585338}
   extraDissolveMaterials:
   - {fileID: 2100000, guid: 70fc633408be2d4419bbb65f688cad0f, type: 2}
-  isDead: 0
 --- !u!114 &114958519958448520
 MonoBehaviour:
   m_ObjectHideFlags: 1

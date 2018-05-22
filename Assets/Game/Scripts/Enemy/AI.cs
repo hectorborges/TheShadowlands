@@ -5,12 +5,14 @@ using UnityEngine.AI;
 
 public class AI : MonoBehaviour
 {
+    public Stats stats;
     [Header("Movement Variables")]
     public float lookRadius = 10f;
     public bool isRanged;
 
     [Space, Header("Combat Variables")]
-    public int damage;
+    public int minimumDamage;
+    public int maximumDamage;
     public float attackSpeed;
     public int numberOfAttacks;
 
@@ -150,8 +152,30 @@ public class AI : MonoBehaviour
     IEnumerator Attack()
     {
         animatorBase.Attack(numberOfAttacks);
-        playerHealth.TookDamage(damage, gameObject);
-        print("DEAL DAMAGE: " + damage);
+
+        int minDamage = minimumDamage;
+        int maxDamage = maximumDamage;
+
+        minDamage += (int)stats.GetStatCurrentValue(Stat.StatType.Damage);
+        maxDamage += (int)stats.GetStatCurrentValue(Stat.StatType.Damage);
+
+        int randomDamage = Random.Range(minimumDamage, maximumDamage);
+
+        int critRoll = Random.Range(0, 100);
+
+        bool crit;
+        if ((int)stats.GetStatCurrentValue(Stat.StatType.CriticalStrike) <= critRoll)
+        {
+            crit = true;
+            float newDamage = randomDamage;
+            newDamage *= stats.GetStatCurrentValue(Stat.StatType.CriticalDamage);
+            randomDamage = (int)newDamage;
+        }
+        else
+            crit = false;
+
+        playerHealth.TookDamage(randomDamage, gameObject, crit);
+        print("DEAL DAMAGE: " + randomDamage);
         yield return new WaitForSeconds(attackSpeed);
         attacking = false;
     }

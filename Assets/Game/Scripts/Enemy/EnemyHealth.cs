@@ -24,9 +24,6 @@ public class EnemyHealth : Health
     public MeshRenderer[] extraRenderers;
     public Material[] extraDissolveMaterials;
 
-    [HideInInspector]
-    public bool isDead;
-
     AnimatorBase animatorBase;
     float deathTime;
     float[] extraDeathTimes;
@@ -42,7 +39,7 @@ public class EnemyHealth : Health
 
     void OnEnable()
     {
-        health = baseHealth;
+        health = (int)stats.GetStatBaseValue(Stat.StatType.Health);
         agent.enabled = true;
         extraDeathTimes = new float[extraRenderers.Length];
         deathTime = 0;
@@ -91,7 +88,7 @@ public class EnemyHealth : Health
             UpdateHealthBar();
     }
 
-    public override void TookDamage(int damage, GameObject attackingTarget)
+    public override void TookDamage(int damage, GameObject attackingTarget, bool crit)
     {
         if (isDead) return;
 

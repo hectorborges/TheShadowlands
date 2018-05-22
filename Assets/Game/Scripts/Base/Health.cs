@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Health : MonoBehaviour
 {
+    public Stats stats;
     public int baseHealth;
     public float despawnTime;
     public int numberOfHits;
@@ -13,14 +14,12 @@ public class Health : MonoBehaviour
     public AudioClip[] hitSounds;
     public AudioClip[] deathSounds;
 
-    [HideInInspector]
-    public bool dead;
-
+    [HideInInspector] public bool isDead;
     [HideInInspector] public int health;
 
     float immuneChance;
 
-    public virtual void TookDamage(int damage, GameObject attackingTarget)
+    public virtual void TookDamage(int damage, GameObject attackingTarget, bool crit)
     {
         if (Immunity(immuneChance)) return;
         health -= damage;
@@ -28,9 +27,9 @@ public class Health : MonoBehaviour
         AudioClip hitSound = hitSounds[Random.Range(0, hitSounds.Length)];
         source.PlayOneShot(hitSound);
 
-        if (health <= 0 && !dead)
+        if (health <= 0 && !isDead)
         {
-            dead = true;
+            isDead = true;
             StartCoroutine(Died());
         }
     }
@@ -42,9 +41,9 @@ public class Health : MonoBehaviour
         AudioClip hitSound = hitSounds[Random.Range(0, hitSounds.Length)];
         source.PlayOneShot(hitSound);
 
-        if (health <= 0 && !dead)
+        if (health <= 0 && !isDead)
         {
-            dead = true;
+            isDead = true;
             StartCoroutine(Died());
         }
     }
@@ -73,5 +72,20 @@ public class Health : MonoBehaviour
 
         yield return new WaitForSeconds(despawnTime);
         //Destroy(gameObject);
+    }
+
+    public virtual void GainHealth(int healthGained)
+    {
+        health += healthGained;
+    }
+
+    public virtual void HealthGainOnHit()
+    {
+        int healthGained = (int)stats.GetStatCurrentValue(Stat.StatType.HealthPerHit);
+
+        if (health + healthGained <= baseHealth)
+            health += healthGained;
+        else
+            health = baseHealth;
     }
 }

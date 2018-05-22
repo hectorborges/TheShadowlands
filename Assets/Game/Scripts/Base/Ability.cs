@@ -45,6 +45,9 @@ public class Ability : MonoBehaviour
 
     public AbilityInput abilityInput;
 
+    public Stats stats;
+    public Health entityHealth;
+
     [Range(1, 5)]
     public int abilityCharges = 1;
     public float chargeTime;
@@ -66,6 +69,7 @@ public class Ability : MonoBehaviour
     [HideInInspector] public bool isFiring;
 
     public bool requiresTarget;
+    bool shouldHeal;
 
     Coroutine charge;
     Coroutine cooldown;
@@ -77,6 +81,7 @@ public class Ability : MonoBehaviour
 
     public virtual void ActivateAbility()
     {
+        shouldHeal = true;
         PlayerMovement.canMove = false;
         if (!isCharging)
         {
@@ -166,9 +171,32 @@ public class Ability : MonoBehaviour
 
     public void DealDamage(int minimumDamage, int maximumDamage, GameObject other)
     {
-        EnemyHealth enemyHealth = other.GetComponent<EnemyHealth>();
+        Health health = other.GetComponent<Health>();
+
+        minimumDamage += (int)stats.GetStatCurrentValue(Stat.StatType.Damage);
+        maximumDamage += (int)stats.GetStatCurrentValue(Stat.StatType.Damage);
+
         int randomDamage = Random.Range(minimumDamage, maximumDamage);
-        enemyHealth.TookDamage(randomDamage, gameObject);
+
+        int critRoll = Random.Range(0, 100);
+
+        bool crit;
+        if ((int)stats.GetStatCurrentValue(Stat.StatType.CriticalStrike) <= critRoll)
+        {
+            crit = true;
+            float newDamage = randomDamage;
+            newDamage *= stats.GetStatCurrentValue(Stat.StatType.CriticalDamage);
+            randomDamage = (int)newDamage;
+        }
+        else
+            crit = false;
+
+        health.TookDamage(randomDamage, gameObject, crit);
+        if(shouldHeal)
+        {
+            shouldHeal = false;
+            entityHealth.GainHealth((int)stats.GetStatCurrentValue(Stat.StatType.HealthPerHit));
+        }
 
         for (int i = 0; i < procOnAttackPerks.Length; i++)
         {
@@ -183,7 +211,7 @@ public class Ability : MonoBehaviour
             }
         }
 
-        if(enemyHealth.isDead)
+        if(health.isDead)
         {
             for (int i = 0; i < procOnKillsPerks.Length; i++)
             {

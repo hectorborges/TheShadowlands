@@ -30,15 +30,15 @@ public class PlayerHealth : Health
         UpdateHealthBar();
     }
 
-    public override void TookDamage(int damage, GameObject attackingTarget)
+    public override void TookDamage(int damage, GameObject attackingTarget, bool crit)
     {
         playerAnimator.Hit(numberOfHits);
-        base.TookDamage(damage, attackingTarget);
+        base.TookDamage(damage, attackingTarget, crit);
 
         if(thorns)
         {
             float thornsDamage = baseHealth / thornsDamagePercentage;
-            attackingTarget.GetComponent<Health>().TookDamage((int)thornsDamage, gameObject);
+            attackingTarget.GetComponent<Health>().TookDamage((int)thornsDamage, gameObject, crit);
         }
     }
 
@@ -64,7 +64,7 @@ public class PlayerHealth : Health
 
     public virtual void ResetCharacter()
     {
-        health = baseHealth;
+        health = (int)stats.GetStatBaseValue(Stat.StatType.Health);
         playerAnimator.Dead(false);
     }
 

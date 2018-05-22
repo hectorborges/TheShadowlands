@@ -22,7 +22,15 @@ public class WeaponsVault : MonoBehaviour
     List<float> weaponsExperience = new List<float>();
     List<float> weaponsMaxExperience = new List<float>();
 
-    private void Start()
+    bool initialized;
+
+    private void OnEnable()
+    {
+        if (!initialized)
+            Initialize();
+    }
+
+    private void Initialize()
     {
         currentPerksPageSelected = perksPages[0];
         currentPageSelected = pageSelections[0];
@@ -42,11 +50,14 @@ public class WeaponsVault : MonoBehaviour
             weaponsExperience.Add(0);
             weaponsMaxExperience.Add(0);
         }
-        gameObject.SetActive(false);
+        initialized = true;
     }
 
     public void SetExperience(string weapon, float experience, float maxExperience)
     {
+        if (!initialized)
+            Initialize();
+
         experienceBar.fillAmount = weaponsExperience[currentPerksPageSelectedIndex] / weaponsMaxExperience[currentPerksPageSelectedIndex];
         skillBarExperienceBar.fillAmount = experience / maxExperience;
 
@@ -62,6 +73,9 @@ public class WeaponsVault : MonoBehaviour
 
     public void SetExperience(string weapon)
     {
+        if (!initialized)
+            Initialize();
+
         for (int i = 0; i < weapons.Count; i++)
         {
             if(weapon == weapons[i])
@@ -74,7 +88,10 @@ public class WeaponsVault : MonoBehaviour
 
     public void SelectPage(string pageSelected)
     {
-        for(int i = 0; i < perksPages.Length; i++)
+        if (!initialized)
+            Initialize();
+
+        for (int i = 0; i < perksPages.Length; i++)
         {
             if(pageSelected == perksPages[i].weaponType.ToString())
             {
