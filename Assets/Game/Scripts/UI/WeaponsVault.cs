@@ -50,6 +50,12 @@ public class WeaponsVault : MonoBehaviour
             weaponsExperience.Add(0);
             weaponsMaxExperience.Add(0);
         }
+
+        foreach(PerksPage perksPage in perksPages)
+        {
+            perksPage.Initialize();
+        }
+
         initialized = true;
     }
 

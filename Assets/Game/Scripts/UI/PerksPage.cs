@@ -5,6 +5,20 @@ using UnityEngine.UI;
 
 public class PerksPage : MonoBehaviour
 {
+    [Header("Abilities & Perks")]
+    public Ability primaryAbility;
+    public Ability secondaryAbility;
+    public List<Perk> perks;
+
+    [Space, Header("Slots")]
+    public Image primaryAbilitySlot;
+    public Image secondaryAbilitySlot;
+    public List<PerkSlot> perkSlots;
+
+    [Space]
+    public Text perkNameArea;
+    public Text descriptionArea;
+
     public enum WeaponType
     {
         Axe,
@@ -15,5 +29,23 @@ public class PerksPage : MonoBehaviour
     };
 
     public WeaponType weaponType;
-    public Image perkSlots;
+
+    public void Initialize()
+    {
+        primaryAbilitySlot.sprite = primaryAbility.abilityIcon;
+        secondaryAbilitySlot.sprite = secondaryAbility.abilityIcon;
+
+        for (int i = 0; i < perkSlots.Count; i++)
+        {
+            perkSlots[i].Initialize(perks[i], descriptionArea, perkNameArea);
+        }
+    }
+
+    public void PerkUnlocked(int perkNumber)
+    {
+        if(perkNumber > 1)
+        {
+            perkSlots[perkNumber].UnlockPerk();
+        }
+    }
 }
