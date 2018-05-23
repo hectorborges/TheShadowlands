@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Name: Player Health Regeneration Per Hit
   m_EditorClassIdentifier: Assembly-CSharp::Stat
   statType: 5
-  statBaseValue: 100
-  statCurrentValue: 0
+  statBaseValue: 50
+  statCurrentValue: 50
