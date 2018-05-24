@@ -23,6 +23,9 @@ public class PerkSlot : MonoBehaviour
 
     public void Initialize(Perk _perk, Text _descriptionArea, Text _nameArea)
     {
+        if (!icon)
+            icon = GetComponent<Image>();
+
         perk = _perk;
         descriptionArea = _descriptionArea;
         nameArea = _nameArea;
