@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Name: Player Damage
   m_EditorClassIdentifier: Assembly-CSharp::Stat
   statType: 3
-  statBaseValue: 0
+  statBaseValue: 100
   statCurrentValue: 0

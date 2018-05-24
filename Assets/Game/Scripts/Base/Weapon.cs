@@ -41,6 +41,8 @@ public class Weapon : MonoBehaviour
 
     bool weaponActivated;
 
+    int currentPerkLevel;
+
     private void Start()
     {
         if (currentWeaponLevel <= 0)
@@ -61,7 +63,8 @@ public class Weapon : MonoBehaviour
     public void GainExperience(float experience)
     {
         if (currentWeaponLevel >= maxWeaponLevel) return;
-        if(weaponExperience + experience < requiredExperience)
+
+        if (weaponExperience + experience < requiredExperience)
         {
             weaponExperience += experience;
             weaponsVault.SetExperience(itemType.ToString(), weaponExperience, requiredExperience);
@@ -76,24 +79,27 @@ public class Weapon : MonoBehaviour
 
             weaponExperience = 0;
             weaponsVault.SetExperience(itemType.ToString(), weaponExperience, requiredExperience);
-
+                
             currentWeaponLevel++;
             levelUpEffect.SetActive(true);
+            weaponPerks[currentPerkLevel].perkSlot.UnlockPerk();
 
             weaponExperience = excessExperience;
             requiredExperience *= requiredExperienceMultiplier;
             weaponsVault.SetExperience(itemType.ToString(), weaponExperience, requiredExperience);
+
             if (weaponPerks.Length <= 0) return;
-            for(int i = 0; i < weaponPerks[(int)currentWeaponLevel].perks.Length; i++)
+
+            for (int i = 0; i < weaponPerks[currentPerkLevel].perks.Length; i++)
             {
-                weaponPerks[(int)currentWeaponLevel].perks[i].SetPerkActive(true);
-                if (weaponPerks[(int)currentWeaponLevel].perks[i].perkType == Perk.PerkType.Buff)
+                weaponPerks[currentPerkLevel].perks[i].SetPerkActive(true);
+                if (weaponPerks[currentPerkLevel].perks[i].perkType == Perk.PerkType.Buff)
                 {
-                    weaponPerks[(int)currentWeaponLevel].perks[i].ActivatePerk();
-                    weaponPerks[(int)currentWeaponLevel - 2].perkSlot.UnlockPerk();
-                    print("Current Level " + (int)currentWeaponLevel);
+                    weaponPerks[currentPerkLevel].perks[i].ActivatePerk();
                 }
             }
+
+            currentPerkLevel++;
         }
     }
 
