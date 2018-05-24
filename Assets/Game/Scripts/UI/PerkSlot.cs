@@ -8,17 +8,14 @@ public class PerkSlot : MonoBehaviour
 {
     Perk perk;
     Image icon;
-    EventTrigger trigger;
     Text nameArea;
     Text descriptionArea;
 
     private void Start()
     {
         icon = GetComponent<Image>();
-        trigger = GetComponent<EventTrigger>();
 
-        Utility.SetTransparency(icon, .5f);
-        trigger.enabled = false;
+        Utility.SetTransparency(icon, .25f);
     }
 
     public void Initialize(Perk _perk, Text _descriptionArea, Text _nameArea)

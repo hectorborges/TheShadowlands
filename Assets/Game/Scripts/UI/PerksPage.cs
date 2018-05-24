@@ -35,17 +35,9 @@ public class PerksPage : MonoBehaviour
         primaryAbilitySlot.sprite = primaryAbility.abilityIcon;
         secondaryAbilitySlot.sprite = secondaryAbility.abilityIcon;
 
-        for (int i = 1; i < perkSlots.Count; i++)
+        for (int i = 0; i < perkSlots.Count; i++)
         {
             perkSlots[i].Initialize(perks[i], descriptionArea, perkNameArea);
-        }
-    }
-
-    public void PerkUnlocked(int perkNumber)
-    {
-        if(perkNumber > 1)
-        {
-            perkSlots[perkNumber].UnlockPerk();
         }
     }
 }

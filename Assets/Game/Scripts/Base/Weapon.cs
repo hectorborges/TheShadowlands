@@ -47,6 +47,11 @@ public class Weapon : MonoBehaviour
             currentWeaponLevel = 1;
     }
 
+    public int GetWeaponLevel()
+    {
+        return (int)currentWeaponLevel;
+    }
+
     void InitializeWeaponPerks()
     {
         //In here I need to make sure to reactivate all of the perks that are unlocked
@@ -85,6 +90,8 @@ public class Weapon : MonoBehaviour
                 if (weaponPerks[(int)currentWeaponLevel].perks[i].perkType == Perk.PerkType.Buff)
                 {
                     weaponPerks[(int)currentWeaponLevel].perks[i].ActivatePerk();
+                    weaponPerks[(int)currentWeaponLevel - 2].perkSlot.UnlockPerk();
+                    print("Current Level " + (int)currentWeaponLevel);
                 }
             }
         }
@@ -98,18 +105,15 @@ public class Weapon : MonoBehaviour
 
         weaponActivated = status;
 
-        for (int i = 0; i <= currentWeaponLevel; i++)
+        for (int i = 1; i < currentWeaponLevel; i++)
         {
-            if (i >= 2)
+            for (int j = 0; j < weaponPerks[i].perks.Length; j++)
             {
-                for (int j = 0; j < weaponPerks[i].perks.Length; j++)
-                {
-                    weaponPerks[i].perks[j].activated = weaponActivated;
+                weaponPerks[i].perks[j].activated = weaponActivated;
 
-                    if (weaponPerks[i].perks[j].activated && weaponPerks[i].perks[j].refreshOnEquip)
-                    {
-                        weaponPerks[i].perks[j].ActivatePerk();
-                    }
+                if (weaponPerks[i].perks[j].activated && weaponPerks[i].perks[j].refreshOnEquip)
+                {
+                    weaponPerks[i].perks[j].ActivatePerk();
                 }
             }
         }
@@ -120,4 +124,5 @@ public class Weapon : MonoBehaviour
 public class WeaponLevelPerks
 {
     public Perk[] perks;
+    public PerkSlot perkSlot;
 }
