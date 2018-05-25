@@ -90,7 +90,7 @@ public class Weapon : MonoBehaviour
 
             if (weaponPerks.Length <= 0) return;
 
-            for (int i = 0; i < weaponPerks[currentPerkLevel].perks.Length; i++)
+            for (int i = 0; i < weaponPerks[currentPerkLevel + 1].perks.Length; i++)
             {
                 weaponPerks[currentPerkLevel].perks[i].SetPerkActive(true);
                 if (weaponPerks[currentPerkLevel].perks[i].perkType == Perk.PerkType.Buff)

@@ -43,7 +43,7 @@ public class WeaponsVault : MonoBehaviour
         weapons.Add("Swords");
         weapons.Add("Shield");
         weapons.Add("Rifle");
-        weapons.Add("Magic");
+        weapons.Add("Pistols");
 
         for(int i = 0; i < weapons.Count; i++)
         {
@@ -69,6 +69,7 @@ public class WeaponsVault : MonoBehaviour
 
         for (int i = 0; i < weapons.Count; i++)
         {
+            print("Weapon :: " + weapon + " ----- Weapon[i] :: " + weapons[i]);
             if (weapon == weapons[i])
             {
                 weaponsExperience[i] = experience;
