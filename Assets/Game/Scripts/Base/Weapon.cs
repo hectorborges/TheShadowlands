@@ -62,7 +62,8 @@ public class Weapon : MonoBehaviour
 
     public void GainExperience(float experience)
     {
-        if (currentWeaponLevel >= maxWeaponLevel) return;
+        if (currentWeaponLevel > maxWeaponLevel)
+            return;
 
         if (weaponExperience + experience < requiredExperience)
         {
@@ -74,20 +75,28 @@ public class Weapon : MonoBehaviour
             float neededExperience = requiredExperience - weaponExperience;
             float excessExperience = experience - neededExperience;
 
-            weaponExperience += neededExperience;
-            weaponsVault.SetExperience(itemType.ToString(), weaponExperience, requiredExperience);
-
-            weaponExperience = 0;
-            weaponsVault.SetExperience(itemType.ToString(), weaponExperience, requiredExperience);
-                
             currentWeaponLevel++;
-            levelUpEffect.SetActive(true);
 
-            weaponExperience = excessExperience;
-            requiredExperience *= requiredExperienceMultiplier;
-            weaponsVault.SetExperience(itemType.ToString(), weaponExperience, requiredExperience);
+            if(currentWeaponLevel < maxWeaponLevel)
+            {
+                weaponExperience += neededExperience;
+                weaponsVault.SetExperience(itemType.ToString(), weaponExperience, requiredExperience);
 
-            if (weaponPerks.Length <= 0) return;
+                weaponExperience = 0;
+                weaponsVault.SetExperience(itemType.ToString(), weaponExperience, requiredExperience);
+
+                levelUpEffect.SetActive(true);
+
+                weaponExperience = excessExperience;
+                requiredExperience *= requiredExperienceMultiplier;
+                weaponsVault.SetExperience(itemType.ToString(), weaponExperience, requiredExperience);
+            }
+            else
+            {
+                weaponsVault.SetExperience(itemType.ToString(), weaponExperience, neededExperience);
+            }
+
+            if (weaponPerks.Length <= 0 || currentPerkLevel > weaponPerks.Length - 1) return;
 
             for (int i = 0; i < weaponPerks[currentPerkLevel].perks.Length; i++)
             {
