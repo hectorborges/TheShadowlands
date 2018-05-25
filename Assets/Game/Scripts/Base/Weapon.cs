@@ -82,7 +82,6 @@ public class Weapon : MonoBehaviour
                 
             currentWeaponLevel++;
             levelUpEffect.SetActive(true);
-            weaponPerks[currentPerkLevel].perkSlot.UnlockPerk();
 
             weaponExperience = excessExperience;
             requiredExperience *= requiredExperienceMultiplier;
@@ -90,15 +89,18 @@ public class Weapon : MonoBehaviour
 
             if (weaponPerks.Length <= 0) return;
 
-            for (int i = 0; i < weaponPerks[currentPerkLevel + 1].perks.Length; i++)
+            for (int i = 0; i < weaponPerks[currentPerkLevel].perks.Length; i++)
             {
                 weaponPerks[currentPerkLevel].perks[i].SetPerkActive(true);
+                print("Current Weapon Perk: " + currentPerkLevel);
+                print("Weapon Perk: " + weaponPerks[currentPerkLevel].perks[i].name);
                 if (weaponPerks[currentPerkLevel].perks[i].perkType == Perk.PerkType.Buff)
                 {
                     weaponPerks[currentPerkLevel].perks[i].ActivatePerk();
                 }
             }
 
+            weaponPerks[currentPerkLevel].perkSlot.UnlockPerk();
             currentPerkLevel++;
         }
     }

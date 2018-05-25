@@ -38,6 +38,7 @@ public class PerksPage : MonoBehaviour
         for (int i = 0; i < perkSlots.Count; i++)
         {
             perkSlots[i].Initialize(perks[i], descriptionArea, perkNameArea);
+            print("Initializing : " + perks[i].perkName);
         }
     }
 }

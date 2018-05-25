@@ -23,7 +23,7 @@ public class Perk : MonoBehaviour
     };
 
     public PerkType perkType;
-    [HideInInspector] public bool activated;
+    public bool activated;
 
     public bool refreshOnEquip;
 
