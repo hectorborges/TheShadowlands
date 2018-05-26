@@ -3298,7 +3298,7 @@ MonoBehaviour:
   - {fileID: 136270499071014280}
   - {fileID: 136141402057678298}
   agent: {fileID: 195851206607985208}
-  experienceWorth: 100
+  experienceWorth: 10
   statusEffects: {fileID: 1646676578022092}
   rend: {fileID: 137933956107071664}
   dissolveMaterial: {fileID: 2100000, guid: df4b5fdfd36a35a49b214cffe90cad9e, type: 2}
