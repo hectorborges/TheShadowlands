@@ -55,7 +55,6 @@ public class PlayerHealth : Health
 
         transparency =  Mathf.Lerp(transparency, Mathf.Abs(healthPercentage - 1), deathBoarderSpeed);
         Utility.SetTransparency(deathBoarder, (transparency * .5f));
-        
     }
 
     public void SetThornsActive(bool status)

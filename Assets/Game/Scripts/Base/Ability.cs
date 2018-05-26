@@ -48,12 +48,15 @@ public class Ability : MonoBehaviour
 
     public Stats stats;
     public Health entityHealth;
+    public Mana mana;
 
     [Range(1, 5)]
     public int abilityCharges = 1;
     public float chargeTime;
     public float abilityCooldown;
     public float attackDistance;
+    public int manaGained;
+    public int manaRequired;
 
     [Space, Header("Perks")]
     public Perk[] procOnAttackPerks;
@@ -77,7 +80,6 @@ public class Ability : MonoBehaviour
     public float fadeIn = .1f;
     public float fadeOut = 1f;
 
-
     bool shouldHeal;
 
     Coroutine charge;
@@ -91,6 +93,14 @@ public class Ability : MonoBehaviour
     public virtual void ActivateAbility()
     {
         if (entityHealth.isDead) return;
+
+        if(mana)
+        {
+            if (!mana.ActivateAbility(manaRequired))
+                return;
+            mana.GainMana(manaGained);
+        }
+
         shouldHeal = true;
         PlayerMovement.canMove = false;
         if (!isCharging)
