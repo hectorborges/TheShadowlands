@@ -26,6 +26,7 @@ public class Weapon : MonoBehaviour
     public WeaponsVault weaponsVault;
     public WeaponLevelPerks[] weaponPerks;
     public GameObject levelUpEffect;
+    public int maxPerkLevel = 10;
 
     public enum ItemType
     {
@@ -62,78 +63,94 @@ public class Weapon : MonoBehaviour
 
     public void GainExperience(float experience)
     {
-        if (currentWeaponLevel > maxWeaponLevel)
-            return;
 
         if (weaponExperience + experience < requiredExperience)
         {
-            weaponExperience += experience;
-            weaponsVault.SetExperience(itemType.ToString(), weaponExperience, requiredExperience);
+            if (currentWeaponLevel < maxWeaponLevel)
+            {
+                weaponExperience += experience;
+                weaponsVault.SetExperience(itemType.ToString(), weaponExperience, requiredExperience);
+            }
         }
         else
         {
-            float neededExperience = requiredExperience - weaponExperience;
-            float excessExperience = experience - neededExperience;
-
-            currentWeaponLevel++;
-
             if(currentWeaponLevel < maxWeaponLevel)
             {
-                weaponExperience += neededExperience;
-                weaponsVault.SetExperience(itemType.ToString(), weaponExperience, requiredExperience);
+                float neededExperience = requiredExperience - weaponExperience;
+                float excessExperience = experience - neededExperience;
 
-                weaponExperience = 0;
-                weaponsVault.SetExperience(itemType.ToString(), weaponExperience, requiredExperience);
+                currentWeaponLevel++;
 
-                levelUpEffect.SetActive(true);
-
-                weaponExperience = excessExperience;
-                requiredExperience *= requiredExperienceMultiplier;
-                weaponsVault.SetExperience(itemType.ToString(), weaponExperience, requiredExperience);
-            }
-            else
-            {
-                weaponsVault.SetExperience(itemType.ToString(), weaponExperience, neededExperience);
-            }
-
-            if (weaponPerks.Length <= 0 || currentPerkLevel > weaponPerks.Length - 1) return;
-
-            for (int i = 0; i < weaponPerks[currentPerkLevel].perks.Length; i++)
-            {
-                weaponPerks[currentPerkLevel].perks[i].SetPerkActive(true);
-                print("Current Weapon Perk: " + currentPerkLevel);
-                print("Weapon Perk: " + weaponPerks[currentPerkLevel].perks[i].name);
-                if (weaponPerks[currentPerkLevel].perks[i].perkType == Perk.PerkType.Buff)
+                if (currentWeaponLevel == maxWeaponLevel)
                 {
-                    weaponPerks[currentPerkLevel].perks[i].ActivatePerk();
+                    weaponsVault.SetExperience(itemType.ToString(), weaponExperience, neededExperience);
+                }
+                else if (currentWeaponLevel < maxWeaponLevel)
+                {
+                    weaponExperience += neededExperience;
+                    weaponsVault.SetExperience(itemType.ToString(), weaponExperience, requiredExperience);
+
+                    weaponExperience = 0;
+                    weaponsVault.SetExperience(itemType.ToString(), weaponExperience, requiredExperience);
+
+                    levelUpEffect.SetActive(true);
+
+                    weaponExperience = excessExperience;
+                    requiredExperience *= requiredExperienceMultiplier;
+                    weaponsVault.SetExperience(itemType.ToString(), weaponExperience, requiredExperience);
+                }
+
+                if(currentPerkLevel < maxWeaponLevel)
+                {
+                    for (int i = 0; i < weaponPerks[currentPerkLevel].perks.Length; i++)
+                    {
+                        weaponPerks[currentPerkLevel].perks[i].SetPerkActive(true);
+                        if (weaponPerks[currentPerkLevel].perks[i].perkType == Perk.PerkType.Buff)
+                        {
+                            weaponPerks[currentPerkLevel].perks[i].ActivatePerk();
+                        }
+                    }
+
+                    weaponPerks[currentPerkLevel].perkSlot.UnlockPerk();
+                    currentPerkLevel++;
                 }
             }
-
-            weaponPerks[currentPerkLevel].perkSlot.UnlockPerk();
-            currentPerkLevel++;
         }
     }
 
     public void SetWeaponActive(bool status)
     {
-        //The thorn effect is not getting reactivated.
+        ////The thorn effect is not getting reactivated.
         PlayerHealth.instance.SetImmunity(0);
         PlayerHealth.instance.SetThornsActive(false);
+        print(" >>>>>>> " + currentPerkLevel  + "    " +  status  + " <<<<<<  ");
 
-        weaponActivated = status;
-
-        for (int i = 1; i < currentWeaponLevel; i++)
+        for(int i = 0; i < currentPerkLevel; i++)
         {
-            for (int j = 0; j < weaponPerks[i].perks.Length; j++)
-            {
-                weaponPerks[i].perks[j].activated = weaponActivated;
+            weaponPerks[i].perks[0].activated = status;
 
-                if (weaponPerks[i].perks[j].activated && weaponPerks[i].perks[j].refreshOnEquip)
-                {
-                    weaponPerks[i].perks[j].ActivatePerk();
-                }
+            if (weaponPerks[i].perks[0].activated && weaponPerks[i].perks[0].refreshOnEquip)
+            {
+                print("Reactivate " + weaponPerks[i].perks[0]);
+                weaponPerks[i].perks[0].ActivatePerk();
             }
         }
+
+        //weaponActivated = status;
+
+        //for (int i = 1; i < currentWeaponLevel; i++)
+        //{
+        //    print("Perk Count: " + weaponPerks[i].perks.Length);
+        //    for (int j = 0; j < weaponPerks[i].perks.Length; j++)
+        //    {
+        //        weaponPerks[i].perks[j].activated = weaponActivated;
+
+        //        if (weaponPerks[i].perks[j].activated && weaponPerks[i].perks[j].refreshOnEquip)
+        //        {
+        //            weaponPerks[i].perks[j].ActivatePerk();
+        //        }
+        //    }
+        //}
     }
 }
 
