@@ -44,11 +44,34 @@ public class ItemSlot : MonoBehaviour
 
         for (int i = 0; i < itemInSlot.stats.Count; i++)
         {
-            statBoxes[i].text = itemInSlot.stats[i].statType.ToString() + " " + itemInSlot.stats[i].GetCurrentValue();
+            statBoxes[i].text = ParseValue(itemInSlot.stats[i]);
         }
 
         if (itemInSlot)
             descriptionBox.transform.parent.gameObject.SetActive(true);       
+    }
+
+    string ParseValue(Stat stat)
+    {
+        switch (stat.statType)
+        {
+            case Stat.StatType.CriticalStrike:
+                return Mathf.RoundToInt(stat.GetCurrentValue()) + "% Critical Strike";
+            case Stat.StatType.CriticalDamage:
+                return Mathf.RoundToInt((stat.GetCurrentValue() * 100)) + "% Critical Damage";
+            case Stat.StatType.Damage:
+                return Mathf.RoundToInt(stat.GetCurrentValue()) + " Damage";
+            case Stat.StatType.Health:
+                return Mathf.RoundToInt(stat.GetCurrentValue()) + " Health";
+            case Stat.StatType.HealthPerHit:
+                return Mathf.RoundToInt(stat.GetCurrentValue()) + " Health On Hit";
+            case Stat.StatType.Mana:
+                return Mathf.RoundToInt(stat.GetCurrentValue()) + " Mana";
+            case Stat.StatType.ManaPerHit:
+                return Mathf.RoundToInt(stat.GetCurrentValue()) + " Mana On Hit";
+            default:
+                return "";
+        }
     }
 
     public void StopViewingDescription()

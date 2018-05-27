@@ -27,6 +27,14 @@ public class ItemStats : MonoBehaviour
         Stat mana = new Stat();
         Stat manaPerHit = new Stat();
 
+        criticalStike.statType = Stat.StatType.CriticalStrike;
+        criticalDamage.statType = Stat.StatType.CriticalDamage;
+        damage.statType = Stat.StatType.Damage;
+        health.statType = Stat.StatType.Health;
+        healthPerHit.statType = Stat.StatType.HealthPerHit;
+        mana.statType = Stat.StatType.Mana;
+        manaPerHit.statType = Stat.StatType.ManaPerHit;
+
         criticalStike.maxValuePerItem = maxCriticalStrikeValue;
         criticalDamage.maxValuePerItem = maxCriticalDamageValue;
         damage.maxValuePerItem = maxDamageValue;
@@ -49,13 +57,22 @@ public class ItemStats : MonoBehaviour
         item.rarity = RandomRarity(item);
         int statCount = CheckRarity(item);
 
+        List<Stat> possibleStats = new List<Stat>();
+
+        for(int i = 0; i < stats.Count; i++)
+        {
+            possibleStats.Add(stats[i]);
+        }
+
         for(int i = 0; i < statCount; i++)
         {
-            Stat stat = stats[Random.Range(0, stats.Count)];
-
+            Stat stat = possibleStats[Random.Range(0, possibleStats.Count)];
             stat.statCurrentValue = Random.Range(0, stat.maxValuePerItem);
             item.AddStat(stat);
+            possibleStats.Remove(stat);
         }
+
+        possibleStats.Clear();
     }
 
     Item.Rarity RandomRarity(Item item)
