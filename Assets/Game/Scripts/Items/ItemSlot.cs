@@ -5,13 +5,16 @@ using UnityEngine.UI;
 
 public class ItemSlot : MonoBehaviour
 {
+    public LootTable lootTable;
     public WeaponsVault weaponsVault;
     public Text slotName;
     public Image slotIcon;
 
     public Text descriptionBoxName;
-
     public List<Text> statBoxes;
+
+    public Text equippedDescriptionBoxName;
+    public List<Text> equippedStatBoxes;
 
     Item itemInSlot;
 
@@ -20,28 +23,33 @@ public class ItemSlot : MonoBehaviour
         print("Updating Item");
         itemInSlot = newItem;
 
-        slotName.name = itemInSlot.itemName;
-        slotName.color = LootTable.instance.GetItemRarityColor(itemInSlot.rarity.ToString());
+        slotName.text = itemInSlot.itemName;
+        slotName.color = lootTable.GetItemRarityColor(itemInSlot.rarity.ToString());
         slotIcon.sprite = itemInSlot.itemIcon;
     }
 
     public void EquipItem()
     {
         if(itemInSlot.weapon)
-        {
             weaponsVault.EquipWeapon(itemInSlot);
-        }
 
-        LootTable.instance.RemoveItem();
+        lootTable.RemoveItem();
+
+        if (itemInSlot)
+        {
+            descriptionBoxName.transform.parent.gameObject.SetActive(false);
+            equippedDescriptionBoxName.transform.parent.gameObject.SetActive(false);
+        }
+        gameObject.SetActive(false);
     }
 
     public void ViewDescription()
     {
-        slotName.name = itemInSlot.itemName;
-        slotName.color = LootTable.instance.GetItemRarityColor(itemInSlot.rarity.ToString());
+        slotName.text = itemInSlot.itemName;
+        slotName.color = lootTable.GetItemRarityColor(itemInSlot.rarity.ToString());
         slotIcon.sprite = itemInSlot.itemIcon;
 
-        descriptionBoxName.color = LootTable.instance.GetItemRarityColor(itemInSlot.rarity.ToString());
+        descriptionBoxName.color = lootTable.GetItemRarityColor(itemInSlot.rarity.ToString());
         descriptionBoxName.text = itemInSlot.itemName;
 
         for (int i = 0; i < statBoxes.Count; i++)
@@ -56,7 +64,25 @@ public class ItemSlot : MonoBehaviour
         }
 
         if (itemInSlot)
-            descriptionBoxName.transform.parent.gameObject.SetActive(true);       
+            descriptionBoxName.transform.parent.gameObject.SetActive(true);
+
+        //Equipped Item
+
+        if (weaponsVault.GetEquippedItem(itemInSlot.weapon) == null) return;
+        equippedDescriptionBoxName.color = lootTable.GetItemRarityColor(weaponsVault.GetEquippedItem(itemInSlot.weapon).rarity.ToString());
+        equippedDescriptionBoxName.text = weaponsVault.GetEquippedItem(itemInSlot.weapon).itemName;
+
+        for (int i = 0; i < equippedStatBoxes.Count; i++)
+            equippedStatBoxes[i].text = "";
+
+        for (int i = 0; i < weaponsVault.GetEquippedItem(itemInSlot.weapon).stats.Count; i++)
+        {
+            equippedStatBoxes[i].text = ParseValue(weaponsVault.GetEquippedItem(itemInSlot.weapon).stats[i]);
+        }
+
+        if (itemInSlot)
+            equippedDescriptionBoxName.transform.parent.gameObject.SetActive(true);
+
     }
 
     string ParseValue(Stat stat)
@@ -85,6 +111,9 @@ public class ItemSlot : MonoBehaviour
     public void StopViewingDescription()
     {
         if (itemInSlot)
+        {
             descriptionBoxName.transform.parent.gameObject.SetActive(false);
+            equippedDescriptionBoxName.transform.parent.gameObject.SetActive(false);
+        }
     }
 }

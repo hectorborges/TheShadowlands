@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class WeaponsVault : MonoBehaviour
 {
+    public LootTable lootTable;
     public Image[] weaponIcons;
     public Item[] equippedItems = new Item[5];
     public PerksPage[] perksPages;
@@ -67,12 +68,22 @@ public class WeaponsVault : MonoBehaviour
         }
     }
 
+    public Item GetEquippedItem(Weapon weapon)
+    {
+        for(int i = 0; i < equippedItems.Length; i++)
+        {
+            if (equippedItems[i] != null && weapon.itemType == equippedItems[i].weapon.itemType)
+                return equippedItems[i];
+        }
+        return null;
+    }
+
     public void ViewDescription(int itemIndex)
     {
         if (weaponIcons[itemIndex].GetComponent<Button>().interactable == false)
             return;
 
-        descriptionAreaName.color = LootTable.instance.GetItemRarityColor(equippedItems[itemIndex].rarity.ToString());
+        descriptionAreaName.color = lootTable.GetItemRarityColor(equippedItems[itemIndex].rarity.ToString());
         descriptionAreaName.text = equippedItems[itemIndex].itemName;
 
         for (int j = 0; j < statsArea.Count; j++)
