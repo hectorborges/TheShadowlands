@@ -5,11 +5,11 @@ using UnityEngine.UI;
 
 public class ItemSlot : MonoBehaviour
 {
+    public WeaponsVault weaponsVault;
     public Text slotName;
     public Image slotIcon;
 
     public Text descriptionBoxName;
-    public Text descriptionBox;
 
     public List<Text> statBoxes;
 
@@ -27,14 +27,22 @@ public class ItemSlot : MonoBehaviour
 
     public void EquipItem()
     {
+        if(itemInSlot.weapon)
+        {
+            weaponsVault.EquipWeapon(itemInSlot);
+        }
+
         LootTable.instance.RemoveItem();
     }
 
     public void ViewDescription()
     {
+        slotName.name = itemInSlot.itemName;
+        slotName.color = LootTable.instance.GetItemRarityColor(itemInSlot.rarity.ToString());
+        slotIcon.sprite = itemInSlot.itemIcon;
+
         descriptionBoxName.color = LootTable.instance.GetItemRarityColor(itemInSlot.rarity.ToString());
         descriptionBoxName.text = itemInSlot.itemName;
-        descriptionBox.text = itemInSlot.itemDescription;
 
         for (int i = 0; i < statBoxes.Count; i++)
             statBoxes[i].text = "";
@@ -48,7 +56,7 @@ public class ItemSlot : MonoBehaviour
         }
 
         if (itemInSlot)
-            descriptionBox.transform.parent.gameObject.SetActive(true);       
+            descriptionBoxName.transform.parent.gameObject.SetActive(true);       
     }
 
     string ParseValue(Stat stat)
@@ -77,6 +85,6 @@ public class ItemSlot : MonoBehaviour
     public void StopViewingDescription()
     {
         if (itemInSlot)
-            descriptionBox.transform.parent.gameObject.SetActive(false);
+            descriptionBoxName.transform.parent.gameObject.SetActive(false);
     }
 }

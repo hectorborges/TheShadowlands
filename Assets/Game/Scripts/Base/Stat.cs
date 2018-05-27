@@ -24,6 +24,8 @@ public class Stat
 
     [HideInInspector]
     public float maxValuePerItem;
+    [HideInInspector]
+    public float minValuePerItem;
 
     public void InitializeStat()
     {

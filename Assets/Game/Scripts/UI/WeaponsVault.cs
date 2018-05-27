@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class WeaponsVault : MonoBehaviour
 {
+    public Image[] weaponIcons;
+    public Item[] equippedItems = new Item[5];
     public PerksPage[] perksPages;
     public Image[] pageSelections;
 
@@ -13,6 +15,9 @@ public class WeaponsVault : MonoBehaviour
 
     public Image experienceBar;
     public Image skillBarExperienceBar;
+
+    public Text descriptionAreaName;
+    public List<Text> statsArea;
 
     int currentPerksPageSelectedIndex;
     PerksPage currentPerksPageSelected;
@@ -28,6 +33,84 @@ public class WeaponsVault : MonoBehaviour
     {
         if (!initialized)
             Initialize();
+    }
+
+    public void EquipWeapon(Item item)
+    {
+        switch(item.weapon.itemName)
+        {
+            case "Axe":
+                weaponIcons[0].sprite = item.weapon.itemIcon;
+                weaponIcons[0].GetComponent<Button>().interactable = true;
+                equippedItems[0] = item;
+                break;
+            case "Swords":
+                weaponIcons[1].sprite = item.weapon.itemIcon;
+                weaponIcons[1].GetComponent<Button>().interactable = true;
+                equippedItems[1] = item;
+                break;
+            case "Shield":
+                weaponIcons[2].sprite = item.weapon.itemIcon;
+                weaponIcons[2].GetComponent<Button>().interactable = true;
+                equippedItems[2] = item;
+                break;
+            case "Rifle":
+                weaponIcons[3].sprite = item.weapon.itemIcon;
+                weaponIcons[3].GetComponent<Button>().interactable = true;
+                equippedItems[3] = item;
+                break;
+            case "Pistols":
+                weaponIcons[4].sprite = item.weapon.itemIcon;
+                weaponIcons[4].GetComponent<Button>().interactable = true;
+                equippedItems[4] = item;
+                break;
+        }
+    }
+
+    public void ViewDescription(int itemIndex)
+    {
+        if (weaponIcons[itemIndex].GetComponent<Button>().interactable == false)
+            return;
+
+        descriptionAreaName.color = LootTable.instance.GetItemRarityColor(equippedItems[itemIndex].rarity.ToString());
+        descriptionAreaName.text = equippedItems[itemIndex].itemName;
+
+        for (int j = 0; j < statsArea.Count; j++)
+            statsArea[j].text = "";
+
+        for(int i = 0; i < equippedItems[itemIndex].stats.Count; i++)
+        {
+            statsArea[i].text = ParseValue(equippedItems[itemIndex].stats[i]);
+        }
+        descriptionAreaName.transform.parent.gameObject.SetActive(true);
+    }
+    
+    public void StopViewingDescription()
+    {
+        descriptionAreaName.transform.parent.gameObject.SetActive(false);
+    }
+
+    string ParseValue(Stat stat)
+    {
+        switch (stat.statType)
+        {
+            case Stat.StatType.CriticalStrike:
+                return Mathf.RoundToInt(stat.GetCurrentValue()) + "% Critical Strike";
+            case Stat.StatType.CriticalDamage:
+                return Mathf.RoundToInt((stat.GetCurrentValue() * 100)) + "% Critical Damage";
+            case Stat.StatType.Damage:
+                return Mathf.RoundToInt(stat.GetCurrentValue()) + " Damage";
+            case Stat.StatType.Health:
+                return Mathf.RoundToInt(stat.GetCurrentValue()) + " Health";
+            case Stat.StatType.HealthPerHit:
+                return Mathf.RoundToInt(stat.GetCurrentValue()) + " Health On Hit";
+            case Stat.StatType.Mana:
+                return Mathf.RoundToInt(stat.GetCurrentValue()) + " Mana";
+            case Stat.StatType.ManaPerHit:
+                return Mathf.RoundToInt(stat.GetCurrentValue()) + " Mana On Hit";
+            default:
+                return "";
+        }
     }
 
     private void Initialize()

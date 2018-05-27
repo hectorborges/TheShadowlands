@@ -15,6 +15,14 @@ public class ItemStats : MonoBehaviour
     public float maxManaValue;
     public float maxManaPerHitValue;
 
+    public float minCriticalStrikeValue;
+    public float minCriticalDamageValue;
+    public float minDamageValue;
+    public float minHealthValue;
+    public float minHealthPerHitValue;
+    public float minManaValue;
+    public float minManaPerHitValue;
+
     private void Awake()
     {
         instance = this;
@@ -43,6 +51,14 @@ public class ItemStats : MonoBehaviour
         mana.maxValuePerItem = maxManaValue;
         manaPerHit.maxValuePerItem = maxManaPerHitValue;
 
+        criticalStike.minValuePerItem = minCriticalStrikeValue;
+        criticalDamage.minValuePerItem = minCriticalDamageValue;
+        damage.minValuePerItem = minDamageValue;
+        health.minValuePerItem = minHealthPerHitValue;
+        healthPerHit.minValuePerItem = minHealthPerHitValue;
+        mana.minValuePerItem = minManaValue;
+        manaPerHit.minValuePerItem = minManaPerHitValue;
+
         stats.Add(criticalStike);
         stats.Add(criticalDamage);
         stats.Add(damage);
@@ -67,7 +83,7 @@ public class ItemStats : MonoBehaviour
         for(int i = 0; i < statCount; i++)
         {
             Stat stat = possibleStats[Random.Range(0, possibleStats.Count)];
-            stat.statCurrentValue = Random.Range(0, stat.maxValuePerItem);
+            stat.statCurrentValue = Random.Range(stat.minValuePerItem, stat.maxValuePerItem);
             item.AddStat(stat);
             possibleStats.Remove(stat);
         }

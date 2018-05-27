@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class LootTable : MonoBehaviour
 {
     public static LootTable instance;
+    public WeaponsVault weaponsVault;
 
     public Item[] lootTable;
     public GameObject lootWindow;
@@ -20,6 +21,20 @@ public class LootTable : MonoBehaviour
     private void Awake()
     {
         instance = this;
+    }
+
+    private void Start()
+    {
+        Item defaultItemTemplate = null;
+        for(int i = 0; i < lootTable.Length; i++)
+        {
+            if (lootTable[i].itemName == "Sword & Shield")
+                defaultItemTemplate = lootTable[i];
+        }
+
+        Item defaultItem = Instantiate(defaultItemTemplate);
+        defaultItem.rarity = Item.Rarity.Common;
+        weaponsVault.EquipWeapon(defaultItem);
     }
 
     public Color GetItemRarityColor(string rarity)
