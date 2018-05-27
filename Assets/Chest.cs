@@ -20,6 +20,7 @@ public class Chest : MonoBehaviour
 
             anim.SetBool("Open", true);
             LootTable.instance.NewLootTable();
+            gameObject.layer = LayerMask.NameToLayer("Default");
         }
     }
 }
