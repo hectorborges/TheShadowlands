@@ -2,9 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-
-[System.Serializable, CreateAssetMenu(menuName = "Stat")]
-public class Stat : ScriptableObject
+[System.Serializable]
+public class Stat
 {
     public enum StatType
     {
@@ -22,6 +21,9 @@ public class Stat : ScriptableObject
 
     public float statBaseValue;
     public float statCurrentValue;
+
+    [HideInInspector]
+    public float maxValuePerItem;
 
     public void InitializeStat()
     {

@@ -85,6 +85,11 @@ public class Health : MonoBehaviour
         health += healthGained;
     }
 
+    public virtual void UpdateBaseHealth()
+    {
+        baseHealth = (int)stats.GetStatBaseValue(Stat.StatType.Health);
+    }
+
     public virtual void HealthGainOnHit()
     {
         int healthGained = (int)stats.GetStatCurrentValue(Stat.StatType.HealthPerHit);

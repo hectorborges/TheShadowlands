@@ -3223,11 +3223,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stats:
-  - {fileID: 11400000, guid: 8c3ea33658d92ab4984ba9222b459f4f, type: 2}
-  - {fileID: 11400000, guid: 5a4169fa3c2a73e42bc8ca119b9a2765, type: 2}
-  - {fileID: 11400000, guid: 0bb4f9d2532ec8d4fa85988497f97d31, type: 2}
-  - {fileID: 11400000, guid: 0fe5c8b0975a49347b0d80cc886eabfb, type: 2}
-  - {fileID: 11400000, guid: 9583e7ae6e573d64d90e24df00b6210b, type: 2}
+  - statType: 0
+    statBaseValue: 0
+    statCurrentValue: 0
+    maxValuePerItem: 0
+  - statType: 1
+    statBaseValue: 5
+    statCurrentValue: 0
+    maxValuePerItem: 0
+  - statType: 2
+    statBaseValue: 1.5
+    statCurrentValue: 0
+    maxValuePerItem: 0
+  - statType: 3
+    statBaseValue: 0
+    statCurrentValue: 0
+    maxValuePerItem: 0
+  - statType: 4
+    statBaseValue: 300
+    statCurrentValue: 0
+    maxValuePerItem: 0
+  - statType: 5
+    statBaseValue: 0
+    statCurrentValue: 0
+    maxValuePerItem: 0
 --- !u!114 &114774868717372018
 MonoBehaviour:
   m_ObjectHideFlags: 1

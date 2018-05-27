@@ -60,6 +60,11 @@ public class Mana : MonoBehaviour
         }
     }
 
+    public virtual void UpdateBaseMana()
+    {
+        mana = (int)stats.GetStatBaseValue(Stat.StatType.Mana);
+    }
+
     IEnumerator WaitTime()
     {
         yield return new WaitForSeconds(.75f);
