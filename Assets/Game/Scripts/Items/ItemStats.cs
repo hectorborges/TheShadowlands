@@ -46,6 +46,7 @@ public class ItemStats : MonoBehaviour
 
     public void RollStats(Item item)
     {
+        item.rarity = RandomRarity(item);
         int statCount = CheckRarity(item);
 
         for(int i = 0; i < statCount; i++)
@@ -55,11 +56,32 @@ public class ItemStats : MonoBehaviour
             stat.statCurrentValue = Random.Range(0, stat.maxValuePerItem);
             item.AddStat(stat);
         }
-
-        print("Item Stats :::: " + item.stats.Count + "   Item Rarity:  " + CheckRarity(item));
     }
 
-    int CheckRarity(Item item)
+    Item.Rarity RandomRarity(Item item)
+    {
+        int randomRarity = Random.Range(0, 6);
+
+        switch (randomRarity)
+        {
+            case 0:
+                return Item.Rarity.Common;
+            case 1:
+                return Item.Rarity.Rare;
+            case 2:
+                return Item.Rarity.Epic;
+            case 3:
+                return Item.Rarity.Legendary;
+            case 4:
+                return Item.Rarity.Exotic;
+            case 5:
+                return Item.Rarity.Artifact;
+            default:
+                return Item.Rarity.Common;
+        }
+    }
+
+    public int CheckRarity(Item item)
     {
         switch (item.rarity)
         {
