@@ -51,6 +51,7 @@ public class LootTable : MonoBehaviour
         for(int i = 0; i < itemsDropped; i++)
         {
             Item randomItem = lootTable[Random.Range(0, lootTable.Length)];
+            randomItem.Initialize();
             itemSlots[i].UpdateItem(randomItem);
         }
     }

@@ -69,7 +69,6 @@ public class WeaponsVault : MonoBehaviour
 
         for (int i = 0; i < weapons.Count; i++)
         {
-            print("Weapon :: " + weapon + " ----- Weapon[i] :: " + weapons[i]);
             if (weapon == weapons[i])
             {
                 weaponsExperience[i] = experience;

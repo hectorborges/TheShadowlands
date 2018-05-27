@@ -17,6 +17,7 @@ public class ItemSlot : MonoBehaviour
 
     public void UpdateItem(Item newItem)
     {
+        print("Updating Item");
         itemInSlot = newItem;
 
         slotName.name = itemInSlot.itemName;
@@ -31,6 +32,7 @@ public class ItemSlot : MonoBehaviour
 
         for(int i = 0; i < itemInSlot.stats.Count; i++)
         {
+            print(itemInSlot.stats[i].statType.ToString() + " " + itemInSlot.stats[i].GetCurrentValue());
             statBoxes[i].text = itemInSlot.stats[i].statType.ToString() + " " + itemInSlot.stats[i].GetCurrentValue();
         }
     }

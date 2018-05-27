@@ -55,6 +55,8 @@ public class ItemStats : MonoBehaviour
             stat.statCurrentValue = Random.Range(0, stat.maxValuePerItem);
             item.AddStat(stat);
         }
+
+        print("Item Stats :::: " + item.stats.Count + "   Item Rarity:  " + CheckRarity(item));
     }
 
     int CheckRarity(Item item)

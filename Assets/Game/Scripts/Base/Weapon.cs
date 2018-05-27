@@ -123,7 +123,6 @@ public class Weapon : MonoBehaviour
         ////The thorn effect is not getting reactivated.
         PlayerHealth.instance.SetImmunity(0);
         PlayerHealth.instance.SetThornsActive(false);
-        print(" >>>>>>> " + currentPerkLevel  + "    " +  status  + " <<<<<<  ");
 
         for(int i = 0; i < currentPerkLevel; i++)
         {

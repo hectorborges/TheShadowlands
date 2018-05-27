@@ -31,6 +31,8 @@ public class Item : MonoBehaviour
 
     Stats playerStats;
 
+    ItemStats itemStats;
+
     public void Initialize()
     {
         ItemStats.instance.RollStats(this);
@@ -51,5 +53,6 @@ public class Item : MonoBehaviour
     public void AddStat(Stat newStat)
     {
         stats.Add(newStat);
+        print(" Amount of stats " + stats.Count);
     }
 }

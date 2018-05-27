@@ -29,7 +29,6 @@ public class Perk : MonoBehaviour
 
 	public virtual void ActivatePerk(StatusEffects affected)
     {
-        print(perkName + " Activated!!");
         float roll = Random.Range(0, 100);
 
         if(roll <= procChance)
