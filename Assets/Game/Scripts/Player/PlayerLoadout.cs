@@ -6,6 +6,7 @@ using UnityEngine.AI;
 
 public class PlayerLoadout : MonoBehaviour
 {
+    public Stats stats;
     public static PlayerLoadout instance;
     [Space, Header("Ability Keys")]
     public KeyCode primaryAbilityKey;
@@ -35,6 +36,8 @@ public class PlayerLoadout : MonoBehaviour
     PlayerAnimator playerAnimator;
     NavMeshAgent agent;
 
+    Item equippedItem;
+
     private void Awake()
     {
         instance = this;
@@ -52,6 +55,24 @@ public class PlayerLoadout : MonoBehaviour
         UpdateWeapons(currentWeapon);
     }
 
+    public void EquippedItem(Item item)
+    {
+        if (equippedItem != null)
+        {
+            for (int i = 0; i < equippedItem.stats.Count; i++)
+            {
+                stats.DecreaseStatCurrentValue(equippedItem.stats[i].statType, equippedItem.stats[i].GetCurrentValue());
+            }
+        }
+
+        equippedItem = item;
+
+        for (int i = 0; i < equippedItem.stats.Count; i++)
+        {
+            stats.IncreaseStatCurrentValue(equippedItem.stats[i].statType, equippedItem.stats[i].GetCurrentValue());
+        }
+    }
+
     public void UpdateWeapons(Weapon newWeapon)
     {
         ChangeWeapon(currentWeapon.itemModel.transform, weaponHolder.transform);
@@ -65,6 +86,7 @@ public class PlayerLoadout : MonoBehaviour
         }
 
         currentWeapon = newWeapon;
+
         abilities[0] = currentWeapon.primaryAbility;
         abilities[1] = currentWeapon.secondaryAbility;
 

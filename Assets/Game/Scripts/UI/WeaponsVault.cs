@@ -38,6 +38,7 @@ public class WeaponsVault : MonoBehaviour
 
     public void EquipWeapon(Item item)
     {
+        PlayerLoadout.instance.EquippedItem(item);
         switch(item.weapon.itemName)
         {
             case "Axe":
