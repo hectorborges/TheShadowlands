@@ -159,9 +159,12 @@ public class PlayerController : MonoBehaviour
                     if(attackCursor)
                         Cursor.SetCursor(attackCursor, new Vector2(attackCursor.width / 2, attackCursor.height / 2), CursorMode.Auto);
                     break;
-                case "Loot":
+                case "Chest":
                     if(lootCursor)
                         Cursor.SetCursor(lootCursor, new Vector2(lootCursor.width / 2, lootCursor.height / 2), CursorMode.Auto);
+
+                    if (basicAttack)
+                        hit.transform.GetComponent<Chest>().OpenChest();
                     break;
             }
         }
