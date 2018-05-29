@@ -1,78 +1,48 @@
-﻿using System.Collections;
+﻿using EZCameraShake;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using EZCameraShake;
 
 public class Ability : MonoBehaviour
 {
     public delegate void AbilityEvents(Ability _thisAbility);
     public event AbilityEvents OnCooldownFinished;
 
+    [Space, Header("Basic Information")]
     public string abilityName;
     public Sprite abilityIcon;
     [TextArea]
     public string abilityDescription;
 
-    public enum AbilitySlot
-    {
-        PrimaryAbility,
-        SecondaryAbility,
-        AbilityOne,
-        AbilityTwo,
-        AbilityThree,
-        AbilityFour
-    };
+    public enum MinimumRarity { Common, Rare, Epic, Legendary, Exotic, Artifact };
+    public MinimumRarity minimumRarity;
 
-    public AbilitySlot abilitySlot;
-
-    public enum AbilityInput
-    {
-        GetButtonDown,
-        GetButton,
-        GetButtonUp
-    };
-
-    public enum AbilityType
-    {
-        Axe,
-        Shield,
-        Swords,
-        Rifle,
-        Pistols,
-        Magic
-    };
-
-    public AbilityType abilityType;
-
+    public enum AbilityInput { GetButtonDown, GetButton, GetButtonUp };
     public AbilityInput abilityInput;
 
-    public Stats stats;
-    public Health entityHealth;
-    public Mana mana;
-
-    [Range(1, 5)]
-    public int abilityCharges = 1;
-    public float chargeTime;
+    [Space, Header("Custom Variables")]
+    public int abilityMinimumDamage;
+    public int abilityMaximumDamage;
+    public float abilityRange;
+    public float abilityCastTime;
     public float abilityCooldown;
-    public float attackDistance;
+    public int abilityCharges;
     public int manaGained;
     public int manaRequired;
 
-    [Space, Header("Perks")]
-    public Perk[] procOnAttackPerks;
-    public Perk[] procOnKillsPerks;
-
-    [Space, Header("Extra Options")]
-    public PlayerAnimator playerAnimator;
-    public int numberOfAnimations;
-
-    [HideInInspector]
-    public int charges;
-    bool onCooldown;
-    [HideInInspector] public bool isCharging;
-    [HideInInspector] public bool isFiring;
-
     public bool requiresTarget;
+
+    [Space, Header("Required Variables")]
+    public Stats entityStats;                                                                       //This is the character's actual stats
+    public Health entityHealth;
+    public Mana entityMana;
+
+    [Space]
+    public PlayerAnimator playerAnimator;
+    public int abilityNumberOfAnimations;
+
+    [Space, Header("Optional Variables")]
+    public Weapon abilityWeapon;
 
     [Space, Header("Camera Shake")]
     public float magnitude = 4f;
@@ -80,52 +50,56 @@ public class Ability : MonoBehaviour
     public float fadeIn = .1f;
     public float fadeOut = 1f;
 
+    [HideInInspector] public int currentCharges;
+    [HideInInspector] public bool isCasting;
+    [HideInInspector] public bool isActivated;
+
+    List<Stat> abilityStats = new List<Stat>();
+    List<Perk> abilityPerks = new List<Perk>();
+
+    bool onCooldown;
     bool shouldHeal;
 
-    Coroutine charge;
+    Coroutine cast;
     Coroutine cooldown;
+
+    public enum AbilitySlot { PrimaryAbility, SecondaryAbility, AbilityOne, AbilityTwo, AbilityThree, AbilityFour };
+    AbilitySlot abilitySlot;
 
     protected virtual void Start()
     {
-        charges = abilityCharges;
+        currentCharges = abilityCharges;
     }
 
+    #region Activation
     public virtual void ActivateAbility()
     {
-        if (entityHealth.isDead) return;
+        if (entityHealth.isDead) return;                                                       
 
-        if(mana)
+        if(entityMana)                                                                                      
         {
-            if (!mana.ActivateAbility(manaRequired))
+            if (!entityMana.ActivateAbility(manaRequired))
                 return;
-            mana.GainMana(manaGained);
+            entityMana.GainMana(manaGained);
         }
 
         shouldHeal = true;
         PlayerMovement.canMove = false;
-        if (!isCharging)
+        if (!isCasting)
         {
-            charge = StartCoroutine(Charge());
-            charges--;
+            cast = StartCoroutine(Casting());
+            currentCharges--;
         }
         Animate();
-    }
-
-    public virtual void Animate()
-    {
-        if (playerAnimator)
-        {
-            playerAnimator.Attack(abilitySlot, numberOfAnimations);
-        }
     }
 
     public virtual void DeactivateAbility()
     {
         PlayerMovement.canMove = true;
-        if (charge != null)
+        if (cast != null)
         {
-            StopCoroutine(charge);
-            isCharging = false;
+            StopCoroutine(cast);
+            isCasting = false;
         }
     }
 
@@ -133,7 +107,19 @@ public class Ability : MonoBehaviour
     public virtual void VisualOnActivate() { }
     public virtual void VisualOnDeactivate() { }
 
-    //This should be called in the custom ability script
+    #endregion
+
+    #region Animation
+    public virtual void Animate()
+    {
+        if (playerAnimator)
+        {
+            playerAnimator.Attack(abilitySlot, abilityNumberOfAnimations);
+        }
+    }
+    #endregion
+
+    #region Functionality
     public void TriggerCooldown()
     {
         if (entityHealth.isDead) return;
@@ -143,7 +129,7 @@ public class Ability : MonoBehaviour
 
     public bool CanShoot()
     {
-        if (charges > 0)
+        if (currentCharges > 0)
             return true;
         else return false;
     }
@@ -152,8 +138,8 @@ public class Ability : MonoBehaviour
     {
         yield return new WaitForSeconds(abilityCooldown);
 
-        if (charges < abilityCharges)
-            charges++;
+        if (currentCharges < abilityCharges)
+            currentCharges++;
 
         if (OnCooldownFinished != null)
             OnCooldownFinished(this);
@@ -172,8 +158,8 @@ public class Ability : MonoBehaviour
         {
             StopCoroutine(cooldown);
 
-            if (charges < abilityCharges)
-                charges++;
+            if (currentCharges < abilityCharges)
+                currentCharges++;
 
             if (OnCooldownFinished != null)
                 OnCooldownFinished(this);
@@ -183,30 +169,33 @@ public class Ability : MonoBehaviour
         }
     }
 
-    protected virtual IEnumerator Charge()
+    protected virtual IEnumerator Casting()
     {
-        isCharging = true;
-        yield return new WaitForSeconds(chargeTime);
-        isCharging = false;
+        isCasting = true;
+        yield return new WaitForSeconds(abilityCastTime);
+        isCasting = false;
     }
+    #endregion
+
+    #region Damage
 
     public void DealDamage(int minimumDamage, int maximumDamage, GameObject other)
     {
         Health health = other.GetComponent<Health>();
 
-        minimumDamage += (int)stats.GetStatCurrentValue(Stat.StatType.Damage);
-        maximumDamage += (int)stats.GetStatCurrentValue(Stat.StatType.Damage);
+        minimumDamage += (int)entityStats.GetStatCurrentValue(Stat.StatType.Damage);
+        maximumDamage += (int)entityStats.GetStatCurrentValue(Stat.StatType.Damage);
 
         int randomDamage = Random.Range(minimumDamage, maximumDamage);
 
         int critRoll = Random.Range(0, 100);
 
         bool crit;
-        if ((int)stats.GetStatCurrentValue(Stat.StatType.CriticalStrike) <= critRoll)
+        if ((int)entityStats.GetStatCurrentValue(Stat.StatType.CriticalStrike) <= critRoll)
         {
             crit = true;
             float newDamage = randomDamage;
-            newDamage *= stats.GetStatCurrentValue(Stat.StatType.CriticalDamage);
+            newDamage *= entityStats.GetStatCurrentValue(Stat.StatType.CriticalDamage);
             randomDamage = (int)newDamage;
         }
         else
@@ -219,31 +208,38 @@ public class Ability : MonoBehaviour
         {
             shouldHeal = false;
             CameraShaker.Instance.ShakeOnce(magnitude, roughness, fadeIn, fadeOut);
-            entityHealth.GainHealth((int)stats.GetStatCurrentValue(Stat.StatType.HealthPerHit));
+            entityHealth.GainHealth((int)entityStats.GetStatCurrentValue(Stat.StatType.HealthPerHit));
         }
 
-        for (int i = 0; i < procOnAttackPerks.Length; i++)
+        for (int i = 0; i < abilityPerks.Count; i++)
         {
-            if (procOnAttackPerks[i].activated)
+            if(abilityPerks[i].perkType == Perk.PerkType.ProcOnAttack)
             {
-                if (procOnAttackPerks[i].requiresStatusEffects)
+                if (abilityPerks[i].activated)
                 {
-                    procOnAttackPerks[i].ActivatePerk(other.GetComponent<StatusEffects>());
+                    if (abilityPerks[i].requiresStatusEffects)
+                    {
+                        abilityPerks[i].ActivatePerk(other.GetComponent<StatusEffects>());
+                    }
+                    else
+                        abilityPerks[i].ActivatePerk();
                 }
-                else
-                    procOnAttackPerks[i].ActivatePerk();
             }
         }
 
         if(health.isDead)
         {
-            for (int i = 0; i < procOnKillsPerks.Length; i++)
+            for (int i = 0; i < abilityPerks.Count; i++)
             {
-                if (procOnKillsPerks[i].activated)
+                if (abilityPerks[i].perkType == Perk.PerkType.ProcOnKill)
                 {
-                    procOnKillsPerks[i].ActivatePerk();
+                    if (abilityPerks[i].activated)
+                    {
+                        abilityPerks[i].ActivatePerk();
+                    }
                 }
             }
         }
     }
+    #endregion
 }
