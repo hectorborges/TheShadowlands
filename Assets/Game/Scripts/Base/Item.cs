@@ -42,6 +42,7 @@ public class Item : MonoBehaviour
         {
             Stat statTemplate = itemStatsTemplate.possibleStats[Random.Range(0, itemStatsTemplate.possibleStats.Count)];
             Stat stat = new Stat();
+            stat.statType = statTemplate.statType;
             stat.minValuePerItem = statTemplate.minValuePerItem;
             stat.maxValuePerItem = statTemplate.maxValuePerItem;
             stat.InitializeStat();

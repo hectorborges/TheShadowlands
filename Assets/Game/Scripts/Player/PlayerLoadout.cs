@@ -38,7 +38,7 @@ public class PlayerLoadout : MonoBehaviour
     NavMeshAgent agent;
     Stats stats;
 
-    Item equippedItem;
+    Item equippedItem = new Item();
 
     private void Awake()
     {
@@ -65,6 +65,7 @@ public class PlayerLoadout : MonoBehaviour
 
     void ChangeStats(Item item)
     {
+        print(item.itemName);
         if (equippedItem != null)
         {
             for (int i = 0; i < equippedItem.itemStats.Count; i++)
@@ -74,9 +75,10 @@ public class PlayerLoadout : MonoBehaviour
         }
 
         equippedItem = item;
-        print("Item Equipped is " + equippedItem);
+
         if(equippedItem != null)
         {
+            print("Equipped Item is " + equippedItem.itemName);
             for (int i = 0; i < equippedItem.itemStats.Count; i++)
             {
                 stats.IncreaseStatCurrentValue(equippedItem.itemStats[i].statType, equippedItem.itemStats[i].GetCurrentValue());

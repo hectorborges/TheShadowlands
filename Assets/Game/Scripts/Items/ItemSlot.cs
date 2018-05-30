@@ -6,7 +6,6 @@ using UnityEngine.UI;
 public class ItemSlot : MonoBehaviour
 {
     public LootTable lootTable;
-    public WeaponsVault weaponsVault;
     public Text slotName;
     public Image slotIcon;
 
@@ -31,25 +30,16 @@ public class ItemSlot : MonoBehaviour
 
     public void EquipItem()
     {
-        //if(itemInSlot.weapon)
-        //    weaponsVault.EquipWeapon(itemInSlot);
+        PlayerLoadout.instance.EquipItem(itemInSlot, 0);
 
-        lootTable.RemoveItem();
-
-        if (itemInSlot)
-        {
-            descriptionBoxName.transform.parent.gameObject.SetActive(false);
-            equippedDescriptionBoxName.transform.parent.gameObject.SetActive(false);
-        }
+        print(itemInSlot.itemName);
+        lootTable.RemoveItem(itemInSlot);
+        itemInSlot = null;
         gameObject.SetActive(false);
     }
 
     public void ViewDescription()
     {
-        slotName.text = itemInSlot.itemName;
-        slotName.color = ItemTemplate.instance.GetItemRarityColor(itemInSlot.itemRarity.ToString());
-        slotIcon.sprite = itemInSlot.itemIcon;
-
         descriptionBoxName.color = ItemTemplate.instance.GetItemRarityColor(itemInSlot.itemRarity.ToString());
         descriptionBoxName.text = itemInSlot.itemName;
 
@@ -57,12 +47,9 @@ public class ItemSlot : MonoBehaviour
             statBoxes[i].text = "";
 
         for (int i = 0; i < itemInSlot.itemStats.Count; i++)
-        {
             statBoxes[i].text = ParseValue(itemInSlot.itemStats[i]);
-        }
-
-        if (itemInSlot)
-            descriptionBoxName.transform.parent.gameObject.SetActive(true);
+        
+        descriptionBoxName.transform.parent.gameObject.SetActive(true);
 
         //Equipped Item
 
@@ -108,10 +95,7 @@ public class ItemSlot : MonoBehaviour
 
     public void StopViewingDescription()
     {
-        if (itemInSlot)
-        {
-            descriptionBoxName.transform.parent.gameObject.SetActive(false);
-            equippedDescriptionBoxName.transform.parent.gameObject.SetActive(false);
-        }
+        descriptionBoxName.transform.parent.gameObject.SetActive(false);
+        equippedDescriptionBoxName.transform.parent.gameObject.SetActive(false);
     }
 }

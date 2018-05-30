@@ -6,17 +6,13 @@ using UnityEngine.UI;
 public class LootTable : MonoBehaviour
 {
     public static LootTable instance;
-    public WeaponsVault weaponsVault;
 
     public Item[] lootTable;
     public GameObject lootWindow;
     public GameObject warningMessage;
     public List<ItemSlot> itemSlots;
 
-    public List<string> rarities;
-    public List<Color> rarityColors;
-
-    int itemsInLootTable;
+    List<Item> itemsInLootTable = new List<Item>();
 
     private void Awake()
     {
@@ -25,7 +21,11 @@ public class LootTable : MonoBehaviour
 
     public void NewLootTable()
     {
-        itemsInLootTable = 0;
+        for (int i = 0; i < itemsInLootTable.Count; i++)
+            Destroy(itemsInLootTable[i].gameObject);
+
+        itemsInLootTable.Clear();
+
         lootWindow.SetActive(true);
         warningMessage.SetActive(false);
 
@@ -33,7 +33,6 @@ public class LootTable : MonoBehaviour
             itemSlots[k].gameObject.SetActive(false);
 
         int itemsDropped = Random.Range(1, 4);
-        itemsInLootTable = itemsDropped;
 
         for (int j = 0; j < itemsDropped; j++)
             itemSlots[j].gameObject.SetActive(true);
@@ -45,10 +44,12 @@ public class LootTable : MonoBehaviour
 
             if(dropChance <= randomItem.itemDropChance)
             {
-                Item newItem = new Item();
+                Item newItem = Instantiate(randomItem);
                 newItem.itemAbility = randomItem.itemAbility;
                 newItem.CreateItemStats();
                 itemSlots[i].UpdateItem(newItem);
+                itemsInLootTable.Add(newItem);
+                print("Amt of items in loot table" + itemsInLootTable.Count);
             }
             else
             {
@@ -57,15 +58,16 @@ public class LootTable : MonoBehaviour
         }
     }
 
-    public void RemoveItem()
+    public void RemoveItem(Item itemToRemove)
     {
-        if (itemsInLootTable <= 0)
+        itemsInLootTable.Remove(itemToRemove);
+        if (itemsInLootTable.Count <= 0)
             CloseLootWindow();
     }
 
     public void CloseLootWindow()
     {
-        if(itemsInLootTable > 0)
+        if(itemsInLootTable.Count > 0)
             warningMessage.SetActive(true);
         else
             lootWindow.SetActive(false);
