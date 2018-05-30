@@ -74,6 +74,10 @@ public class LootTable : MonoBehaviour
 
     public void RemoveItem(Item itemToRemove)
     {
+        PlayerLoadout.instance.EquipItem(itemToRemove, 0);
+        totalEssenceWorth -= ItemTemplate.instance.GetEssenceRarity(itemToRemove.itemRarity.ToString());
+        lootWindowEssenceWorth.text = totalEssenceWorth + " Essence";
+
         itemsInLootTable.Remove(itemToRemove);
         if (itemsInLootTable.Count <= 0)
             CloseLootWindow();

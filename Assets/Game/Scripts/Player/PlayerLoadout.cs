@@ -65,7 +65,6 @@ public class PlayerLoadout : MonoBehaviour
 
     void ChangeStats(Item item)
     {
-        print(item.itemName);
         if (equippedItem != null)
         {
             for (int i = 0; i < equippedItem.itemStats.Count; i++)
@@ -78,7 +77,6 @@ public class PlayerLoadout : MonoBehaviour
 
         if(equippedItem != null)
         {
-            print("Equipped Item is " + equippedItem.itemName);
             for (int i = 0; i < equippedItem.itemStats.Count; i++)
             {
                 stats.IncreaseStatCurrentValue(equippedItem.itemStats[i].statType, equippedItem.itemStats[i].GetCurrentValue());
@@ -123,13 +121,14 @@ public class PlayerLoadout : MonoBehaviour
     //pass in -1 if not changing abilities
     public void UpdateItem(Item item, int abilitySlotIndex)
     {
-        if (itemsInSlots.Count <= 0) return;
+        itemsInSlots[abilitySlotIndex] = item;
         if (abilitySlotIndex != -1 && itemsInSlots[abilitySlotIndex] != null)
         {
             itemsInSlots[abilitySlotIndex].itemAbility.OnCooldownFinished -= UpdateAbiltyCharges; //Move this to unsubscribe before changing abilities
+
+            print("Equipped Ability is " + itemsInSlots[abilitySlotIndex].itemAbility.abilityName);
             abilityCharges[abilitySlotIndex].text = itemsInSlots[abilitySlotIndex].itemAbility.abilityCharges.ToString();
 
-            itemsInSlots[abilitySlotIndex] = item;
             agent.stoppingDistance = itemsInSlots[abilitySlotIndex].itemAbility.abilityRange;
 
             if (itemsInSlots[abilitySlotIndex].itemAbility.abilityCharges <= 1)
@@ -141,13 +140,16 @@ public class PlayerLoadout : MonoBehaviour
         if (itemsInSlots[abilitySlotIndex] == null) return;
         for (int i = 0; i < itemsInSlots.Count; i++)
         {
-            itemsInSlots[i].itemAbility.OnCooldownFinished += UpdateAbiltyCharges; //move this to subscribe after changing abilities
-            abilitySlots[i].sprite = itemsInSlots[i].itemAbility.abilityIcon;
-
-            if (itemsInSlots[i].itemAbility.abilityCharges > 1)
+            if(itemsInSlots[i] != null)
             {
-                abilityCharges[i].text = itemsInSlots[i].itemAbility.abilityCharges.ToString();
-                abilityCharges[i].enabled = true;
+                itemsInSlots[i].itemAbility.OnCooldownFinished += UpdateAbiltyCharges; //move this to subscribe after changing abilities
+                abilitySlots[i].sprite = itemsInSlots[i].itemAbility.abilityIcon;
+
+                if (itemsInSlots[i].itemAbility.abilityCharges > 1)
+                {
+                    abilityCharges[i].text = itemsInSlots[i].itemAbility.abilityCharges.ToString();
+                    abilityCharges[i].enabled = true;
+                }
             }
         }
     }
@@ -165,6 +167,9 @@ public class PlayerLoadout : MonoBehaviour
         {
             if (itemsInSlots[i] && itemsInSlots[i].itemAbility.CanShoot() && abilityActive[i])
             {
+                if(currentWeapon != itemsInSlots[i].itemAbility.abilityWeapon)
+                    ChangeWeapon(itemsInSlots[i].itemAbility.abilityWeapon);
+
                 itemsInSlots[i].itemAbility.ActivateAbility();
                 abilityCharges[i].text = itemsInSlots[i].itemAbility.abilityCharges.ToString();
 
