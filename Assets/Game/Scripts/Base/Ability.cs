@@ -33,7 +33,6 @@ public class Ability : MonoBehaviour
     public bool requiresTarget;
 
     [Space, Header("Required Variables")]
-    public Item abilityItem;
     public Stats entityStats;                                                                       //This is the character's actual stats
     public Health entityHealth;
     public Mana entityMana;
@@ -44,6 +43,7 @@ public class Ability : MonoBehaviour
 
     [Space, Header("Optional Variables")]
     public Weapon abilityWeapon;
+    public List<Perk> abilityPerks = new List<Perk>();
 
     [Space, Header("Camera Shake")]
     public float magnitude = 4f;
@@ -56,19 +56,20 @@ public class Ability : MonoBehaviour
     [HideInInspector] public bool isActivated;
 
     List<Stat> abilityStats = new List<Stat>();
-    List<Perk> abilityPerks = new List<Perk>();
 
     bool onCooldown;
     bool shouldHeal;
 
     Coroutine cast;
     Coroutine cooldown;
+    Item abilityItem;
 
     public enum AbilitySlot { PrimaryAbility, SecondaryAbility, AbilityOne, AbilityTwo, AbilityThree, AbilityFour };
     [HideInInspector] public AbilitySlot abilitySlot;
 
     protected virtual void Start()
     {
+        abilityItem = GetComponent<Item>();
         currentCharges = abilityCharges;
     }
 

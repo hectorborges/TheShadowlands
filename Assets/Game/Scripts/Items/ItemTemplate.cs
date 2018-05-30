@@ -87,4 +87,24 @@ public class ItemTemplate : MonoBehaviour
         else
             return Color.white;
     }
+
+    public int GetDropChance(Item.ItemRarity itemRarity)
+    {
+        switch(itemRarity)
+        {
+            case Item.ItemRarity.Common:
+                return 100;
+            case Item.ItemRarity.Rare:
+                return 80;
+            case Item.ItemRarity.Epic:
+                return 50;
+            case Item.ItemRarity.Legendary:
+                return 10;
+            case Item.ItemRarity.Exotic:
+                return 5;
+            case Item.ItemRarity.Artifact:
+                return 2;
+        }
+        return 0;
+    }
 }

@@ -5,13 +5,11 @@ using UnityEngine;
 public class MeleeAbility : Ability
 {
     public DamageTrigger damageTrigger;
-    public int minimumDamage;
-    public int maximumDamage;
 
     protected override void Start()
     {
         base.Start();
-        damageTrigger.SetDamage(minimumDamage, maximumDamage, this);
+        damageTrigger.SetDamage(abilityMinimumDamage, abilityMaximumDamage, this);
     }
 
     public override void ActivateAbility()

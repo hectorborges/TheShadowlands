@@ -4,13 +4,11 @@ using UnityEngine;
 
 public class Item : MonoBehaviour
 {
-    public Ability itemAbility;
-    public int itemDropChance;
-    //public Scroll scrollItem;
-
     [HideInInspector] public string itemName;
     [HideInInspector] public Sprite itemIcon;
     [HideInInspector] public string itemDescription;
+    [HideInInspector] public Ability itemAbility;
+    [HideInInspector] public int itemDropChance;
 
     public enum ItemRarity { Common, Rare, Epic, Legendary, Exotic, Artifact };
     [HideInInspector] public ItemRarity itemRarity;
@@ -18,6 +16,11 @@ public class Item : MonoBehaviour
     [HideInInspector] public List<Stat> itemStats = new List<Stat>();
 
     Stats playerStats;
+
+    private void Start()
+    {
+        itemAbility = GetComponent<Ability>();
+    }
 
     public void CreateItemStats()
     {
@@ -32,7 +35,7 @@ public class Item : MonoBehaviour
 
         itemRarity = GetRandomRarity();                        
         int itemStatCount = GetChosenRarityIndex();
-
+        itemDropChance = itemStatsTemplate.GetDropChance(itemRarity);
         //This loop picks a random stat template and creates a new stat in it's image. After doing so it adds the stat to this item's stats
         //This continues for how every many stats this item rolled with
         for (int i = 0; i < itemStatCount; i++)
