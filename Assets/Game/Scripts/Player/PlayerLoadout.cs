@@ -6,8 +6,8 @@ using UnityEngine.AI;
 
 public class PlayerLoadout : MonoBehaviour
 {
-    public Stats stats;
     public static PlayerLoadout instance;
+
     [Space, Header("Ability Keys")]
     public KeyCode primaryAbilityKey;
     public KeyCode secondaryAbilityKey;
@@ -21,7 +21,7 @@ public class PlayerLoadout : MonoBehaviour
     public GameObject weaponHolder;
 
     [Space, Header("Ability Loadout")]
-    public List<Ability> abilities = new List<Ability>();
+    public List<Item> itemsInSlots;
     public List<Image> abilitySlots;
     public List<Text> abilityCharges;
     public List<Image> abilityCooldownProgress;
@@ -35,6 +35,7 @@ public class PlayerLoadout : MonoBehaviour
     public static Interactable focus;
     PlayerAnimator playerAnimator;
     NavMeshAgent agent;
+    Stats stats;
 
     Item equippedItem;
 
@@ -44,7 +45,7 @@ public class PlayerLoadout : MonoBehaviour
         Application.targetFrameRate = 60;
         playerAnimator = GetComponent<PlayerAnimator>();
         agent = GetComponent<NavMeshAgent>();
-        UpdateAbilities(-1);
+        stats = GetComponent<Stats>();
 
         for (int i = 0; i < 6; i++)
             cooldownQueues.Add(new Queue<float>());
@@ -52,62 +53,61 @@ public class PlayerLoadout : MonoBehaviour
 
     private void Start()
     {
-        UpdateWeapons(currentWeapon);
+        ChangeWeapon(currentWeapon);
     }
 
-    public void EquippedItem(Item item)
+    public void EquipItem(Item item, int abilitySlotIndex)
+    {
+        ChangeStats(item);
+        UpdateItem(item, abilitySlotIndex);
+    }
+
+    void ChangeStats(Item item)
     {
         if (equippedItem != null)
         {
-            for (int i = 0; i < equippedItem.stats.Count; i++)
+            for (int i = 0; i < equippedItem.itemStats.Count; i++)
             {
-                stats.DecreaseStatCurrentValue(equippedItem.stats[i].statType, equippedItem.stats[i].GetCurrentValue());
+                stats.DecreaseStatCurrentValue(equippedItem.itemStats[i].statType, equippedItem.itemStats[i].GetCurrentValue());
             }
         }
 
         equippedItem = item;
 
-        for (int i = 0; i < equippedItem.stats.Count; i++)
+        for (int i = 0; i < equippedItem.itemStats.Count; i++)
         {
-            stats.IncreaseStatCurrentValue(equippedItem.stats[i].statType, equippedItem.stats[i].GetCurrentValue());
+            stats.IncreaseStatCurrentValue(equippedItem.itemStats[i].statType, equippedItem.itemStats[i].GetCurrentValue());
         }
     }
 
-    public void UpdateWeapons(Weapon newWeapon)
+    public void ChangeWeapon(Weapon newWeapon)
     {
-        ChangeWeapon(currentWeapon.itemModel.transform, weaponHolder.transform);
+        ChangeWeaponLocation(currentWeapon.itemModel.transform, weaponHolder.transform);
         currentWeapon.SetWeaponActive(false);
         currentWeapon.itemModel.SetActive(false);
 
         if(currentWeapon.secondaryModel)
         {
-            ChangeWeapon(currentWeapon.secondaryModel.transform, weaponHolder.transform);
+            ChangeWeaponLocation(currentWeapon.secondaryModel.transform, weaponHolder.transform);
             currentWeapon.secondaryModel.SetActive(false);
         }
 
         currentWeapon = newWeapon;
 
-        abilities[0] = currentWeapon.primaryAbility;
-        abilities[1] = currentWeapon.secondaryAbility;
-
-        ChangeWeapon(currentWeapon.itemModel.transform, currentWeapon.equipLocation.transform);
+        ChangeWeaponLocation(currentWeapon.itemModel.transform, currentWeapon.equipLocation.transform);
         currentWeapon.itemModel.SetActive(true);
         currentWeapon.SetWeaponActive(true);
 
         if (currentWeapon.secondaryModel)
         {
-            ChangeWeapon(currentWeapon.secondaryModel.transform, currentWeapon.secondaryEquipLocation.transform);
+            ChangeWeaponLocation(currentWeapon.secondaryModel.transform, currentWeapon.secondaryEquipLocation.transform);
             currentWeapon.secondaryModel.SetActive(true);
         }
 
         playerAnimator.OverrideAnimations(currentWeapon.animatorOverrideController);
-        UpdateAbilities(0);
-        UpdateAbilities(1);
-
-        agent.stoppingDistance = abilities[0].attackDistance;
     }
 
-    void ChangeWeapon(Transform model, Transform location)
+    void ChangeWeaponLocation(Transform model, Transform location)
     {
         model.SetParent(location);
         model.localPosition = Vector3.zero;
@@ -115,27 +115,30 @@ public class PlayerLoadout : MonoBehaviour
     }
 
     //pass in -1 if not changing abilities
-    public void UpdateAbilities(int abilitySlotIndex)
+    public void UpdateItem(Item item, int abilitySlotIndex)
     {
         if (abilitySlotIndex != -1)
         {
-            abilities[abilitySlotIndex].OnCooldownFinished -= UpdateAbiltyCharges; //Move this to unsubscribe before changing abilities
-            abilityCharges[abilitySlotIndex].text = abilities[abilitySlotIndex].charges.ToString();
+            itemsInSlots[abilitySlotIndex].itemAbility.OnCooldownFinished -= UpdateAbiltyCharges; //Move this to unsubscribe before changing abilities
+            abilityCharges[abilitySlotIndex].text = itemsInSlots[abilitySlotIndex].itemAbility.abilityCharges.ToString();
 
-            if (abilities[abilitySlotIndex].abilityCharges <= 1)
+            itemsInSlots[abilitySlotIndex] = item;
+            agent.stoppingDistance = itemsInSlots[abilitySlotIndex].itemAbility.abilityRange;
+
+            if (itemsInSlots[abilitySlotIndex].itemAbility.abilityCharges <= 1)
                 abilityCharges[abilitySlotIndex].enabled = false;
             else
                 abilityCharges[abilitySlotIndex].enabled = true;
         }
 
-        for (int i = 0; i < abilities.Count; i++)
+        for (int i = 0; i < itemsInSlots.Count; i++)
         {
-            abilities[i].OnCooldownFinished += UpdateAbiltyCharges; //move this to subscribe after changing abilities
-            abilitySlots[i].sprite = abilities[i].abilityIcon;
+            itemsInSlots[i].itemAbility.OnCooldownFinished += UpdateAbiltyCharges; //move this to subscribe after changing abilities
+            abilitySlots[i].sprite = itemsInSlots[i].itemAbility.abilityIcon;
 
-            if (abilities[i].abilityCharges > 1)
+            if (itemsInSlots[i].itemAbility.abilityCharges > 1)
             {
-                abilityCharges[i].text = abilities[i].abilityCharges.ToString();
+                abilityCharges[i].text = itemsInSlots[i].itemAbility.abilityCharges.ToString();
                 abilityCharges[i].enabled = true;
             }
         }
@@ -149,29 +152,29 @@ public class PlayerLoadout : MonoBehaviour
 
     void AbilityInput()
     {
-        for (int i = 0; i < abilities.Count; i++)
+        for (int i = 0; i < itemsInSlots.Count; i++)
         {
-            if (abilities[i] && abilities[i].CanShoot() && abilityActive[i])
+            if (itemsInSlots[i] && itemsInSlots[i].itemAbility.CanShoot() && abilityActive[i])
             {
-                abilities[i].ActivateAbility();
-                abilityCharges[i].text = abilities[i].charges.ToString();
+                itemsInSlots[i].itemAbility.ActivateAbility();
+                abilityCharges[i].text = itemsInSlots[i].itemAbility.abilityCharges.ToString();
 
-                if (abilities[i].charges >= 0)
+                if (itemsInSlots[i].itemAbility.abilityCharges >= 0)
                 {
                     cooldownQueues[i].Enqueue(Time.time);
                 }
             }
-            else if (abilities[i] && abilityDeactive[i])
-                abilities[i].DeactivateAbility();
+            else if (itemsInSlots[i] && abilityDeactive[i])
+                itemsInSlots[i].itemAbility.DeactivateAbility();
         }
     }
 
-    void UpdateAbiltyCharges(Ability ability)
+    void UpdateAbiltyCharges(Item item)
     {
-        if (abilities.Contains(ability))
+        if (itemsInSlots.Contains(item))
         {
-            int abilityIndex = abilities.IndexOf(ability);
-            abilityCharges[abilityIndex].text = ability.charges.ToString();
+            int abilityIndex = itemsInSlots.IndexOf(item);
+            abilityCharges[abilityIndex].text = item.itemAbility.abilityCharges.ToString();
         }
     }
 
@@ -179,7 +182,7 @@ public class PlayerLoadout : MonoBehaviour
     {
         if (cooldownQueues.Count <= 0) return;
 
-        for (int j = 0; j < abilities.Count; j++)
+        for (int j = 0; j < itemsInSlots.Count; j++)
         {
             Cooldown(j);
         }
@@ -187,7 +190,7 @@ public class PlayerLoadout : MonoBehaviour
         for (int i = 0; i < cooldownQueues.Count; i++)
         {
             if (cooldownQueues[i].Count > 0 && cooldownQueues[i].ToArray().Length > 0)
-                remainingTime = ((cooldownQueues[i].Peek() + abilities[i].abilityCooldown) - Time.time) / abilities[i].abilityCooldown;
+                remainingTime = ((cooldownQueues[i].Peek() + itemsInSlots[i].itemAbility.abilityCooldown) - Time.time) / itemsInSlots[i].itemAbility.abilityCooldown;
 
             if (remainingTime < .01f && cooldownQueues[i].Count > 0)
                 cooldownQueues[i].Dequeue();
@@ -198,9 +201,9 @@ public class PlayerLoadout : MonoBehaviour
     {
         if (cooldownQueues[abilityIndex].Count > 0)
         {
-            float _remainingTime = ((cooldownQueues[abilityIndex].Peek() + abilities[abilityIndex].abilityCooldown) - Time.time) / abilities[abilityIndex].abilityCooldown;
+            float _remainingTime = ((cooldownQueues[abilityIndex].Peek() + itemsInSlots[abilityIndex].itemAbility.abilityCooldown) - Time.time) / itemsInSlots[abilityIndex].itemAbility.abilityCooldown;
 
-            if (!abilities[abilityIndex].CheckCooldown())
+            if (!itemsInSlots[abilityIndex].itemAbility.CheckCooldown())
                 _remainingTime = 0;
 
                 abilityCooldownProgress[abilityIndex].fillAmount = _remainingTime;
@@ -210,9 +213,9 @@ public class PlayerLoadout : MonoBehaviour
         }
     }
 
-    public void ResetCooldown(Ability _ability)
+    public void ResetCooldown(Item item)
     {
-        int index = abilities.IndexOf(_ability);
+        int index = itemsInSlots.IndexOf(item);
 
         if(cooldownQueues[index].Count > 0 && cooldownQueues[index].ToArray().Length > 0)
             cooldownQueues[index].Dequeue();
@@ -222,12 +225,12 @@ public class PlayerLoadout : MonoBehaviour
 
     private void RecieveInput()
     {
-        abilityActive[0] = Attack(abilities[0], primaryAbilityKey);
-        abilityActive[1] = Attack(abilities[1], secondaryAbilityKey);
-        abilityActive[2] = Attack(abilities[2], abilityOneKey);
-        abilityActive[3] = Attack(abilities[3], abilityTwoKey);
-        abilityActive[4] = Attack(abilities[4], abilityThreeKey);
-        abilityActive[5] = Attack(abilities[5], abilityFourKey);
+        abilityActive[0] = Attack(itemsInSlots[0], primaryAbilityKey);
+        abilityActive[1] = Attack(itemsInSlots[1], secondaryAbilityKey);
+        abilityActive[2] = Attack(itemsInSlots[2], abilityOneKey);
+        abilityActive[3] = Attack(itemsInSlots[3], abilityTwoKey);
+        abilityActive[4] = Attack(itemsInSlots[4], abilityThreeKey);
+        abilityActive[5] = Attack(itemsInSlots[5], abilityFourKey);
 
         abilityDeactive[0] = Input.GetKeyUp(primaryAbilityKey);
         abilityDeactive[1] = Input.GetKeyUp(secondaryAbilityKey);
@@ -239,15 +242,15 @@ public class PlayerLoadout : MonoBehaviour
         AbilityInput();
     }
 
-    public bool Attack(Ability ability, KeyCode abilityKey)
+    public bool Attack(Item item, KeyCode abilityKey)
     {
-        if(ability.requiresTarget)
+        if(item.itemAbility.requiresTarget)
         {
             if(focus != null)
             {
-                if(Utility.CheckDistance(transform.position, focus.transform.position) < ability.attackDistance)
+                if(Utility.CheckDistance(transform.position, focus.transform.position) < item.itemAbility.abilityRange)
                 {
-                    if (ability.abilityInput == Ability.AbilityInput.GetButton)
+                    if (item.itemAbility.abilityInput == Ability.AbilityInput.GetButton)
                         return Input.GetKey(abilityKey);
                     else
                         return Input.GetKeyDown(abilityKey);
@@ -256,7 +259,7 @@ public class PlayerLoadout : MonoBehaviour
         }
         else
         {
-            if (ability.abilityInput == Ability.AbilityInput.GetButton)
+            if (item.itemAbility.abilityInput == Ability.AbilityInput.GetButton)
                 return Input.GetKey(abilityKey);
             else
             {

@@ -23,31 +23,6 @@ public class LootTable : MonoBehaviour
         instance = this;
     }
 
-    private void Start()
-    {
-        Item defaultItemTemplate = null;
-        for(int i = 0; i < lootTable.Length; i++)
-        {
-            if (lootTable[i].itemName == "Sword & Shield")
-                defaultItemTemplate = lootTable[i];
-        }
-
-        Item defaultItem = Instantiate(defaultItemTemplate);
-        defaultItem.rarity = Item.Rarity.Common;
-        weaponsVault.EquipWeapon(defaultItem);
-    }
-
-    public Color GetItemRarityColor(string rarity)
-    {
-        if (rarities.Contains(rarity))
-        {
-            int rarityIndex = rarities.IndexOf(rarity);
-            return rarityColors[rarityIndex];
-        }
-        else
-            return Color.white;
-    }
-
     public void NewLootTable()
     {
         itemsInLootTable = 0;
@@ -66,9 +41,18 @@ public class LootTable : MonoBehaviour
         for(int i = 0; i < itemsDropped; i++)
         {
             Item randomItem = lootTable[Random.Range(0, lootTable.Length)];
-            Item newItem = Instantiate(randomItem);
-            newItem.Initialize();
-            itemSlots[i].UpdateItem(newItem);
+            int dropChance = Random.Range(0, 100);
+
+            if(dropChance <= randomItem.itemDropChance)
+            {
+                Item newItem = new Item();
+                newItem.CreateItemStats();
+                itemSlots[i].UpdateItem(newItem);
+            }
+            else
+            {
+                i--;
+            }
         }
     }
 

@@ -4,26 +4,31 @@ using UnityEngine;
 
 public class Item : MonoBehaviour
 {
-    [Space, Header("Loot Type")]
-    public Ability abilityItem;
+    public Ability itemAbility;
+    public int itemDropChance;
     //public Scroll scrollItem;
 
+    [HideInInspector] public string itemName;
+    [HideInInspector] public Sprite itemIcon;
+    [HideInInspector] public string itemDescription;
 
-    string itemName;
-    Sprite itemIcon;
-    string itemDescription;
+    public enum ItemRarity { Common, Rare, Epic, Legendary, Exotic, Artifact };
+    [HideInInspector] public ItemRarity itemRarity;
 
-    enum ItemRarity { Common, Rare, Epic, Legendary, Exotic, Artifact };
-    ItemRarity itemRarity;
-
-    List<Stat> itemStats = new List<Stat>();
+    [HideInInspector] public List<Stat> itemStats = new List<Stat>();
 
     Stats playerStats;
 
-
     public void CreateItemStats()
     {
-        ItemStatsTemplate itemStatsTemplate = ItemStatsTemplate.instance;
+        ItemTemplate itemStatsTemplate = ItemTemplate.instance;
+
+        if(itemAbility)
+        {
+            itemName = itemAbility.abilityName;
+            itemIcon = itemAbility.abilityIcon;
+            itemDescription = itemAbility.abilityDescription;
+        }
 
         itemRarity = GetRandomRarity();                        
         int itemStatCount = GetChosenRarityIndex();
@@ -45,7 +50,7 @@ public class Item : MonoBehaviour
     #region CheckMinimumRarity
     int CheckMinimumRarity()
     {
-        switch (abilityItem.minimumRarity)
+        switch (itemAbility.minimumRarity)
         {
             case Ability.MinimumRarity.Common:
                 return 0;
@@ -110,26 +115,4 @@ public class Item : MonoBehaviour
         }
     }
     #endregion
-
-    public void EquipItem()
-    {
-        //I want to make this function call the PlayerLoadout Script and pass this item to it.
-        //The PlayerLoadout should should remove the old item's stats and add the new items stats.
-        //Then the PlayerLoadout should replace the old ability with the new ability
-        //Lastly the PlayerLoadout should add this item to a list of equipped items
-
-        if(playerStats == null)
-            playerStats = ReferenceManager.player.GetComponent<Stats>();
-
-        foreach(Stat stat in itemStats)
-        {
-            playerStats.IncreaseStatBaseValue(stat.statType, stat.statCurrentValue);
-            playerStats.IncreaseStatCurrentValue(stat.statType, stat.statCurrentValue);
-        }
-    }
-
-    public void UnEquipItem()
-    {
-
-    }
 }

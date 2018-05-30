@@ -5,9 +5,12 @@ using UnityEngine;
 //This class is a template of all of the possible stats that an item can roll with.
 //This class also covers the minimum and maximum possible values each stat can roll with.
 
-public class ItemStatsTemplate : MonoBehaviour
+public class ItemTemplate : MonoBehaviour
 {
-    public static ItemStatsTemplate instance;
+    public static ItemTemplate instance;
+
+    public List<string> rarities;
+    public List<Color> rarityColors;
 
     [Space, Header("Ability Stats Constraints")]
 
@@ -72,5 +75,16 @@ public class ItemStatsTemplate : MonoBehaviour
         possibleStats.Add(healthPerHit);
         possibleStats.Add(mana);
         possibleStats.Add(manaPerHit);
+    }
+
+    public Color GetItemRarityColor(string rarity)
+    {
+        if (rarities.Contains(rarity))
+        {
+            int rarityIndex = rarities.IndexOf(rarity);
+            return rarityColors[rarityIndex];
+        }
+        else
+            return Color.white;
     }
 }

@@ -11,20 +11,21 @@ public class ItemSlot : MonoBehaviour
     public Image slotIcon;
 
     public Text descriptionBoxName;
+    public Text descriptionBox;
     public List<Text> statBoxes;
 
     public Text equippedDescriptionBoxName;
+    public Text equippedDescriptionBox;
     public List<Text> equippedStatBoxes;
 
     Item itemInSlot;
 
     public void UpdateItem(Item newItem)
     {
-        print("Updating Item");
         itemInSlot = newItem;
 
         slotName.text = itemInSlot.itemName;
-        slotName.color = lootTable.GetItemRarityColor(itemInSlot.rarity.ToString());
+        slotName.color = ItemTemplate.instance.GetItemRarityColor(itemInSlot.itemRarity.ToString());
         slotIcon.sprite = itemInSlot.itemIcon;
     }
 

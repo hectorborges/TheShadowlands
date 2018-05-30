@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Ability : MonoBehaviour
 {
-    public delegate void AbilityEvents(Ability _thisAbility);
+    public delegate void AbilityEvents(Item _item);
     public event AbilityEvents OnCooldownFinished;
 
     [Space, Header("Basic Information")]
