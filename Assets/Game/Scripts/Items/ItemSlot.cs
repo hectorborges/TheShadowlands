@@ -28,13 +28,13 @@ public class ItemSlot : MonoBehaviour
         slotIcon.sprite = itemInSlot.itemIcon;
     }
 
-    public void EquipItem()
+    public void EquipItem(int itemSlot)
     {
-        PlayerLoadout.instance.EquipItem(itemInSlot, 0);
-
-        print(itemInSlot.itemName);
-        lootTable.RemoveItem(itemInSlot);
-        itemInSlot = null;
+        PlayerLoadout.instance.EquipItem(itemInSlot, itemSlot);
+        
+        lootTable.SwitchItems(PlayerLoadout.instance.itemsInSlots[itemSlot], itemInSlot);
+        itemInSlot = PlayerLoadout.instance.itemsInSlots[itemSlot];
+        UpdateItem(itemInSlot);
         gameObject.SetActive(false);
     }
 
@@ -53,21 +53,27 @@ public class ItemSlot : MonoBehaviour
 
         //Equipped Item
 
-        //if (weaponsVault.GetEquippedItem(itemInSlot.weapon) == null) return;
-        //equippedDescriptionBoxName.color = ItemTemplate.instance.GetItemRarityColor(weaponsVault.GetEquippedItem(itemInSlot.weapon).rarity.ToString());
-        //equippedDescriptionBoxName.text = weaponsVault.GetEquippedItem(itemInSlot.weapon).itemName;
+        Item equippedItem = null;
+        for(int i = 0; i < PlayerLoadout.instance.itemsInSlots.Count; i++)
+        {
+            if (PlayerLoadout.instance.itemsInSlots[i] == itemInSlot)
+                equippedItem = PlayerLoadout.instance.itemsInSlots[i];
+        }
 
-        //for (int i = 0; i < equippedStatBoxes.Count; i++)
-        //    equippedStatBoxes[i].text = "";
+        if (equippedItem == null) return;
+        equippedDescriptionBoxName.color = ItemTemplate.instance.GetItemRarityColor(equippedItem.itemRarity.ToString());
+        equippedDescriptionBoxName.text = equippedItem.itemName;
 
-        //for (int i = 0; i < weaponsVault.GetEquippedItem(itemInSlot.weapon).stats.Count; i++)
-        //{
-        //    equippedStatBoxes[i].text = ParseValue(weaponsVault.GetEquippedItem(itemInSlot.weapon).stats[i]);
-        //}
+        for (int i = 0; i < equippedStatBoxes.Count; i++)
+            equippedStatBoxes[i].text = "";
 
-        //if (itemInSlot)
-        //    equippedDescriptionBoxName.transform.parent.gameObject.SetActive(true);
+        for (int i = 0; i < equippedItem.itemStats.Count; i++)
+        {
+            equippedStatBoxes[i].text = ParseValue(equippedItem.itemStats[i]);
+        }
 
+        if (itemInSlot)
+            equippedDescriptionBoxName.transform.parent.gameObject.SetActive(true);
     }
 
     string ParseValue(Stat stat)

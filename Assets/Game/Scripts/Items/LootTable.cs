@@ -14,6 +14,11 @@ public class LootTable : MonoBehaviour
     public Text lootWindowEssenceWorth;
     public Text essenceText;
 
+    [Space, Header("Equipped Ability Information")]
+    public Text equippedAbilityName;
+    public Text equippedAbilityDescription;
+    public List<Text> equippedAbilityStats;
+
     int essence;
     int totalEssenceWorth;
 
@@ -72,13 +77,58 @@ public class LootTable : MonoBehaviour
         lootWindowEssenceWorth.text = totalEssenceWorth + " Essence";
     }
 
-    public void RemoveItem(Item itemToRemove)
+    public void ShowEquippedAbilityDescription(int abilityIndex)
     {
-        PlayerLoadout.instance.EquipItem(itemToRemove, 0);
+        Item equippedItem = PlayerLoadout.instance.itemsInSlots[abilityIndex];
+        if (!equippedItem) return;
+        equippedAbilityName.color = ItemTemplate.instance.GetItemRarityColor(equippedItem.itemRarity.ToString());
+        equippedAbilityName.text = equippedItem.itemName;
+
+        for (int i = 0; i < equippedAbilityStats.Count; i++)
+            equippedAbilityStats[i].text = "";
+
+        for (int i = 0; i < equippedItem.itemStats.Count; i++)
+            equippedAbilityStats[i].text = ParseValue(equippedItem.itemStats[i]);
+
+        equippedAbilityName.transform.parent.gameObject.SetActive(true);
+    }
+
+    public void StopShowingEquippedAbilityDescription()
+    {
+        equippedAbilityName.transform.parent.gameObject.SetActive(false);
+    }
+
+    string ParseValue(Stat stat)
+    {
+        switch (stat.statType)
+        {
+            case Stat.StatType.CriticalStrike:
+                return Mathf.RoundToInt(stat.GetCurrentValue()) + "% Critical Strike";
+            case Stat.StatType.CriticalDamage:
+                return Mathf.RoundToInt((stat.GetCurrentValue() * 100)) + "% Critical Damage";
+            case Stat.StatType.Damage:
+                return Mathf.RoundToInt(stat.GetCurrentValue()) + " Damage";
+            case Stat.StatType.Health:
+                return Mathf.RoundToInt(stat.GetCurrentValue()) + " Health";
+            case Stat.StatType.HealthPerHit:
+                return Mathf.RoundToInt(stat.GetCurrentValue()) + " Health On Hit";
+            case Stat.StatType.Mana:
+                return Mathf.RoundToInt(stat.GetCurrentValue()) + " Mana";
+            case Stat.StatType.ManaPerHit:
+                return Mathf.RoundToInt(stat.GetCurrentValue()) + " Mana On Hit";
+            default:
+                return "";
+        }
+    }
+
+    public void SwitchItems(Item itemInSlot, Item itemToRemove)
+    {
         totalEssenceWorth -= ItemTemplate.instance.GetEssenceRarity(itemToRemove.itemRarity.ToString());
+        totalEssenceWorth -= ItemTemplate.instance.GetEssenceRarity(itemInSlot.itemRarity.ToString());
         lootWindowEssenceWorth.text = totalEssenceWorth + " Essence";
 
-        itemsInLootTable.Remove(itemToRemove);
+        itemsInLootTable[itemsInLootTable.IndexOf(itemToRemove)] = itemInSlot;
+
         if (itemsInLootTable.Count <= 0)
             CloseLootWindow();
     }
