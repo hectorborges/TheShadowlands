@@ -11,6 +11,8 @@ public class ItemTemplate : MonoBehaviour
 
     public List<string> rarities;
     public List<Color> rarityColors;
+    public List<int> essencesWorth;
+    public List<int> dropChances;
 
     [Space, Header("Ability Stats Constraints")]
 
@@ -88,23 +90,25 @@ public class ItemTemplate : MonoBehaviour
             return Color.white;
     }
 
-    public int GetDropChance(Item.ItemRarity itemRarity)
+    public int GetEssenceRarity(string rarity)
     {
-        switch(itemRarity)
+        if (rarities.Contains(rarity))
         {
-            case Item.ItemRarity.Common:
-                return 100;
-            case Item.ItemRarity.Rare:
-                return 80;
-            case Item.ItemRarity.Epic:
-                return 50;
-            case Item.ItemRarity.Legendary:
-                return 10;
-            case Item.ItemRarity.Exotic:
-                return 5;
-            case Item.ItemRarity.Artifact:
-                return 2;
+            int rarityIndex = rarities.IndexOf(rarity);
+            return essencesWorth[rarityIndex];
         }
-        return 0;
+        else
+            return 0;
+    }
+
+    public int GetDropChance(string rarity)
+    {
+        if (rarities.Contains(rarity))
+        {
+            int rarityIndex = rarities.IndexOf(rarity);
+            return dropChances[rarityIndex];
+        }
+        else
+            return 0;
     }
 }

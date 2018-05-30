@@ -10,8 +10,12 @@ public class LootTable : MonoBehaviour
     public Item[] lootTable;
     public Canvas playerCanvas;
     public GameObject lootWindow;
-    public GameObject warningMessage;
     public List<ItemSlot> itemSlots;
+    public Text lootWindowEssenceWorth;
+    public Text essenceText;
+
+    int essence;
+    int totalEssenceWorth;
 
     List<Item> itemsInLootTable = new List<Item>();
 
@@ -31,9 +35,9 @@ public class LootTable : MonoBehaviour
             Destroy(itemsInLootTable[i].gameObject);
 
         itemsInLootTable.Clear();
-
+        totalEssenceWorth = 0;
+        lootWindowEssenceWorth.text = totalEssenceWorth + " Essence";
         lootWindow.SetActive(true);
-        warningMessage.SetActive(false);
 
         for (int k = 0; k < itemSlots.Count; k++)
             itemSlots[k].gameObject.SetActive(false);
@@ -61,6 +65,11 @@ public class LootTable : MonoBehaviour
                 i--;
             }
         }
+        totalEssenceWorth = 0;
+        foreach (Item item in itemsInLootTable)
+            totalEssenceWorth += ItemTemplate.instance.GetEssenceRarity(item.itemRarity.ToString());
+
+        lootWindowEssenceWorth.text = totalEssenceWorth + " Essence";
     }
 
     public void RemoveItem(Item itemToRemove)
@@ -72,7 +81,7 @@ public class LootTable : MonoBehaviour
 
     public void CloseLootWindow()
     {
-        if(itemsInLootTable.Count > 0)
+        if (itemsInLootTable.Count > 0)
         {
             ReferenceManager.essenceAnimator.SetTrigger("Essence");
             StartCoroutine(CloseWindow());
@@ -85,6 +94,8 @@ public class LootTable : MonoBehaviour
     IEnumerator CloseWindow()
     {
         yield return new WaitForSeconds(1);
+        essence += totalEssenceWorth;
+        essenceText.text = essence.ToString();
         lootWindow.SetActive(false);
     }
 }
