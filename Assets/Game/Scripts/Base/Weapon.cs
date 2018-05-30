@@ -4,31 +4,28 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
-    public string itemName;
-    public Sprite itemIcon;
-    public ItemType itemType;
-    [Space]
     public GameObject itemModel;
     public GameObject secondaryModel;
     public GameObject equipLocation;
     public GameObject secondaryEquipLocation;
-    [Space]
-    public Ability primaryAbility;
-    public Ability secondaryAbility;
 
-    [HideInInspector] public float weaponExperience;
-    [HideInInspector] public float currentWeaponLevel;
+    //[Space]
+    //public Ability primaryAbility;
+    //public Ability secondaryAbility;
 
-    public float requiredExperience;
-    public float requiredExperienceMultiplier;
-    public float maxWeaponLevel;
+    //[HideInInspector] public float weaponExperience;
+    //[HideInInspector] public float currentWeaponLevel;
 
-    public WeaponsVault weaponsVault;
-    public WeaponLevelPerks[] weaponPerks;
-    public GameObject levelUpEffect;
-    public int maxPerkLevel = 10;
+    //public float requiredExperience;
+    //public float requiredExperienceMultiplier;
+    //public float maxWeaponLevel;
 
-    public enum ItemType
+  //  public WeaponsVault weaponsVault;
+  //  public WeaponLevelPerks[] weaponPerks;
+   // public GameObject levelUpEffect;
+   // public int maxPerkLevel = 10;
+
+    public enum WeaponType
     {
         Axe,
         Swords,
@@ -37,103 +34,105 @@ public class Weapon : MonoBehaviour
         Pistols
     };
 
+    public WeaponType weaponType;
+
     [Space]
     public AnimatorOverrideController animatorOverrideController;
 
-    bool weaponActivated;
+    //bool weaponActivated;
 
-    int currentPerkLevel;
+    //int currentPerkLevel;
 
-    private void Start()
-    {
-        if (currentWeaponLevel <= 0)
-            currentWeaponLevel = 1;
-    }
+    //private void Start()
+    //{
+    //    if (currentWeaponLevel <= 0)
+    //        currentWeaponLevel = 1;
+    //}
 
-    public int GetWeaponLevel()
-    {
-        return (int)currentWeaponLevel;
-    }
+    //public int GetWeaponLevel()
+    //{
+    //    return (int)currentWeaponLevel;
+    //}
 
-    void InitializeWeaponPerks()
-    {
-        //In here I need to make sure to reactivate all of the perks that are unlocked
-        //for each weapon once I begin to add the saving system.
-    }
+    //void InitializeWeaponPerks()
+    //{
+    //In here I need to make sure to reactivate all of the perks that are unlocked
+    //for each weapon once I begin to add the saving system.
+    //}
 
-    public void GainExperience(float experience)
-    {
+    //public void GainExperience(float experience)
+    //{
 
-        if (weaponExperience + experience < requiredExperience)
-        {
-            if (currentWeaponLevel < maxWeaponLevel)
-            {
-                weaponExperience += experience;
-                weaponsVault.SetExperience(itemType.ToString(), weaponExperience, requiredExperience);
-            }
-        }
-        else
-        {
-            if(currentWeaponLevel < maxWeaponLevel)
-            {
-                float neededExperience = requiredExperience - weaponExperience;
-                float excessExperience = experience - neededExperience;
+    //    if (weaponExperience + experience < requiredExperience)
+    //    {
+    //        if (currentWeaponLevel < maxWeaponLevel)
+    //        {
+    //            weaponExperience += experience;
+    //            weaponsVault.SetExperience(itemType.ToString(), weaponExperience, requiredExperience);
+    //        }
+    //    }
+    //    else
+    //    {
+    //        if(currentWeaponLevel < maxWeaponLevel)
+    //        {
+    //            float neededExperience = requiredExperience - weaponExperience;
+    //            float excessExperience = experience - neededExperience;
 
-                currentWeaponLevel++;
+    //            currentWeaponLevel++;
 
-                if (currentWeaponLevel == maxWeaponLevel)
-                {
-                    weaponsVault.SetExperience(itemType.ToString(), weaponExperience, neededExperience);
-                }
-                else if (currentWeaponLevel < maxWeaponLevel)
-                {
-                    weaponExperience += neededExperience;
-                    weaponsVault.SetExperience(itemType.ToString(), weaponExperience, requiredExperience);
+    //            if (currentWeaponLevel == maxWeaponLevel)
+    //            {
+    //                weaponsVault.SetExperience(itemType.ToString(), weaponExperience, neededExperience);
+    //            }
+    //            else if (currentWeaponLevel < maxWeaponLevel)
+    //            {
+    //                weaponExperience += neededExperience;
+    //                weaponsVault.SetExperience(itemType.ToString(), weaponExperience, requiredExperience);
 
-                    weaponExperience = 0;
-                    weaponsVault.SetExperience(itemType.ToString(), weaponExperience, requiredExperience);
+    //                weaponExperience = 0;
+    //                weaponsVault.SetExperience(itemType.ToString(), weaponExperience, requiredExperience);
 
-                    levelUpEffect.SetActive(true);
+    //                levelUpEffect.SetActive(true);
 
-                    weaponExperience = excessExperience;
-                    requiredExperience *= requiredExperienceMultiplier;
-                    weaponsVault.SetExperience(itemType.ToString(), weaponExperience, requiredExperience);
-                }
+    //                weaponExperience = excessExperience;
+    //                requiredExperience *= requiredExperienceMultiplier;
+    //                weaponsVault.SetExperience(itemType.ToString(), weaponExperience, requiredExperience);
+    //            }
 
-                if(currentPerkLevel < maxWeaponLevel)
-                {
-                    for (int i = 0; i < weaponPerks[currentPerkLevel].perks.Length; i++)
-                    {
-                        weaponPerks[currentPerkLevel].perks[i].SetPerkActive(true);
-                        if (weaponPerks[currentPerkLevel].perks[i].perkType == Perk.PerkType.Buff)
-                        {
-                            weaponPerks[currentPerkLevel].perks[i].ActivatePerk();
-                        }
-                    }
+    //            if(currentPerkLevel < maxWeaponLevel)
+    //            {
+    //                for (int i = 0; i < weaponPerks[currentPerkLevel].perks.Length; i++)
+    //                {
+    //                    weaponPerks[currentPerkLevel].perks[i].SetPerkActive(true);
+    //                    if (weaponPerks[currentPerkLevel].perks[i].perkType == Perk.PerkType.Buff)
+    //                    {
+    //                        weaponPerks[currentPerkLevel].perks[i].ActivatePerk();
+    //                    }
+    //                }
 
-                    weaponPerks[currentPerkLevel].perkSlot.UnlockPerk();
-                    currentPerkLevel++;
-                }
-            }
-        }
-    }
+    //                weaponPerks[currentPerkLevel].perkSlot.UnlockPerk();
+    //                currentPerkLevel++;
+    //            }
+    //        }
+    //    }
+    //}
 
-    public void SetWeaponActive(bool status)
-    {
-        ////The thorn effect is not getting reactivated.
-        PlayerHealth.instance.SetImmunity(0);
-        PlayerHealth.instance.SetThornsActive(false);
+    //public void SetWeaponActive(bool status)
+    //{
+    //    ////The thorn effect is not getting reactivated.
+    //    PlayerHealth.instance.SetImmunity(0);
+    //    PlayerHealth.instance.SetThornsActive(false);
 
-        for(int i = 0; i < currentPerkLevel; i++)
-        {
-            weaponPerks[i].perks[0].activated = status;
+    //    for (int i = 0; i < currentPerkLevel; i++)
+    //    {
+    //        weaponPerks[i].perks[0].activated = status;
 
-            if (weaponPerks[i].perks[0].activated && weaponPerks[i].perks[0].refreshOnEquip)
-            {
-                print("Reactivate " + weaponPerks[i].perks[0]);
-                weaponPerks[i].perks[0].ActivatePerk();
-            }
-        }
+    //        if (weaponPerks[i].perks[0].activated && weaponPerks[i].perks[0].refreshOnEquip)
+    //        {
+    //            print("Reactivate " + weaponPerks[i].perks[0]);
+    //            weaponPerks[i].perks[0].ActivatePerk();
+    //        }
+    //    }
 
         //weaponActivated = status;
 
@@ -150,12 +149,12 @@ public class Weapon : MonoBehaviour
         //        }
         //    }
         //}
+        //}
     }
-}
 
-[System.Serializable]
-public class WeaponLevelPerks
-{
-    public Perk[] perks;
-    public PerkSlot perkSlot;
-}
+//[System.Serializable]
+//public class WeaponLevelPerks
+//{
+//    public Perk[] perks;
+//    public PerkSlot perkSlot;
+//}

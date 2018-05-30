@@ -83,20 +83,20 @@ public class PlayerLoadout : MonoBehaviour
     public void ChangeWeapon(Weapon newWeapon)
     {
         ChangeWeaponLocation(currentWeapon.itemModel.transform, weaponHolder.transform);
-        currentWeapon.SetWeaponActive(false);
+        //currentWeapon.SetWeaponActive(false);
         currentWeapon.itemModel.SetActive(false);
 
         if(currentWeapon.secondaryModel)
         {
             ChangeWeaponLocation(currentWeapon.secondaryModel.transform, weaponHolder.transform);
-            currentWeapon.secondaryModel.SetActive(false);
+            //currentWeapon.secondaryModel.SetActive(false);
         }
 
         currentWeapon = newWeapon;
 
         ChangeWeaponLocation(currentWeapon.itemModel.transform, currentWeapon.equipLocation.transform);
         currentWeapon.itemModel.SetActive(true);
-        currentWeapon.SetWeaponActive(true);
+        //currentWeapon.SetWeaponActive(true);
 
         if (currentWeapon.secondaryModel)
         {

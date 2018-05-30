@@ -24,7 +24,7 @@ public class AlternatingMeleeAbility : Ability
         base.ActivateAbility();
 
         lastAttack = currentAttack;
-        if (currentAttack + 1 < numberOfAnimations)
+        if (currentAttack + 1 < abilityNumberOfAnimations)
             currentAttack++;
         else
             currentAttack = 0;

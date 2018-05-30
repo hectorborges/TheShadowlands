@@ -9,6 +9,6 @@ public class AbilityChargePerk : Perk
 
     public override void Procced()
     {
-        affectedAbility.charges = chargeCount;
+        affectedAbility.abilityCharges = chargeCount;
     }
 }

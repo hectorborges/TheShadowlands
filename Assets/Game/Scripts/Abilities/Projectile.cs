@@ -29,9 +29,9 @@ public class Projectile : MonoBehaviour
         maximumDamage = _maximumDamage;
         ability = _ability;
 
-        if (ability.abilityType == Ability.AbilityType.Rifle)
+        if (ability.abilityWeapon.weaponType == Weapon.WeaponType.Rifle)
             hitEffects = ReferenceManager.rifleHitEffectPool;
-        else if (ability.abilityType == Ability.AbilityType.Pistols)
+        else if (ability.abilityWeapon.weaponType == Weapon.WeaponType.Pistols)
             hitEffects = ReferenceManager.pistolHitEffectPool;
     }
 

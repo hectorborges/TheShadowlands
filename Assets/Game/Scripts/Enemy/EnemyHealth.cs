@@ -156,7 +156,7 @@ public class EnemyHealth : Health
 
     public override IEnumerator Died()
     {
-        PlayerLoadout.instance.currentWeapon.GainExperience(experienceWorth);
+        //PlayerLoadout.instance.currentWeapon.GainExperience(experienceWorth);
         PlayerController.EnemyDefeated(gameObject);
 
         statusEffects.SetActive(false);

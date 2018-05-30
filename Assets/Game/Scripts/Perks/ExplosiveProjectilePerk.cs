@@ -9,9 +9,9 @@ public class ExplosiveProjectilePerk : Perk
 
     private void Start()
     {
-        if(affectedAbility.abilityType == Ability.AbilityType.Rifle)
+        if(affectedAbility.abilityWeapon.weaponType == Weapon.WeaponType.Rifle)
             projectile[0] = ReferenceManager.rifleHitEffectPool;
-        else if(affectedAbility.abilityType == Ability.AbilityType.Pistols)
+        else if(affectedAbility.abilityWeapon.weaponType == Weapon.WeaponType.Pistols)
             projectile[0] = ReferenceManager.pistolHitEffectPool;
     }
 

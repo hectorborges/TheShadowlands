@@ -31,8 +31,8 @@ public class ItemSlot : MonoBehaviour
 
     public void EquipItem()
     {
-        if(itemInSlot.weapon)
-            weaponsVault.EquipWeapon(itemInSlot);
+        //if(itemInSlot.weapon)
+        //    weaponsVault.EquipWeapon(itemInSlot);
 
         lootTable.RemoveItem();
 
@@ -47,21 +47,18 @@ public class ItemSlot : MonoBehaviour
     public void ViewDescription()
     {
         slotName.text = itemInSlot.itemName;
-        slotName.color = lootTable.GetItemRarityColor(itemInSlot.rarity.ToString());
+        slotName.color = ItemTemplate.instance.GetItemRarityColor(itemInSlot.itemRarity.ToString());
         slotIcon.sprite = itemInSlot.itemIcon;
 
-        descriptionBoxName.color = lootTable.GetItemRarityColor(itemInSlot.rarity.ToString());
+        descriptionBoxName.color = ItemTemplate.instance.GetItemRarityColor(itemInSlot.itemRarity.ToString());
         descriptionBoxName.text = itemInSlot.itemName;
 
         for (int i = 0; i < statBoxes.Count; i++)
             statBoxes[i].text = "";
 
-        print("Stat Boxes >> " + statBoxes.Count);
-        print("Item in slots >> " + itemInSlot.stats.Count);
-
-        for (int i = 0; i < itemInSlot.stats.Count; i++)
+        for (int i = 0; i < itemInSlot.itemStats.Count; i++)
         {
-            statBoxes[i].text = ParseValue(itemInSlot.stats[i]);
+            statBoxes[i].text = ParseValue(itemInSlot.itemStats[i]);
         }
 
         if (itemInSlot)
@@ -69,20 +66,20 @@ public class ItemSlot : MonoBehaviour
 
         //Equipped Item
 
-        if (weaponsVault.GetEquippedItem(itemInSlot.weapon) == null) return;
-        equippedDescriptionBoxName.color = lootTable.GetItemRarityColor(weaponsVault.GetEquippedItem(itemInSlot.weapon).rarity.ToString());
-        equippedDescriptionBoxName.text = weaponsVault.GetEquippedItem(itemInSlot.weapon).itemName;
+        //if (weaponsVault.GetEquippedItem(itemInSlot.weapon) == null) return;
+        //equippedDescriptionBoxName.color = ItemTemplate.instance.GetItemRarityColor(weaponsVault.GetEquippedItem(itemInSlot.weapon).rarity.ToString());
+        //equippedDescriptionBoxName.text = weaponsVault.GetEquippedItem(itemInSlot.weapon).itemName;
 
-        for (int i = 0; i < equippedStatBoxes.Count; i++)
-            equippedStatBoxes[i].text = "";
+        //for (int i = 0; i < equippedStatBoxes.Count; i++)
+        //    equippedStatBoxes[i].text = "";
 
-        for (int i = 0; i < weaponsVault.GetEquippedItem(itemInSlot.weapon).stats.Count; i++)
-        {
-            equippedStatBoxes[i].text = ParseValue(weaponsVault.GetEquippedItem(itemInSlot.weapon).stats[i]);
-        }
+        //for (int i = 0; i < weaponsVault.GetEquippedItem(itemInSlot.weapon).stats.Count; i++)
+        //{
+        //    equippedStatBoxes[i].text = ParseValue(weaponsVault.GetEquippedItem(itemInSlot.weapon).stats[i]);
+        //}
 
-        if (itemInSlot)
-            equippedDescriptionBoxName.transform.parent.gameObject.SetActive(true);
+        //if (itemInSlot)
+        //    equippedDescriptionBoxName.transform.parent.gameObject.SetActive(true);
 
     }
 

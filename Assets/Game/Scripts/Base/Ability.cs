@@ -33,6 +33,7 @@ public class Ability : MonoBehaviour
     public bool requiresTarget;
 
     [Space, Header("Required Variables")]
+    public Item abilityItem;
     public Stats entityStats;                                                                       //This is the character's actual stats
     public Health entityHealth;
     public Mana entityMana;
@@ -64,7 +65,7 @@ public class Ability : MonoBehaviour
     Coroutine cooldown;
 
     public enum AbilitySlot { PrimaryAbility, SecondaryAbility, AbilityOne, AbilityTwo, AbilityThree, AbilityFour };
-    AbilitySlot abilitySlot;
+    [HideInInspector] public AbilitySlot abilitySlot;
 
     protected virtual void Start()
     {
@@ -142,7 +143,7 @@ public class Ability : MonoBehaviour
             currentCharges++;
 
         if (OnCooldownFinished != null)
-            OnCooldownFinished(this);
+            OnCooldownFinished(abilityItem);
 
         onCooldown = false;
     }
@@ -162,10 +163,10 @@ public class Ability : MonoBehaviour
                 currentCharges++;
 
             if (OnCooldownFinished != null)
-                OnCooldownFinished(this);
+                OnCooldownFinished(abilityItem);
 
             onCooldown = false;
-            PlayerLoadout.instance.ResetCooldown(this);
+            PlayerLoadout.instance.ResetCooldown(abilityItem);
         }
     }
 
