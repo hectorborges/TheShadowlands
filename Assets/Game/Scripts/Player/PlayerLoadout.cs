@@ -21,6 +21,7 @@ public class PlayerLoadout : MonoBehaviour
     public GameObject weaponHolder;
 
     [Space, Header("Ability Loadout")]
+    public List<Item> defaultItems;
     public List<Item> itemsInSlots;
     public List<Image> abilitySlots;
     public List<Text> abilityCharges;
@@ -73,10 +74,13 @@ public class PlayerLoadout : MonoBehaviour
         }
 
         equippedItem = item;
-
-        for (int i = 0; i < equippedItem.itemStats.Count; i++)
+        print("Item Equipped is " + equippedItem);
+        if(equippedItem != null)
         {
-            stats.IncreaseStatCurrentValue(equippedItem.itemStats[i].statType, equippedItem.itemStats[i].GetCurrentValue());
+            for (int i = 0; i < equippedItem.itemStats.Count; i++)
+            {
+                stats.IncreaseStatCurrentValue(equippedItem.itemStats[i].statType, equippedItem.itemStats[i].GetCurrentValue());
+            }
         }
     }
 
@@ -117,7 +121,8 @@ public class PlayerLoadout : MonoBehaviour
     //pass in -1 if not changing abilities
     public void UpdateItem(Item item, int abilitySlotIndex)
     {
-        if (abilitySlotIndex != -1)
+        if (itemsInSlots.Count <= 0) return;
+        if (abilitySlotIndex != -1 && itemsInSlots[abilitySlotIndex] != null)
         {
             itemsInSlots[abilitySlotIndex].itemAbility.OnCooldownFinished -= UpdateAbiltyCharges; //Move this to unsubscribe before changing abilities
             abilityCharges[abilitySlotIndex].text = itemsInSlots[abilitySlotIndex].itemAbility.abilityCharges.ToString();
@@ -131,6 +136,7 @@ public class PlayerLoadout : MonoBehaviour
                 abilityCharges[abilitySlotIndex].enabled = true;
         }
 
+        if (itemsInSlots[abilitySlotIndex] == null) return;
         for (int i = 0; i < itemsInSlots.Count; i++)
         {
             itemsInSlots[i].itemAbility.OnCooldownFinished += UpdateAbiltyCharges; //move this to subscribe after changing abilities
@@ -152,6 +158,7 @@ public class PlayerLoadout : MonoBehaviour
 
     void AbilityInput()
     {
+        if (itemsInSlots.Count <= 0) return;
         for (int i = 0; i < itemsInSlots.Count; i++)
         {
             if (itemsInSlots[i] && itemsInSlots[i].itemAbility.CanShoot() && abilityActive[i])
@@ -225,12 +232,19 @@ public class PlayerLoadout : MonoBehaviour
 
     private void RecieveInput()
     {
-        abilityActive[0] = Attack(itemsInSlots[0], primaryAbilityKey);
-        abilityActive[1] = Attack(itemsInSlots[1], secondaryAbilityKey);
-        abilityActive[2] = Attack(itemsInSlots[2], abilityOneKey);
-        abilityActive[3] = Attack(itemsInSlots[3], abilityTwoKey);
-        abilityActive[4] = Attack(itemsInSlots[4], abilityThreeKey);
-        abilityActive[5] = Attack(itemsInSlots[5], abilityFourKey);
+        if (itemsInSlots.Count <= 0) return;
+        if (itemsInSlots[0] != null)
+            abilityActive[0] = Attack(itemsInSlots[0], primaryAbilityKey);
+        if (itemsInSlots[1] != null)
+            abilityActive[1] = Attack(itemsInSlots[1], secondaryAbilityKey);
+        if (itemsInSlots[2] != null)
+            abilityActive[2] = Attack(itemsInSlots[2], abilityOneKey);
+        if (itemsInSlots[3] != null)
+            abilityActive[3] = Attack(itemsInSlots[3], abilityTwoKey);
+        if (itemsInSlots[4] != null)
+            abilityActive[4] = Attack(itemsInSlots[4], abilityThreeKey);
+        if (itemsInSlots[5] != null)
+            abilityActive[5] = Attack(itemsInSlots[5], abilityFourKey);
 
         abilityDeactive[0] = Input.GetKeyUp(primaryAbilityKey);
         abilityDeactive[1] = Input.GetKeyUp(secondaryAbilityKey);

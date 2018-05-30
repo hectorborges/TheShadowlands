@@ -46,6 +46,7 @@ public class LootTable : MonoBehaviour
             if(dropChance <= randomItem.itemDropChance)
             {
                 Item newItem = new Item();
+                newItem.itemAbility = randomItem.itemAbility;
                 newItem.CreateItemStats();
                 itemSlots[i].UpdateItem(newItem);
             }
