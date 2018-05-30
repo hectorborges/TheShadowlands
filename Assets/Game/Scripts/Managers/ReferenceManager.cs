@@ -6,6 +6,7 @@ public class ReferenceManager : MonoBehaviour
 {
     public static ReferenceManager instance;
     public Camera _mainCamera;
+    public Animator _essenceAnimator;
     public GameObject _player;
     public List<ObjectPooling> _enemyPools;
     public ObjectPooling _floatingCombatTextPool;
@@ -20,7 +21,7 @@ public class ReferenceManager : MonoBehaviour
     public static ObjectPooling floatingCombatTextPool;
     public static ObjectPooling rifleHitEffectPool;
     public static ObjectPooling pistolHitEffectPool;
-
+    public static Animator essenceAnimator;
 
     bool spawnedCharacter;
 
@@ -31,6 +32,7 @@ public class ReferenceManager : MonoBehaviour
         floatingCombatTextPool = _floatingCombatTextPool;
         rifleHitEffectPool = _rifleHitEffectPool;
         pistolHitEffectPool = _pistolHitEffectPool;
+        essenceAnimator = _essenceAnimator;
 
         for (int i = 0; i < _enemyPools.Count; i++)
         {

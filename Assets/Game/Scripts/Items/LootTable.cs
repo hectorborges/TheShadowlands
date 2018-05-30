@@ -8,6 +8,7 @@ public class LootTable : MonoBehaviour
     public static LootTable instance;
 
     public Item[] lootTable;
+    public Canvas playerCanvas;
     public GameObject lootWindow;
     public GameObject warningMessage;
     public List<ItemSlot> itemSlots;
@@ -17,6 +18,11 @@ public class LootTable : MonoBehaviour
     private void Awake()
     {
         instance = this;
+    }
+
+    private void Start()
+    {
+        playerCanvas.worldCamera = ReferenceManager.mainCamera;
     }
 
     public void NewLootTable()
@@ -49,7 +55,6 @@ public class LootTable : MonoBehaviour
                 newItem.CreateItemStats();
                 itemSlots[i].UpdateItem(newItem);
                 itemsInLootTable.Add(newItem);
-                print("Amt of items in loot table" + itemsInLootTable.Count);
             }
             else
             {
@@ -68,8 +73,18 @@ public class LootTable : MonoBehaviour
     public void CloseLootWindow()
     {
         if(itemsInLootTable.Count > 0)
-            warningMessage.SetActive(true);
+        {
+            ReferenceManager.essenceAnimator.SetTrigger("Essence");
+            StartCoroutine(CloseWindow());
+            //warningMessage.SetActive(true);
+        }
         else
             lootWindow.SetActive(false);
+    }
+
+    IEnumerator CloseWindow()
+    {
+        yield return new WaitForSeconds(1);
+        lootWindow.SetActive(false);
     }
 }

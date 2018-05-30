@@ -75,9 +75,6 @@ public class ItemTemplate : MonoBehaviour
         possibleStats.Add(healthPerHit);
         possibleStats.Add(mana);
         possibleStats.Add(manaPerHit);
-
-        for (int i = 0; i < possibleStats.Count; i++)
-            print(possibleStats[i].statType.ToString());
     }
 
     public Color GetItemRarityColor(string rarity)
