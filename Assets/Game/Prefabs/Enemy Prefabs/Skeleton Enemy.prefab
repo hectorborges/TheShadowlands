@@ -3227,26 +3227,32 @@ MonoBehaviour:
     statBaseValue: 0
     statCurrentValue: 0
     maxValuePerItem: 0
+    minValuePerItem: 0
   - statType: 1
     statBaseValue: 5
     statCurrentValue: 0
     maxValuePerItem: 0
+    minValuePerItem: 0
   - statType: 2
     statBaseValue: 1.5
     statCurrentValue: 0
     maxValuePerItem: 0
+    minValuePerItem: 0
   - statType: 3
     statBaseValue: 0
     statCurrentValue: 0
     maxValuePerItem: 0
+    minValuePerItem: 0
   - statType: 4
     statBaseValue: 300
     statCurrentValue: 0
     maxValuePerItem: 0
+    minValuePerItem: 0
   - statType: 5
     statBaseValue: 0
     statCurrentValue: 0
     maxValuePerItem: 0
+    minValuePerItem: 0
 --- !u!114 &114774868717372018
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3319,6 +3325,8 @@ MonoBehaviour:
   agent: {fileID: 195851206607985208}
   experienceWorth: 10
   statusEffects: {fileID: 1646676578022092}
+  chest: {fileID: 1009164510557592, guid: 83584d7629a8b754db8c038a61a2c93e, type: 2}
+  chestDropChance: 5
   rend: {fileID: 137933956107071664}
   dissolveMaterial: {fileID: 2100000, guid: df4b5fdfd36a35a49b214cffe90cad9e, type: 2}
   extraRenderers:

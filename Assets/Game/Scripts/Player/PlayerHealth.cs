@@ -75,7 +75,6 @@ public class PlayerHealth : Health
 
     public void ResetCharacter()
     {
-        print("Reseting Character");
         deathScreen.SetActive(false);
         playerAnimator.Dead(false);
         health = (int)stats.GetStatBaseValue(Stat.StatType.Health);

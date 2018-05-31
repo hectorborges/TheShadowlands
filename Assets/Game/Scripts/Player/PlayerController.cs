@@ -110,6 +110,7 @@ public class PlayerController : MonoBehaviour
                     if (!obstruction.Contains(wallCollision[i].transform.gameObject))
                     {
                         obstruction.Add(wallCollision[i].transform.gameObject);
+                        if(wallCollision[i].transform.gameObject.GetComponent<VisibilityHandler>())
                         wallCollision[i].transform.gameObject.GetComponent<VisibilityHandler>().IsVisible(false);
                     }
                 }
@@ -141,8 +142,8 @@ public class PlayerController : MonoBehaviour
 
         if (Physics.Raycast(ray, out hit, 100, interactable))
         {
-            if (secondaryAttack || basicAttack)
-            {
+           // if (secondaryAttack || basicAttack)
+           // {
                 if (!stopWalking)
                     movement.MoveToPoint(hit.point);
 
@@ -151,7 +152,7 @@ public class PlayerController : MonoBehaviour
                 {
                     SetFocus(interactable);
                 }
-            }
+          //  }
 
             switch (hit.transform.tag)
             {

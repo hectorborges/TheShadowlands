@@ -183,9 +183,8 @@ public class LootTable : MonoBehaviour
         if (!firstItemInSlot)
         {
             int tempEssence = essenceInLootTable[itemsInLootTable.IndexOf(oldItem)];
-            print("Temp Essence Before: " + tempEssence);
             tempEssence = ItemTemplate.instance.GetEssenceRarity(newItem.itemRarity.ToString());
-            print("Temp Essence After: " + tempEssence);
+
             essenceInLootTable[itemsInLootTable.IndexOf(oldItem)] = tempEssence;
             
             Item tempItem = itemsInLootTable[itemsInLootTable.IndexOf(oldItem)];
