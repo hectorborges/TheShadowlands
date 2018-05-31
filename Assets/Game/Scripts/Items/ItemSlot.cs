@@ -81,15 +81,17 @@ public class ItemSlot : MonoBehaviour
         descriptionBoxName.transform.parent.gameObject.SetActive(true);
 
         //Equipped Item
-
+        PlayerLoadout playerLoadout = PlayerLoadout.instance;
         Item equippedItem = null;
-        for(int i = 0; i < PlayerLoadout.instance.itemsInSlots.Count; i++)
+        for(int i = 0; i < playerLoadout.itemsInSlots.Count; i++)
         {
-            if (PlayerLoadout.instance.itemsInSlots[i] == itemInSlot)
-                equippedItem = PlayerLoadout.instance.itemsInSlots[i];
+            if(playerLoadout.itemsInSlots[i] && itemInSlot)
+                if (playerLoadout.itemsInSlots[i].itemName == itemInSlot.itemName)
+                    equippedItem = playerLoadout.itemsInSlots[i];
         }
 
         if (equippedItem == null) return;
+        print("Item in this slot is " + equippedItem);
         equippedDescriptionBoxName.color = ItemTemplate.instance.GetItemRarityColor(equippedItem.itemRarity.ToString());
         equippedDescriptionBoxName.text = equippedItem.itemName;
 
