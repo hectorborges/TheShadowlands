@@ -47,10 +47,13 @@ public class ItemSlot : MonoBehaviour
             slotIcon.sprite = oldEquippedItem.itemIcon;
         }
 
+        if(PlayerLoadout.instance.itemsInSlots[itemSlot])
+            print("New Item's Rarity is " + PlayerLoadout.instance.itemsInSlots[itemSlot].itemRarity);
+        print("Old Item's Rarity is " + itemInSlot.itemRarity);
+        lootTable.SwitchItems(PlayerLoadout.instance.itemsInSlots[itemSlot], itemInSlot, firstItemInSlot);
+
         if (PlayerLoadout.instance.itemsInSlots[itemSlot] == itemInSlot) return;
             PlayerLoadout.instance.EquipItem(itemInSlot, itemSlot);
-        
-        lootTable.SwitchItems(PlayerLoadout.instance.itemsInSlots[itemSlot], itemInSlot, firstItemInSlot);
 
         //if(firstItemInSlot)
         //    lootTable.RemoveEssenceWorth(this);

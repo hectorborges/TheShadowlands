@@ -12,7 +12,6 @@ public class LootTable : MonoBehaviour
     public Canvas playerCanvas;
     public GameObject lootWindow;
     public List<ItemSlot> itemSlots;
-    public List<int> essenceInLootTable;
     public Text lootWindowEssenceWorth;
     public Text essenceText;
 
@@ -25,7 +24,7 @@ public class LootTable : MonoBehaviour
     int totalEssenceWorth;
 
     public List<Item> itemsInLootTable = new List<Item>();
-
+    public List<int> essenceInLootTable = new List<int>();
     private void Awake()
     {
         instance = this;
@@ -69,6 +68,7 @@ public class LootTable : MonoBehaviour
             if(dropChance <= randomItem.itemDropChance)
             {
                 Item newItem = Instantiate(randomItem);
+                newItem.itemRarity = randomItem.itemRarity;
                 newItem.itemAbility = randomItem.itemAbility;
                 newItem.CreateItemStats();
                 itemSlots[i].UpdateItem(newItem);
@@ -159,43 +159,44 @@ public class LootTable : MonoBehaviour
         lootWindowEssenceWorth.text = totalEssenceWorth + " Essence";
     }
 
-    public void SwitchItems(Item itemInSlot, Item itemToRemove, bool firstItemInSlot)
+    public void SwitchItems(Item newItem, Item oldItem, bool firstItemInSlot)
     {
         lootWindowEssenceWorth.text = totalEssenceWorth + " Essence";
 
         if (!firstItemInSlot)
         {
-            print("Item to remove index :: + " + itemsInLootTable.IndexOf(itemToRemove));
-            Item tempItem = itemsInLootTable[itemsInLootTable.IndexOf(itemToRemove)];
-            tempItem = itemInSlot;
-            itemsInLootTable[itemsInLootTable.IndexOf(itemToRemove)] = tempItem;
-
-            int tempEssence = essenceInLootTable[itemsInLootTable.IndexOf(itemToRemove)];
-            tempEssence = ItemTemplate.instance.GetEssenceRarity(itemInSlot.itemRarity.ToString());
-            essenceInLootTable[itemsInLootTable.IndexOf(itemToRemove)] = tempEssence;
+            int tempEssence = essenceInLootTable[itemsInLootTable.IndexOf(oldItem)];
+            print("Temp Essence Before: " + tempEssence);
+            tempEssence = ItemTemplate.instance.GetEssenceRarity(newItem.itemRarity.ToString());
+            print("Temp Essence After: " + tempEssence);
+            essenceInLootTable[itemsInLootTable.IndexOf(oldItem)] = tempEssence;
+            
+            Item tempItem = itemsInLootTable[itemsInLootTable.IndexOf(oldItem)];
+            tempItem = newItem;
+            itemsInLootTable[itemsInLootTable.IndexOf(oldItem)] = tempItem;
         }
         else
         {
-            Item tempItem = itemsInLootTable[itemsInLootTable.IndexOf(itemToRemove)];
-            tempItem = null;
-            itemsInLootTable[itemsInLootTable.IndexOf(itemToRemove)] = tempItem;
-
-            int tempEssence = essenceInLootTable[itemsInLootTable.IndexOf(itemToRemove)];
+            int tempEssence = essenceInLootTable[itemsInLootTable.IndexOf(oldItem)];
             tempEssence = 0;
-            essenceInLootTable[itemsInLootTable.IndexOf(itemToRemove)] = tempEssence;
+            essenceInLootTable[itemsInLootTable.IndexOf(oldItem)] = tempEssence;
+
+            Item tempItem = itemsInLootTable[itemsInLootTable.IndexOf(oldItem)];
+            tempItem = null;
+            itemsInLootTable[itemsInLootTable.IndexOf(oldItem)] = tempItem;
         }
 
         UpdateEssenceValue();
 
-        if (!itemInSlot) return;
-        equippedAbilityName.color = ItemTemplate.instance.GetItemRarityColor(itemInSlot.itemRarity.ToString());
-        equippedAbilityName.text = itemInSlot.itemName;
+        if (!newItem) return;
+        equippedAbilityName.color = ItemTemplate.instance.GetItemRarityColor(newItem.itemRarity.ToString());
+        equippedAbilityName.text = newItem.itemName;
 
         for (int i = 0; i < equippedAbilityStats.Count; i++)
             equippedAbilityStats[i].text = "";
 
-        for (int i = 0; i < itemInSlot.itemStats.Count; i++)
-            equippedAbilityStats[i].text = ParseValue(itemInSlot.itemStats[i]);
+        for (int i = 0; i < newItem.itemStats.Count; i++)
+            equippedAbilityStats[i].text = ParseValue(newItem.itemStats[i]);
 
         if (itemsInLootTable.Count <= 0)
             CloseLootWindow();
