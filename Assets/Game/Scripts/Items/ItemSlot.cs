@@ -17,25 +17,54 @@ public class ItemSlot : MonoBehaviour
     public Text equippedDescriptionBox;
     public List<Text> equippedStatBoxes;
 
-    Item itemInSlot;
+    [Space, Header("Ability Slots Information")]
+    public List<Text> abilitySlotNames;
+    public List<Image> abilitySlotIcons;
+
+    public Item itemInSlot;
 
     public void UpdateItem(Item newItem)
     {
         itemInSlot = newItem;
 
-        slotName.text = itemInSlot.itemName;
-        slotName.color = ItemTemplate.instance.GetItemRarityColor(itemInSlot.itemRarity.ToString());
-        slotIcon.sprite = itemInSlot.itemIcon;
+        slotName.text = newItem.itemName;
+        slotName.color = ItemTemplate.instance.GetItemRarityColor(newItem.itemRarity.ToString());
+        slotIcon.sprite = newItem.itemIcon;
     }
 
     public void EquipItem(int itemSlot)
     {
-        PlayerLoadout.instance.EquipItem(itemInSlot, itemSlot);
+        bool firstItemInSlot = false;
+
+        if (PlayerLoadout.instance.itemsInSlots[itemSlot] == null)
+            firstItemInSlot = true;
+
+        Item oldEquippedItem = PlayerLoadout.instance.itemsInSlots[itemSlot];
+        if (oldEquippedItem)
+        {
+            slotName.text = oldEquippedItem.itemName;
+            slotName.color = ItemTemplate.instance.GetItemRarityColor(oldEquippedItem.itemRarity.ToString());
+            slotIcon.sprite = oldEquippedItem.itemIcon;
+        }
+
+        if (PlayerLoadout.instance.itemsInSlots[itemSlot] == itemInSlot) return;
+            PlayerLoadout.instance.EquipItem(itemInSlot, itemSlot);
         
-        lootTable.SwitchItems(PlayerLoadout.instance.itemsInSlots[itemSlot], itemInSlot);
-        itemInSlot = PlayerLoadout.instance.itemsInSlots[itemSlot];
-        UpdateItem(itemInSlot);
-        gameObject.SetActive(false);
+        lootTable.SwitchItems(PlayerLoadout.instance.itemsInSlots[itemSlot], itemInSlot, firstItemInSlot);
+
+        lootTable.UpdateAbilitySlots(itemSlot, itemInSlot);
+
+        if(oldEquippedItem)
+            UpdateItem(oldEquippedItem);
+        if (firstItemInSlot)
+            gameObject.SetActive(false);
+    }
+
+    public void UpdateAbilitySlots(int itemSlot, Item item)
+    {
+        abilitySlotNames[itemSlot].text = item.itemName;
+        abilitySlotNames[itemSlot].color = ItemTemplate.instance.GetItemRarityColor(item.itemRarity.ToString());
+        abilitySlotIcons[itemSlot].sprite = item.itemIcon;
     }
 
     public void ViewDescription()

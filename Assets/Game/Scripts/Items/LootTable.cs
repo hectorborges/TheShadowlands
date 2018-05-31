@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Linq;
 
 public class LootTable : MonoBehaviour
 {
@@ -22,7 +23,7 @@ public class LootTable : MonoBehaviour
     int essence;
     int totalEssenceWorth;
 
-    List<Item> itemsInLootTable = new List<Item>();
+    public List<Item> itemsInLootTable = new List<Item>();
 
     private void Awake()
     {
@@ -36,10 +37,13 @@ public class LootTable : MonoBehaviour
 
     public void NewLootTable()
     {
-        for (int i = 0; i < itemsInLootTable.Count; i++)
-            Destroy(itemsInLootTable[i].gameObject);
+        //for (int i = 0; i < itemsInLootTable.Count; i++)
+        //    Destroy(itemsInLootTable[i].gameObject);
 
         itemsInLootTable.Clear();
+        for(int l = 0; l < 3; l++)
+            itemsInLootTable.Add(null);
+
         totalEssenceWorth = 0;
         lootWindowEssenceWorth.text = totalEssenceWorth + " Essence";
         lootWindow.SetActive(true);
@@ -63,7 +67,15 @@ public class LootTable : MonoBehaviour
                 newItem.itemAbility = randomItem.itemAbility;
                 newItem.CreateItemStats();
                 itemSlots[i].UpdateItem(newItem);
-                itemsInLootTable.Add(newItem);
+
+                for(int m = 0; m < itemsInLootTable.Count; m++)
+                {
+                    if (itemsInLootTable[m] == null)
+                    {
+                        itemsInLootTable[m] = newItem;
+                        break;
+                    }
+                }
             }
             else
             {
@@ -72,9 +84,16 @@ public class LootTable : MonoBehaviour
         }
         totalEssenceWorth = 0;
         foreach (Item item in itemsInLootTable)
-            totalEssenceWorth += ItemTemplate.instance.GetEssenceRarity(item.itemRarity.ToString());
+            if(item != null)
+                totalEssenceWorth += ItemTemplate.instance.GetEssenceRarity(item.itemRarity.ToString());
 
         lootWindowEssenceWorth.text = totalEssenceWorth + " Essence";
+    }
+
+    public void UpdateAbilitySlots(int abilitySlot, Item item)
+    {
+        foreach (ItemSlot itemSlot in itemSlots)
+            itemSlot.UpdateAbilitySlots(abilitySlot, item);
     }
 
     public void ShowEquippedAbilityDescription(int abilityIndex)
@@ -121,13 +140,29 @@ public class LootTable : MonoBehaviour
         }
     }
 
-    public void SwitchItems(Item itemInSlot, Item itemToRemove)
+    public void SwitchItems(Item itemInSlot, Item itemToRemove, bool firstItemInSlot)
     {
-        totalEssenceWorth -= ItemTemplate.instance.GetEssenceRarity(itemToRemove.itemRarity.ToString());
-        totalEssenceWorth -= ItemTemplate.instance.GetEssenceRarity(itemInSlot.itemRarity.ToString());
-        lootWindowEssenceWorth.text = totalEssenceWorth + " Essence";
+        if (itemToRemove != null)
+            totalEssenceWorth -= ItemTemplate.instance.GetEssenceRarity(itemToRemove.itemRarity.ToString());
 
-        itemsInLootTable[itemsInLootTable.IndexOf(itemToRemove)] = itemInSlot;
+        if (!firstItemInSlot)
+        {
+            if (itemInSlot != null)
+                totalEssenceWorth += ItemTemplate.instance.GetEssenceRarity(itemInSlot.itemRarity.ToString());
+        }
+
+        lootWindowEssenceWorth.text = totalEssenceWorth + " Essence";
+        itemsInLootTable.ToArray()[itemsInLootTable.IndexOf(itemToRemove)] = itemInSlot;
+        
+        if (!itemInSlot) return;
+        equippedAbilityName.color = ItemTemplate.instance.GetItemRarityColor(itemInSlot.itemRarity.ToString());
+        equippedAbilityName.text = itemInSlot.itemName;
+
+        for (int i = 0; i < equippedAbilityStats.Count; i++)
+            equippedAbilityStats[i].text = "";
+
+        for (int i = 0; i < itemInSlot.itemStats.Count; i++)
+            equippedAbilityStats[i].text = ParseValue(itemInSlot.itemStats[i]);
 
         if (itemsInLootTable.Count <= 0)
             CloseLootWindow();
