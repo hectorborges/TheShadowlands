@@ -12,6 +12,7 @@ public class LootTable : MonoBehaviour
     public Canvas playerCanvas;
     public GameObject lootWindow;
     public List<ItemSlot> itemSlots;
+    public List<int> essenceInLootTable;
     public Text lootWindowEssenceWorth;
     public Text essenceText;
 
@@ -41,8 +42,12 @@ public class LootTable : MonoBehaviour
         //    Destroy(itemsInLootTable[i].gameObject);
 
         itemsInLootTable.Clear();
+        essenceInLootTable.Clear();
         for(int l = 0; l < 3; l++)
+        {
             itemsInLootTable.Add(null);
+            essenceInLootTable.Add(0);
+        }
 
         totalEssenceWorth = 0;
         lootWindowEssenceWorth.text = totalEssenceWorth + " Essence";
@@ -73,6 +78,7 @@ public class LootTable : MonoBehaviour
                     if (itemsInLootTable[m] == null)
                     {
                         itemsInLootTable[m] = newItem;
+                        essenceInLootTable[m] = ItemTemplate.instance.GetEssenceRarity(itemsInLootTable[m].itemRarity.ToString()); 
                         break;
                     }
                 }
@@ -83,11 +89,7 @@ public class LootTable : MonoBehaviour
             }
         }
         totalEssenceWorth = 0;
-        foreach (Item item in itemsInLootTable)
-            if(item != null)
-                totalEssenceWorth += ItemTemplate.instance.GetEssenceRarity(item.itemRarity.ToString());
-
-        lootWindowEssenceWorth.text = totalEssenceWorth + " Essence";
+        UpdateEssenceValue();
     }
 
     public void UpdateAbilitySlots(int abilitySlot, Item item)
@@ -140,20 +142,51 @@ public class LootTable : MonoBehaviour
         }
     }
 
+    //public void RemoveEssenceWorth(ItemSlot itemSlot)
+    //{
+    //    int itemSlotIndex = itemSlots.IndexOf(itemSlot);
+    //    print("Essence in Loot Table Index = " + itemSlotIndex);
+    //    essenceInLootTable.ToArray()[itemSlotIndex] = 0;
+    //    print("Essence in this slot is : " + essenceInLootTable.ToArray()[itemSlotIndex]);
+    //    UpdateEssenceValue();
+    //}
+
+    void UpdateEssenceValue()
+    {
+        totalEssenceWorth = 0;
+        foreach (int essenceWorth in essenceInLootTable)
+            totalEssenceWorth += essenceWorth;
+        lootWindowEssenceWorth.text = totalEssenceWorth + " Essence";
+    }
+
     public void SwitchItems(Item itemInSlot, Item itemToRemove, bool firstItemInSlot)
     {
-        if (itemToRemove != null)
-            totalEssenceWorth -= ItemTemplate.instance.GetEssenceRarity(itemToRemove.itemRarity.ToString());
+        lootWindowEssenceWorth.text = totalEssenceWorth + " Essence";
 
         if (!firstItemInSlot)
         {
-            if (itemInSlot != null)
-                totalEssenceWorth += ItemTemplate.instance.GetEssenceRarity(itemInSlot.itemRarity.ToString());
+            print("Item to remove index :: + " + itemsInLootTable.IndexOf(itemToRemove));
+            Item tempItem = itemsInLootTable[itemsInLootTable.IndexOf(itemToRemove)];
+            tempItem = itemInSlot;
+            itemsInLootTable[itemsInLootTable.IndexOf(itemToRemove)] = tempItem;
+
+            int tempEssence = essenceInLootTable[itemsInLootTable.IndexOf(itemToRemove)];
+            tempEssence = ItemTemplate.instance.GetEssenceRarity(itemInSlot.itemRarity.ToString());
+            essenceInLootTable[itemsInLootTable.IndexOf(itemToRemove)] = tempEssence;
+        }
+        else
+        {
+            Item tempItem = itemsInLootTable[itemsInLootTable.IndexOf(itemToRemove)];
+            tempItem = null;
+            itemsInLootTable[itemsInLootTable.IndexOf(itemToRemove)] = tempItem;
+
+            int tempEssence = essenceInLootTable[itemsInLootTable.IndexOf(itemToRemove)];
+            tempEssence = 0;
+            essenceInLootTable[itemsInLootTable.IndexOf(itemToRemove)] = tempEssence;
         }
 
-        lootWindowEssenceWorth.text = totalEssenceWorth + " Essence";
-        itemsInLootTable.ToArray()[itemsInLootTable.IndexOf(itemToRemove)] = itemInSlot;
-        
+        UpdateEssenceValue();
+
         if (!itemInSlot) return;
         equippedAbilityName.color = ItemTemplate.instance.GetItemRarityColor(itemInSlot.itemRarity.ToString());
         equippedAbilityName.text = itemInSlot.itemName;

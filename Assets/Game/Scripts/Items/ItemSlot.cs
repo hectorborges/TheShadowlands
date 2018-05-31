@@ -52,6 +52,9 @@ public class ItemSlot : MonoBehaviour
         
         lootTable.SwitchItems(PlayerLoadout.instance.itemsInSlots[itemSlot], itemInSlot, firstItemInSlot);
 
+        //if(firstItemInSlot)
+        //    lootTable.RemoveEssenceWorth(this);
+
         lootTable.UpdateAbilitySlots(itemSlot, itemInSlot);
 
         if(oldEquippedItem)
