@@ -20,6 +20,11 @@ public class LootTable : MonoBehaviour
     public Text equippedAbilityDescription;
     public List<Text> equippedAbilityStats;
 
+    [Space, Header("Item Drop Chances")]
+    public List<int> itemDropCounts;
+    public List<int> itemDropCountChances;
+
+    [Space]
     int essence;
     int totalEssenceWorth;
 
@@ -42,6 +47,7 @@ public class LootTable : MonoBehaviour
 
         itemsInLootTable.Clear();
         essenceInLootTable.Clear();
+
         for(int l = 0; l < 3; l++)
         {
             itemsInLootTable.Add(null);
@@ -55,7 +61,7 @@ public class LootTable : MonoBehaviour
         for (int k = 0; k < itemSlots.Count; k++)
             itemSlots[k].gameObject.SetActive(false);
 
-        int itemsDropped = Random.Range(1, 4);
+        int itemsDropped = ItemsDropped();
 
         for (int j = 0; j < itemsDropped; j++)
             itemSlots[j].gameObject.SetActive(true);
@@ -90,6 +96,17 @@ public class LootTable : MonoBehaviour
         }
         totalEssenceWorth = 0;
         UpdateEssenceValue();
+    }
+
+    int ItemsDropped()
+    {
+        int itemsDroped = Random.Range(1, 4);
+        int randomRoll = Random.Range(0, 101);
+
+        if (randomRoll <= itemDropCountChances[itemDropCounts.IndexOf(itemsDroped)])
+            return itemsDroped;
+        else
+            return ItemsDropped();
     }
 
     public void UpdateAbilitySlots(int abilitySlot, Item item)
