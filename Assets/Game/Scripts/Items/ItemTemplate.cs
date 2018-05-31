@@ -11,6 +11,7 @@ public class ItemTemplate : MonoBehaviour
 
     public List<string> rarities;
     public List<Color> rarityColors;
+    public List<int> rarityChances;
     public List<int> essencesWorth;
     public List<int> dropChances;
 
@@ -107,6 +108,18 @@ public class ItemTemplate : MonoBehaviour
         {
             int rarityIndex = rarities.IndexOf(rarity);
             return dropChances[rarityIndex];
+        }
+        else
+            return 0;
+    }
+
+
+    public int GetRarityChance(string rarity)
+    {
+        if (rarities.Contains(rarity))
+        {
+            int rarityIndex = rarities.IndexOf(rarity);
+            return rarityChances[rarityIndex];
         }
         else
             return 0;

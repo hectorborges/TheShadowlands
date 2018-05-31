@@ -12,7 +12,6 @@ public class Item : MonoBehaviour
 
     public enum ItemRarity { Common, Rare, Epic, Legendary, Exotic, Artifact };
     [HideInInspector] public ItemRarity itemRarity;
-
     [HideInInspector] public List<Stat> itemStats = new List<Stat>();
 
     Stats playerStats;
@@ -76,7 +75,7 @@ public class Item : MonoBehaviour
     #region GetRandomRarity
     ItemRarity GetRandomRarity()
     {
-        int randomRarity = Random.Range(CheckMinimumRarity(), 6);
+        int randomRarity = RollForRarity();
 
         switch (randomRarity)
         {
@@ -95,6 +94,38 @@ public class Item : MonoBehaviour
             default:
                 return ItemRarity.Common;
         }
+    }
+
+    ItemRarity GetRarityByIndex(int index)
+    {
+        switch (index)
+        {
+            case 0:
+                return ItemRarity.Common;
+            case 1:
+                return ItemRarity.Rare;
+            case 2:
+                return ItemRarity.Epic;
+            case 3:
+                return ItemRarity.Legendary;
+            case 4:
+                return ItemRarity.Exotic;
+            case 5:
+                return ItemRarity.Artifact;
+            default:
+                return ItemRarity.Common;
+        }
+    }
+
+    int RollForRarity()
+    {
+        int itemsDropped = Random.Range(CheckMinimumRarity(), 6);
+        int randomRoll = Random.Range(0, 101);
+
+        if (randomRoll < ItemTemplate.instance.GetRarityChance(GetRarityByIndex(itemsDropped).ToString()))
+            return itemsDropped;
+        else
+            return RollForRarity();
     }
     #endregion
     #region GetChosenRarityIndex
