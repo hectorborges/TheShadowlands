@@ -165,6 +165,7 @@ public class PlayerLoadout : MonoBehaviour
     {
         RecieveInput();
         CheckCooldowns();
+        CheckGlobalCooldowns();
     }
 
     void AbilityInput()
@@ -187,10 +188,11 @@ public class PlayerLoadout : MonoBehaviour
                     {
                         cooldownQueues[i].Enqueue(Time.time);
                     }
-                    StartCoroutine(GlobalCooldown());
 
                     for (int j = 0; j < globalCooldownImages.Count; j++)
                         globalCooldownQueues[i].Enqueue(Time.time);
+
+                    StartCoroutine(GlobalCooldown());
                 }
             }
             else if (itemsInSlots[i] && abilityDeactive[i])
