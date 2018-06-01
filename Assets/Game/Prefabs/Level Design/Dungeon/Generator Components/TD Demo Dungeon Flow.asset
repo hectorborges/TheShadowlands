@@ -16,8 +16,8 @@ MonoBehaviour:
     Max: 12
   GlobalPropGroupIDs: 00000000
   GlobalPropRanges:
-  - Min: 15
-    Max: 30
+  - Min: 10
+    Max: 20
   KeyManager: {fileID: 0}
   DoorwayConnectionChance: 1
   TileInjectionRules: []
