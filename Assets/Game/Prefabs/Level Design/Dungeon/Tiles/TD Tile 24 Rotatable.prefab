@@ -437,9 +437,9 @@ GameObject:
   - component: {fileID: 6498256}
   - component: {fileID: 3330842}
   - component: {fileID: 2308412}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Stair_03
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -611,9 +611,9 @@ GameObject:
   - component: {fileID: 6429856}
   - component: {fileID: 3368182}
   - component: {fileID: 2357190}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Railing_Stair_01 (1)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1630,9 +1630,9 @@ GameObject:
   - component: {fileID: 6451524}
   - component: {fileID: 3341546}
   - component: {fileID: 2318300}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Railing_Stair_01
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
