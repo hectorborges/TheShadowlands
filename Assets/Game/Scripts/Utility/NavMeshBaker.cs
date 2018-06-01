@@ -5,8 +5,9 @@ using UnityEngine.AI;
 
 public class NavMeshBaker : MonoBehaviour
 {
-	void Start ()
+	IEnumerator Start ()
     {
+        yield return new WaitForSeconds(1);
         GetComponent<NavMeshSurface>().BuildNavMesh();
 	}
 }
