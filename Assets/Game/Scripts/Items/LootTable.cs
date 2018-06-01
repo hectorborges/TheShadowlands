@@ -69,7 +69,8 @@ public class LootTable : MonoBehaviour
         for(int i = 0; i < itemsDropped; i++)
         {
             Item randomItem = lootTable[Random.Range(0, lootTable.Length)];
-            int dropChance = Random.Range(0, 100);
+            print("Random Item was " + randomItem.itemAbility.abilityName);
+            int dropChance = Random.Range(0, 101);
 
             if(dropChance <= randomItem.itemDropChance)
             {

@@ -19,6 +19,8 @@ public class Item : MonoBehaviour
     private void Start()
     {
         itemAbility = GetComponent<Ability>();
+        ItemTemplate itemStatsTemplate = ItemTemplate.instance;
+        itemDropChance = itemStatsTemplate.GetDropChance(itemRarity.ToString());
     }
 
     public void CreateItemStats()
@@ -34,7 +36,6 @@ public class Item : MonoBehaviour
 
         itemRarity = GetRandomRarity();                        
         int itemStatCount = GetChosenRarityIndex();
-        itemDropChance = itemStatsTemplate.GetDropChance(itemRarity.ToString());
         //This loop picks a random stat template and creates a new stat in it's image. After doing so it adds the stat to this item's stats
         //This continues for how every many stats this item rolled with
         for (int i = 0; i < itemStatCount; i++)
