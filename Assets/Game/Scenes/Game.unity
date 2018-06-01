@@ -2385,7 +2385,7 @@ MonoBehaviour:
     OverrideAllowTileRotation: 1
     AllowTileRotation: 1
     DebugRender: 0
-    LengthMultiplier: 6
+    LengthMultiplier: 1
     PlaceTileTriggers: 1
     TileTriggerLayer: 2
     GenerateAsynchronously: 0
@@ -2396,7 +2396,7 @@ MonoBehaviour:
       m_Center: {x: 0, y: 0, z: 0}
       m_Extent: {x: 0, y: 0, z: 0}
     Root: {fileID: 0}
-    DungeonFlow: {fileID: 0}
+    DungeonFlow: {fileID: 11400000, guid: 674a1de53449260458202b0cf9224bec, type: 2}
   GenerateOnStart: 1
   Root: {fileID: 1422189878}
 --- !u!114 &942810338
@@ -3137,7 +3137,7 @@ MonoBehaviour:
   m_LayerMask:
     serializedVersion: 2
     m_Bits: 1024
-  m_UseGeometry: 1
+  m_UseGeometry: 0
   m_DefaultArea: 0
   m_IgnoreNavMeshAgent: 1
   m_IgnoreNavMeshObstacle: 1
