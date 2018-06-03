@@ -18,6 +18,7 @@ public class PlayerAnimator : AnimatorBase
     public override void ResetAttack(ResetAttack.AbilitySlot abilitySlot)
     {
         animator.SetInteger(abilitySlot.ToString(), 0);
+        PlayerLoadout.instance.ResetAttack();
     }
 
     public void OverrideAnimations(AnimatorOverrideController overrideController)

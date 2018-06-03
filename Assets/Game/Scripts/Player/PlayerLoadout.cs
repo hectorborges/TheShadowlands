@@ -21,15 +21,12 @@ public class PlayerLoadout : MonoBehaviour
     public GameObject weaponHolder;
 
     [Space, Header("Ability Loadout")]
-    public float globalCooldown;
-    public List<Image> globalCooldownImages;
     public List<Item> defaultItems;
     public List<Item> itemsInSlots;
     public List<Image> abilitySlots;
     public List<Text> abilityCharges;
     public List<Image> abilityCooldownProgress;
     public List<Queue<float>> cooldownQueues = new List<Queue<float>>();
-    public List<Queue<float>> globalCooldownQueues = new List<Queue<float>>();
 
     bool[] abilityOnCooldown = new bool[6];
     bool[] abilityActive = new bool[6];
@@ -40,7 +37,9 @@ public class PlayerLoadout : MonoBehaviour
     PlayerAnimator playerAnimator;
     NavMeshAgent agent;
     Stats stats;
-    bool onGlobalCooldown;
+
+    bool attacking;
+    Coroutine attack;
 
     Item equippedItem = new Item();
 
@@ -54,9 +53,6 @@ public class PlayerLoadout : MonoBehaviour
 
         for (int i = 0; i < 6; i++)
             cooldownQueues.Add(new Queue<float>());
-
-        for (int i = 0; i < 6; i++)
-            globalCooldownQueues.Add(new Queue<float>());
     }
 
     private void Start()
@@ -125,6 +121,14 @@ public class PlayerLoadout : MonoBehaviour
         model.localRotation = Quaternion.identity;
     }
 
+    public void ResetAttack()
+    {
+        if(attack != null)
+            StopCoroutine(attack);
+
+        attacking = false;
+    }
+
     //pass in -1 if not changing abilities
     public void UpdateItem(Item item, int abilitySlotIndex)
     {
@@ -165,7 +169,6 @@ public class PlayerLoadout : MonoBehaviour
     {
         RecieveInput();
         CheckCooldowns();
-        CheckGlobalCooldowns();
     }
 
     void AbilityInput()
@@ -175,9 +178,9 @@ public class PlayerLoadout : MonoBehaviour
         {
             if (itemsInSlots[i] && itemsInSlots[i].itemAbility.CanShoot() && abilityActive[i])
             {
-                if(!onGlobalCooldown)
+                if(!attacking)
                 {
-                    onGlobalCooldown = true;
+                    attacking = true;
                     if (currentWeapon != itemsInSlots[i].itemAbility.abilityWeapon)
                         ChangeWeapon(itemsInSlots[i].itemAbility.abilityWeapon);
 
@@ -188,11 +191,7 @@ public class PlayerLoadout : MonoBehaviour
                     {
                         cooldownQueues[i].Enqueue(Time.time);
                     }
-
-                    for (int j = 0; j < globalCooldownImages.Count; j++)
-                        globalCooldownQueues[i].Enqueue(Time.time);
-
-                    StartCoroutine(GlobalCooldown());
+                    attack = StartCoroutine(Attacking());
                 }
             }
             else if (itemsInSlots[i] && abilityDeactive[i])
@@ -200,10 +199,10 @@ public class PlayerLoadout : MonoBehaviour
         }
     }
 
-    IEnumerator GlobalCooldown()
+    IEnumerator Attacking()
     {
-        yield return new WaitForSeconds(globalCooldown);
-        onGlobalCooldown = false;
+        yield return new WaitForSeconds(1);
+        attacking = false;
     }
 
     void UpdateAbiltyCharges(Item item)
@@ -234,25 +233,6 @@ public class PlayerLoadout : MonoBehaviour
         }
     }
 
-    void CheckGlobalCooldowns()
-    {
-        if (globalCooldownQueues.Count <= 0) return;
-
-        for (int j = 0; j < globalCooldownImages.Count; j++)
-        {
-            GlobalCooldown(j);
-        }
-
-        for (int i = 0; i < globalCooldownQueues.Count; i++)
-        {
-            if (globalCooldownQueues[i].Count > 0 && globalCooldownQueues[i].ToArray().Length > 0)
-                remainingTime = ((globalCooldownQueues[i].Peek() + globalCooldown) - Time.time) / globalCooldown;
-
-            if (remainingTime < .01f && globalCooldownQueues[i].Count > 0)
-                globalCooldownQueues[i].Dequeue();
-        }
-    }
-
     void Cooldown(int abilityIndex)
     {
         if (cooldownQueues[abilityIndex].Count > 0)
@@ -266,23 +246,6 @@ public class PlayerLoadout : MonoBehaviour
 
             if (_remainingTime < .01f)
                 abilityCooldownProgress[abilityIndex].fillAmount = 0f;
-        }
-    }
-
-    void GlobalCooldown(int globalCooldownIndex)
-    {
-        if (globalCooldownQueues[globalCooldownIndex].Count > 0)
-        {
-            float _remainingTime = ((globalCooldownQueues[globalCooldownIndex].Peek() + globalCooldown) - Time.time) / globalCooldown;
-
-            if (!onGlobalCooldown)
-                _remainingTime = 0;
-
-            
-            globalCooldownImages[globalCooldownIndex].fillAmount = _remainingTime;
-
-            if (_remainingTime < .01f)
-                globalCooldownImages[globalCooldownIndex].fillAmount = 0f;
         }
     }
 
