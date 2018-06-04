@@ -57,7 +57,8 @@ public class PlayerLoadout : MonoBehaviour
 
     private void Start()
     {
-        ChangeWeapon(currentWeapon);
+        if(currentWeapon)
+            ChangeWeapon(currentWeapon);
     }
 
     public void EquipItem(Item item, int abilitySlotIndex)
@@ -90,20 +91,18 @@ public class PlayerLoadout : MonoBehaviour
     public void ChangeWeapon(Weapon newWeapon)
     {
         ChangeWeaponLocation(currentWeapon.itemModel.transform, weaponHolder.transform);
-        //currentWeapon.SetWeaponActive(false);
         currentWeapon.itemModel.SetActive(false);
 
         if(currentWeapon.secondaryModel)
         {
             ChangeWeaponLocation(currentWeapon.secondaryModel.transform, weaponHolder.transform);
-            //currentWeapon.secondaryModel.SetActive(false);
+            currentWeapon.secondaryModel.SetActive(false);
         }
 
         currentWeapon = newWeapon;
 
         ChangeWeaponLocation(currentWeapon.itemModel.transform, currentWeapon.equipLocation.transform);
         currentWeapon.itemModel.SetActive(true);
-        //currentWeapon.SetWeaponActive(true);
 
         if (currentWeapon.secondaryModel)
         {
@@ -181,8 +180,7 @@ public class PlayerLoadout : MonoBehaviour
                 if(!attacking)
                 {
                     attacking = true;
-                    if (currentWeapon != itemsInSlots[i].itemAbility.abilityWeapon)
-                        ChangeWeapon(itemsInSlots[i].itemAbility.abilityWeapon);
+                    ChangeWeapon(itemsInSlots[i].itemAbility.abilityWeapon);
 
                     itemsInSlots[i].itemAbility.ActivateAbility();
                     abilityCharges[i].text = itemsInSlots[i].itemAbility.abilityCharges.ToString();

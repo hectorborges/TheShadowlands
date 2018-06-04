@@ -4480,7 +4480,7 @@ MonoBehaviour:
     OverrideAllowTileRotation: 1
     AllowTileRotation: 1
     DebugRender: 0
-    LengthMultiplier: 1
+    LengthMultiplier: 3
     PlaceTileTriggers: 1
     TileTriggerLayer: 2
     GenerateAsynchronously: 0
