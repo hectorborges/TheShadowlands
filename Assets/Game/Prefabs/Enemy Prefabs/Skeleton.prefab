@@ -2992,7 +2992,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2e712e69eefdfc499463303f5c7f960, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 0}
+  animator: {fileID: 95788787951459346}
 --- !u!114 &114052134011287404
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3325,10 +3325,10 @@ MonoBehaviour:
   agent: {fileID: 195851206607985208}
   experienceWorth: 15
   statusEffects: {fileID: 1646676578022092}
-  rend: {fileID: 0}
+  rend: {fileID: 137211432694748982}
   dissolveMaterial: {fileID: 2100000, guid: df4b5fdfd36a35a49b214cffe90cad9e, type: 2}
   extraRenderers:
-  - {fileID: 0}
+  - {fileID: 23035227621657932}
   extraDissolveMaterials:
   - {fileID: 2100000, guid: 70fc633408be2d4419bbb65f688cad0f, type: 2}
 --- !u!114 &114958519958448520

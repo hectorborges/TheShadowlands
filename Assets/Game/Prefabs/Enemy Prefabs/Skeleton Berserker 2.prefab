@@ -3836,11 +3836,27 @@ MonoBehaviour:
   agent: {fileID: 195649162324702762}
   experienceWorth: 15
   statusEffects: {fileID: 1281409085154240}
-  rend: {fileID: 0}
+  rend: {fileID: 137770353868911868}
   dissolveMaterial: {fileID: 2100000, guid: df4b5fdfd36a35a49b214cffe90cad9e, type: 2}
   extraRenderers:
-  - {fileID: 0}
+  - {fileID: 23828847405135498}
+  - {fileID: 23793486755074586}
+  - {fileID: 23755477338539596}
+  - {fileID: 23696218464426958}
+  - {fileID: 23491501293756070}
+  - {fileID: 23355809687464806}
+  - {fileID: 23310256770985612}
+  - {fileID: 23576923564243162}
+  - {fileID: 23267793375392116}
   extraDissolveMaterials:
+  - {fileID: 2100000, guid: 70fc633408be2d4419bbb65f688cad0f, type: 2}
+  - {fileID: 2100000, guid: 70fc633408be2d4419bbb65f688cad0f, type: 2}
+  - {fileID: 2100000, guid: 70fc633408be2d4419bbb65f688cad0f, type: 2}
+  - {fileID: 2100000, guid: 70fc633408be2d4419bbb65f688cad0f, type: 2}
+  - {fileID: 2100000, guid: 70fc633408be2d4419bbb65f688cad0f, type: 2}
+  - {fileID: 2100000, guid: 70fc633408be2d4419bbb65f688cad0f, type: 2}
+  - {fileID: 2100000, guid: 70fc633408be2d4419bbb65f688cad0f, type: 2}
+  - {fileID: 2100000, guid: 70fc633408be2d4419bbb65f688cad0f, type: 2}
   - {fileID: 2100000, guid: 70fc633408be2d4419bbb65f688cad0f, type: 2}
 --- !u!114 &114637117365087012
 MonoBehaviour:
@@ -3921,7 +3937,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2e712e69eefdfc499463303f5c7f960, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 0}
+  animator: {fileID: 95991378699306790}
 --- !u!114 &114826146323275916
 MonoBehaviour:
   m_ObjectHideFlags: 1

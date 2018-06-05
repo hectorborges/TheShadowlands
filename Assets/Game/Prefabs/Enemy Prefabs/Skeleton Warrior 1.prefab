@@ -3344,11 +3344,19 @@ MonoBehaviour:
   agent: {fileID: 195066069005449334}
   experienceWorth: 15
   statusEffects: {fileID: 1012431411629470}
-  rend: {fileID: 0}
+  rend: {fileID: 137899793694473884}
   dissolveMaterial: {fileID: 2100000, guid: df4b5fdfd36a35a49b214cffe90cad9e, type: 2}
   extraRenderers:
-  - {fileID: 0}
+  - {fileID: 23285973611565436}
+  - {fileID: 23144235603702386}
+  - {fileID: 23398196273465334}
+  - {fileID: 23865849140302624}
+  - {fileID: 23042410699576424}
   extraDissolveMaterials:
+  - {fileID: 2100000, guid: 70fc633408be2d4419bbb65f688cad0f, type: 2}
+  - {fileID: 2100000, guid: 70fc633408be2d4419bbb65f688cad0f, type: 2}
+  - {fileID: 2100000, guid: 70fc633408be2d4419bbb65f688cad0f, type: 2}
+  - {fileID: 2100000, guid: 70fc633408be2d4419bbb65f688cad0f, type: 2}
   - {fileID: 2100000, guid: 70fc633408be2d4419bbb65f688cad0f, type: 2}
 --- !u!114 &114205269127480818
 MonoBehaviour:
@@ -3467,7 +3475,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2e712e69eefdfc499463303f5c7f960, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 0}
+  animator: {fileID: 95739740504498140}
 --- !u!114 &114422562982928000
 MonoBehaviour:
   m_ObjectHideFlags: 1
