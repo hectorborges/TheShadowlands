@@ -3993,7 +3993,7 @@ MonoBehaviour:
     maxValuePerItem: 0
     minValuePerItem: 0
   - statType: 4
-    statBaseValue: 300
+    statBaseValue: 800
     statCurrentValue: 0
     maxValuePerItem: 0
     minValuePerItem: 0
@@ -4062,7 +4062,7 @@ MonoBehaviour:
   radius: 0.5
   interactionTransform: {fileID: 4905653805485476}
   focusGraphic: {fileID: 1894789012225292}
-  myMesh: {fileID: 0}
+  myMesh: {fileID: 1015846975628908}
 --- !u!114 &114962946560459362
 MonoBehaviour:
   m_ObjectHideFlags: 1

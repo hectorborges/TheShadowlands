@@ -11,6 +11,7 @@ public class AI : MonoBehaviour
     public bool isRanged;
 
     [Space, Header("Combat Variables")]
+    public float attackRange = 3f;
     public int minimumDamage;
     public int maximumDamage;
     public float attackSpeed;
@@ -107,7 +108,7 @@ public class AI : MonoBehaviour
                 if (agent.isActiveAndEnabled)
                     agent.SetDestination(player.position);
 
-                if (distance <= agent.stoppingDistance)
+                if (distance <= attackRange)
                 {
                     FaceTarget();
 

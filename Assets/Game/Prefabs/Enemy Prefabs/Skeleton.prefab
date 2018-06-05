@@ -3007,7 +3007,7 @@ MonoBehaviour:
   radius: 0.5
   interactionTransform: {fileID: 4489825583171832}
   focusGraphic: {fileID: 1884440095704400}
-  myMesh: {fileID: 0}
+  myMesh: {fileID: 1640375085592984}
 --- !u!114 &114136994826773928
 MonoBehaviour:
   m_ObjectHideFlags: 1

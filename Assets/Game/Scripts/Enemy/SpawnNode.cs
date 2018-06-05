@@ -24,11 +24,10 @@ public class SpawnNode : MonoBehaviour
     {
         int spawnCount = Random.Range(minimumSpawn, maximumSpawn);
 
-        ObjectPooling randomPool = enemies[Random.Range(0, enemies.Count)];
 
         for(int i = 0; i < spawnCount; i++)
         {
-
+            ObjectPooling randomPool = enemies[Random.Range(0, enemies.Count)];
             GameObject obj = randomPool.GetPooledObject();
 
             if (obj == null)
