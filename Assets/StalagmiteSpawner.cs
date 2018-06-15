@@ -2,15 +2,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StalagmiteSpawner : MonoBehaviour {
+public class StalagmiteSpawner : MonoBehaviour
+{
+    public GameObject[] stalagmites;
+    public Transform[] stalagmiteSpawnPoints;
+    public int minimumSpawnCount = 4;
+    public int maximumSpawnCount = 10;
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    private void Start()
+    {
+        int spawnCount = Random.Range(minimumSpawnCount, maximumSpawnCount);
+
+        for(int i = 0; i < spawnCount; i++)
+        {
+            Transform spawnPoint = stalagmiteSpawnPoints[Random.Range(0, stalagmiteSpawnPoints.Length)];
+            GameObject randomStalagmite = stalagmites[Random.Range(0, stalagmites.Length)];
+            Instantiate(randomStalagmite, spawnPoint.position, Quaternion.identity);
+        }
+    }
 }
