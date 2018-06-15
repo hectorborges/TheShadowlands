@@ -952,7 +952,7 @@ MonoBehaviour:
       m_Center: {x: 0, y: 0, z: 0}
       m_Extent: {x: 0, y: 0, z: 0}
     Root: {fileID: 0}
-    DungeonFlow: {fileID: 11400000, guid: 674a1de53449260458202b0cf9224bec, type: 2}
+    DungeonFlow: {fileID: 11400000, guid: 78b284bf19453fe4ab9ae43a50aefbd4, type: 2}
   GenerateOnStart: 1
   Root: {fileID: 1422189878}
 --- !u!114 &942810339
