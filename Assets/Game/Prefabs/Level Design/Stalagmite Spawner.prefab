@@ -3575,9 +3575,6 @@ MonoBehaviour:
   - {fileID: 146220, guid: 26cee604be6f66847869ea4770dcfd44, type: 2}
   - {fileID: 146220, guid: 434ae477a5ca6844f8164941f6c4f885, type: 2}
   - {fileID: 146220, guid: 1b0dee829a087b84aa8fb8247a6ce56e, type: 2}
-  - {fileID: 120700, guid: 7436b88665e2ac1498c409cb9f03f1ee, type: 2}
-  - {fileID: 101704, guid: 04ded911722915643a54daa18b3524a2, type: 2}
-  - {fileID: 156728, guid: 9a916956aeabdf4428de44f77b1c16cb, type: 2}
   stalagmiteSpawnPoints:
   - {fileID: 4333125848424968}
   - {fileID: 4244972371352048}
