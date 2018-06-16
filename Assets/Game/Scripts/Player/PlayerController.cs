@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
     public LayerMask movementMask;
     public LayerMask interactable;
     public LayerMask environmentMask;
+    public LayerMask visibilityMask;
     public LayerMask exitMask;
     public GameObject rayCastPosition;
     public float castRadius;
@@ -95,7 +96,7 @@ public class PlayerController : MonoBehaviour
             Ray camToPlayer = cam.ScreenPointToRay(screenPos);
             Debug.DrawRay(cam.transform.position, cam.transform.forward * 50, Color.yellow);
 
-            RaycastHit[] wallCollision = Physics.SphereCastAll(cam.transform.position, castRadius, cam.transform.forward, 10f, environmentMask);
+            RaycastHit[] wallCollision = Physics.SphereCastAll(cam.transform.position, castRadius, cam.transform.forward, 10f, visibilityMask);
 
             for (int i = 0; i < wallCollision.Length; i++)
             {

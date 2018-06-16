@@ -54,6 +54,7 @@ public class PlayerMovement : MonoBehaviour
         if (canMove)
         {
             agent.speed = baseSpeed;
+            if(agent.isOnNavMesh)
             agent.SetDestination(point);
         }
     }
