@@ -11,11 +11,10 @@ public class AI : MonoBehaviour
     public bool isRanged;
 
     [Space, Header("Combat Variables")]
+    public Ability ability;
     public float attackRange = 3f;
-    public int minimumDamage;
-    public int maximumDamage;
-    public float attackSpeed;
     public int numberOfAttacks;
+    public bool animationActivated;
 
     [Space, Header("Sounds")]
     public AudioSource aggroSource;
@@ -27,7 +26,6 @@ public class AI : MonoBehaviour
     public AudioClip[] idleSounds;
     public AudioClip[] attackSounds;
 
-    bool attacking;
     bool aggroed;
     bool idling;
     bool stunned;
@@ -60,7 +58,7 @@ public class AI : MonoBehaviour
     private void OnEnable()
     {
         if(agent)
-        agent.isStopped = false;
+            agent.isStopped = false;
     }
 
     void Update()
@@ -112,14 +110,9 @@ public class AI : MonoBehaviour
                 {
                     FaceTarget();
 
-                    if (!attacking)
+                    if(!ability.CheckCooldown())
                     {
-                        attacking = true;
-
-                        AudioClip attackClip = attackSounds[Random.Range(0, attackSounds.Length)];
-                        attackSource.PlayOneShot(attackClip);
-
-                        StartCoroutine(Attack());
+                        Attack();
                     }
                 }
             }
@@ -158,34 +151,14 @@ public class AI : MonoBehaviour
         transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 5);
     }
 
-    IEnumerator Attack()
+    void Attack()
     {
         animatorBase.Attack(numberOfAttacks);
+        AudioClip attackClip = attackSounds[Random.Range(0, attackSounds.Length)];
+        attackSource.PlayOneShot(attackClip);
 
-        int minDamage = minimumDamage;
-        int maxDamage = maximumDamage;
-
-        minDamage += (int)stats.GetStatCurrentValue(Stat.StatType.Damage);
-        maxDamage += (int)stats.GetStatCurrentValue(Stat.StatType.Damage);
-
-        int randomDamage = Random.Range(minimumDamage, maximumDamage);
-
-        int critRoll = Random.Range(0, 100);
-
-        bool crit;
-        if ((int)stats.GetStatCurrentValue(Stat.StatType.CriticalStrike) <= critRoll)
-        {
-            crit = true;
-            float newDamage = randomDamage;
-            newDamage *= stats.GetStatCurrentValue(Stat.StatType.CriticalDamage);
-            randomDamage = (int)newDamage;
-        }
-        else
-            crit = false;
-
-        playerHealth.TookDamage(randomDamage, gameObject, crit);
-        yield return new WaitForSeconds(attackSpeed);
-        attacking = false;
+        if(!animationActivated)
+        ability.ActivateAbility();
     }
 
     IEnumerator Idling()
