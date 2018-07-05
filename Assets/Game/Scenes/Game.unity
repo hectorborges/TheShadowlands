@@ -895,6 +895,7 @@ MonoBehaviour:
   _mainCamera: {fileID: 663269819}
   _essenceAnimator: {fileID: 946157027}
   _player: {fileID: 1903664650400302, guid: f72690552e3298846ba6c18efd4fd362, type: 2}
+  _playerTarget: {fileID: 0}
   _enemyPools:
   - {fileID: 930779913}
   - {fileID: 1137510749}

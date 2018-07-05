@@ -8,6 +8,7 @@ TagManager:
   - Enemy
   - PlayerSpawnPoint
   - Chest
+  - PlayerTarget
   layers:
   - Default
   - TransparentFX

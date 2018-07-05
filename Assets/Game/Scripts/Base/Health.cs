@@ -15,7 +15,7 @@ public class Health : MonoBehaviour
     public AudioClip[] deathSounds;
 
     [HideInInspector] public bool isDead;
-    public int health;
+     public int health;
 
     float immuneChance;
 
@@ -39,6 +39,7 @@ public class Health : MonoBehaviour
 
     public virtual void TookDamage(int damage)
     {
+        print("Taking Damage");
         health -= damage;
 
         if(hitSounds.Length > 0)

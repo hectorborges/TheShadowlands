@@ -198,7 +198,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
-  targeted: 0
+  targeted: 1
   piercing: 0
 --- !u!135 &135083689494811266
 SphereCollider:

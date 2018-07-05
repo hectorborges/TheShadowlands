@@ -26,6 +26,8 @@ public class PlayerHealth : Health
 
     public void Start()
     {
+        isDead = false;
+        health = baseHealth;
         playerAnimator = GetComponent<PlayerAnimator>();
         ResetCharacter();
     }

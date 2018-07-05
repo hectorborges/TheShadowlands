@@ -3802,7 +3802,7 @@ MonoBehaviour:
   stats: {fileID: 114971533655109786}
   lookRadius: 15
   isRanged: 1
-  ability: {fileID: 0}
+  ability: {fileID: 114409327833187722}
   attackRange: 10
   numberOfAttacks: 3
   animationActivated: 0

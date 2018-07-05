@@ -12,7 +12,13 @@ public class AIProjectileAbility : Ability
 
     protected override void Start()
     {
-        player = ReferenceManager.instance._player.transform;
+        player = GameObject.FindGameObjectWithTag("PlayerTarget").transform;
+    }
+
+    private void Update()
+    {
+        if(!player)
+            player = GameObject.FindGameObjectWithTag("PlayerTarget").transform;
     }
 
     public override void ActivateAbility()
@@ -27,9 +33,8 @@ public class AIProjectileAbility : Ability
         GameObject obj = bullet.GetPooledObject();
 
         Projectile projectile = obj.GetComponent<Projectile>();
-
-        if (PlayerLoadout.focus != null)
-            projectile.SetTarget(player);
+        
+        projectile.SetTarget(player);
 
         projectile.SetDamage(abilityMinimumDamage, abilityMaximumDamage, this);
 

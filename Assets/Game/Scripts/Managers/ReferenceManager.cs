@@ -8,6 +8,7 @@ public class ReferenceManager : MonoBehaviour
     public Camera _mainCamera;
     public Animator _essenceAnimator;
     public GameObject _player;
+    public Transform _playerTarget;
     public List<ObjectPooling> _enemyPools;
     public ObjectPooling _floatingCombatTextPool;
 
@@ -17,6 +18,7 @@ public class ReferenceManager : MonoBehaviour
 
     public static Camera mainCamera;
     public static GameObject player;
+    public static Transform playerTarget;
     public static List<ObjectPooling> enemyPools = new List<ObjectPooling>();
     public static ObjectPooling floatingCombatTextPool;
     public static ObjectPooling rifleHitEffectPool;
@@ -49,8 +51,9 @@ public class ReferenceManager : MonoBehaviour
                 spawnedCharacter = true;
                 Transform spawnPosition = GameObject.FindGameObjectWithTag("PlayerSpawnPoint").transform;
                 if(_player && spawnPosition)
+                {
                     player = Instantiate(_player, spawnPosition.position, spawnPosition.rotation);
-
+                }
                 GameManager.instance.SetPlayer(player);
             }
         }

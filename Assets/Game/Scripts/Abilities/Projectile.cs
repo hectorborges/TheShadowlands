@@ -21,6 +21,7 @@ public class Projectile : MonoBehaviour
     public void SetTarget(Transform newTarget)
     {
         target = newTarget;
+        print(target.name);
     }
 
     public void SetDamage(int _minimumDamage, int _maximumDamage, Ability _ability)
@@ -29,10 +30,13 @@ public class Projectile : MonoBehaviour
         maximumDamage = _maximumDamage;
         ability = _ability;
 
-        if (ability.abilityWeapon.weaponType == Weapon.WeaponType.Rifle)
-            hitEffects = ReferenceManager.rifleHitEffectPool;
-        else if (ability.abilityWeapon.weaponType == Weapon.WeaponType.Pistols)
-            hitEffects = ReferenceManager.pistolHitEffectPool;
+        if(ability.abilityWeapon != null)
+        {
+            if (ability.abilityWeapon.weaponType == Weapon.WeaponType.Rifle)
+                hitEffects = ReferenceManager.rifleHitEffectPool;
+            else if (ability.abilityWeapon.weaponType == Weapon.WeaponType.Pistols)
+                hitEffects = ReferenceManager.pistolHitEffectPool;
+        }
     }
 
     private void Update()
@@ -45,7 +49,8 @@ public class Projectile : MonoBehaviour
             }
             else
             {
-                transform.LookAt(target.transform.position);
+                print("Targeting Player");
+                transform.LookAt(target.transform.localPosition);
             }
             transform.position += transform.forward * speed * Time.deltaTime;
         }
@@ -56,7 +61,7 @@ public class Projectile : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag.Equals("Enemy"))
+        if (other.tag.Equals("Enemy") || other.tag.Equals("Player"))
         {
             SpawnHitEffect();
             ability.DealDamage(minimumDamage, maximumDamage, other.gameObject);
@@ -73,6 +78,7 @@ public class Projectile : MonoBehaviour
 
     void SpawnHitEffect()
     {
+        if (hitEffects == null) return;
         GameObject obj = hitEffects.GetPooledObject();
 
         if (obj == null)
