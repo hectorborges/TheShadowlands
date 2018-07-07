@@ -50,7 +50,7 @@ public class Projectile : MonoBehaviour
             else
             {
                 print("Targeting Player");
-                transform.LookAt(target.transform.localPosition);
+                transform.LookAt(target.transform.position);
             }
             transform.position += transform.forward * speed * Time.deltaTime;
         }
