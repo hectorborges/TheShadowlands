@@ -32,7 +32,7 @@ public class PlayerController : MonoBehaviour
     public static bool battleWon;
 
     Camera cam;
-    PlayerMovement movement;
+    Movement movement;
     PlayerLoadout playerLoadout;
     GameObject player;
     Interactable focus;
@@ -48,7 +48,7 @@ public class PlayerController : MonoBehaviour
     {
         cam = Camera.main;
         player = ReferenceManager.instance._player;
-        movement = GetComponent<PlayerMovement>();
+        movement = GetComponent<Movement>();
         playerLoadout = GetComponent<PlayerLoadout>();
         health = GetComponent<Health>();
 
@@ -130,11 +130,11 @@ public class PlayerController : MonoBehaviour
                 walls.Clear();
         }
 
-        if (PlayerMovement.canMove)
-        {
+       // if (PlayerMovement.canMove)
+      //  {
             basicAttack = Input.GetKeyDown(KeyCode.Mouse0);
             secondaryAttack = Input.GetKeyDown(KeyCode.Mouse1);
-        }
+       // }
 
         bool stopWalking = Input.GetKey(KeyCode.LeftShift);
 
@@ -145,8 +145,8 @@ public class PlayerController : MonoBehaviour
         {
            // if (secondaryAttack || basicAttack)
            // {
-                if (!stopWalking)
-                    movement.MoveToPoint(hit.point);
+                //if (!stopWalking)
+                //    movement.MoveToPoint(hit.point);
 
                 Interactable interactable = hit.collider.GetComponent<Interactable>();
                 if (interactable != null)
@@ -157,17 +157,18 @@ public class PlayerController : MonoBehaviour
 
             switch (hit.transform.tag)
             {
-                case "Enemy":
-                    if(attackCursor)
-                        Cursor.SetCursor(attackCursor, new Vector2(attackCursor.width / 2, attackCursor.height / 2), CursorMode.Auto);
-                    break;
                 case "Chest":
-                    if(lootCursor)
+                    if (lootCursor)
                         Cursor.SetCursor(lootCursor, new Vector2(lootCursor.width / 2, lootCursor.height / 2), CursorMode.Auto);
 
                     if (basicAttack)
                         hit.transform.GetComponent<Chest>().OpenChest();
                     break;
+                case "Enemy":
+                    if(attackCursor)
+                        Cursor.SetCursor(attackCursor, new Vector2(attackCursor.width / 2, attackCursor.height / 2), CursorMode.Auto);
+                    break;
+         
             }
         }
         else if (Physics.Raycast(ray, out hit, 100, movementMask))
@@ -193,8 +194,8 @@ public class PlayerController : MonoBehaviour
                         }
                     }
 
-                    if (!stopWalking)
-                        movement.MoveToPoint(hit.point);
+                    //if (!stopWalking)
+                    //    movement.MoveToPoint(hit.point);
 
                     RemoveFocus();
                 }
@@ -222,10 +223,10 @@ public class PlayerController : MonoBehaviour
             exit = null;
         }
 
-        if (stopWalking)
-        {
-            movement.agent.SetDestination(transform.position);
-        }
+        //if (stopWalking)
+        //{
+        //    movement.agent.SetDestination(transform.position);
+        //}
     }
 
     void SetFocus(Interactable newFocus)
@@ -236,7 +237,7 @@ public class PlayerController : MonoBehaviour
                 focus.OnDefocused();
 
             focus = newFocus;
-            movement.FollowTarget(newFocus);
+            movement.SetTarget(newFocus);
         }
 
         playerLoadout.SetFocus(focus);
@@ -250,6 +251,6 @@ public class PlayerController : MonoBehaviour
 
         focus = null;
         playerLoadout.SetFocus(null);
-        movement.StopFollowingTarget();
+      //  movement.StopFollowingTarget();
     }
 }

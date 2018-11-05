@@ -38,6 +38,13 @@ public class LootTable : MonoBehaviour
     private void Start()
     {
         playerCanvas.worldCamera = ReferenceManager.mainCamera;
+        StartCoroutine(WaitForLoot());
+    }
+
+    IEnumerator WaitForLoot()
+    {
+        yield return new WaitForSeconds(1.5f);
+        NewLootTable();
     }
 
     public void NewLootTable()

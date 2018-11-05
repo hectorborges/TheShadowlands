@@ -38,7 +38,7 @@ public class ApplySelectedPrefabs : EditorWindow
                 if (prefabType == PrefabType.PrefabInstance || prefabType == PrefabType.DisconnectedPrefabInstance)
                 {
                     //Prefab Root;
-                    goPrefabRoot = ((GameObject)PrefabUtility.GetPrefabParent(go)).transform.root.gameObject;
+                    goPrefabRoot = ((GameObject)PrefabUtility.GetCorrespondingObjectFromSource(go)).transform.root.gameObject;
                     goCur = go;
                     bTopHierarchyFound = false;
                     bCanApply = true;
@@ -46,7 +46,7 @@ public class ApplySelectedPrefabs : EditorWindow
                     while (goCur.transform.parent != null && !bTopHierarchyFound)
                     {
                         //Are we still in the same prefab?
-                        if (PrefabUtility.GetPrefabParent(goCur.transform.parent.gameObject) != null && (goPrefabRoot == ((GameObject)PrefabUtility.GetPrefabParent(goCur.transform.parent.gameObject)).transform.root.gameObject))
+                        if (PrefabUtility.GetCorrespondingObjectFromSource(goCur.transform.parent.gameObject) != null && (goPrefabRoot == ((GameObject)PrefabUtility.GetCorrespondingObjectFromSource(goCur.transform.parent.gameObject)).transform.root.gameObject))
                         {
                             goCur = goCur.transform.parent.gameObject;
                         }
@@ -54,7 +54,7 @@ public class ApplySelectedPrefabs : EditorWindow
                         {
                             //The gameobject parent is another prefab, we stop here
                             bTopHierarchyFound = true;
-                            if (goPrefabRoot != ((GameObject)PrefabUtility.GetPrefabParent(goCur)))
+                            if (goPrefabRoot != ((GameObject)PrefabUtility.GetCorrespondingObjectFromSource(goCur)))
                             {
                                 //Gameobject is part of another prefab
                                 bCanApply = false;
@@ -65,7 +65,7 @@ public class ApplySelectedPrefabs : EditorWindow
                     if (_applyOrRevert != null && bCanApply)
                     {
                         iCount++;
-                        _applyOrRevert(goCur, PrefabUtility.GetPrefabParent(goCur), ReplacePrefabOptions.ConnectToPrefab);
+                        _applyOrRevert(goCur, PrefabUtility.GetCorrespondingObjectFromSource(goCur), ReplacePrefabOptions.ConnectToPrefab);
                     }
                 }
             }

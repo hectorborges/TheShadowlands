@@ -14,7 +14,7 @@ public class PlayerAnimationEventBridge : MonoBehaviour
 	
     public void Step()
     {
-        playerMovement.Step();
+        //playerMovement.Step();
     }
 
     public void AbilityEffect(string _abilityName)

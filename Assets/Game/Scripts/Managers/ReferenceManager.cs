@@ -52,6 +52,7 @@ public class ReferenceManager : MonoBehaviour
                     player = Instantiate(_player, spawnPosition.position, spawnPosition.rotation);
 
                 GameManager.instance.SetPlayer(player);
+                RpgCamera.instance.Initialize(player);
             }
         }
     }

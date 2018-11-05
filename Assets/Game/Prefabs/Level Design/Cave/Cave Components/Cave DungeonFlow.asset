@@ -3,7 +3,7 @@
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
@@ -16,8 +16,8 @@ MonoBehaviour:
     Max: 10
   GlobalPropGroupIDs: 00000000
   GlobalPropRanges:
-  - Min: 10
-    Max: 20
+  - Min: 40
+    Max: 50
   KeyManager: {fileID: 0}
   DoorwayConnectionChance: 0
   TileInjectionRules: []

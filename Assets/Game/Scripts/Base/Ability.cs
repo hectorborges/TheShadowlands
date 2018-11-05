@@ -30,7 +30,7 @@ public class Ability : MonoBehaviour
     public int manaGained;
     public int manaRequired;
 
-    public bool requiresTarget;
+   // public bool requiresTarget;
 
     [Space, Header("Required Variables")]
     public Stats entityStats;                                                                       //This is the character's actual stats

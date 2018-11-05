@@ -35,10 +35,9 @@ public class PlayerLoadout : MonoBehaviour
     float remainingTime;
     public static Interactable focus;
     PlayerAnimator playerAnimator;
-    NavMeshAgent agent;
     Stats stats;
 
-    bool attacking;
+    public bool IsAttacking { get; private set; }
     Coroutine attack;
 
     Item equippedItem = new Item();
@@ -48,7 +47,6 @@ public class PlayerLoadout : MonoBehaviour
         instance = this;
         Application.targetFrameRate = 60;
         playerAnimator = GetComponent<PlayerAnimator>();
-        agent = GetComponent<NavMeshAgent>();
         stats = GetComponent<Stats>();
 
         for (int i = 0; i < 6; i++)
@@ -125,7 +123,7 @@ public class PlayerLoadout : MonoBehaviour
         if(attack != null)
             StopCoroutine(attack);
 
-        attacking = false;
+        IsAttacking = false;
     }
 
     //pass in -1 if not changing abilities
@@ -139,7 +137,7 @@ public class PlayerLoadout : MonoBehaviour
             print("Equipped Ability is " + itemsInSlots[abilitySlotIndex].itemAbility.abilityName);
             abilityCharges[abilitySlotIndex].text = itemsInSlots[abilitySlotIndex].itemAbility.abilityCharges.ToString();
 
-            agent.stoppingDistance = itemsInSlots[abilitySlotIndex].itemAbility.abilityRange;
+            //target.stoppingDistance = itemsInSlots[abilitySlotIndex].itemAbility.abilityRange;
 
             if (itemsInSlots[abilitySlotIndex].itemAbility.abilityCharges <= 1)
                 abilityCharges[abilitySlotIndex].enabled = false;
@@ -173,13 +171,17 @@ public class PlayerLoadout : MonoBehaviour
     void AbilityInput()
     {
         if (itemsInSlots.Count <= 0) return;
+
         for (int i = 0; i < itemsInSlots.Count; i++)
         {
+            if(i == 0 && !focus && !Input.GetKey(KeyCode.LeftShift))
+                continue;
+
             if (itemsInSlots[i] && itemsInSlots[i].itemAbility.CanShoot() && abilityActive[i])
             {
-                if(!attacking)
+                if(!IsAttacking)
                 {
-                    attacking = true;
+                    IsAttacking = true;
                     ChangeWeapon(itemsInSlots[i].itemAbility.abilityWeapon);
 
                     itemsInSlots[i].itemAbility.ActivateAbility();
@@ -200,7 +202,7 @@ public class PlayerLoadout : MonoBehaviour
     IEnumerator Attacking()
     {
         yield return new WaitForSeconds(1);
-        attacking = false;
+        IsAttacking = false;
     }
 
     void UpdateAbiltyCharges(Item item)
@@ -285,18 +287,18 @@ public class PlayerLoadout : MonoBehaviour
 
     public bool Attack(Item item, KeyCode abilityKey)
     {
-        if(item.itemAbility.requiresTarget)
-        {
+        //if(item.itemAbility.requiresTarget)
+        //{
             if(focus != null)
             {
-                if(Utility.CheckDistance(transform.position, focus.transform.position) < item.itemAbility.abilityRange)
-                {
+               // if(Utility.CheckDistance(transform.position, focus.transform.position) < item.itemAbility.abilityRange)
+              //  {
                     if (item.itemAbility.abilityInput == Ability.AbilityInput.GetButton)
                         return Input.GetKey(abilityKey);
                     else
                         return Input.GetKeyDown(abilityKey);
-                }
-            }
+               // }
+           // }
         }
         else
         {
@@ -307,7 +309,6 @@ public class PlayerLoadout : MonoBehaviour
                 return Input.GetKeyDown(abilityKey);
             }
         }
-        return false;
     }
 
     public void SetFocus(Interactable newFocus)
