@@ -211,8 +211,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 40
-  targeted: 1
-  piercing: 0
+  targeted: 0
+  piercing: 1
 --- !u!135 &135861176705166240
 SphereCollider:
   m_ObjectHideFlags: 1

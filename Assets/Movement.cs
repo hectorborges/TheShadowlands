@@ -153,6 +153,11 @@ public class Movement : MonoBehaviour
         target = newTarget.interactionTransform;
     }
 
+    public void RemoveTarget()
+    {
+        target = null;
+    }
+
     void Rotate()
     {
         if (PlayerLoadout.instance.IsAttacking)

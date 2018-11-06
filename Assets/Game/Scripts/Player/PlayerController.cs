@@ -251,6 +251,6 @@ public class PlayerController : MonoBehaviour
 
         focus = null;
         playerLoadout.SetFocus(null);
-      //  movement.StopFollowingTarget();
+        movement.RemoveTarget();
     }
 }
