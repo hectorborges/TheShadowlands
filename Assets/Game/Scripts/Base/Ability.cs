@@ -57,12 +57,12 @@ public class Ability : MonoBehaviour
 
     List<Stat> abilityStats = new List<Stat>();
 
-    bool onCooldown;
+    protected bool onCooldown;
     bool shouldHeal;
 
     Coroutine cast;
-    Coroutine cooldown;
-    Item abilityItem;
+    protected Coroutine cooldown;
+    protected Item abilityItem;
 
     public enum AbilitySlot { PrimaryAbility, SecondaryAbility, AbilityOne, AbilityTwo, AbilityThree, AbilityFour };
     [HideInInspector] public AbilitySlot abilitySlot;
@@ -136,7 +136,7 @@ public class Ability : MonoBehaviour
         else return false;
     }
 
-    IEnumerator Cooldown()
+    protected virtual IEnumerator Cooldown()
     {
         yield return new WaitForSeconds(abilityCooldown);
 
@@ -198,7 +198,7 @@ public class Ability : MonoBehaviour
             crit = true;
             float newDamage = randomDamage;
             newDamage *= entityStats.GetStatCurrentValue(Stat.StatType.CriticalDamage);
-            randomDamage = (int)newDamage;
+            randomDamage = Mathf.RoundToInt(newDamage);
         }
         else
             crit = false;

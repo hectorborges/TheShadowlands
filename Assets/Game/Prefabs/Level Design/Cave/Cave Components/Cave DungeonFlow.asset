@@ -14,10 +14,12 @@ MonoBehaviour:
   Length:
     Min: 5
     Max: 10
-  GlobalPropGroupIDs: 00000000
+  GlobalPropGroupIDs: 0200000000000000
   GlobalPropRanges:
   - Min: 40
     Max: 50
+  - Min: 5
+    Max: 5
   KeyManager: {fileID: 0}
   DoorwayConnectionChance: 0
   TileInjectionRules: []

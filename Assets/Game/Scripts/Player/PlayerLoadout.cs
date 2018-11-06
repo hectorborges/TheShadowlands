@@ -15,12 +15,14 @@ public class PlayerLoadout : MonoBehaviour
     public KeyCode abilityTwoKey;
     public KeyCode abilityThreeKey;
     public KeyCode abilityFourKey;
+    public KeyCode healthPotionKey;
 
     [Space, Header("Weapons")]
     public Weapon currentWeapon;
     public GameObject weaponHolder;
 
     [Space, Header("Ability Loadout")]
+    public Ability healthPotionAbility;
     public List<Item> defaultItems;
     public List<Item> itemsInSlots;
     public List<Image> abilitySlots;
@@ -135,7 +137,7 @@ public class PlayerLoadout : MonoBehaviour
             itemsInSlots[abilitySlotIndex].itemAbility.OnCooldownFinished -= UpdateAbiltyCharges; //Move this to unsubscribe before changing abilities
 
             print("Equipped Ability is " + itemsInSlots[abilitySlotIndex].itemAbility.abilityName);
-            abilityCharges[abilitySlotIndex].text = itemsInSlots[abilitySlotIndex].itemAbility.abilityCharges.ToString();
+            abilityCharges[abilitySlotIndex].text = itemsInSlots[abilitySlotIndex].itemAbility.currentCharges.ToString();
 
             //target.stoppingDistance = itemsInSlots[abilitySlotIndex].itemAbility.abilityRange;
 
@@ -155,7 +157,7 @@ public class PlayerLoadout : MonoBehaviour
 
                 if (itemsInSlots[i].itemAbility.abilityCharges > 1)
                 {
-                    abilityCharges[i].text = itemsInSlots[i].itemAbility.abilityCharges.ToString();
+                    abilityCharges[i].text = itemsInSlots[i].itemAbility.currentCharges.ToString();
                     abilityCharges[i].enabled = true;
                 }
             }
@@ -170,6 +172,9 @@ public class PlayerLoadout : MonoBehaviour
 
     void AbilityInput()
     {
+        if (healthPotionAbility && healthPotionAbility.CanShoot() && Input.GetKeyDown(healthPotionKey))
+            healthPotionAbility.ActivateAbility();
+
         if (itemsInSlots.Count <= 0) return;
 
         for (int i = 0; i < itemsInSlots.Count; i++)
@@ -209,7 +214,7 @@ public class PlayerLoadout : MonoBehaviour
         if (itemsInSlots.Contains(item))
         {
             int abilityIndex = itemsInSlots.IndexOf(item);
-            abilityCharges[abilityIndex].text = item.itemAbility.abilityCharges.ToString();
+            abilityCharges[abilityIndex].text = item.itemAbility.currentCharges.ToString();
         }
     }
 

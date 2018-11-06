@@ -84,16 +84,14 @@ public class EnemyHealth : Health
                 }
             }
         }
-        else
-            UpdateHealthBar();
+        UpdateHealthBar();
     }
 
     public override void TookDamage(int damage, GameObject attackingTarget, bool crit)
     {
         if (isDead) return;
-
         health -= damage;
-
+        UpdateHealthBar();
         GameObject obj = combatText.GetPooledObject();
 
         Text cbtText = obj.GetComponent<Text>();

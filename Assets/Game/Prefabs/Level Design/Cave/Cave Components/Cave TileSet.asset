@@ -14,8 +14,8 @@ MonoBehaviour:
   TileWeights:
     Weights:
     - Value: {fileID: 1172236651278230, guid: fbc094d6f2995574bbffc09f6c5976d6, type: 2}
-      MainPathWeight: 1
-      BranchPathWeight: 1
+      MainPathWeight: 3
+      BranchPathWeight: 3
       UseDepthScale: 1
       DepthWeightScale:
         serializedVersion: 2
@@ -43,8 +43,8 @@ MonoBehaviour:
         m_RotationOrder: 4
       TileSet: {fileID: 11400000}
     - Value: {fileID: 1820614961863896, guid: 5acf7e9e4c18a5c48b75e3b58a5b39a9, type: 2}
-      MainPathWeight: 1
-      BranchPathWeight: 1
+      MainPathWeight: 2
+      BranchPathWeight: 2
       UseDepthScale: 1
       DepthWeightScale:
         serializedVersion: 2
