@@ -33,8 +33,7 @@ public class Movement : MonoBehaviour
     //public GameObject[] rightStepEffects;
     //public AudioSource footstepSource;
     //public AudioClip[] footsteps;
-
-    float speed;
+    
     float horizontal;
     float vertical;
 
@@ -53,7 +52,7 @@ public class Movement : MonoBehaviour
     int leftStepCount;
     int rightStepCount;
 
-    Rigidbody rb;
+   // Rigidbody rb;
     Animator anim;
     Vector3 currentVelocity;
     Transform target;
@@ -65,7 +64,7 @@ public class Movement : MonoBehaviour
 
     private void Start()
     {
-        rb = GetComponent<Rigidbody>();
+      //  rb = GetComponent<Rigidbody>();
         anim = GetComponentInChildren<Animator>();
         cam = Camera.main;
 
@@ -77,13 +76,15 @@ public class Movement : MonoBehaviour
     {
         //if (Player.AbilityInUse) return;
         RecieveInput();
+        if (!PlayerLoadout.instance.IsAttacking)
+            Move();
+        Rotate();
+        if (!Grounded())
+            Fall();
     }
 
     private void LateUpdate()
     {
-        if(!PlayerLoadout.instance.IsAttacking)
-            Move();
-        Rotate();
     }
 
     void RecieveInput()
@@ -99,38 +100,37 @@ public class Movement : MonoBehaviour
 
     void Move()
     {
-        anim.SetFloat("Speed", speed, moveAnimationSmoothTime, Time.deltaTime);
-
         direction = new Vector3(horizontal, 0, vertical);
-        if (isSprinting || direction == Vector3.zero)
-        {
-            speed = 0;
-            rb.velocity = Vector3.zero;
-            return;
-        }
-        direction.Normalize();
-        if (direction != Vector3.zero)
-        {
-            if (speed < movementSpeed)
-                speed += stopToMoveRate * Time.deltaTime;
-            else if (speed > movementSpeed)
-                speed -= sprintToMoveRate * Time.deltaTime;
-        }
-        else if (speed > 0)
-            speed -= moveToStopRate * Time.deltaTime;
-
-            direction *= speed;
         direction = cam.transform.TransformDirection(direction);
+        direction.Normalize();
+
+        if (isSprinting)
+        {
+            anim.SetBool("IsSprinting", true);
+            direction *= sprintSpeed * Time.deltaTime;
+        }
+        else
+        {
+            anim.SetBool("IsSprinting", false);
+            direction *= movementSpeed * Time.deltaTime;
+        }
+
+        direction.y = 0f;
 
         if (direction != Vector3.zero)
-            rb.velocity = new Vector3(direction.x, rb.velocity.y, direction.z);
+        {
+            transform.position += direction;
+            anim.SetBool("IsMoving", true);
+        }
+        else
+            anim.SetBool("IsMoving", false);
     }
 
     void CheckGround()
     {
         if (!Grounded())
         {
-            Fall();
+           Fall();
         }
         else
         {
@@ -203,21 +203,21 @@ public class Movement : MonoBehaviour
             // jumpEffects[jumpCount].SetActive(true);
             // jumpSource.PlayOneShot(jumpSounds[Random.Range(0, jumpSounds.Length)]);
 
-            switch (jumpCount)
-            {
-                case 1:
-                    rb.velocity = new Vector3(rb.velocity.x, jumpForce, rb.velocity.z);
-                    break;
-                case 2:
-                    rb.velocity = new Vector3(rb.velocity.x, (jumpForce * 1.5f), rb.velocity.z);
-                    break;
-            }
+            //switch (jumpCount)
+            //{
+            //    case 1:
+            //        rb.velocity = new Vector3(rb.velocity.x, jumpForce, rb.velocity.z);
+            //        break;
+            //    case 2:
+            //        rb.velocity = new Vector3(rb.velocity.x, (jumpForce * 1.5f), rb.velocity.z);
+            //        break;
+            //}
         }
     }
 
     void Fall()
     {
-        rb.velocity += Physics.gravity * gravity * Time.fixedDeltaTime;
+        transform.position += Vector3.down * gravity * Time.fixedDeltaTime;
     }
 
     public void Step(int foot)

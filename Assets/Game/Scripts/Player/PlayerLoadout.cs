@@ -185,13 +185,12 @@ public class PlayerLoadout : MonoBehaviour
                     ChangeWeapon(itemsInSlots[i].itemAbility.abilityWeapon);
 
                     itemsInSlots[i].itemAbility.ActivateAbility();
-                    abilityCharges[i].text = itemsInSlots[i].itemAbility.abilityCharges.ToString();
+                    abilityCharges[i].text = itemsInSlots[i].itemAbility.currentCharges.ToString();
 
                     if (itemsInSlots[i].itemAbility.abilityCharges >= 0)
                     {
                         cooldownQueues[i].Enqueue(Time.time);
                     }
-                    attack = StartCoroutine(Attacking());
                 }
             }
             else if (itemsInSlots[i] && abilityDeactive[i])
