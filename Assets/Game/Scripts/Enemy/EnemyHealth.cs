@@ -39,7 +39,7 @@ public class EnemyHealth : Health
 
     void OnEnable()
     {
-        health = (int)stats.GetStatBaseValue(Stat.StatType.Health);
+        health = baseHealth;
         agent.enabled = true;
         extraDeathTimes = new float[extraRenderers.Length];
         deathTime = 0;

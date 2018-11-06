@@ -17,7 +17,8 @@ public class StalagmiteSpawner : MonoBehaviour
         {
             Transform spawnPoint = stalagmiteSpawnPoints[Random.Range(0, stalagmiteSpawnPoints.Length)];
             GameObject randomStalagmite = stalagmites[Random.Range(0, stalagmites.Length)];
-            Instantiate(randomStalagmite, spawnPoint.position, Quaternion.Euler(180,0,0));
+            GameObject stalagmite = Instantiate(randomStalagmite, spawnPoint.position, Quaternion.Euler(180,0,0));
+            stalagmite.transform.parent = transform;
         }
     }
 }

@@ -212,6 +212,15 @@ public class LootTable : MonoBehaviour
 
         UpdateEssenceValue();
 
+        bool closeWindow = true;
+        foreach (Item _item in itemsInLootTable)
+        {
+            if (_item != null)
+                closeWindow = false;
+        }
+        if (closeWindow)
+            CloseLootWindow();
+
         if (!newItem) return;
         equippedAbilityName.color = ItemTemplate.instance.GetItemRarityColor(newItem.itemRarity.ToString());
         equippedAbilityName.text = newItem.itemName;
@@ -222,7 +231,7 @@ public class LootTable : MonoBehaviour
         for (int i = 0; i < newItem.itemStats.Count; i++)
             equippedAbilityStats[i].text = ParseValue(newItem.itemStats[i]);
 
-        if (itemsInLootTable.Count <= 0)
+        if (closeWindow)
             CloseLootWindow();
     }
 
